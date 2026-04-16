@@ -1,26 +1,300 @@
 @import "tailwindcss";
 
+/* Figma design tokens (from get_variable_defs) */
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+  --text-primary: #373636;
+  --text-secondary: #4b4d53;
+  --text-tertiary: #818790;
+  --icon-secondary: #727680;
+  --card-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.1);
+  --ui-hover-bg-neutral: #f3f4f6;
+  --ui-shadow-card-rest: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --ui-shadow-card-hover: 0 2px 6px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.08);
+  --ui-shadow-btn-hover: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.08);
+  --ui-lift-y: -1px;
+  --ui-duration: 180ms;
+  --ui-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ui-focus-ring: #4b4d53;
+
+  /* Typography tokens */
+  --type-display-size: 1.75rem;
+  --type-display-line: 1.2857;
+  --type-display-weight: 600;
+  --type-display-track: -0.015em;
+
+  --type-h1-size: clamp(1.75rem, 1.45rem + 1.1vw, 2.25rem);
+  --type-h1-line: 1.2;
+  --type-h1-weight: 600;
+  --type-h1-track: -0.01em;
+
+  --type-h2-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+  --type-h2-line: 1.25;
+  --type-h2-weight: 600;
+  --type-h2-track: -0.01em;
+
+  --type-h3-size: 1.25rem;
+  --type-h3-line: 1.1818;
+  --type-h3-weight: 600;
+  --type-h3-track: 0;
+
+  --type-title-size: 1.125rem;
+  --type-title-line: 1.3333;
+  --type-title-weight: 400;
+  --type-title-track: 0;
+
+  --type-nav-size: 1rem;
+  --type-nav-line: 1.5;
+  --type-nav-weight: 400;
+  --type-nav-track: 0;
+
+  --type-body-lg-size: 1.125rem;
+  --type-body-lg-line: 1.3333;
+  --type-body-lg-weight: 400;
+  --type-body-lg-track: 0;
+
+  --type-body-size: 1rem;
+  --type-body-line: 1.5;
+  --type-body-weight: 400;
+  --type-body-track: 0;
+
+  --type-caption-size: 1rem;
+  --type-caption-line: 1.5;
+  --type-caption-weight: 400;
+  --type-caption-track: 0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-icon-secondary: var(--icon-secondary);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-inter);
+  --font-crimson: "Crimson Pro";
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --shadow-card: var(--card-shadow);
+  /* 1200px screen breakpoint (between lg:1024 and xl:1280) */
+  --breakpoint-xl: 1200px;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Hide system cursor on tooltip-bearing elements so the pill replaces it. */
+[data-tooltip] {
+  cursor: none;
+}
+
+/* Restore cursor on touch-primary devices (tooltip is suppressed there). */
+@media (pointer: coarse) {
+  [data-tooltip] {
+    cursor: auto;
+  }
+}
+
+/* Route entrance animation for initial load + App Router navigations */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .type-display {
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--type-display-size);
+    line-height: var(--type-display-line);
+    font-weight: var(--type-display-weight);
+    letter-spacing: var(--type-display-track);
+  }
+
+  .type-h1 {
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--type-h1-size);
+    line-height: var(--type-h1-line);
+    font-weight: var(--type-h1-weight);
+    letter-spacing: var(--type-h1-track);
+  }
+
+  .type-h2 {
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--type-h2-size);
+    line-height: var(--type-h2-line);
+    font-weight: var(--type-h2-weight);
+    letter-spacing: var(--type-h2-track);
+  }
+
+  .type-h3 {
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--type-h3-size);
+    line-height: var(--type-h3-line);
+    font-weight: var(--type-h3-weight);
+    letter-spacing: var(--type-h3-track);
+  }
+
+  .type-title {
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--type-title-size);
+    line-height: var(--type-title-line);
+    font-weight: var(--type-title-weight);
+    letter-spacing: var(--type-title-track);
+  }
+
+  .type-nav {
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--type-nav-size);
+    line-height: var(--type-nav-line);
+    font-weight: var(--type-nav-weight);
+    letter-spacing: var(--type-nav-track);
+  }
+
+  .type-body-lg {
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--type-body-lg-size);
+    line-height: var(--type-body-lg-line);
+    font-weight: var(--type-body-lg-weight);
+    letter-spacing: var(--type-body-lg-track);
+  }
+
+  .type-body {
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--type-body-size);
+    line-height: var(--type-body-line);
+    font-weight: var(--type-body-weight);
+    letter-spacing: var(--type-body-track);
+  }
+
+  .type-caption {
+    font-family: var(--font-sans), sans-serif;
+    font-size: var(--type-caption-size);
+    line-height: var(--type-caption-line);
+    font-weight: var(--type-caption-weight);
+    letter-spacing: var(--type-caption-track);
+  }
+
+  .type-mono {
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  .type-measure {
+    max-width: 65ch;
+  }
+
+  .route-enter {
+    animation: page-enter 320ms var(--ui-ease-out) both;
+    will-change: opacity, transform;
+  }
+
+  .route-enter-stagger > * {
+    opacity: 0;
+    animation: page-enter 360ms var(--ui-ease-out) both;
+  }
+
+  .route-enter-stagger > *:nth-child(1) {
+    animation-delay: 20ms;
+  }
+
+  .route-enter-stagger > *:nth-child(2) {
+    animation-delay: 90ms;
+  }
+
+  .route-enter-stagger > *:nth-child(3) {
+    animation-delay: 150ms;
+  }
+
+  .route-enter-stagger > *:nth-child(4) {
+    animation-delay: 210ms;
+  }
+
+  .ui-btn-primary {
+    transition:
+      background-color var(--ui-duration) var(--ui-ease-out),
+      box-shadow var(--ui-duration) var(--ui-ease-out),
+      transform var(--ui-duration) var(--ui-ease-out),
+      color var(--ui-duration) var(--ui-ease-out);
+    will-change: transform, box-shadow, background-color;
+  }
+
+  .ui-btn-primary:hover {
+    background: var(--ui-hover-bg-neutral);
+    box-shadow: var(--ui-shadow-btn-hover);
+    transform: translateY(var(--ui-lift-y));
+  }
+
+  .ui-btn-primary:focus-visible {
+    outline: 2px solid var(--ui-focus-ring);
+    outline-offset: 2px;
+  }
+
+  .ui-btn-ghost {
+    transition:
+      background-color var(--ui-duration) var(--ui-ease-out),
+      box-shadow var(--ui-duration) var(--ui-ease-out),
+      transform var(--ui-duration) var(--ui-ease-out),
+      color var(--ui-duration) var(--ui-ease-out);
+    will-change: transform, background-color, box-shadow;
+  }
+
+  .ui-btn-ghost:hover {
+    background: var(--ui-hover-bg-neutral);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    transform: translateY(var(--ui-lift-y));
+  }
+
+  .ui-btn-ghost:focus-visible {
+    outline: 2px solid var(--ui-focus-ring);
+    outline-offset: 2px;
+  }
+
+  .ui-card {
+    box-shadow: var(--ui-shadow-card-rest);
+    transition:
+      box-shadow 200ms var(--ui-ease-out),
+      transform 200ms var(--ui-ease-out);
+    will-change: transform, box-shadow;
+  }
+
+  .ui-card:hover {
+    box-shadow: var(--ui-shadow-card-hover);
+    transform: translateY(var(--ui-lift-y));
+  }
+
+  .ui-card:focus-visible {
+    outline: 2px solid var(--ui-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-enter,
+  .route-enter-stagger > * {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .ui-btn-primary,
+  .ui-btn-ghost,
+  .ui-card {
+    transition: none;
+    transform: none;
+  }
+
+  .ui-btn-primary:hover,
+  .ui-btn-ghost:hover,
+  .ui-card:hover {
+    transform: none;
+  }
 }
