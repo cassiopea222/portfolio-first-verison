@@ -12,7 +12,7 @@ export default function ProjectsGrid({ projects = defaultProjects }: ProjectsGri
   const remaining = projects.slice(2);
 
   return (
-    <section id="work" className="mx-auto w-full max-w-[1440px] px-6 md:px-14 lg:px-[140px]">
+    <section id="work" className="mx-auto w-full max-w-[1440px] fluid-px-home">
       <h2 className="sr-only">Work</h2>
       <div className="flex flex-col gap-10">
         {/* First row: 2 cards side by side */}

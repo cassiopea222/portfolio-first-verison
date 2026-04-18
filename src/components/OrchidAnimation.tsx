@@ -4,16 +4,16 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 const FRAMES = [
-  "/orchid/1.png",
-  "/orchid/2.png",
-  "/orchid/frame-01.png",
-  "/orchid/frame-02.png",
-  "/orchid/frame-03.png",
-  "/orchid/frame-04.png",
-  "/orchid/frame-05.png",
-  "/orchid/frame-06.png",
-  "/orchid/frame-07.png",
-  "/orchid/frame-08.png",
+  "/orchid/1.webp",
+  "/orchid/2.webp",
+  "/orchid/frame-01.webp",
+  "/orchid/frame-02.webp",
+  "/orchid/frame-03.webp",
+  "/orchid/frame-04.webp",
+  "/orchid/frame-05.webp",
+  "/orchid/frame-06.webp",
+  "/orchid/frame-07.webp",
+  "/orchid/frame-08.webp",
 ];
 
 // Exact display sizes + vertical offsets from Figma.
@@ -88,35 +88,13 @@ export default function OrchidAnimation() {
   }, []);
 
   useEffect(() => {
-    // Defer preloading non-visible frames until browser idle time to improve initial page load.
-    const preloadRest = () => {
-      FRAMES.slice(1).forEach((src) => {
-        const img = new window.Image();
-        img.decoding = "async";
-        img.src = src;
-      });
-    };
-
-    if ("requestIdleCallback" in window) {
-      const idleId = (
-        window as Window & {
-          requestIdleCallback: (cb: () => void, options?: { timeout: number }) => number;
-          cancelIdleCallback: (id: number) => void;
-        }
-      ).requestIdleCallback(preloadRest, { timeout: 1500 });
-      return () => {
-        (
-          window as Window & {
-            cancelIdleCallback: (id: number) => void;
-          }
-        ).cancelIdleCallback(idleId);
-        pause();
-      };
-    }
-
-    const timeout = setTimeout(preloadRest, 600);
+    // Frames are ~290 KB total as WebP; preload them all immediately so hover never waits.
+    FRAMES.slice(1).forEach((src) => {
+      const img = new window.Image();
+      img.decoding = "async";
+      img.src = src;
+    });
     return () => {
-      clearTimeout(timeout);
       pause();
     };
   }, [pause]);
@@ -177,8 +155,8 @@ export default function OrchidAnimation() {
                 alt=""
                 width={w}
                 height={h}
-                loading={i === 0 ? "eager" : "lazy"}
-                fetchPriority={i === 0 ? "high" : "auto"}
+                loading="eager"
+                fetchPriority={i === 0 ? "high" : "low"}
                 decoding="async"
                 style={{
                   width: "100%",

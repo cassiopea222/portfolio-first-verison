@@ -63,10 +63,12 @@ function Showcase({ children, caption }: { children: React.ReactNode; caption: s
 
 export default function FitnessCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-[60px] px-6 py-[120px] md:px-14 lg:px-[320px] xl:px-[200px]">
-      <NavButton href="/" text="Go back" />
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px">
+      <div className="w-full max-w-[800px]">
+        <NavButton href="/" text="Go back" />
+      </div>
 
-      <div className="flex max-w-[800px] flex-col gap-12">
+      <div className="flex w-full max-w-[800px] flex-col gap-12">
         {/* Title block */}
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-6">

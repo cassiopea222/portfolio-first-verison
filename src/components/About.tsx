@@ -10,13 +10,14 @@ const imgAlbum = "/about/album.jpg";
 type PhotoProps = {
   src: string;
   label: string;
+  objectPosition?: string;
 };
 
-function Photo({ src, label }: PhotoProps) {
+function Photo({ src, label, objectPosition = "center" }: PhotoProps) {
   return (
     <div
       data-tooltip={label}
-      className="relative h-[260px] shrink-0 overflow-hidden rounded-[12px]"
+      className="relative h-[260px] w-[201px] shrink-0 overflow-hidden rounded-[12px]"
     >
       <Image
         src={src}
@@ -24,6 +25,7 @@ function Photo({ src, label }: PhotoProps) {
         fill
         sizes="201px"
         className="object-cover"
+        style={{ objectPosition }}
       />
     </div>
   );
@@ -33,7 +35,7 @@ export default function About() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center">
       <div className="flex w-full flex-col gap-[100px]">
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center px-6 md:px-14 lg:px-[300px] xl:px-[180px]">
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center fluid-px">
           <div className="flex w-full max-w-[840px] flex-col gap-[60px] pt-[100px]">
             <div className="flex flex-col gap-12">
               <div className="flex flex-col gap-[20px]">
@@ -60,10 +62,10 @@ export default function About() {
 
               {/* Photos row */}
               <div className="flex w-full gap-3 overflow-x-auto">
-                <Photo src={imgPhoto1} label="It's me!" />
-                <Photo src={imgPhoto2} label="Looking at art" />
-                <Photo src={imgPhoto3} label="Smelling perfumes" />
-                <Photo src={imgPhoto4} label="Listening to music" />
+                <Photo src={imgPhoto1} label="It's me!" objectPosition="center bottom" />
+                <Photo src={imgPhoto2} label="Looking at art" objectPosition="center" />
+                <Photo src={imgPhoto3} label="Smelling perfumes" objectPosition="right center" />
+                <Photo src={imgPhoto4} label="Listening to music" objectPosition="center top" />
               </div>
             </div>
 

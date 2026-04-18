@@ -149,8 +149,10 @@ function SectionHeader({ subtitle, title }: { subtitle?: string; title: string }
 
 export default function BetaTestingPlatformCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-[80px] px-6 py-[120px] md:px-14 lg:px-[300px] xl:px-[180px]">
-      <NavButton href="/" text="Go back" />
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[80px] py-[120px] fluid-px">
+      <div className="w-full max-w-[840px]">
+        <NavButton href="/" text="Go back" />
+      </div>
 
       <div className="flex w-full max-w-[840px] flex-col gap-[48px]">
         <div className="flex flex-col gap-[32px]">
@@ -674,7 +676,7 @@ export default function BetaTestingPlatformCaseStudy() {
       </div>
 
       {/* Navigation */}
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full max-w-[840px] items-center justify-between">
         <NavButton href="/" text="Previous" />
         <Link
           href="/projects/role-management-system"

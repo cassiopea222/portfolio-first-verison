@@ -4,27 +4,6 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-function ExternalArrowIcon() {
-  return (
-    <svg
-      width="14"
-      height="12"
-      viewBox="0 0 10 10"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="shrink-0 text-current"
-      aria-hidden
-    >
-      <path
-        d="M7.85714 2.14258L2.14285 7.85687M7.85714 2.14258H2.14285M7.85714 2.14258V7.85687"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 const navLinks = [
   { href: "/", label: "Work" },
@@ -32,9 +11,9 @@ const navLinks = [
 ];
 
 const externalLinks = [
-  { href: "mailto:hello@example.com", label: "Email", hoverColor: "#e572a5", tooltip: "Copy email" },
-  { href: "https://linkedin.com", label: "LinkedIn", hoverColor: "#c169c5", tooltip: "Go!" },
-  { href: "#", label: "CV", hoverColor: "#b0a950", tooltip: "See CV" },
+  { href: "mailto:hello@example.com", label: "Email", tooltip: "Copy" },
+  { href: "https://linkedin.com", label: "LinkedIn", tooltip: "Go!" },
+  { href: "#", label: "CV", tooltip: "See" },
 ];
 const TAB_PILL_INSET = 4;
 
@@ -138,22 +117,16 @@ export default function Header() {
       </div>
 
       <div className="ml-auto hidden w-[216px] items-center justify-end gap-5 lg:flex">
-        {externalLinks.map(({ href, label, hoverColor, tooltip }) => (
+        {externalLinks.map(({ href, label, tooltip }) => (
           <a
             key={label}
             href={href}
             target={href.startsWith("http") ? "_blank" : undefined}
             rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
             data-tooltip={tooltip}
-            className="group inline-flex items-center py-2 text-[16px] font-normal leading-[18px] text-[var(--text-secondary)] no-underline transition-colors duration-200 ease-out hover:text-[var(--link-hover-color)]"
-            style={{ ["--link-hover-color" as string]: hoverColor }}
+            className="inline-flex items-center py-2 text-[16px] font-normal leading-[18px] text-[var(--text-secondary)] no-underline"
           >
-            <span>{label}</span>
-            <span className="w-0 overflow-hidden opacity-0 transition-all duration-200 ease-out group-hover:ml-1 group-hover:w-[14px] group-hover:opacity-100">
-              <span className="text-[var(--link-hover-color)]">
-                <ExternalArrowIcon />
-              </span>
-            </span>
+            {label}
           </a>
         ))}
       </div>

@@ -101,8 +101,10 @@ function DiagramShowcase({
 
 export default function RoleManagementCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-[60px] px-6 py-[120px] md:px-14 lg:px-[300px] xl:px-[180px]">
-      <NavButton href="/" text="Go back" />
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px">
+      <div className="w-full max-w-[840px]">
+        <NavButton href="/" text="Go back" />
+      </div>
 
       <div className="flex w-full max-w-[840px] flex-col gap-[48px]">
         {/* Title block */}
@@ -503,7 +505,7 @@ export default function RoleManagementCaseStudy() {
       </div>
 
       {/* Navigation */}
-      <div className="flex w-full items-center justify-between">
+      <div className="flex w-full max-w-[840px] items-center justify-between">
         <NavButton href="/projects/beta-testing-platform-ajax" text="Previous" />
         <NavButton href="/projects/fitness-app-redesign" text="Next" rightIcon />
       </div>

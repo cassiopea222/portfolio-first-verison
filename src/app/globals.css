@@ -192,6 +192,60 @@ body {
     max-width: 65ch;
   }
 
+  /* Fluid horizontal page padding — Case Studies & About Me
+     ≤ 810px  →  80px (floor, never shrinks below this)
+     1200px   → 160px
+     1440px   → 300px                                                  */
+  .fluid-px {
+    padding-inline: 80px;
+  }
+
+  @media (min-width: 810px) {
+    .fluid-px {
+      /* 80px at 810px → 160px at 1200px */
+      padding-inline: clamp(
+        80px,
+        calc(80px + 80 * ((100vw - 810px) / 390)),
+        160px
+      );
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .fluid-px {
+      /* 160px at 1200px → 300px at 1440px */
+      padding-inline: clamp(
+        160px,
+        calc(160px + 140 * ((100vw - 1200px) / 240)),
+        300px
+      );
+    }
+  }
+
+  /* Fluid horizontal page padding — Home
+     ≤ 810px  →  40px (floor, never shrinks below this)
+     1024px   → 140px                                                  */
+  .fluid-px-home {
+    padding-inline: 40px;
+  }
+
+  @media (min-width: 810px) {
+    .fluid-px-home {
+      /* 40px at 810px → 140px at 1024px */
+      padding-inline: clamp(
+        40px,
+        calc(40px + 100 * ((100vw - 810px) / 214)),
+        140px
+      );
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .fluid-px-home {
+      padding-inline: 140px;
+    }
+  }
+
   .route-enter {
     animation: page-enter 320ms var(--ui-ease-out) both;
     will-change: opacity, transform;
