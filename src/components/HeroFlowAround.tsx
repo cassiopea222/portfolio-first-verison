@@ -19,8 +19,46 @@ import {
   type Rect,
 } from "@/lib/wrap-geometry";
 
+/**
+ * Mirrors pretext's `pages/demos/editorial-engine.ts` `layoutColumn` signature.
+ * We keep this as an array even though the hero currently carries a single
+ * polygon — it makes adding more obstacles (second flower, pullquote box, …)
+ * a no-op on the layout side.
+ */
+type Obstacles = {
+  polygons: Point[][];
+  rects: Rect[];
+};
+
 const LEFT_TEXT = "Julia is a product designer and crafter of experiences.";
 const RIGHT_TEXT = "She loves visual craft and builds tools that make life easier.";
+
+/**
+ * Canonical 3-line split, frozen between `LOCK_BREAKPOINT_3LINE` and
+ * `LOCK_BREAKPOINT_2LINE`. Above that first threshold we bypass pretext and
+ * render these exact strings at fixed positions, so the composition never
+ * reflows as the viewport grows.
+ */
+const LEFT_LINES_LOCKED_3 = [
+  "Julia is a product",
+  "designer and crafter",
+  "of experiences.",
+] as const;
+const RIGHT_LINES_LOCKED_3 = [
+  "She loves visual craft",
+  "and builds tools that",
+  "make life easier.",
+] as const;
+
+/** Canonical 2-line split, frozen at/above `LOCK_BREAKPOINT_2LINE`. */
+const LEFT_LINES_LOCKED_2 = [
+  "Julia is a product designer",
+  "and crafter of experiences.",
+] as const;
+const RIGHT_LINES_LOCKED_2 = [
+  "She loves visual craft and builds",
+  "tools that make life easier.",
+] as const;
 
 type Flower = {
   id: string;
@@ -48,9 +86,15 @@ const FLOWERS: readonly Flower[] = [
   { id: "f8", src: "/orchid/frame-07.webp", naturalWidth: 480, naturalHeight: 430 },
 ] as const;
 
-const HERO_MAX_WIDTH = 900;
+const HERO_MAX_WIDTH = 1120;
 /** Below this width the columns can't hold a flower between them — fall back to a stacked DOM-flow layout. */
 const STACK_BREAKPOINT = 480;
+/** Container width at/above which we freeze word groupings to the 3-line layout. */
+const LOCK_BREAKPOINT_3LINE = 720;
+/** Container width at/above which we freeze word groupings to the wider 2-line layout. */
+const LOCK_BREAKPOINT_2LINE = 1080;
+/** Flower box size in both locked layouts — matches the approved screenshot. */
+const LOCKED_FLOWER_SIZE = 160;
 /** Effectively infinite region height during layout — we measure the actual block height afterward. */
 const LARGE = 9999;
 /** Time per frame in the orchid ping-pong animation. Matches the previous OrchidAnimation. */
@@ -97,13 +141,22 @@ type LayoutResult =
       rightLines: PositionedLine[];
     };
 
-/** Walks lines top-to-bottom in `region`, carving each band around the flower silhouette. */
-function layoutColumnAroundPolygon(
+/**
+ * Walks lines top-to-bottom in `region`, collecting every obstacle's blocked
+ * interval per band (exactly like pretext's editorial-engine demo), carving
+ * the row with `carveTextLineSlots`, then picking the leftmost or rightmost
+ * surviving slot for this column.
+ *
+ * Structure intentionally mirrors `layoutColumn` in
+ * `@chenglou/pretext`'s `pages/demos/editorial-engine.ts` — we just pick one
+ * slot per line instead of filling all of them, because the hero keeps two
+ * independent text cursors (one per column) rather than one continuous flow.
+ */
+function layoutColumn(
   prepared: PreparedTextWithSegments,
   startCursor: LayoutCursor,
   region: Rect,
-  worldPoints: Point[] | null,
-  flowerRect: Rect,
+  obstacles: Obstacles,
   side: "left" | "right",
   lineHeight: number,
   hPad: number,
@@ -113,36 +166,28 @@ function layoutColumnAroundPolygon(
   let lineTop = region.y;
   const lines: PositionedLine[] = [];
 
-  while (true) {
-    if (lineTop + lineHeight > region.y + region.height) break;
-
+  while (lineTop + lineHeight <= region.y + region.height) {
     const bandTop = lineTop;
     const bandBottom = lineTop + lineHeight;
 
-    let blocked: Interval | null = null;
-    if (worldPoints !== null) {
-      blocked = getPolygonIntervalForBand(worldPoints, bandTop, bandBottom, hPad, vPad);
-    } else {
-      const intervals = getRectIntervalsForBand(
-        [flowerRect],
-        bandTop,
-        bandBottom,
-        hPad,
-        vPad,
-      );
-      blocked = intervals[0] ?? null;
+    const blocked: Interval[] = [];
+    for (const polygon of obstacles.polygons) {
+      const interval = getPolygonIntervalForBand(polygon, bandTop, bandBottom, hPad, vPad);
+      if (interval !== null) blocked.push(interval);
     }
+    const rectIntervals = getRectIntervalsForBand(obstacles.rects, bandTop, bandBottom, hPad, vPad);
+    for (const interval of rectIntervals) blocked.push(interval);
 
     const base: Interval = { left: region.x, right: region.x + region.width };
-    const slots = blocked !== null ? carveTextLineSlots(base, [blocked]) : [base];
+    const slots = carveTextLineSlots(base, blocked);
 
     if (slots.length === 0) {
       lineTop += lineHeight;
       continue;
     }
 
-    // "left" → leftmost slot (text sits to the LEFT of the flower);
-    // "right" → rightmost slot (text sits to the RIGHT of the flower).
+    // "left" → leftmost slot (text sits to the LEFT of the obstacles);
+    // "right" → rightmost slot (text sits to the RIGHT of the obstacles).
     const slot = side === "left" ? slots[0]! : slots[slots.length - 1]!;
     const slotWidth = slot.right - slot.left;
     const line = layoutNextLine(prepared, cursor, slotWidth);
@@ -168,7 +213,17 @@ function renderLineWithItalic(text: string): React.ReactNode {
   return (
     <>
       {text.slice(0, idx)}
-      <span style={{ fontStyle: "italic" }}>{word}</span>
+      <span
+        style={{
+          fontFamily: "var(--font-crimson), ui-serif, Georgia, serif",
+          fontStyle: "italic",
+          fontWeight: 400,
+          fontSize: 30,
+          lineHeight: "36px",
+        }}
+      >
+        {word}
+      </span>
       {text.slice(idx + word.length)}
     </>
   );
@@ -186,6 +241,109 @@ function flowerSizeFor(flower: Flower, sizeBudget: number): { width: number; hei
   const width = aspect >= 1 ? sizeBudget : Math.round(sizeBudget * aspect);
   const height = aspect >= 1 ? Math.round(sizeBudget / aspect) : sizeBudget;
   return { width, height };
+}
+
+/**
+ * Hardcoded wide-viewport layout. Word groupings are frozen (no pretext
+ * measurement) but each line's horizontal anchor is queried from the flower
+ * polygon at that line's y-band, so the text still hugs the silhouette —
+ * line 0 anchors to the narrow top of the flower, line 1 to the wide middle,
+ * etc. Same vertical-centering math as the pretext path.
+ */
+function buildLockedLayout(
+  containerWidth: number,
+  leftLinesText: readonly string[],
+  rightLinesText: readonly string[],
+  activeFlowerId: string,
+  hullsMap: Map<string, Point[]>,
+): Extract<LayoutResult, { mode: "wrapped" }> {
+  const fontSize = 28;
+  const lineHeight = 40;
+  const flowerSizeBudget = LOCKED_FLOWER_SIZE;
+  const hPad = Math.round(lineHeight * 0.5);
+  const vPad = Math.round(lineHeight * 0.15);
+  const lineCount = Math.max(leftLinesText.length, rightLinesText.length);
+
+  const textBlockHeight = lineCount * lineHeight;
+  const containerHeight = Math.max(textBlockHeight, flowerSizeBudget) + 40;
+  const textStartY = (containerHeight - textBlockHeight) / 2;
+
+  const activeFlower = FLOWERS.find((f) => f.id === activeFlowerId) ?? FLOWERS[0]!;
+  const activeFlowerSize = flowerSizeFor(activeFlower, flowerSizeBudget);
+  const activeFlowerRect: Rect = {
+    x: (containerWidth - activeFlowerSize.width) / 2,
+    y: (containerHeight - activeFlowerSize.height) / 2,
+    width: activeFlowerSize.width,
+    height: activeFlowerSize.height,
+  };
+  const hull = hullsMap.get(activeFlower.id) ?? null;
+  const worldPoints =
+    hull !== null ? transformWrapPoints(hull, activeFlowerRect, 0) : null;
+
+  // Per-line silhouette anchor: query polygon (or rect fallback) for the
+  // band covered by this line, then anchor the line's edge to it.
+  const anchorsForBand = (y: number): { left: number; right: number } => {
+    let blocked: Interval | null = null;
+    if (worldPoints !== null) {
+      blocked = getPolygonIntervalForBand(worldPoints, y, y + lineHeight, hPad, vPad);
+    } else {
+      blocked =
+        getRectIntervalsForBand([activeFlowerRect], y, y + lineHeight, hPad, vPad)[0] ??
+        null;
+    }
+    if (blocked === null) {
+      // Band doesn't intersect the flower — fall back to the rect edges so
+      // above/below-flower lines still have a reasonable anchor.
+      return {
+        left: activeFlowerRect.x - hPad,
+        right: activeFlowerRect.x + activeFlowerRect.width + hPad,
+      };
+    }
+    return { left: blocked.left, right: blocked.right };
+  };
+
+  const leftLines: PositionedLine[] = leftLinesText.map((text, i) => {
+    const y = textStartY + i * lineHeight;
+    const { left: anchorRight } = anchorsForBand(y);
+    // Span covers [0, anchorRight]; text is right-aligned so it hugs the
+    // silhouette's left edge at this exact band.
+    return { x: 0, y, width: Math.max(0, anchorRight), text };
+  });
+
+  const rightLines: PositionedLine[] = rightLinesText.map((text, i) => {
+    const y = textStartY + i * lineHeight;
+    const { right: anchorLeft } = anchorsForBand(y);
+    return {
+      x: anchorLeft,
+      y,
+      width: Math.max(0, containerWidth - anchorLeft),
+      text,
+    };
+  });
+
+  const flowerRects: Record<string, FlowerRect> = {};
+  for (const flower of FLOWERS) {
+    const { width, height } = flowerSizeFor(flower, flowerSizeBudget);
+    flowerRects[flower.id] = {
+      left: Math.round((containerWidth - width) / 2),
+      top: Math.round((containerHeight - height) / 2),
+      width,
+      height,
+    };
+  }
+
+  return {
+    mode: "wrapped",
+    containerHeight,
+    fontSize,
+    lineHeight,
+    stageLeft: Math.round((containerWidth - flowerSizeBudget) / 2),
+    stageTop: Math.round((containerHeight - flowerSizeBudget) / 2),
+    stageSize: flowerSizeBudget,
+    flowerRects,
+    leftLines,
+    rightLines,
+  };
 }
 
 export default function HeroFlowAround() {
@@ -320,6 +478,38 @@ export default function HeroFlowAround() {
         return;
       }
 
+      // Wide viewports snap to the canonical 2-line composition — pretext is
+      // bypassed so the approved word groupings never reflow, but each line's
+      // anchor is still queried from the flower polygon at its band so the
+      // text hugs the silhouette.
+      if (containerWidth >= LOCK_BREAKPOINT_2LINE) {
+        setLayout(
+          buildLockedLayout(
+            containerWidth,
+            LEFT_LINES_LOCKED_2,
+            RIGHT_LINES_LOCKED_2,
+            activeFlowerIdRef.current,
+            hullsRef.current,
+          ),
+        );
+        return;
+      }
+
+      // Mid-width viewports snap to the canonical 3-line composition (same
+      // silhouette anchoring as the 2-line path).
+      if (containerWidth >= LOCK_BREAKPOINT_3LINE) {
+        setLayout(
+          buildLockedLayout(
+            containerWidth,
+            LEFT_LINES_LOCKED_3,
+            RIGHT_LINES_LOCKED_3,
+            activeFlowerIdRef.current,
+            hullsRef.current,
+          ),
+        );
+        return;
+      }
+
       const fontSize = containerWidth < 640 ? 24 : 28;
       const lineHeight = containerWidth < 640 ? 32 : 40;
       const flowerSizeBudget = 160;
@@ -350,33 +540,36 @@ export default function HeroFlowAround() {
         width: activeFlowerSize.width,
         height: activeFlowerSize.height,
       };
-      const worldPoints =
-        hull !== null ? transformWrapPoints(hull, layoutFlowerRect, 0) : null;
 
-      // Both columns share the FULL container width — the flower polygon carves
-      // out the center on each line. The "left" column picks the LEFT chunk on
-      // each line (text hugs the flower from its left side) and the "right"
-      // column picks the RIGHT chunk. That's the silhouette wrap.
+      // Feed obstacles as arrays — same shape pretext's editorial-engine uses.
+      // Polygon silhouette when the hull is ready; falls back to the bounding rect otherwise.
+      const obstacles: Obstacles =
+        hull !== null
+          ? { polygons: [transformWrapPoints(hull, layoutFlowerRect, 0)], rects: [] }
+          : { polygons: [], rects: [layoutFlowerRect] };
+
+      // Both columns share the FULL container width — obstacles carve out the
+      // center on each line. The "left" column picks the LEFT chunk on each
+      // line (text hugs the flower from its left side) and the "right" column
+      // picks the RIGHT chunk.
       const leftRegion: Rect = { x: 0, y: 0, width: containerWidth, height: LARGE };
       const rightRegion: Rect = { x: 0, y: 0, width: containerWidth, height: LARGE };
 
-      const leftRaw = layoutColumnAroundPolygon(
+      const leftRaw = layoutColumn(
         preparedLeft,
         { segmentIndex: 0, graphemeIndex: 0 },
         leftRegion,
-        worldPoints,
-        layoutFlowerRect,
+        obstacles,
         "left",
         lineHeight,
         hPad,
         vPad,
       ).lines;
-      const rightRaw = layoutColumnAroundPolygon(
+      const rightRaw = layoutColumn(
         preparedRight,
         { segmentIndex: 0, graphemeIndex: 0 },
         rightRegion,
-        worldPoints,
-        layoutFlowerRect,
+        obstacles,
         "right",
         lineHeight,
         hPad,
@@ -445,7 +638,7 @@ export default function HeroFlowAround() {
   const isStacked = layout?.mode === "stacked";
 
   return (
-    <section className="w-full fluid-px-home pb-[120px] pt-[120px] md:pb-[160px] md:pt-[140px]">
+    <section className="w-full fluid-px-home py-[60px] min-[480px]:py-[120px] md:pb-[160px] md:pt-[140px]">
       <p className="sr-only">{LEFT_TEXT} {RIGHT_TEXT}</p>
 
       <div
@@ -458,15 +651,18 @@ export default function HeroFlowAround() {
         }}
       >
         {isStacked ? (
-          <div className="flex flex-col items-center text-center">
+          <div
+            className="flex flex-col items-center justify-between w-full"
+            style={{ minHeight: 460 }}
+          >
             <div
               role="button"
               tabIndex={-1}
               onClick={handleStageClick}
               style={{
                 position: "relative",
-                width: 100,
-                height: 100,
+                width: 220,
+                height: 220,
                 cursor: hullsReady ? "pointer" : "default",
               }}
               aria-hidden
@@ -493,25 +689,26 @@ export default function HeroFlowAround() {
             </div>
             <p
               style={{
-                fontSize: 20,
+                fontSize: 22,
                 fontWeight: 500,
-                lineHeight: "28px",
-                marginTop: 16,
+                lineHeight: "32px",
+                width: "100%",
                 color: "var(--text-primary)",
               }}
             >
-              Julia is a product designer and crafter of <em>experiences</em>.
-            </p>
-            <p
-              style={{
-                fontSize: 20,
-                fontWeight: 500,
-                lineHeight: "28px",
-                marginTop: 8,
-                color: "var(--text-primary)",
-              }}
-            >
-              She loves visual craft and builds tools that make life easier.
+              Julia is a product designer and crafter of{" "}
+              <span
+                style={{
+                  fontFamily: "var(--font-crimson), ui-serif, Georgia, serif",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  fontSize: 28,
+                  lineHeight: "32px",
+                }}
+              >
+                experiences
+              </span>
+              . She loves visual craft and builds tools that make life easier.
             </p>
           </div>
         ) : (

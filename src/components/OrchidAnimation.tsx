@@ -10,7 +10,6 @@ const FRAMES = [
   "/orchid/frame-02.webp",
   "/orchid/frame-03.webp",
   "/orchid/frame-04.webp",
-  "/orchid/frame-05.webp",
   "/orchid/frame-06.webp",
   "/orchid/frame-07.webp",
   "/orchid/frame-08.webp",
@@ -26,7 +25,6 @@ const FRAME_STYLES = [
   { w: 150, h: 146, topOffset: 0   }, // frame 02
   { w: 150, h: 138, topOffset: 0   }, // frame 03
   { w: 150, h: 130, topOffset: 0   }, // frame 04
-  { w: 164, h: 109, topOffset: 0   }, // frame 05 — wide/flat
   { w: 150, h: 118, topOffset: 0   }, // frame 06
   { w: 150, h: 134, topOffset: 0   }, // frame 07
   { w: 150, h: 162, topOffset: 0   }, // frame 08 — fully open/tallest
@@ -38,7 +36,6 @@ export default function OrchidAnimation() {
   const [currentFrame, setCurrentFrame] = useState(0);
 
   const frameIdxRef = useRef(0);
-  const directionRef = useRef<1 | -1>(1);
   const playingRef = useRef(false);
   const rafRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number>(0);
@@ -53,17 +50,7 @@ export default function OrchidAnimation() {
 
       if (ts - lastTimeRef.current >= FRAME_MS) {
         lastTimeRef.current = ts;
-        let next = frameIdxRef.current + directionRef.current;
-
-        // ping-pong: bounce at both ends
-        if (next >= FRAMES.length) {
-          next = FRAMES.length - 2;
-          directionRef.current = -1;
-        } else if (next < 0) {
-          next = 1;
-          directionRef.current = 1;
-        }
-
+        const next = (frameIdxRef.current + 1) % FRAMES.length;
         frameIdxRef.current = next;
         setCurrentFrame(next);
       }

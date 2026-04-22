@@ -14,8 +14,8 @@ type TooltipState = {
 
 /**
  * Mounts a single floating pill that acts as a custom cursor replacement:
- * it sits right at the mouse hotspot (offset 12px right, vertically centred)
- * and appears/disappears with a 150ms fade + scale transition.
+ * its centre sits exactly at the mouse hotspot and it appears/disappears
+ * with a 150ms fade + scale transition.
  *
  * Special behaviour:
  *  - Clicking the Email link (data-tooltip="Copy email") copies the address
@@ -104,8 +104,8 @@ export default function TooltipProvider({
     <>
       {children}
       {/*
-        Pill sits at (cursor.x + 12px, cursor.y) and is vertically centred
-        on the cursor via translateY(-50%). Scale animates 0.9 → 1 on appear.
+        Pill is centred exactly on the cursor hotspot via translate(-50%, -50%).
+        Scale animates 0.9 → 1 on appear.
         pointer-events: none so it never blocks clicks or hover events.
       */}
       <div
@@ -114,8 +114,8 @@ export default function TooltipProvider({
           position: "fixed",
           left: state.x,
           top: state.y,
-          transform: `translate(12px, -50%) scale(${state.visible ? 1 : 0.9})`,
-          transformOrigin: "left center",
+          transform: `translate(-50%, -50%) scale(${state.visible ? 1 : 0.9})`,
+          transformOrigin: "center center",
           opacity: state.visible ? 1 : 0,
           transition: "opacity 150ms ease-out, transform 150ms ease-out",
           pointerEvents: "none",

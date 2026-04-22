@@ -24,6 +24,11 @@ export default function Header() {
   const tabsContainerRef = useRef<HTMLDivElement | null>(null);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const [pill, setPill] = useState({ x: 0, width: 0, height: 0, ready: false });
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   const updatePill = useCallback((href: string) => {
     const container = tabsContainerRef.current;
@@ -62,7 +67,7 @@ export default function Header() {
   };
 
   return (
-    <header className="relative mx-auto flex w-full max-w-[1440px] items-center px-6 py-6 md:px-14 lg:px-[140px]">
+    <header className="relative mx-auto flex w-full max-w-[1440px] items-center justify-between px-5 py-6 min-[694px]:px-8 min-[694px]:py-8 min-[810px]:px-[60px] min-[1080px]:px-20 xl:px-[140px]">
       <Link
         href="/"
         className="group flex items-center gap-4 overflow-visible text-[var(--text-primary)] no-underline"
@@ -83,7 +88,7 @@ export default function Header() {
         </p>
       </Link>
 
-      <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:flex">
+      <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 min-[694px]:flex">
         <div
           ref={tabsContainerRef}
           className="relative flex w-[228px] items-center rounded-[40px] bg-white p-1 shadow-[0px_0.5px_4px_0px_rgba(0,0,0,0.2),0px_1px_4px_0px_rgba(0,0,0,0.1)]"
@@ -116,7 +121,7 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="ml-auto hidden w-[216px] items-center justify-end gap-5 lg:flex">
+      <div className="hidden w-[216px] items-center justify-end gap-5 min-[694px]:flex">
         {externalLinks.map(({ href, label, tooltip }) => (
           <a
             key={label}
@@ -130,6 +135,87 @@ export default function Header() {
           </a>
         ))}
       </div>
+
+      <button
+        type="button"
+        onClick={() => setMenuOpen((open) => !open)}
+        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+        aria-expanded={menuOpen}
+        aria-controls="mobile-nav-menu"
+        className="inline-flex h-6 w-6 items-center justify-center text-[var(--text-primary)] min-[694px]:hidden"
+      >
+        {menuOpen ? (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        ) : (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+          </svg>
+        )}
+      </button>
+
+      {menuOpen && (
+        <div
+          id="mobile-nav-menu"
+          className="absolute left-0 right-0 top-full z-50 mx-5 mt-2 rounded-[16px] bg-white p-4 shadow-[0px_0.5px_4px_0px_rgba(0,0,0,0.2),0px_8px_24px_0px_rgba(0,0,0,0.12)] min-[694px]:hidden"
+        >
+          <nav className="flex flex-col gap-1" aria-label="Primary">
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                aria-current={activeHref === href ? "page" : undefined}
+                className={`type-nav rounded-[12px] px-3 py-3 no-underline ${
+                  activeHref === href
+                    ? "bg-[var(--background)] text-[var(--text-primary)]"
+                    : "text-[var(--text-secondary)]"
+                }`}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+          <div className="mt-2 flex flex-col gap-1 border-t border-black/5 pt-2">
+            {externalLinks.map(({ href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                onClick={() => setMenuOpen(false)}
+                className="rounded-[12px] px-3 py-3 text-[16px] font-normal leading-[18px] text-[var(--text-secondary)] no-underline"
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </header>
   );
 }
