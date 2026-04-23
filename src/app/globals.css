@@ -223,15 +223,15 @@ body {
   }
 
   /* Fluid horizontal page padding — Home
-     <  694px →  20px (mobile, matches Figma mobile spec)
-     ≥  694px →  40px (floor through tablet)
+     <  640px →  20px (mobile, matches Figma mobile spec)
+     ≥  640px →  40px (floor through tablet)
      810-1024px scales from 40px → 140px
      ≥ 1024px → 140px                                                  */
   .fluid-px-home {
     padding-inline: 20px;
   }
 
-  @media (min-width: 694px) {
+  @media (min-width: 640px) {
     .fluid-px-home {
       padding-inline: 40px;
     }

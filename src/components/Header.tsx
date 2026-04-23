@@ -67,7 +67,7 @@ export default function Header() {
   };
 
   return (
-    <header className="relative mx-auto flex w-full max-w-[1440px] items-center justify-between px-5 py-6 min-[694px]:px-8 min-[694px]:py-8 min-[810px]:px-[60px] min-[1080px]:px-20 xl:px-[140px]">
+    <header className="relative mx-auto flex w-full max-w-[1440px] items-center justify-between px-5 py-6 min-[640px]:px-8 min-[694px]:py-8 min-[810px]:px-[60px] min-[1080px]:px-20 xl:px-[140px]">
       <Link
         href="/"
         className="group flex items-center gap-4 overflow-visible text-[var(--text-primary)] no-underline"
@@ -181,7 +181,7 @@ export default function Header() {
       {menuOpen && (
         <div
           id="mobile-nav-menu"
-          className="absolute left-0 right-0 top-full z-50 mx-5 mt-2 rounded-[16px] bg-white p-4 shadow-[0px_0.5px_4px_0px_rgba(0,0,0,0.2),0px_8px_24px_0px_rgba(0,0,0,0.12)] min-[694px]:hidden"
+          className="absolute left-0 right-0 top-full z-50 mx-5 mt-2 rounded-[16px] bg-white p-4 shadow-[0px_0.5px_4px_0px_rgba(0,0,0,0.2),0px_8px_24px_0px_rgba(0,0,0,0.12)] min-[640px]:mx-8 min-[694px]:hidden"
         >
           <nav className="flex flex-col gap-1" aria-label="Primary">
             {navLinks.map(({ href, label }) => (

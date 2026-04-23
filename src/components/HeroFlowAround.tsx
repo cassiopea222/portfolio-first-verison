@@ -87,8 +87,8 @@ const FLOWERS: readonly Flower[] = [
 ] as const;
 
 const HERO_MAX_WIDTH = 1120;
-/** Below this width the columns can't hold a flower between them — fall back to a stacked DOM-flow layout. */
-const STACK_BREAKPOINT = 480;
+/** At/below this width we switch to the Figma mobile composition — stacked flower above a single centered paragraph. */
+const STACK_BREAKPOINT = 640;
 /** Container width at/above which we freeze word groupings to the 3-line layout. */
 const LOCK_BREAKPOINT_3LINE = 720;
 /** Container width at/above which we freeze word groupings to the wider 2-line layout. */
@@ -471,9 +471,12 @@ export default function HeroFlowAround() {
       const containerWidth = root.clientWidth;
       if (containerWidth < 1) return;
 
-      // Below STACK_BREAKPOINT the two columns can't fit a flower between them.
-      // Render a stacked DOM-flow layout instead — no pretext wrapping needed.
-      if (containerWidth < STACK_BREAKPOINT) {
+      // Mobile switch is driven by viewport width (not container width) so that
+      // the 20px→40px padding change at the same breakpoint doesn't shrink the
+      // container below STACK_BREAKPOINT and keep the page stacked past 640px.
+      const viewportWidth =
+        typeof window !== "undefined" ? window.innerWidth : containerWidth;
+      if (viewportWidth < STACK_BREAKPOINT) {
         setLayout({ mode: "stacked" });
         return;
       }
@@ -638,7 +641,7 @@ export default function HeroFlowAround() {
   const isStacked = layout?.mode === "stacked";
 
   return (
-    <section className="w-full fluid-px-home py-[60px] min-[480px]:py-[120px] md:pb-[160px] md:pt-[140px]">
+    <section className="w-full fluid-px-home py-[60px] min-[640px]:py-[120px] md:pb-[160px] md:pt-[140px]">
       <p className="sr-only">{LEFT_TEXT} {RIGHT_TEXT}</p>
 
       <div
@@ -658,6 +661,8 @@ export default function HeroFlowAround() {
             <div
               role="button"
               tabIndex={-1}
+              onMouseEnter={handleStageMouseEnter}
+              onMouseLeave={handleStageMouseLeave}
               onClick={handleStageClick}
               style={{
                 position: "relative",
