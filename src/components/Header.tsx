@@ -10,10 +10,29 @@ const navLinks = [
   { href: "/about", label: "About me" },
 ];
 
-const externalLinks = [
-  { href: "mailto:hello@example.com", label: "Email", tooltip: "Copy" },
-  { href: "https://linkedin.com", label: "LinkedIn", tooltip: "Go!" },
-  { href: "#", label: "CV", tooltip: "See" },
+const externalLinks: {
+  href: string;
+  label: string;
+  tooltip: string;
+  external?: boolean;
+}[] = [
+  {
+    href: "mailto:ubulyndina@gmail.com",
+    label: "Email",
+    tooltip: "Copy email",
+  },
+  {
+    href: "https://www.linkedin.com/in/julia-bulyndina-872617241/",
+    label: "LinkedIn",
+    tooltip: "Go!",
+    external: true,
+  },
+  {
+    href: "/cv/julia-bulyndina-cv.pdf",
+    label: "CV",
+    tooltip: "See",
+    external: true,
+  },
 ];
 const TAB_PILL_INSET = 4;
 
@@ -122,12 +141,12 @@ export default function Header() {
       </div>
 
       <div className="hidden w-[216px] items-center justify-end gap-5 min-[694px]:flex">
-        {externalLinks.map(({ href, label, tooltip }) => (
+        {externalLinks.map(({ href, label, tooltip, external }) => (
           <a
             key={label}
             href={href}
-            target={href.startsWith("http") ? "_blank" : undefined}
-            rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
             data-tooltip={tooltip}
             className="inline-flex items-center py-2 text-[16px] font-normal leading-[18px] text-[var(--text-secondary)] no-underline"
           >
@@ -201,12 +220,13 @@ export default function Header() {
             ))}
           </nav>
           <div className="mt-2 flex flex-col gap-1 border-t border-black/5 pt-2">
-            {externalLinks.map(({ href, label }) => (
+            {externalLinks.map(({ href, label, tooltip, external }) => (
               <a
                 key={label}
                 href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
-                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
+                data-tooltip={tooltip}
                 onClick={() => setMenuOpen(false)}
                 className="rounded-[12px] px-3 py-3 text-[16px] font-normal leading-[18px] text-[var(--text-secondary)] no-underline"
               >

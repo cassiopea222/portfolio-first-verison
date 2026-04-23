@@ -55,7 +55,7 @@ function Showcase({
   captionCenter = false,
 }: {
   children: React.ReactNode;
-  caption: string;
+  caption?: string;
   captionCenter?: boolean;
 }) {
   return (
@@ -63,13 +63,15 @@ function Showcase({
       <ScaledCover nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#e6e6e6]">
         {children}
       </ScaledCover>
-      <p
-        className={`text-[16px] font-normal leading-6 text-[var(--text-tertiary)] ${
-          captionCenter ? "text-center" : ""
-        }`}
-      >
-        {caption}
-      </p>
+      {caption ? (
+        <p
+          className={`text-[16px] font-normal leading-6 text-[var(--text-tertiary)] ${
+            captionCenter ? "text-center" : ""
+          }`}
+        >
+          {caption}
+        </p>
+      ) : null}
     </div>
   );
 }
@@ -101,7 +103,7 @@ function DiagramShowcase({
 
 export default function RoleManagementCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px">
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px max-sm:gap-[40px] max-sm:py-[48px]">
       <div className="w-full max-w-[840px]">
         <NavButton href="/" text="Go back" />
       </div>
@@ -110,7 +112,7 @@ export default function RoleManagementCaseStudy() {
         {/* Title block */}
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[24px]">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 max-sm:flex-col-reverse max-sm:items-start max-sm:gap-1">
               <h1 className="text-[26px] font-medium leading-9 text-[var(--text-primary)]">
                 Role Management System
               </h1>
@@ -130,7 +132,7 @@ export default function RoleManagementCaseStudy() {
           </div>
 
           {/* Hero showcase */}
-          <Showcase caption="Final approach: environment and module scope at role creation">
+          <Showcase>
             <div className="absolute left-1/2 top-1/2 h-[467px] w-[622px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[12px]">
               <Image
                 src={imgCreateNewRoleNew3}
@@ -144,8 +146,8 @@ export default function RoleManagementCaseStudy() {
           </Showcase>
 
           {/* Info */}
-          <div className="flex items-start justify-between gap-6">
-            <div className="flex w-[200px] flex-col gap-3">
+          <div className="flex items-start justify-between gap-6 max-[402px]:flex-col max-[402px]:gap-[20px]">
+            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Role
               </p>
@@ -153,7 +155,7 @@ export default function RoleManagementCaseStudy() {
                 Product Designer
               </p>
             </div>
-            <div className="flex w-[200px] flex-col gap-3">
+            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Team
               </p>
@@ -161,7 +163,7 @@ export default function RoleManagementCaseStudy() {
                 2 designers
               </p>
             </div>
-            <div className="flex w-[200px] flex-col gap-3">
+            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Timeline
               </p>
@@ -391,7 +393,7 @@ export default function RoleManagementCaseStudy() {
             where the granularity lives.
           </p>
 
-          <Showcase caption="Action-level access through user profile">
+          <Showcase caption="Action-level access through user profile" captionCenter>
             <div className="absolute left-1/2 top-1/2 h-[468px] w-[646px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[8px]">
               <Image
                 src={imgProfileRole1}

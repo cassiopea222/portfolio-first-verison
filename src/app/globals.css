@@ -193,11 +193,18 @@ body {
   }
 
   /* Fluid horizontal page padding — Case Studies & About Me
-     ≤ 810px  →  80px (floor, never shrinks below this)
-     1200px   → 160px
-     1440px   → 300px                                                  */
+     <  640px →  20px (mobile, matches home mobile spec)
+     640-810  →  80px (floor)
+     810-1200 →  scales 80px → 160px
+     1200-1440 → scales 160px → 300px                                   */
   .fluid-px {
-    padding-inline: 80px;
+    padding-inline: 20px;
+  }
+
+  @media (min-width: 640px) {
+    .fluid-px {
+      padding-inline: 80px;
+    }
   }
 
   @media (min-width: 810px) {

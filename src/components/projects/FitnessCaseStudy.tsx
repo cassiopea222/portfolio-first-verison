@@ -56,14 +56,14 @@ function Showcase({ children, caption }: { children: React.ReactNode; caption: s
       <ScaledCover nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
         {children}
       </ScaledCover>
-      <p className="text-[16px] font-normal leading-6 text-[var(--text-tertiary)]">{caption}</p>
+      <p className="text-center text-[16px] font-normal leading-6 text-[var(--text-tertiary)]">{caption}</p>
     </div>
   );
 }
 
 export default function FitnessCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px">
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px max-sm:gap-[40px] max-sm:py-[48px]">
       <div className="w-full max-w-[800px]">
         <NavButton href="/" text="Go back" />
       </div>
@@ -72,7 +72,7 @@ export default function FitnessCaseStudy() {
         {/* Title block */}
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 max-sm:flex-col-reverse max-sm:items-start max-sm:gap-1">
               <h1 className="text-[26px] font-medium leading-9 text-[var(--text-primary)]">
                 Fitness app redesign
               </h1>
@@ -120,8 +120,8 @@ export default function FitnessCaseStudy() {
           </ScaledCover>
 
           {/* Info: Role / Team / Timeline */}
-          <div className="flex items-start justify-between gap-6">
-            <div className="flex w-[200px] flex-col gap-3">
+          <div className="flex items-start justify-between gap-6 max-[402px]:flex-col max-[402px]:gap-[20px]">
+            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Role
               </p>
@@ -129,7 +129,7 @@ export default function FitnessCaseStudy() {
                 Product Designer
               </p>
             </div>
-            <div className="flex w-[200px] flex-col gap-3">
+            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Team
               </p>
@@ -140,7 +140,7 @@ export default function FitnessCaseStudy() {
                 <p>1 QA</p>
               </div>
             </div>
-            <div className="flex w-[200px] flex-col gap-3">
+            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Timeline
               </p>

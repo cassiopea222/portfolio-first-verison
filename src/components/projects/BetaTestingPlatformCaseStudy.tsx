@@ -140,16 +140,20 @@ function SectionHeader({ subtitle, title }: { subtitle?: string; title: string }
   return (
     <div className="flex flex-col gap-2">
       {subtitle && (
-        <p className="type-nav font-medium text-[var(--text-tertiary)]">{subtitle}</p>
+        <p className="text-[18px] font-medium leading-6 text-[var(--text-tertiary)]">
+          {subtitle}
+        </p>
       )}
-      <h2 className="type-h3 text-[var(--text-primary)]">{title}</h2>
+      <h2 className="text-[24px] font-semibold leading-8 text-[var(--text-primary)]">
+        {title}
+      </h2>
     </div>
   );
 }
 
 export default function BetaTestingPlatformCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[80px] py-[120px] fluid-px">
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[80px] py-[120px] fluid-px max-sm:gap-[40px] max-sm:py-[48px]">
       <div className="w-full max-w-[840px]">
         <NavButton href="/" text="Go back" />
       </div>
@@ -157,11 +161,13 @@ export default function BetaTestingPlatformCaseStudy() {
       <div className="flex w-full max-w-[840px] flex-col gap-[48px]">
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[24px]">
-            <div className="flex items-center gap-3">
-              <h1 className="type-h2 text-[var(--text-primary)]">
+            <div className="flex items-center gap-3 max-sm:flex-col-reverse max-sm:items-start max-sm:gap-1">
+              <h1 className="type-h2 text-[var(--text-primary)] max-sm:text-[26px] max-sm:font-medium max-sm:leading-9">
                 Beta testing platform
               </h1>
-              <p className="type-h2 text-[var(--text-tertiary)]">Ajax</p>
+              <p className="type-h2 text-[var(--text-tertiary)] max-sm:text-[26px] max-sm:font-medium max-sm:leading-9">
+                Ajax
+              </p>
             </div>
             <p className="type-body text-[var(--text-secondary)]">
               Ajax Systems runs a beta testing program where external testers
@@ -197,8 +203,8 @@ export default function BetaTestingPlatformCaseStudy() {
             />
           </ScaledCover>
 
-          <div className="flex items-start justify-between gap-6">
-            <div className="flex w-[200px] flex-col gap-3">
+          <div className="flex items-start justify-between gap-6 max-[402px]:flex-col max-[402px]:gap-[20px]">
+            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
               <p className="type-nav font-medium uppercase text-[var(--text-tertiary)]">
                 Role
               </p>
@@ -206,7 +212,7 @@ export default function BetaTestingPlatformCaseStudy() {
                 Product Designer
               </p>
             </div>
-            <div className="flex w-[200px] flex-col gap-3">
+            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
               <p className="type-nav font-medium uppercase text-[var(--text-tertiary)]">
                 Team
               </p>
@@ -214,7 +220,7 @@ export default function BetaTestingPlatformCaseStudy() {
                 4 designers
               </p>
             </div>
-            <div className="flex w-[200px] flex-col gap-3">
+            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
               <p className="type-nav font-medium uppercase text-[var(--text-tertiary)]">
                 Timeline
               </p>
@@ -349,7 +355,7 @@ export default function BetaTestingPlatformCaseStudy() {
               quality, I defined success metrics across four areas.
             </p>
             <div className="flex flex-col gap-4">
-              <div className="flex gap-4">
+              <div className="flex gap-4 max-sm:flex-col">
                 <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
                   <div className="flex items-center">
                     <span className="type-nav rounded-[20px] bg-[#d6ecdc] px-3 py-1 font-medium uppercase text-[#5f9d72]">
@@ -391,7 +397,7 @@ export default function BetaTestingPlatformCaseStudy() {
                   </div>
                 </article>
               </div>
-              <div className="flex gap-4">
+              <div className="flex gap-4 max-sm:flex-col">
                 <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
                   <div className="flex items-center">
                     <span className="type-nav rounded-[20px] bg-[#ffe6d2] px-3 py-1 font-medium uppercase text-[#a6744a]">
