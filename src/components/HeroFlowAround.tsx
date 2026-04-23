@@ -70,8 +70,8 @@ type Flower = {
 };
 
 /**
- * Frames animated on flower-hover. Same ping-pong sequence as the original
- * OrchidAnimation: 0 → 1 → 2 → … → 9 → 8 → … → 1 → 0 → 1 …
+ * Frames animated on flower-hover. Forward cycle: 1 → … → frame-07 → 1 → …
+ * Order matches lexicographic listing of `/public/orchid/*.webp` (1, 2, frame-01 … frame-07).
  * Each frame's silhouette reflows the surrounding text.
  */
 const FLOWERS: readonly Flower[] = [
@@ -81,14 +81,13 @@ const FLOWERS: readonly Flower[] = [
   { id: "f3", src: "/orchid/frame-02.webp", naturalWidth: 480, naturalHeight: 466 },
   { id: "f4", src: "/orchid/frame-03.webp", naturalWidth: 480, naturalHeight: 441 },
   { id: "f5", src: "/orchid/frame-04.webp", naturalWidth: 480, naturalHeight: 415 },
-  { id: "f6", src: "/orchid/frame-05.webp", naturalWidth: 480, naturalHeight: 320 },
-  { id: "f7", src: "/orchid/frame-06.webp", naturalWidth: 480, naturalHeight: 375 },
-  { id: "f8", src: "/orchid/frame-07.webp", naturalWidth: 480, naturalHeight: 430 },
+  { id: "f6", src: "/orchid/frame-06.webp", naturalWidth: 480, naturalHeight: 375 },
+  { id: "f7", src: "/orchid/frame-07.webp", naturalWidth: 480, naturalHeight: 430 },
 ] as const;
 
 const HERO_MAX_WIDTH = 1120;
 /** At/below this width we switch to the Figma mobile composition — stacked flower above a single centered paragraph. */
-const STACK_BREAKPOINT = 640;
+const STACK_BREAKPOINT = 810;
 /** Container width at/above which we freeze word groupings to the 3-line layout. */
 const LOCK_BREAKPOINT_3LINE = 720;
 /** Container width at/above which we freeze word groupings to the wider 2-line layout. */
@@ -97,7 +96,7 @@ const LOCK_BREAKPOINT_2LINE = 1080;
 const LOCKED_FLOWER_SIZE = 160;
 /** Effectively infinite region height during layout — we measure the actual block height afterward. */
 const LARGE = 9999;
-/** Time per frame in the orchid ping-pong animation. Matches the previous OrchidAnimation. */
+/** Time per frame in the orchid cycle. Matches OrchidAnimation. */
 const FRAME_MS = 800;
 
 export type { Rect } from "@/lib/wrap-geometry";
@@ -354,10 +353,8 @@ export default function HeroFlowAround() {
   const scheduleRef = useRef<() => void>(() => {});
   const activeFlowerIdRef = useRef<string>(FLOWERS[0]!.id);
 
-  // Ping-pong animation state: keeps last index/direction across hover sessions
-  // so re-hovering resumes from where it paused (matches the original OrchidAnimation).
+  // Cycle index; re-hovering resumes from the last shown frame.
   const frameIdxRef = useRef(0);
-  const directionRef = useRef<1 | -1>(1);
   const playingRef = useRef(false);
   const rafRef = useRef<number | null>(null);
   const lastTimeRef = useRef(0);
@@ -398,14 +395,7 @@ export default function HeroFlowAround() {
 
     if (ts - lastTimeRef.current >= FRAME_MS) {
       lastTimeRef.current = ts;
-      let next = frameIdxRef.current + directionRef.current;
-      if (next >= FLOWERS.length) {
-        next = FLOWERS.length - 2;
-        directionRef.current = -1;
-      } else if (next < 0) {
-        next = 1;
-        directionRef.current = 1;
-      }
+      const next = (frameIdxRef.current + 1) % FLOWERS.length;
       frameIdxRef.current = next;
       setActiveFlowerId(FLOWERS[next]!.id);
     }
@@ -472,8 +462,8 @@ export default function HeroFlowAround() {
       if (containerWidth < 1) return;
 
       // Mobile switch is driven by viewport width (not container width) so that
-      // the 20px→40px padding change at the same breakpoint doesn't shrink the
-      // container below STACK_BREAKPOINT and keep the page stacked past 640px.
+      // padding changes at the layout breakpoint don't shrink the container in
+      // a way that fights STACK_BREAKPOINT (stacked hero below 810px viewport).
       const viewportWidth =
         typeof window !== "undefined" ? window.innerWidth : containerWidth;
       if (viewportWidth < STACK_BREAKPOINT) {
@@ -513,8 +503,8 @@ export default function HeroFlowAround() {
         return;
       }
 
-      const fontSize = containerWidth < 640 ? 24 : 28;
-      const lineHeight = containerWidth < 640 ? 32 : 40;
+      const fontSize = containerWidth < 694 ? 24 : 28;
+      const lineHeight = containerWidth < 694 ? 32 : 40;
       const flowerSizeBudget = 160;
       const font = resolveBodyFont(fontSize);
 
@@ -641,7 +631,7 @@ export default function HeroFlowAround() {
   const isStacked = layout?.mode === "stacked";
 
   return (
-    <section className="w-full fluid-px-home py-[60px] min-[640px]:py-[120px] md:pb-[160px] md:pt-[140px]">
+    <section className="w-full fluid-px-home py-[60px] min-[810px]:pt-[140px] min-[810px]:pb-[160px]">
       <p className="sr-only">{LEFT_TEXT} {RIGHT_TEXT}</p>
 
       <div
@@ -664,6 +654,7 @@ export default function HeroFlowAround() {
               onMouseEnter={handleStageMouseEnter}
               onMouseLeave={handleStageMouseLeave}
               onClick={handleStageClick}
+              className="origin-center transition-transform duration-200 ease-out hover:scale-105"
               style={{
                 position: "relative",
                 width: 220,
@@ -687,7 +678,6 @@ export default function HeroFlowAround() {
                     objectFit: "contain",
                     opacity: flower.id === activeFlowerId ? 1 : 0,
                     pointerEvents: "none",
-                    transition: "opacity 300ms ease",
                   }}
                 />
               ))}
@@ -733,6 +723,7 @@ export default function HeroFlowAround() {
                   onMouseEnter={handleStageMouseEnter}
                   onMouseLeave={handleStageMouseLeave}
                   onClick={handleStageClick}
+                  className="origin-center transition-transform duration-200 ease-out hover:scale-105"
                   style={{
                     position: "absolute",
                     left: layout.stageLeft,
@@ -760,7 +751,6 @@ export default function HeroFlowAround() {
                           height: rect.height,
                           opacity: isActive ? 1 : 0,
                           pointerEvents: "none",
-                          transition: "opacity 300ms ease",
                         }}
                       />
                     );

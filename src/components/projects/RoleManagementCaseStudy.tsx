@@ -103,7 +103,7 @@ function DiagramShowcase({
 
 export default function RoleManagementCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px max-sm:gap-[40px] max-sm:py-[48px]">
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px max-[809px]:gap-[40px] max-[809px]:py-[48px]">
       <div className="w-full max-w-[840px]">
         <NavButton href="/" text="Go back" />
       </div>
@@ -112,7 +112,7 @@ export default function RoleManagementCaseStudy() {
         {/* Title block */}
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[24px]">
-            <div className="flex items-center gap-3 max-sm:flex-col-reverse max-sm:items-start max-sm:gap-1">
+            <div className="flex items-center gap-3 max-[809px]:flex-col-reverse max-[809px]:items-start max-[809px]:gap-1">
               <h1 className="text-[26px] font-medium leading-9 text-[var(--text-primary)]">
                 Role Management System
               </h1>

@@ -3,6 +3,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+// Same order as lexicographic listing of `/public/orchid/*.webp`.
 const FRAMES = [
   "/orchid/1.webp",
   "/orchid/2.webp",
@@ -12,12 +13,10 @@ const FRAMES = [
   "/orchid/frame-04.webp",
   "/orchid/frame-06.webp",
   "/orchid/frame-07.webp",
-  "/orchid/frame-08.webp",
 ];
 
 // Exact display sizes + vertical offsets from Figma.
 // topOffset: how far below the container's center the image is positioned.
-// Frame 8 uses object-fit:cover to replicate its Figma manual crop (160.98% width, -31.16% left).
 const FRAME_STYLES = [
   { w: 150, h: 150, topOffset: 9   }, // 1.png — default/closed
   { w: 150, h: 150, topOffset: 9   }, // 2.png
@@ -27,7 +26,6 @@ const FRAME_STYLES = [
   { w: 150, h: 130, topOffset: 0   }, // frame 04
   { w: 150, h: 118, topOffset: 0   }, // frame 06
   { w: 150, h: 134, topOffset: 0   }, // frame 07
-  { w: 150, h: 162, topOffset: 0   }, // frame 08 — fully open/tallest
 ] as const;
 
 const FRAME_MS = 800; // 0.8 s per frame

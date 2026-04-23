@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 type TooltipState = {
   /** The original tooltip label (from data-tooltip attribute). */
   text: string;
-  /** What's actually displayed — may differ temporarily (e.g. "Email copied"). */
+  /** What's actually displayed — may differ temporarily (e.g. "Copied"). */
   displayText: string;
   x: number;
   y: number;
@@ -19,7 +19,7 @@ type TooltipState = {
  *
  * Special behaviour:
  *  - Clicking the Email link (data-tooltip="Copy email") copies the address
- *    to clipboard and briefly shows "Email copied" for 2 s.
+ *    to clipboard and briefly shows "Copied" for 2 s.
  *  - On touch devices the tooltip is suppressed entirely.
  */
 export default function TooltipProvider({
@@ -82,7 +82,7 @@ export default function TooltipProvider({
       navigator.clipboard.writeText(email).catch(() => {});
 
       if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
-      setState((prev) => ({ ...prev, displayText: "Email copied" }));
+      setState((prev) => ({ ...prev, displayText: "Copied" }));
       resetTimerRef.current = setTimeout(() => {
         setState((prev) => ({ ...prev, displayText: prev.text }));
       }, 2000);
