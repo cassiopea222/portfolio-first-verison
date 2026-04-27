@@ -217,7 +217,7 @@ function renderLineWithItalic(text: string): React.ReactNode {
           fontFamily: "var(--font-crimson), ui-serif, Georgia, serif",
           fontStyle: "italic",
           fontWeight: 400,
-          fontSize: 30,
+          fontSize: 36,
           lineHeight: "36px",
         }}
       >

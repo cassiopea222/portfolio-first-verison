@@ -127,12 +127,9 @@ export default function Header() {
     router.push(href);
   };
 
-  /* Home uses tighter horizontal padding than inner pages; match the active route. */
-  const headerFluidPx = pathname === "/" ? "fluid-px-home" : "fluid-px";
-
   return (
     <header
-      className={`relative mx-auto flex w-full max-w-[1440px] items-center justify-between ${headerFluidPx} py-6 min-[810px]:py-8`}
+      className="relative mx-auto flex w-full max-w-[1440px] items-center justify-between fluid-px-home py-6 min-[810px]:py-8"
     >
       <Link
         href="/"
@@ -187,36 +184,19 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="hidden min-w-0 max-w-[20rem] shrink-0 items-center justify-end gap-5 min-[810px]:flex">
-        {externalLinks.map(({ href, label, tooltip, external }) =>
-          label === "Email" ? (
-            <span key={label} className="inline-flex items-center gap-3">
-              <a
-                href={href}
-                data-tooltip={tooltip}
-                onClick={(e) => {
-                  e.preventDefault();
-                  void copyEmail();
-                }}
-                className="inline-flex items-center py-2 text-[16px] font-normal leading-[18px] text-[var(--text-secondary)] no-underline"
-              >
-                {label}
-              </a>
-              {emailCopied ? <EmailCopiedPill /> : null}
-            </span>
-          ) : (
-            <a
-              key={label}
-              href={href}
-              target={external ? "_blank" : undefined}
-              rel={external ? "noopener noreferrer" : undefined}
-              data-tooltip={tooltip}
-              className="inline-flex items-center py-2 text-[16px] font-normal leading-[18px] text-[var(--text-secondary)] no-underline"
-            >
-              {label}
-            </a>
-          ),
-        )}
+      <div className="hidden w-[216px] shrink-0 items-center justify-end gap-5 min-[810px]:flex">
+        {externalLinks.map(({ href, label, tooltip, external }) => (
+          <a
+            key={label}
+            href={href}
+            target={external ? "_blank" : undefined}
+            rel={external ? "noopener noreferrer" : undefined}
+            data-tooltip={tooltip}
+            className="inline-flex items-center py-2 text-[16px] font-normal leading-[18px] text-[var(--text-secondary)] no-underline"
+          >
+            {label}
+          </a>
+        ))}
       </div>
 
       <button

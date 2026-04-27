@@ -35,7 +35,7 @@ export default function About() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center">
       <div className="flex w-full flex-col gap-[100px]">
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center fluid-px">
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center fluid-px-home">
           <div className="flex w-full max-w-[840px] flex-col gap-[60px] pt-[100px]">
             <div className="flex flex-col gap-12">
               <div className="flex flex-col gap-[20px]">
