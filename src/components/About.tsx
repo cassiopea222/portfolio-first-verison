@@ -1,11 +1,13 @@
 import Image from "next/image";
 
+import FooterNote from "@/components/FooterNote";
+import SpotifyWidget from "@/components/SpotifyWidget";
+
 // Photos
 const imgPhoto1 = "/about/photo-1.jpg";
 const imgPhoto2 = "/about/photo-2.jpg";
 const imgPhoto3 = "/about/photo-3.jpg";
 const imgPhoto4 = "/about/photo-4.jpg";
-const imgAlbum = "/about/album.jpg";
 
 type PhotoProps = {
   src: string;
@@ -15,18 +17,23 @@ type PhotoProps = {
 
 function Photo({ src, label, objectPosition = "center" }: PhotoProps) {
   return (
-    <div
-      data-tooltip={label}
-      className="relative h-[260px] w-[201px] shrink-0 overflow-hidden rounded-[12px]"
-    >
-      <Image
-        src={src}
-        alt={label}
-        fill
-        sizes="201px"
-        className="object-cover"
-        style={{ objectPosition }}
-      />
+    <div className="flex shrink-0 flex-col items-center justify-center gap-3">
+      <div
+        data-tooltip={label}
+        className="relative h-[340px] w-[237px] shrink-0 overflow-hidden rounded-[12px] min-[402px]:h-[300px] min-[402px]:w-[209px] min-[810px]:h-[260px] min-[810px]:w-[201px]"
+      >
+        <Image
+          src={src}
+          alt={label}
+          fill
+          sizes="(max-width: 401px) 237px, (max-width: 809px) 209px, 201px"
+          className="object-cover"
+          style={{ objectPosition }}
+        />
+      </div>
+      <p className="whitespace-nowrap text-[14px] font-normal leading-[18px] text-[var(--text-tertiary)] min-[810px]:hidden">
+        {label}
+      </p>
     </div>
   );
 }
@@ -61,7 +68,7 @@ export default function About() {
               </div>
 
               {/* Photos row */}
-              <div className="flex w-full gap-3 overflow-x-auto">
+              <div className="flex w-full gap-4 overflow-x-auto min-[810px]:gap-3">
                 <Photo src={imgPhoto1} label="It's me!" objectPosition="center bottom" />
                 <Photo src={imgPhoto2} label="Looking at art" objectPosition="center" />
                 <Photo src={imgPhoto3} label="Smelling perfumes" objectPosition="right center" />
@@ -75,7 +82,7 @@ export default function About() {
               </h2>
 
               <div className="flex flex-col gap-5">
-                <div className="flex w-full items-start justify-between gap-4">
+                <div className="flex w-full items-start justify-between gap-4 max-[809px]:flex-col max-[809px]:gap-1">
                   <p className="text-[20px] font-medium leading-7 text-[var(--text-primary)]">
                     Product designer at Fireart
                   </p>
@@ -128,31 +135,7 @@ export default function About() {
 
           {/* Widgets */}
           <div className="mt-[60px] grid w-full max-w-[780px] grid-cols-1 gap-4 lg:grid-cols-2">
-            <article className="flex flex-col gap-[6px] overflow-hidden rounded-[12px] border border-[#cecece] bg-gradient-to-b from-white to-[#d4d4d4] to-[182.4%] px-3 py-2 shadow-[0px_2px_5px_0px_rgba(0,0,0,0.08)]">
-              <div className="type-mono flex items-start justify-between text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
-                <p>Last listened to</p>
-                <p>20 mins ago</p>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="relative h-[66px] w-[68px] overflow-hidden rounded-[6px]">
-                  <Image
-                    src={imgAlbum}
-                    alt=""
-                    fill
-                    sizes="68px"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="type-mono flex flex-col gap-[2px]">
-                  <p className="text-[16px] font-medium leading-6 text-[var(--text-primary)]">
-                    Man Of The Year
-                  </p>
-                  <p className="text-[14px] font-medium leading-5 tracking-[-0.14px] text-[var(--text-tertiary)]">
-                    Lorde
-                  </p>
-                </div>
-              </div>
-            </article>
+            <SpotifyWidget />
 
             <article className="flex h-full flex-col justify-between overflow-hidden rounded-[12px] border border-[#cecece] bg-gradient-to-b from-white to-[#d4d4d4] to-[182.4%] px-3 py-2 shadow-[0px_2px_5px_0px_rgba(0,0,0,0.08)]">
               <div className="flex flex-col gap-[2px]">
@@ -181,12 +164,7 @@ export default function About() {
         </div>
       </div>
 
-      <footer className="mx-auto flex w-full max-w-[1440px] items-center justify-center px-6 pb-10 pt-20 md:px-14 lg:px-[140px]">
-        <div className="flex flex-col items-center justify-center gap-[6px] whitespace-nowrap text-center text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
-          <p>⊹ ࣪ ˖ Built with love &amp; Cursor ⋆˙⟡</p>
-          <p>Changelog: 28.02.26</p>
-        </div>
-      </footer>
+      <FooterNote variant="about" />
     </section>
   );
 }

@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
         hostname: "www.figma.com",
         pathname: "/api/mcp/asset/**",
       },
+      {
+        protocol: "https",
+        hostname: "i.scdn.co",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "mosaic.scdn.co",
+        pathname: "/**",
+      },
     ],
     formats: ["image/avif", "image/webp"],
   },

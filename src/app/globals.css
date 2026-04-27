@@ -99,6 +99,13 @@ body {
   }
 }
 
+/* Restore cursor on tablet/mobile viewports (tooltip is suppressed there). */
+@media (max-width: 809px) {
+  [data-tooltip] {
+    cursor: auto;
+  }
+}
+
 /* Route entrance animation for initial load + App Router navigations */
 @keyframes page-enter {
   from {
@@ -108,6 +115,53 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Spotify widget — equalizer bars and "live" pulse.
+   Three out-of-phase keyframes: each bar runs its own with a unique duration,
+   which prevents synchronized "pulsing" and reads as a real equalizer. */
+@keyframes spotify-bar-a {
+  0%   { transform: scaleY(0.35); }
+  25%  { transform: scaleY(0.95); }
+  50%  { transform: scaleY(0.55); }
+  75%  { transform: scaleY(0.85); }
+  100% { transform: scaleY(0.4); }
+}
+
+@keyframes spotify-bar-b {
+  0%   { transform: scaleY(0.85); }
+  20%  { transform: scaleY(0.4); }
+  45%  { transform: scaleY(1); }
+  70%  { transform: scaleY(0.5); }
+  100% { transform: scaleY(0.75); }
+}
+
+@keyframes spotify-bar-c {
+  0%   { transform: scaleY(0.5); }
+  30%  { transform: scaleY(0.85); }
+  55%  { transform: scaleY(0.3); }
+  80%  { transform: scaleY(1); }
+  100% { transform: scaleY(0.6); }
+}
+
+@keyframes spotify-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotify-bar,
+  .spotify-pulse {
+    animation: none !important;
+    transform: none !important;
   }
 }
 
@@ -230,12 +284,19 @@ body {
   }
 
   /* Fluid horizontal page padding — Home (same horizontal scale as site header)
-     <  810px   →  20px (mobile)
+     <  610px   →  20px (small mobile)
+     610-810   →  32px (mobile)
      810-1080  →  80px
      1080-1200 →  scales 80px → 140px
      ≥ 1200px  →  140px                                                 */
   .fluid-px-home {
     padding-inline: 20px;
+  }
+
+  @media (min-width: 610px) {
+    .fluid-px-home {
+      padding-inline: 32px;
+    }
   }
 
   @media (min-width: 810px) {

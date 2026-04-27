@@ -1,5 +1,5 @@
+import FooterNote from "@/components/FooterNote";
 import Hero from "@/components/Hero";
-import HomeFooterNote from "@/components/HomeFooterNote";
 import ProjectsGrid from "@/components/ProjectsGrid";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Hero />
       <ProjectsGrid />
-      <HomeFooterNote />
+      <FooterNote variant="home" />
     </>
   );
 }

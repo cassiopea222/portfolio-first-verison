@@ -14,8 +14,8 @@ export type ProjectCardProps = {
 // Ajax cover assets
 const imgAjaxBg =
   "https://www.figma.com/api/mcp/asset/f61e2e2e-5dbe-472b-91c9-3ba3e9a10520";
-const imgAjaxDashboard =
-  "https://www.figma.com/api/mcp/asset/6318152a-dc83-4045-824c-7f08053d03a1";
+/** Animated Ajax card center — `public/gifs/ajax-cover.gif`. */
+const imgAjaxDashboard = "/gifs/ajax-cover.gif";
 
 // Fitness cover assets
 const imgFitnessLeft =
@@ -55,6 +55,7 @@ export default function ProjectCard({
               src={imgAjaxDashboard}
               alt=""
               fill
+              unoptimized
               sizes="512px"
               className="object-cover rounded-[8px]"
             />
@@ -105,7 +106,7 @@ export default function ProjectCard({
       {coverNode}
       <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-1.5 text-[18px] font-medium leading-[22px] text-[var(--text-tertiary)]">
+          <div className="flex items-center gap-1 text-[16px] font-medium leading-5 uppercase text-[var(--text-tertiary)]">
             <span>{client}</span>
             <span>/</span>
             <span>{date}</span>

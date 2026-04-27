@@ -318,7 +318,7 @@ export default function RoleManagementCaseStudy() {
             </DiagramShowcase>
 
             <DiagramShowcase
-              caption="Only after defining the content scope would the admin move to Access Permissions - selecting which environments the role can reach that content in: Dashboards, Management Portal, or Admin Portal"
+              caption="Only after defining the content scope would the admin move to Access Permissions."
               nativeHeight={520}
             >
               <div className="absolute left-1/2 top-1/2 h-[468px] w-[642px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[12px]">

@@ -34,10 +34,10 @@ const LEFT_TEXT = "Julia is a product designer and crafter of experiences.";
 const RIGHT_TEXT = "She loves visual craft and builds tools that make life easier.";
 
 /**
- * Canonical 3-line split, frozen between `LOCK_BREAKPOINT_3LINE` and
- * `LOCK_BREAKPOINT_2LINE`. Above that first threshold we bypass pretext and
- * render these exact strings at fixed positions, so the composition never
- * reflows as the viewport grows.
+ * Canonical 3-line split, frozen at/above `LOCK_BREAKPOINT_3LINE`. Above that
+ * threshold we bypass pretext and render these exact strings at fixed
+ * positions; only type size and flower size scale with the breakpoints, so
+ * the composition never reflows as the viewport grows.
  */
 const LEFT_LINES_LOCKED_3 = [
   "Julia is a product",
@@ -48,16 +48,6 @@ const RIGHT_LINES_LOCKED_3 = [
   "She loves visual craft",
   "and builds tools that",
   "make life easier.",
-] as const;
-
-/** Canonical 2-line split, frozen at/above `LOCK_BREAKPOINT_2LINE`. */
-const LEFT_LINES_LOCKED_2 = [
-  "Julia is a product designer",
-  "and crafter of experiences.",
-] as const;
-const RIGHT_LINES_LOCKED_2 = [
-  "She loves visual craft and builds",
-  "tools that make life easier.",
 ] as const;
 
 type Flower = {
@@ -90,9 +80,9 @@ const HERO_MAX_WIDTH = 1120;
 const STACK_BREAKPOINT = 810;
 /** Container width at/above which we freeze word groupings to the 3-line layout. */
 const LOCK_BREAKPOINT_3LINE = 720;
-/** Container width at/above which we freeze word groupings to the wider 2-line layout. */
-const LOCK_BREAKPOINT_2LINE = 1080;
-/** Flower box size in both locked layouts — matches the approved screenshot. */
+/** Container width at/above which the locked 3-line layout switches to its larger type/flower variant. */
+const LOCK_BREAKPOINT_LARGE = 1080;
+/** Flower box size for the standard locked layout (matches the approved mid-width screenshot). */
 const LOCKED_FLOWER_SIZE = 160;
 /** Effectively infinite region height during layout — we measure the actual block height afterward. */
 const LARGE = 9999;
@@ -205,10 +195,12 @@ function layoutColumn(
   return { lines, cursor };
 }
 
-function renderLineWithItalic(text: string): React.ReactNode {
+function renderLineWithItalic(text: string, baseFontSize: number = 28): React.ReactNode {
   const word = "experiences";
   const idx = text.indexOf(word);
   if (idx < 0) return text;
+  // Italic "experiences" tracks the surrounding body size (36 against 28 ≈ 1.286).
+  const italicSize = Math.round(baseFontSize * 1.286);
   return (
     <>
       {text.slice(0, idx)}
@@ -217,8 +209,8 @@ function renderLineWithItalic(text: string): React.ReactNode {
           fontFamily: "var(--font-crimson), ui-serif, Georgia, serif",
           fontStyle: "italic",
           fontWeight: 400,
-          fontSize: 36,
-          lineHeight: "36px",
+          fontSize: italicSize,
+          lineHeight: `${italicSize}px`,
         }}
       >
         {word}
@@ -255,11 +247,18 @@ function buildLockedLayout(
   rightLinesText: readonly string[],
   activeFlowerId: string,
   hullsMap: Map<string, Point[]>,
+  options: {
+    fontSize?: number;
+    lineHeight?: number;
+    flowerSizeBudget?: number;
+    hPadScale?: number;
+  } = {},
 ): Extract<LayoutResult, { mode: "wrapped" }> {
-  const fontSize = 28;
-  const lineHeight = 40;
-  const flowerSizeBudget = LOCKED_FLOWER_SIZE;
-  const hPad = Math.round(lineHeight * 0.5);
+  const fontSize = options.fontSize ?? 28;
+  const lineHeight = options.lineHeight ?? 40;
+  const flowerSizeBudget = options.flowerSizeBudget ?? LOCKED_FLOWER_SIZE;
+  const hPadScale = options.hPadScale ?? 0.5;
+  const hPad = Math.round(lineHeight * hPadScale);
   const vPad = Math.round(lineHeight * 0.15);
   const lineCount = Math.max(leftLinesText.length, rightLinesText.length);
 
@@ -471,25 +470,30 @@ export default function HeroFlowAround() {
         return;
       }
 
-      // Wide viewports snap to the canonical 2-line composition — pretext is
-      // bypassed so the approved word groupings never reflow, but each line's
-      // anchor is still queried from the flower polygon at its band so the
-      // text hugs the silhouette.
-      if (containerWidth >= LOCK_BREAKPOINT_2LINE) {
+      // Wide viewports snap to a larger 3-line composition — bigger type, a
+      // slightly bigger flower, but the same canonical word groupings as the
+      // mid-width lock so resizing across 1080 only changes scale, not breaks.
+      if (containerWidth >= LOCK_BREAKPOINT_LARGE) {
         setLayout(
           buildLockedLayout(
             containerWidth,
-            LEFT_LINES_LOCKED_2,
-            RIGHT_LINES_LOCKED_2,
+            LEFT_LINES_LOCKED_3,
+            RIGHT_LINES_LOCKED_3,
             activeFlowerIdRef.current,
             hullsRef.current,
+            {
+              fontSize: 32,
+              lineHeight: 42,
+              flowerSizeBudget: LOCKED_FLOWER_SIZE + 20,
+              hPadScale: 0.3,
+            },
           ),
         );
         return;
       }
 
       // Mid-width viewports snap to the canonical 3-line composition (same
-      // silhouette anchoring as the 2-line path).
+      // silhouette anchoring as the wide path, just smaller).
       if (containerWidth >= LOCK_BREAKPOINT_3LINE) {
         setLayout(
           buildLockedLayout(
@@ -498,6 +502,7 @@ export default function HeroFlowAround() {
             RIGHT_LINES_LOCKED_3,
             activeFlowerIdRef.current,
             hullsRef.current,
+            { hPadScale: 0.3 },
           ),
         );
         return;
@@ -773,7 +778,7 @@ export default function HeroFlowAround() {
                       color: "var(--text-primary)",
                     }}
                   >
-                    {renderLineWithItalic(line.text)}
+                    {renderLineWithItalic(line.text, layout.fontSize)}
                   </span>
                 ))}
                 {layout.rightLines.map((line, i) => (
@@ -792,7 +797,7 @@ export default function HeroFlowAround() {
                       color: "var(--text-primary)",
                     }}
                   >
-                    {renderLineWithItalic(line.text)}
+                    {renderLineWithItalic(line.text, layout.fontSize)}
                   </span>
                 ))}
               </>

@@ -38,11 +38,25 @@ export default function TooltipProvider({
   const currentElRef = useRef<Element | null>(null);
   const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isTouchRef = useRef(false);
+  const isCompactViewportRef = useRef(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      isTouchRef.current = window.matchMedia("(pointer: coarse)").matches;
-    }
+    if (typeof window === "undefined") return;
+
+    const touchMql = window.matchMedia("(pointer: coarse)");
+    const compactMql = window.matchMedia("(max-width: 809px)");
+
+    const updateMatches = () => {
+      isTouchRef.current = touchMql.matches;
+      isCompactViewportRef.current = compactMql.matches;
+      if (isTouchRef.current || isCompactViewportRef.current) {
+        currentElRef.current = null;
+        setState((prev) => (prev.visible ? { ...prev, visible: false } : prev));
+      }
+    };
+    updateMatches();
+    touchMql.addEventListener("change", updateMatches);
+    compactMql.addEventListener("change", updateMatches);
 
     // Position updates are instant — no lerp, no transition on left/top.
     const handleMouseMove = (e: MouseEvent) => {
@@ -52,7 +66,7 @@ export default function TooltipProvider({
     };
 
     const handleMouseOver = (e: MouseEvent) => {
-      if (isTouchRef.current) return;
+      if (isTouchRef.current || isCompactViewportRef.current) return;
 
       const target = (e.target as Element).closest("[data-tooltip]");
       if (target) {
@@ -96,6 +110,8 @@ export default function TooltipProvider({
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("click", handleClick, true);
+      touchMql.removeEventListener("change", updateMatches);
+      compactMql.removeEventListener("change", updateMatches);
       if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
     };
   }, []);

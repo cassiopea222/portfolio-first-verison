@@ -17,7 +17,7 @@ export default function ProjectsGrid({ projects = defaultProjects }: ProjectsGri
       <div className="flex flex-col gap-10">
         {/* First row: 2 cards side by side */}
         {topRow.length > 0 && (
-          <div className="flex flex-col gap-10 min-[810px]:flex-row min-[810px]:gap-10">
+          <div className="flex flex-col gap-12 min-[810px]:flex-row min-[810px]:gap-12">
             {topRow.map((project, index) => (
               <div key={`${project.title}-${index}`} className="flex-1 min-w-0">
                 <ProjectCard

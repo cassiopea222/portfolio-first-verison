@@ -297,7 +297,7 @@ export default function BetaTestingPlatformCaseStudy() {
               title="The workflow had to work for testers, managers, and the product team at once"
             />
             <p className="type-body text-[var(--text-secondary)]">
-              <span className="font-medium text-[var(--text-tertiary)]">
+              <span className="font-medium text-[var(--text-primary)]">
                 Tester challenge:
               </span>{" "}
               Quickly understand what to test, submit feedback without extra
@@ -305,7 +305,7 @@ export default function BetaTestingPlatformCaseStudy() {
               deadlines, and impact).
             </p>
             <p className="type-body text-[var(--text-secondary)]">
-              <span className="font-medium text-[var(--text-tertiary)]">
+              <span className="font-medium text-[var(--text-primary)]">
                 Manager challenge:
               </span>{" "}
               Run beta programs at scale without chasing testers across
@@ -313,7 +313,7 @@ export default function BetaTestingPlatformCaseStudy() {
               actionable bug reports faster.
             </p>
             <p className="type-body text-[var(--text-secondary)]">
-              <span className="font-medium text-[var(--text-tertiary)]">
+              <span className="font-medium text-[var(--text-primary)]">
                 Product challenge:
               </span>{" "}
               Design a centralized workflow that moves testers through the core
@@ -322,7 +322,7 @@ export default function BetaTestingPlatformCaseStudy() {
               low.
             </p>
             <p className="type-body text-[var(--text-secondary)]">
-              <span className="font-medium text-[var(--text-tertiary)]">
+              <span className="font-medium text-[var(--text-primary)]">
                 Business challenge:
               </span>{" "}
               Accelerate feedback loops to improve product quality and speed of
@@ -630,14 +630,21 @@ export default function BetaTestingPlatformCaseStudy() {
             </p>
             <p className="type-body text-[var(--text-secondary)]">
               The layout is organized into four sections:{" "}
-              <strong>My tests</strong> surfaces active tests with progress,
-              timelines, manager contact, device status, and a feedback reminder
-              banner so nothing slips through; <strong>Calendar</strong> shows
-              strict deadlines and the full testing timeline at a glance;{" "}
-              <strong>Upcoming tests</strong> lets testers discover and join new
-              tests before they start; and <strong>Updates</strong> consolidates
-              the latest hub, app, and device updates alongside the tester&apos;s
-              current <strong>score</strong> - the visibility that was missing
+              <strong className="text-[var(--text-primary)]">My tests</strong>{" "}
+              surfaces active tests with progress, timelines, manager contact,
+              device status, and a feedback reminder banner so nothing slips
+              through;{" "}
+              <strong className="text-[var(--text-primary)]">Calendar</strong>{" "}
+              shows strict deadlines and the full testing timeline at a glance;{" "}
+              <strong className="text-[var(--text-primary)]">
+                Upcoming tests
+              </strong>{" "}
+              lets testers discover and join new tests before they start; and{" "}
+              <strong className="text-[var(--text-primary)]">Updates</strong>{" "}
+              consolidates the latest hub, app, and device updates alongside the
+              tester&apos;s current{" "}
+              <strong className="text-[var(--text-primary)]">score</strong> -
+              the visibility that was missing
               entirely in the first version. Every section answers a question
               testers were previously asking out loud. The goal was a screen you
               could land on, read in seconds, and know exactly what to do next.
