@@ -46,7 +46,7 @@ export default function About() {
           <div className="flex w-full max-w-[840px] flex-col gap-[60px] pt-[100px]">
             <div className="flex flex-col gap-12">
               <div className="flex flex-col gap-[20px]">
-                <h1 className="text-[26px] font-medium leading-9 text-[var(--text-primary)]">
+                <h1 className="text-[28px] font-medium leading-[120%] text-[var(--text-primary)]">
                   Hi there! I&apos;m Julia.
                 </h1>
                 <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">

@@ -137,7 +137,7 @@ export default function Header() {
       >
         <p className="flex items-baseline overflow-visible py-[2px] leading-[32px] text-[var(--text-primary)]">
           <span
-            className="inline-block pb-[1px] italic tracking-[0.24px] transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
+            className="inline-block pb-[1px] pl-[3px] -ml-[3px] italic tracking-[0.24px] transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
             style={{ fontFamily: "var(--font-crimson), serif", fontSize: 24, lineHeight: "32px" }}
           >
             Julia Bulyndina{" "}
@@ -174,7 +174,9 @@ export default function Header() {
               type="button"
               onClick={() => onTabClick(href)}
               className={`type-nav relative z-10 flex h-10 w-[110px] items-center justify-center rounded-[60px] py-2 transition-colors duration-200 ease-out ${
-                activeHref === href ? "text-[var(--text-primary)]" : "text-[var(--text-secondary)]"
+                activeHref === href
+                  ? "cursor-default text-[var(--text-primary)]"
+                  : "cursor-pointer text-[var(--text-secondary)]"
               }`}
               aria-pressed={activeHref === href}
             >
@@ -257,7 +259,7 @@ export default function Header() {
             >
               <p className="flex items-baseline overflow-visible py-[2px] leading-[32px] text-[var(--text-primary)]">
                 <span
-                  className="inline-block pb-[1px] italic tracking-[0.24px] transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
+                  className="inline-block pb-[1px] pl-[3px] -ml-[3px] italic tracking-[0.24px] transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
                   style={{ fontFamily: "var(--font-crimson), serif", fontSize: 24, lineHeight: "32px" }}
                 >
                   Julia Bulyndina{" "}
