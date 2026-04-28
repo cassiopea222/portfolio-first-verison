@@ -137,7 +137,10 @@ export default function About() {
           <div className="mt-[60px] grid w-full max-w-[780px] grid-cols-1 gap-4 lg:grid-cols-2">
             <SpotifyWidget />
 
-            <article className="flex h-full flex-col justify-between overflow-hidden rounded-[12px] border border-[#cecece] bg-gradient-to-b from-white to-[#d4d4d4] to-[182.4%] px-3 py-2 shadow-[0px_2px_5px_0px_rgba(0,0,0,0.08)]">
+            <article
+              data-tooltip="Currently building"
+              className="flex h-full flex-col justify-between overflow-hidden rounded-[12px] border border-[#cecece] bg-gradient-to-b from-white to-[#d4d4d4] to-[182.4%] px-3 py-2 shadow-[0px_2px_5px_0px_rgba(0,0,0,0.08)]"
+            >
               <div className="flex flex-col gap-[2px]">
                 <div className="type-mono flex items-center justify-between">
                   <p className="text-[16px] font-medium leading-6 text-[var(--text-primary)]">
