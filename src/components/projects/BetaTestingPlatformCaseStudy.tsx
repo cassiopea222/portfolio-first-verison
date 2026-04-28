@@ -2,18 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import ScaledCover from "@/components/ScaledCover";
 
-// Hero images (updated URLs from Figma)
-const imgUnsplashVhKRwVyQ =
-  "https://www.figma.com/api/mcp/asset/542585ab-1dc2-4975-8928-ecb421134956";
-const imgDashboard5 =
-  "https://www.figma.com/api/mcp/asset/86652246-6e7f-4609-9d49-176507e08013";
+// Hero images
+const imgUnsplashVhKRwVyQ = "/home/ajax/unsplash_-Vh-kRw_vyQ.png";
+const imgDashboard5 = "/home/ajax/dashboard 5.png";
 // Context images
-const imgGroup388521 =
-  "https://www.figma.com/api/mcp/asset/a5894127-e6d3-4ffb-bc8e-82e765f2ef6f";
+const imgGroup388521 = "/home/ajax/Frame 2147238398.png";
 const imgScreenshot20260129At2352561 =
-  "https://www.figma.com/api/mcp/asset/a0c63917-d2c0-4a3b-b953-bacd9a659db5";
+  "/home/ajax/Screenshot 2026-01-29 at 23.52.56 1.png";
 const imgScreenshot20260130At0031041 =
-  "https://www.figma.com/api/mcp/asset/2665637c-9cd6-4724-a305-359370d114e8";
+  "/home/ajax/Screenshot 2026-01-30 at 00.31.04 1.png";
 // Static screen showcases
 const imgGridView1 =
   "https://www.figma.com/api/mcp/asset/190273bb-72d6-4c0a-947a-628b2d57fdbc";
@@ -197,9 +194,9 @@ export default function BetaTestingPlatformCaseStudy() {
               src={imgDashboard5}
               alt=""
               width={736}
-              height={523}
+              height={488}
               sizes="736px"
-              className="absolute left-1/2 top-[calc(50%+33.5px)] h-[523px] w-[736px] -translate-x-1/2 -translate-y-1/2 rounded-[12px] object-cover"
+              className="absolute left-1/2 top-[calc(50%+33.5px)] h-[488px] w-[736px] -translate-x-1/2 -translate-y-1/2 rounded-[12px] object-cover"
             />
           </ScaledCover>
 

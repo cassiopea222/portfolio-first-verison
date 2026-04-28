@@ -12,20 +12,16 @@ export type ProjectCardProps = {
 };
 
 // Ajax cover assets
-const imgAjaxBg =
-  "https://www.figma.com/api/mcp/asset/f61e2e2e-5dbe-472b-91c9-3ba3e9a10520";
+const imgAjaxBg = "/home/unsplash_-Vh-kRw_vyQ.png";
 /** Animated Ajax card center — `public/gifs/ajax-cover.gif`. */
 const imgAjaxDashboard = "/gifs/ajax-cover.gif";
 
 // Fitness cover assets
-const imgFitnessLeft =
-  "https://www.figma.com/api/mcp/asset/42083c84-11f4-46fb-a397-03ff02359045";
-const imgFitnessRight =
-  "https://www.figma.com/api/mcp/asset/46ad6007-5159-4f43-8d21-66f371721b20";
+const imgFitnessLeft = "/home/sadie_active/sadieactivecover1 1.png";
+const imgFitnessRight = "/home/sadie_active/asdieactivecover2 1.png";
 
 // Role management cover asset
-const imgRoleManagement =
-  "https://www.figma.com/api/mcp/asset/9bead863-3244-4e65-bab0-f5e9d717909f";
+const imgRoleManagement = "/home/role management image.png";
 
 export default function ProjectCard({
   title,
@@ -40,12 +36,12 @@ export default function ProjectCard({
       {cover === "ajax" && (
         <>
           {/* Blurred background */}
-          <div className="absolute h-[1197px] w-[1826px] blur-[6px] left-[-487px] top-[-142px]">
+          <div className="absolute inset-0 blur-[6px]">
             <Image
               src={imgAjaxBg}
               alt=""
               fill
-              sizes="1826px"
+              sizes="564px"
               className="object-cover pointer-events-none"
             />
           </div>

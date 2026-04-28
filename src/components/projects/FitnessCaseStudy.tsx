@@ -3,22 +3,22 @@ import Image from "next/image";
 import ScaledCover from "@/components/ScaledCover";
 
 // Cover images
-const imgIPhone17Pro1 = "https://www.figma.com/api/mcp/asset/1172b893-5eb5-45c3-9e77-e4afe79b02a9";
-const imgCenterPhone = "https://www.figma.com/api/mcp/asset/de183629-ef13-47ed-8e4e-2f8b0a9f9120";
-const imgRightPhone = "https://www.figma.com/api/mcp/asset/03e7be1f-849d-400a-b487-3133fbc5f85e";
+const imgIPhone17Pro1 = "/home/sadie_active/iPhone 17 Pro 1.png";
+const imgCenterPhone = "/home/sadie_active/sadieactivecover1 1.png";
+const imgRightPhone = "/home/sadie_active/asdieactivecover2 1.png";
 
 // Section images
-const img030101Workouts = "https://www.figma.com/api/mcp/asset/fd1e8717-11a8-4cdd-bf23-71d2bbea3da3";
-const imgImg6304 = "https://www.figma.com/api/mcp/asset/c1aaa554-7530-4925-b44d-a1a617f3bfb5";
-const imgFrame2147238214 = "https://www.figma.com/api/mcp/asset/83df0acd-1097-4438-b396-35fb595dae39";
-const img040101Dashboard1 = "https://www.figma.com/api/mcp/asset/e24aa46d-240e-4107-816c-1496eaf3e128";
-const img47 = "https://www.figma.com/api/mcp/asset/d8d5ae37-53d0-4494-af3e-4ea34f02dfaa";
-const img020307ProgramFullPageInProgress = "https://www.figma.com/api/mcp/asset/97fd47a9-cac7-4a36-947f-2b1fbbc79647";
-const img020303WeekDefault = "https://www.figma.com/api/mcp/asset/a2f933c7-28d7-4e13-925d-e7150fa3b310";
-const img040405PersonalDetailsGender = "https://www.figma.com/api/mcp/asset/35bed1cc-9e17-4e8d-994f-a2ef4bc10473";
-const img040409MacroCalculatorActivityLevel = "https://www.figma.com/api/mcp/asset/281b5a17-38de-4eb9-b334-acb6b2cc978e";
-const img040417NutritionOverviewResults = "https://www.figma.com/api/mcp/asset/a61acd52-a44a-4a68-b527-0949891fcf10";
-const img070311WebCreate1WorkoutInputed = "https://www.figma.com/api/mcp/asset/d785122e-4a2b-4684-a881-fe1c0c383b6d";
+const img030101Workouts = "/home/sadie_active/03.01.01 - Workouts.png";
+const imgImg6304 = "/home/sadie_active/IMG_6304.png";
+const imgFrame2147238214 = "/home/sadie_active/Frame 2147238214.png";
+const img040101Dashboard1 = "/home/sadie_active/04.01.01 - Dashboard-1.png";
+const img47 = "/home/sadie_active/4 7.png";
+const img020307ProgramFullPageInProgress = "/home/sadie_active/02.03.07 - Program_full_page_in_progress.png";
+const img020303WeekDefault = "/home/sadie_active/02.03.03 - week_default.png";
+const img040405PersonalDetailsGender = "/home/sadie_active/04.04.05 - Personal_details_gender.png";
+const img040409MacroCalculatorActivityLevel = "/home/sadie_active/04.04.09 - Macro_calculator_activity_level.png";
+const img040417NutritionOverviewResults = "/home/sadie_active/04.04.17 - nutrition_overview_results.png";
+const img070311WebCreate1WorkoutInputed = "/home/sadie_active/07.03.11 - Web_create_1_workout_inputed.png";
 
 function NavButton({
   href,

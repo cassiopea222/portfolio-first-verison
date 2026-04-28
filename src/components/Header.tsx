@@ -251,7 +251,7 @@ export default function Header() {
           aria-modal="true"
           aria-label="Site navigation"
         >
-          <div className="flex items-center justify-between px-8 pt-6">
+          <div className="flex items-center justify-between fluid-px-home pt-6">
             <Link
               href="/"
               onClick={() => setMenuOpen(false)}
@@ -295,8 +295,8 @@ export default function Header() {
             </button>
           </div>
 
-          <div className="mt-6 flex flex-1 flex-col gap-3 px-8 pb-8">
-            <nav className="flex flex-col gap-1" aria-label="Primary">
+          <div className="mt-6 flex flex-1 flex-col gap-3 fluid-px-home pb-8">
+            <nav className="flex flex-col gap-0.5" aria-label="Primary">
               {navLinks.map(({ href, label }) => (
                 <Link
                   key={href}
@@ -312,7 +312,7 @@ export default function Header() {
               ))}
             </nav>
             <div className="h-px w-full shrink-0 bg-[#ededed]" aria-hidden="true" />
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-0.5">
               {externalLinks.map(({ href, label, tooltip, external }) =>
                 label === "Email" ? (
                   <div key={label} className="flex flex-wrap items-center gap-3 py-2">

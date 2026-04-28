@@ -2,18 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import ScaledCover from "@/components/ScaledCover";
 
-const imgCreateNewRoleNew3 =
-  "https://www.figma.com/api/mcp/asset/800a5609-2bb3-46f9-b5d7-c5f2ed47a750";
+const imgCreateNewRoleNew3 = "/home/role_management/Create new role NEW 3.png";
 const imgScreenshot20260319At2244461 =
-  "https://www.figma.com/api/mcp/asset/0ee91065-6c60-4c3a-b0e9-28e81cf40bfb";
-const imgCreateNewRole13 =
-  "https://www.figma.com/api/mcp/asset/11888f3a-4606-44b3-a8ed-0bbfd074a11a";
-const imgCreateNewRole23 =
-  "https://www.figma.com/api/mcp/asset/d3c802d7-9a82-420c-bd7a-9b475bd9f5af";
-const imgProfileRole1 =
-  "https://www.figma.com/api/mcp/asset/9b6fbdf8-d697-4a89-9ae8-27387e32d1d4";
-const imgProfilePermissions1 =
-  "https://www.figma.com/api/mcp/asset/9dc4e5da-62b2-40e6-9a51-43b5611b2220";
+  "/home/role_management/Screenshot 2026-03-19 at 22.44.46 1.png";
+const imgCreateNewRole13 = "/home/role_management/Create new role 1 3.png";
+const imgCreateNewRole23 = "/home/role_management/Create new role 2 3.png";
+const imgProfileRole1 = "/home/role_management/profile - role 1.png";
+const imgProfilePermissions1 = "/home/role_management/profile - permissions 1.png";
 
 function NavButton({
   href,

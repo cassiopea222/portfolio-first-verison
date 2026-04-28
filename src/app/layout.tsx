@@ -24,7 +24,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Julia Bulyndina — Product Designer",
+  title: "Julia Bulyndina Portfolio",
   description:
     "Product designer and crafter of experiences. Creating digital tools that make life easier for real people.",
 };
