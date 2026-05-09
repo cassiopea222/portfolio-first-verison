@@ -374,7 +374,6 @@ export default function HeroFlowAround() {
             hullsRef.current.set(flower.id, hull);
           })
           .catch((err) => {
-            // eslint-disable-next-line no-console
             console.warn(`HeroFlowAround: hull failed for ${flower.id}`, err);
           }),
       ),
@@ -388,7 +387,7 @@ export default function HeroFlowAround() {
     };
   }, []);
 
-  const tick = useCallback((ts: number) => {
+  const tick = useCallback(function tickFrame(ts: number) {
     if (!playingRef.current) return;
     if (lastTimeRef.current === 0) lastTimeRef.current = ts;
 
@@ -399,7 +398,7 @@ export default function HeroFlowAround() {
       setActiveFlowerId(FLOWERS[next]!.id);
     }
 
-    rafRef.current = requestAnimationFrame(tick);
+    rafRef.current = requestAnimationFrame(tickFrame);
   }, []);
 
   const play = useCallback(() => {
