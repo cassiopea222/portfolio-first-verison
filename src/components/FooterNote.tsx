@@ -71,7 +71,7 @@ export default function FooterNote() {
                 target={external ? "_blank" : undefined}
                 rel={external ? "noopener noreferrer" : undefined}
                 data-tooltip={tooltip}
-                className="text-[16px] font-medium leading-[18px] text-[var(--text-muted,#818790)] no-underline"
+                className="font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-muted,#818790)] no-underline"
               >
                 {label}
               </a>
@@ -82,7 +82,7 @@ export default function FooterNote() {
         {/* Right — Built with */}
         <div className="flex flex-col items-start gap-2 min-[810px]:items-end">
           <div className="flex items-center gap-1.5">
-            <span className="text-[16px] font-medium leading-5 text-[var(--text-tertiary)]">
+            <span className="text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
               Built with love by me
             </span>
             <div className="relative h-[26px] w-[26px] overflow-hidden rounded-[4px]" style={{ transform: "rotate(5.86deg)" }}>
@@ -94,7 +94,7 @@ export default function FooterNote() {
                 className="object-cover"
               />
             </div>
-            <span className="text-[14px] font-medium leading-5 text-[var(--text-tertiary)]">
+            <span className="text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
               with
             </span>
             <div className="relative h-6 w-6 overflow-hidden rounded-[4px]">
@@ -116,7 +116,7 @@ export default function FooterNote() {
               />
             </div>
           </div>
-          <p className="text-[16px] font-medium leading-5 text-[var(--text-tertiary)]">
+          <p className="text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
             Changelog: {lastUpdate}
           </p>
         </div>

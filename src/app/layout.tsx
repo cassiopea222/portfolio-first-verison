@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Crimson_Pro, Geist_Mono, Inconsolata } from "next/font/google";
+import { Cormorant_Garamond, Crimson_Pro, Geist, Geist_Mono, Inconsolata } from "next/font/google";
 import AppShellHeader from "@/components/AppShellHeader";
 import TooltipProvider from "@/components/TooltipProvider";
 import "./globals.css";
 
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
+  display: "swap",
+});
+
 const inconsolata = Inconsolata({
   subsets: ["latin"],
-  variable: "--font-inconsolata",
+  variable: "--font-inconsolata-raw",
   display: "swap",
 });
 
@@ -45,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inconsolata.className} ${inconsolata.variable} ${geistMono.variable} ${crimsonPro.variable} ${cormorantGaramond.variable} min-h-screen antialiased`}
+        className={`${geist.className} ${geist.variable} ${inconsolata.variable} ${geistMono.variable} ${crimsonPro.variable} ${cormorantGaramond.variable} min-h-screen antialiased`}
       >
         <TooltipProvider>
           <div className="flex min-h-screen flex-col bg-[var(--background)]">

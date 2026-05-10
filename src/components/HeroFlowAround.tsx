@@ -220,10 +220,10 @@ function renderLineWithItalic(text: string, baseFontSize: number = 28): React.Re
   );
 }
 
-/** Use the page's resolved Inconsolata family (next/font rewrites it) so pretext and the DOM measure the same font. */
+/** Use the page's resolved Inter family (next/font rewrites it) so pretext and the DOM measure the same font. */
 function resolveBodyFont(fontSize: number): string {
-  if (typeof window === "undefined") return `500 ${fontSize}px "Inconsolata", sans-serif`;
-  const family = getComputedStyle(document.body).fontFamily || '"Inconsolata", sans-serif';
+  if (typeof window === "undefined") return `500 ${fontSize}px "Geist", sans-serif`;
+  const family = getComputedStyle(document.body).fontFamily || '"Geist", sans-serif';
   return `500 ${fontSize}px ${family}`;
 }
 

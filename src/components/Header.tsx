@@ -103,7 +103,7 @@ export default function Header() {
             }}
             type="button"
             onClick={() => onTabClick(href)}
-            className={`inline-flex items-center py-2 text-[18px] font-medium leading-[26px] transition-colors duration-200 ease-out ${
+            className={`inline-flex items-center py-2 font-inconsolata text-[18px] font-medium leading-[26px] transition-colors duration-200 ease-out ${
               activeHref === href
                 ? "cursor-default text-[var(--text-primary)]"
                 : "cursor-pointer text-[var(--text-secondary)]"
@@ -217,7 +217,7 @@ export default function Header() {
                   href={href}
                   onClick={() => setMenuOpen(false)}
                   aria-current={activeHref === href ? "page" : undefined}
-                  className={`inline-flex max-w-full justify-center self-start py-2 text-[18px] leading-[26px] no-underline text-[var(--text-primary)] ${
+                  className={`inline-flex max-w-full justify-center self-start py-2 font-inconsolata text-[18px] leading-[26px] no-underline text-[var(--text-primary)] ${
                     activeHref === href ? "font-medium" : "font-medium"
                   }`}
                 >
@@ -237,7 +237,7 @@ export default function Header() {
                         e.preventDefault();
                         void copyEmail();
                       }}
-                      className="text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+                      className="font-inconsolata text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                     >
                       {label}
                     </a>
@@ -251,7 +251,7 @@ export default function Header() {
                     rel={external ? "noopener noreferrer" : undefined}
                     data-tooltip={tooltip}
                     onClick={() => setMenuOpen(false)}
-                    className="inline-flex justify-center self-start py-2 text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+                    className="inline-flex justify-center self-start py-2 font-inconsolata text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                   >
                     {label}
                   </a>

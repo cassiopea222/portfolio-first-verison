@@ -25,7 +25,7 @@ const externalLinks: {
     tooltip: "Go",
     external: true,
   },
-  { href: "/cv/julia-bulyndina-cv.pdf", label: "CV", tooltip: "Open", external: true },
+  { href: "/cv/julia-bulyndina-cv.pdf", label: "Resume", tooltip: "Open", external: true },
 ];
 
 function EmailCopiedPill() {
@@ -85,10 +85,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="mx-auto w-full max-w-[1440px] fluid-px-home pb-[100px] pt-[40px] min-[810px]:pb-[120px]">
+    <section className="mx-auto w-full max-w-[1440px] fluid-px-home pb-[100px] pt-[40px]">
       <div className="flex w-full items-start justify-between">
         {/* Left: orchid + name + description */}
-        <div className="flex w-full max-w-[584px] flex-col gap-6">
+        <div className="flex w-full max-w-[584px] flex-col gap-5">
           <div className="relative h-[94px] w-[92px] shrink-0 overflow-hidden">
             <Image
               src="/orchid/2.webp"
@@ -106,7 +106,7 @@ export default function Hero() {
             >
               Julia Bulyndina
             </p>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               She is a product designer with a love for visual craft and cohesive systems. She builds
               across interface, brand, and interaction - drawn to the small decisions that scale into
               experiences people feel.
@@ -122,7 +122,7 @@ export default function Hero() {
                     href={href}
                     data-tooltip={tooltip}
                     onClick={(e) => { e.preventDefault(); void copyEmail(); }}
-                    className="py-2 text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+                    className="py-2 font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                   >
                     {label}
                   </a>
@@ -135,7 +135,7 @@ export default function Hero() {
                   target={external ? "_blank" : undefined}
                   rel={external ? "noopener noreferrer" : undefined}
                   data-tooltip={tooltip}
-                  className="py-2 text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+                  className="py-2 font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                 >
                   {label}
                 </a>
@@ -154,7 +154,7 @@ export default function Hero() {
               }}
               type="button"
               onClick={() => onTabClick(href)}
-              className={`inline-flex items-center py-2 text-[18px] font-medium leading-[26px] transition-colors duration-200 ease-out ${
+              className={`inline-flex items-center py-2 font-inconsolata text-[18px] font-medium leading-[26px] transition-colors duration-200 ease-out ${
                 activeHref === href
                   ? "cursor-default text-[var(--text-primary)]"
                   : "cursor-pointer text-[var(--text-secondary)]"
@@ -241,7 +241,7 @@ export default function Hero() {
                   href={href}
                   onClick={() => setMenuOpen(false)}
                   aria-current={activeHref === href ? "page" : undefined}
-                  className={`inline-flex max-w-full justify-center self-start py-2 text-[18px] leading-[26px] no-underline text-[var(--text-primary)] ${
+                  className={`inline-flex max-w-full justify-center self-start py-2 font-inconsolata text-[18px] leading-[26px] no-underline text-[var(--text-primary)] ${
                     activeHref === href ? "font-medium" : "font-medium"
                   }`}
                 >
@@ -261,7 +261,7 @@ export default function Hero() {
                         e.preventDefault();
                         void copyEmail();
                       }}
-                      className="text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+                      className="font-inconsolata text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                     >
                       {label}
                     </a>
@@ -275,7 +275,7 @@ export default function Hero() {
                     rel={external ? "noopener noreferrer" : undefined}
                     data-tooltip={tooltip}
                     onClick={() => setMenuOpen(false)}
-                    className="inline-flex justify-center self-start py-2 text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+                    className="inline-flex justify-center self-start py-2 font-inconsolata text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                   >
                     {label}
                   </a>

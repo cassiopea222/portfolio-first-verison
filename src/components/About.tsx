@@ -52,7 +52,7 @@ export default function About() {
                 >
                   Hi there! I&apos;m Julia
                 </h1>
-                <div className="flex flex-col gap-4 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+                <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                   <p>
                     Originally from Ukraine, I was curious about design and
                     technologies from my childhood - my first website came at 10,
@@ -81,15 +81,15 @@ export default function About() {
 
             <div className="flex flex-col gap-[20px]">
               <h2
-                className="font-medium text-[var(--text-primary)]"
-                style={{ fontFamily: "var(--font-crimson)", fontSize: 32, lineHeight: "40px" }}
+                className="font-semibold text-[var(--text-primary)]"
+                style={{ fontSize: 24, lineHeight: "32px" }}
               >
                 Experience
               </h2>
 
               <div className="flex flex-col gap-5">
                 <div className="flex w-full items-start justify-between gap-4 max-[809px]:flex-col max-[809px]:gap-1">
-                  <p className="text-[20px] font-medium leading-7 text-[var(--text-primary)]">
+                  <p className="text-[18px] font-medium leading-[26px] text-[var(--text-primary)]">
                     Product designer at Fireart
                   </p>
                   <p className="whitespace-nowrap text-[18px] font-medium leading-6 text-[var(--text-tertiary)]">
@@ -97,7 +97,7 @@ export default function About() {
                   </p>
                 </div>
 
-                <ul className="flex list-disc flex-col gap-[10px] pl-6 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+                <ul className="flex list-disc flex-col gap-[10px] pl-6 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                   <li>
                     Worked on a government digital platform (under NDA) consisting
                     of a CMS and an admin dashboard; owned and led the design of

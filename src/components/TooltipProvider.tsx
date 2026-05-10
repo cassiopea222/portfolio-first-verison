@@ -139,7 +139,7 @@ export default function TooltipProvider({
           fontWeight: 500,
           lineHeight: "16px",
           color: "#ffffff",
-          fontFamily: "var(--font-inconsolata, Inconsolata), sans-serif",
+          fontFamily: "var(--font-sans, 'Geist'), sans-serif",
           whiteSpace: "nowrap",
           userSelect: "none",
         }}

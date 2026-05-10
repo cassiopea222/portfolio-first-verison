@@ -44,9 +44,9 @@
   --type-title-weight: 500;
   --type-title-track: 0;
 
-  --type-nav-size: 1rem;
+  --type-nav-size: 0.875rem;
   --type-nav-line: 1.5;
-  --type-nav-weight: 500;
+  --type-nav-weight: 600;
   --type-nav-track: 0;
 
   --type-body-lg-size: 1.125rem;
@@ -59,9 +59,9 @@
   --type-body-weight: 500;
   --type-body-track: 0;
 
-  --type-caption-size: 1rem;
+  --type-caption-size: 0.875rem;
   --type-caption-line: 1.5;
-  --type-caption-weight: 500;
+  --type-caption-weight: 400;
   --type-caption-track: 0;
 }
 
@@ -72,8 +72,9 @@
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
   --color-icon-secondary: var(--icon-secondary);
-  --font-sans: var(--font-inconsolata);
-  --font-serif: var(--font-inconsolata);
+  --font-sans: var(--font-geist);
+  --font-serif: var(--font-geist);
+  --font-inconsolata: var(--font-inconsolata-raw);
   --font-crimson: "Crimson Pro";
   --font-cormorant: "Cormorant Garamond";
   --font-mono: var(--font-geist-mono);

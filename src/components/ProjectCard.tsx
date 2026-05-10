@@ -104,15 +104,15 @@ export default function ProjectCard({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-[6px] bg-[#f2f2f2] px-2 py-1.5 text-[14px] font-semibold uppercase leading-[14px] tracking-wide text-[var(--text-tertiary)] whitespace-nowrap"
+                className="rounded-[6px] bg-[#f2f2f2] px-2 py-1.5 font-inconsolata text-[14px] font-semibold uppercase leading-[14px] tracking-wide text-[var(--text-tertiary)] whitespace-nowrap"
               >
                 {tag}
               </span>
             ))}
           </div>
-          <h3 className="text-[20px] font-semibold leading-7 text-[var(--text-primary)]">{title}</h3>
+          <h3 className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">{title}</h3>
         </div>
-        <p className="text-[18px] font-medium leading-[26px] text-[var(--text-secondary)]">
+        <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
           {description}
         </p>
       </div>

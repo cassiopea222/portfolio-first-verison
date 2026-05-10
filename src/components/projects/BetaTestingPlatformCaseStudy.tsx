@@ -120,7 +120,7 @@ function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }
             className="flex h-[468px] w-full items-center justify-center rounded-[12px] border border-dashed border-[#cfd3d7] bg-[#fafafa] px-6 text-center"
           >
             <div className="flex flex-col gap-2">
-              <p className="type-nav font-medium text-[var(--text-secondary)]">
+              <p className="type-nav text-[var(--text-secondary)]">
                 Video placeholder
               </p>
               <p className="type-caption text-[var(--text-tertiary)]">{slot}</p>
@@ -135,13 +135,13 @@ function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }
 
 function SectionHeader({ subtitle, title }: { subtitle?: string; title: string }) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1.5">
       {subtitle && (
-        <p className="text-[18px] font-medium leading-6 text-[var(--text-tertiary)]">
+        <p className="text-[16px] font-medium leading-6 text-[var(--text-tertiary)]">
           {subtitle}
         </p>
       )}
-      <h2 className="text-[24px] font-semibold leading-8 text-[var(--text-primary)]">
+      <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
         {title}
       </h2>
     </div>
@@ -150,7 +150,7 @@ function SectionHeader({ subtitle, title }: { subtitle?: string; title: string }
 
 export default function BetaTestingPlatformCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[80px] py-[120px] fluid-px max-[809px]:gap-[40px] max-[809px]:py-[48px]">
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px max-[809px]:gap-[40px] max-[809px]:py-[48px]">
       <div className="w-full max-w-[840px]">
         <NavButton href="/" text="Go back" />
       </div>
@@ -172,7 +172,7 @@ export default function BetaTestingPlatformCaseStudy() {
                 Ajax
               </p>
             </div>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Ajax Systems runs a beta testing program where external testers
               validate security devices before release. Managers coordinate the
               process, collect feedback, and ensure testers stay on track. To
@@ -208,26 +208,26 @@ export default function BetaTestingPlatformCaseStudy() {
 
           <div className="flex items-start justify-between gap-6 max-[402px]:flex-col max-[402px]:gap-[20px]">
             <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="type-nav font-medium uppercase text-[var(--text-tertiary)]">
+              <p className="type-nav uppercase text-[var(--text-tertiary)]">
                 Role
               </p>
-              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 Product Designer
               </p>
             </div>
             <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="type-nav font-medium uppercase text-[var(--text-tertiary)]">
+              <p className="type-nav uppercase text-[var(--text-tertiary)]">
                 Team
               </p>
-              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 4 designers
               </p>
             </div>
             <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="type-nav font-medium uppercase text-[var(--text-tertiary)]">
+              <p className="type-nav uppercase text-[var(--text-tertiary)]">
                 Timeline
               </p>
-              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 May 2025 - Jul 2025
               </p>
             </div>
@@ -241,7 +241,7 @@ export default function BetaTestingPlatformCaseStudy() {
                 subtitle="Context & problem"
                 title="Beta testing was fragmented across tools and hard to manage"
               />
-              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 Ajax Systems runs a beta testing program where external testers
                 validate security devices before release. Managers coordinate the
                 process, collect feedback, and ensure testers stay on track - but
@@ -299,7 +299,7 @@ export default function BetaTestingPlatformCaseStudy() {
               subtitle="Challenges"
               title="The workflow had to work for testers, managers, and the product team at once"
             />
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               <span className="font-medium text-[var(--text-primary)]">
                 Tester challenge:
               </span>{" "}
@@ -307,7 +307,7 @@ export default function BetaTestingPlatformCaseStudy() {
               effort, and feel that their contribution matters (clear status,
               deadlines, and impact).
             </p>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               <span className="font-medium text-[var(--text-primary)]">
                 Manager challenge:
               </span>{" "}
@@ -315,7 +315,7 @@ export default function BetaTestingPlatformCaseStudy() {
               messengers, reduce manual coordination, and receive structured,
               actionable bug reports faster.
             </p>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               <span className="font-medium text-[var(--text-primary)]">
                 Product challenge:
               </span>{" "}
@@ -324,7 +324,7 @@ export default function BetaTestingPlatformCaseStudy() {
               when needed → return for new tests - while keeping cognitive load
               low.
             </p>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               <span className="font-medium text-[var(--text-primary)]">
                 Business challenge:
               </span>{" "}
@@ -340,7 +340,7 @@ export default function BetaTestingPlatformCaseStudy() {
               subtitle="Objective"
               title="Create one central platform for running tests and collecting structured feedback"
             />
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Create a single platform where beta managers can run tests and
               receive structured, timely feedback, while testers can clearly
               understand what to do, how to report issues, and what impact they
@@ -353,7 +353,7 @@ export default function BetaTestingPlatformCaseStudy() {
               subtitle="Success metrics"
               title="Define how MVP success would be measured across adoption, engagement, and quality"
             />
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               To measure whether the MVP improves beta testing speed and report
               quality, I defined success metrics across four areas.
             </p>
@@ -361,40 +361,40 @@ export default function BetaTestingPlatformCaseStudy() {
               <div className="flex gap-4 max-[809px]:flex-col">
                 <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
                   <div className="flex items-center">
-                    <span className="type-nav rounded-[20px] bg-[#d6ecdc] px-3 py-1 font-medium uppercase text-[#5f9d72]">
+                    <span className="type-nav rounded-[20px] bg-[#d6ecdc] px-3 py-1 uppercase text-[#5f9d72]">
                       Adoption
                     </span>
                   </div>
                   <div className="flex flex-col gap-[10px]">
-                    <p className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">
+                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
                       -Number of testers who joined the platform
                     </p>
                     <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">
+                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
                       -% of testers who submitted their first bug report
                     </p>
                   </div>
                 </article>
                 <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
                   <div className="flex items-center">
-                    <span className="type-nav rounded-[20px] bg-[#e0e7ff] px-3 py-1 font-medium uppercase text-[#667bc2]">
+                    <span className="type-nav rounded-[20px] bg-[#e0e7ff] px-3 py-1 uppercase text-[#667bc2]">
                       Engagement
                     </span>
                   </div>
                   <div className="flex flex-col gap-[10px]">
-                    <p className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">
+                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
                       -Median time from test start to first bug report
                     </p>
                     <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">
+                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
                       -% completing the full journey
                     </p>
                     <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">
+                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
                       -% submitting 3+ bug reports within a defined time window
                     </p>
                     <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">
+                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
                       Weekly volume of submitted bug reports
                     </p>
                   </div>
@@ -403,16 +403,16 @@ export default function BetaTestingPlatformCaseStudy() {
               <div className="flex gap-4 max-[809px]:flex-col">
                 <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
                   <div className="flex items-center">
-                    <span className="type-nav rounded-[20px] bg-[#ffe6d2] px-3 py-1 font-medium uppercase text-[#a6744a]">
+                    <span className="type-nav rounded-[20px] bg-[#ffe6d2] px-3 py-1 uppercase text-[#a6744a]">
                       Manager Productivity
                     </span>
                   </div>
                   <div className="flex flex-col gap-[10px]">
-                    <p className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">
+                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
                       -Time spent on outreach and follow-ups
                     </p>
                     <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">
+                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
                       -Time spent clarifying reports (proxy for operational
                       overhead)
                     </p>
@@ -420,12 +420,12 @@ export default function BetaTestingPlatformCaseStudy() {
                 </article>
                 <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
                   <div className="flex items-center">
-                    <span className="type-nav rounded-[20px] bg-[#ffdefc] px-3 py-1 font-medium uppercase text-[#cc60c1]">
+                    <span className="type-nav rounded-[20px] bg-[#ffdefc] px-3 py-1 uppercase text-[#cc60c1]">
                       Quality
                     </span>
                   </div>
                   <div className="flex flex-col gap-[10px]">
-                    <p className="text-[18px] font-medium leading-7 text-[var(--text-primary)]">
+                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
                       -% of reports actionable without additional clarification
                       from the team
                     </p>
@@ -438,13 +438,13 @@ export default function BetaTestingPlatformCaseStudy() {
           <div className="flex flex-col gap-[32px]">
             <div className="flex flex-col gap-[16px]">
               <SectionHeader subtitle="Research" title="Research Goals" />
-              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 To ground the MVP in real tester behavior, we ran a research
                 workshop and aligned on what we needed to learn. We defined
                 research goals, key questions, and respondent profiles before
                 moving into interviews:
               </p>
-              <ul className="text-[18px] font-medium leading-7 my-0 flex flex-col items-start gap-1 list-disc pl-5 text-[var(--text-secondary)]">
+              <ul className="text-[16px] font-normal leading-6 my-0 flex flex-col items-start gap-1 list-disc pl-5 text-[var(--text-secondary)]">
                 <li>
                   Improve the quality of communication between testers and the
                   team
@@ -457,7 +457,7 @@ export default function BetaTestingPlatformCaseStudy() {
                 <li>Understand what motivates testers to participate</li>
                 <li>Clarify manager responsibilities and pain points</li>
               </ul>
-              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 Based on the PRD and workshop outputs, we prepared an interview
                 guide and interviewed beta testers across different profiles. We
                 focused on how they currently report issues, where context gets
@@ -488,17 +488,17 @@ export default function BetaTestingPlatformCaseStudy() {
                 subtitle="Synthesis"
                 title="Hypotheses & Prioritization"
               />
-              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 We translated interview insights into product hypotheses and
                 prioritized them using the RICE framework. This helped us choose
                 the most impactful MVP features and connect them directly to
                 measurable outcomes (speed, quality, transparency, and reduced
                 manager overhead).
               </p>
-              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 Top hypotheses (from interviews):
               </p>
-              <ol className="text-[18px] font-medium leading-7 list-decimal pl-5 text-[var(--text-secondary)]">
+              <ol className="text-[16px] font-normal leading-6 list-decimal pl-5 text-[var(--text-secondary)]">
                 <li>
                   Bug report automation / structured reporting. If we reduce
                   manual input and guide testers with a structured form, reports
@@ -538,7 +538,7 @@ export default function BetaTestingPlatformCaseStudy() {
               </p>
             </div>
 
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               These prioritized hypotheses shaped our core user flows (Join →
               Pick a test → Test device → Submit a report → Track status) and
               became the backbone for the MVP UI and feature set.
@@ -550,7 +550,7 @@ export default function BetaTestingPlatformCaseStudy() {
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
             <SectionHeader subtitle="Core flows" title="Testing hub" />
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               The Testing hub helps testers instantly understand what to do next
               by grouping tests into three statuses: Not started, In progress, and
               Submitted. For quick scanning, tests can be viewed in two formats: a
@@ -569,7 +569,7 @@ export default function BetaTestingPlatformCaseStudy() {
             <h3 className="type-h3 text-[var(--text-primary)]">
               Detailed view of one test
             </h3>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               The test details page provides full context in one place: test name,
               description, deadline, and conditions. Test cases are separated into
               a clear checklist with descriptions, so testers always know what to
@@ -587,7 +587,7 @@ export default function BetaTestingPlatformCaseStudy() {
             <h3 className="type-h3 text-[var(--text-primary)]">
               Notifications
             </h3>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               To reduce missed deadlines and slow feedback, we introduced a
               centralized notifications center. Testers get clear updates about
               status changes, new tasks/deadlines, and rewards.
@@ -604,7 +604,7 @@ export default function BetaTestingPlatformCaseStudy() {
             subtitle="Usability testing & iterations - what went wrong"
             title="What the testing round revealed: testers needed everything in one place"
           />
-          <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             After the first UI round, we ran usability tests with beta testers to
             validate clarity and speed of the main tasks.
             <br />
@@ -625,13 +625,13 @@ export default function BetaTestingPlatformCaseStudy() {
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
             <h3 className="type-h3 text-[var(--text-primary)]">Dashboard</h3>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Working within a tight timeframe, I designed the Dashboard as the
               first screen testers see after login - a single overview of
               everything critical, without requiring any navigation. I owned this
               page end-to-end, from structure to final details.
             </p>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               The layout is organized into four sections:{" "}
               <strong className="text-[var(--text-primary)]">My tests</strong>{" "}
               surfaces active tests with progress, timelines, manager contact,
@@ -661,7 +661,7 @@ export default function BetaTestingPlatformCaseStudy() {
             <h3 className="type-h3 text-[var(--text-primary)]">
               Future direction: In-platform messenger
             </h3>
-            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               After validating the MVP, we outlined several ideas for the next
               stage. The first one is an integrated messenger.
               <br />
