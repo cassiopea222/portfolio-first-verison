@@ -4,8 +4,7 @@ import ScaledCover from "@/components/ScaledCover";
 
 export type ProjectCardProps = {
   title: string;
-  client: string;
-  date: string;
+  tags: string[];
   description: string;
   cover: "ajax" | "fitness" | "role";
   href?: string;
@@ -25,8 +24,7 @@ const imgRoleManagement = "/home/role management image.png";
 
 export default function ProjectCard({
   title,
-  client,
-  date,
+  tags,
   description,
   cover,
   href,
@@ -100,23 +98,28 @@ export default function ProjectCard({
   const content = (
     <>
       {coverNode}
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2">
         <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-1 text-[16px] font-medium leading-5 uppercase text-[var(--text-tertiary)]">
-            <span>{client}</span>
-            <span>/</span>
-            <span>{date}</span>
+          <div className="flex flex-wrap items-start gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-[6px] bg-[#f2f2f2] px-2 py-1.5 text-[14px] font-semibold uppercase leading-[14px] tracking-wide text-[var(--text-tertiary)] whitespace-nowrap"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
-          <h3 className="text-[20px] font-medium leading-6 text-[var(--text-primary)]">{title}</h3>
+          <h3 className="text-[20px] font-semibold leading-7 text-[var(--text-primary)]">{title}</h3>
         </div>
-        <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+        <p className="text-[18px] font-medium leading-[26px] text-[var(--text-secondary)]">
           {description}
         </p>
       </div>
     </>
   );
 
-  const className = "group flex flex-col gap-5 overflow-hidden bg-white text-left";
+  const className = "group flex flex-col gap-4 overflow-hidden bg-white text-left";
 
   if (href) {
     return (

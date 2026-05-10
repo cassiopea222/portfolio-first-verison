@@ -56,7 +56,7 @@ function Showcase({ children, caption }: { children: React.ReactNode; caption: s
       <ScaledCover nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
         {children}
       </ScaledCover>
-      <p className="text-center text-[16px] font-normal leading-6 text-[var(--text-tertiary)]">{caption}</p>
+      <p className="text-center text-[16px] font-medium leading-6 text-[var(--text-tertiary)]">{caption}</p>
     </div>
   );
 }
@@ -73,14 +73,20 @@ export default function FitnessCaseStudy() {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3 max-[809px]:flex-col-reverse max-[809px]:items-start max-[809px]:gap-1">
-              <h1 className="text-[26px] font-medium leading-9 text-[var(--text-primary)]">
+              <h1
+                className="text-[32px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
+                style={{ fontFamily: "var(--font-crimson), serif" }}
+              >
                 Fitness app redesign
               </h1>
-              <p className="text-[26px] font-medium leading-9 text-[var(--text-tertiary)]">
+              <p
+                className="text-[32px] font-normal leading-[1.25] tracking-[-0.01em] text-[var(--text-tertiary)] max-[809px]:text-[26px] max-[809px]:font-medium max-[809px]:leading-9"
+                style={{ fontFamily: "var(--font-crimson), serif" }}
+              >
                 SadieActive
               </p>
             </div>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               Redesigned a mobile fitness app for an Instagram fitness influencer
               (200K+ followers). Led the UX/UI for the progress dashboard and
               workout programs, designed an admin platform for managing in-app
@@ -125,7 +131,7 @@ export default function FitnessCaseStudy() {
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Role
               </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
                 Product Designer
               </p>
             </div>
@@ -133,7 +139,7 @@ export default function FitnessCaseStudy() {
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Team
               </p>
-              <div className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+              <div className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
                 <p>2 designers</p>
                 <p>5 developers</p>
                 <p>1 project manager</p>
@@ -144,7 +150,7 @@ export default function FitnessCaseStudy() {
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Timeline
               </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
                 Nov 2023 - Jan 2024
               </p>
             </div>
@@ -158,7 +164,7 @@ export default function FitnessCaseStudy() {
               subtitle="Problem"
               title="The app felt dated, cluttered, and hard to follow."
             />
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               The original app felt dated and unintuitive: cluttered workout
               screens, inconsistent navigation, and friction completing sessions.
               Users complained about the workout execution experience (hard to
@@ -177,7 +183,7 @@ export default function FitnessCaseStudy() {
             subtitle="My role"
             title="From analysis to handoff across mobile + admin."
           />
-          <ul className="list-disc pl-6 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <ul className="list-disc pl-6 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             <li>Conducted competitor analysis</li>
             <li>Developed user flows</li>
             <li>Designed mobile and tablet UI</li>
@@ -196,7 +202,7 @@ export default function FitnessCaseStudy() {
               subtitle="Core flows"
               title="Workouts and statistics"
             />
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               Turned a cluttered home screen into a simple weekly hub - users can
               instantly see progress, jump into the next workout, and review what
               they&apos;ve done.
@@ -228,7 +234,7 @@ export default function FitnessCaseStudy() {
             </p>
           </Showcase>
 
-          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             Redesigned Profile into a Dashboard that shows weekly stats, a quick
             training report link, macro summary, and recent workout history - so
             users can check progress and jump to core actions faster.
@@ -266,7 +272,7 @@ export default function FitnessCaseStudy() {
             <h2 className="text-[24px] font-semibold leading-8 text-[var(--text-primary)]">
               Programs
             </h2>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               Long-term programs turn single workouts into clear 4-, 8-, or
               12-week roadmaps. Each plan auto-slots sessions onto the right days.
               Also there is a live progress bar and a &quot;Next workout&quot; jump-in in
@@ -285,7 +291,7 @@ export default function FitnessCaseStudy() {
             />
           </Showcase>
 
-          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             Created a Program detail view that turns workouts into a weekly plan:
             users see the program level, duration, and equipment, track
             week-by-week progress, and jump straight to the Next workout.
@@ -319,7 +325,7 @@ export default function FitnessCaseStudy() {
             <h2 className="text-[24px] font-semibold leading-8 text-[var(--text-primary)]">
               Macronutrients calculator
             </h2>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               We aimed to make workout execution clearer and more focused, cut
               navigation friction so users reach programs and sessions faster,
               unify UI through a reusable cross-platform design system.
@@ -359,7 +365,7 @@ export default function FitnessCaseStudy() {
             <h2 className="text-[24px] font-semibold leading-8 text-[var(--text-primary)]">
               Web platform for admin
             </h2>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               We aimed to make workout execution clearer and more focused, cut
               navigation friction so users reach programs and sessions faster,
               unify UI through a reusable cross-platform design system.

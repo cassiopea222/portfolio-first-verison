@@ -41,27 +41,27 @@
 
   --type-title-size: 1.125rem;
   --type-title-line: 1.3333;
-  --type-title-weight: 400;
+  --type-title-weight: 500;
   --type-title-track: 0;
 
   --type-nav-size: 1rem;
   --type-nav-line: 1.5;
-  --type-nav-weight: 400;
+  --type-nav-weight: 500;
   --type-nav-track: 0;
 
   --type-body-lg-size: 1.125rem;
   --type-body-lg-line: 1.3333;
-  --type-body-lg-weight: 400;
+  --type-body-lg-weight: 500;
   --type-body-lg-track: 0;
 
   --type-body-size: 1rem;
   --type-body-line: 1.5;
-  --type-body-weight: 400;
+  --type-body-weight: 500;
   --type-body-track: 0;
 
   --type-caption-size: 1rem;
   --type-caption-line: 1.5;
-  --type-caption-weight: 400;
+  --type-caption-weight: 500;
   --type-caption-track: 0;
 }
 
@@ -72,9 +72,10 @@
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
   --color-icon-secondary: var(--icon-secondary);
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-inter);
+  --font-sans: var(--font-inconsolata);
+  --font-serif: var(--font-inconsolata);
   --font-crimson: "Crimson Pro";
+  --font-cormorant: "Cormorant Garamond";
   --font-mono: var(--font-geist-mono);
   --shadow-card: var(--card-shadow);
   /* 1200px screen breakpoint (between lg:1024 and xl:1280) */

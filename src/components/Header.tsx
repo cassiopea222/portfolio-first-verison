@@ -1,13 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-
 const navLinks = [
   { href: "/", label: "Work" },
-  { href: "/about", label: "About me" },
+  { href: "/about", label: "About" },
 ];
 
 const EMAIL_ADDRESS = "ubulyndina@gmail.com";
@@ -21,29 +20,28 @@ const externalLinks: {
   {
     href: `mailto:${EMAIL_ADDRESS}`,
     label: "Email",
-    tooltip: "Copy email",
+    tooltip: "Copy",
   },
   {
     href: "https://www.linkedin.com/in/julia-bulyndina-872617241/",
     label: "LinkedIn",
-    tooltip: "Go!",
+    tooltip: "Go",
     external: true,
   },
   {
     href: "/cv/julia-bulyndina-cv.pdf",
     label: "CV",
-    tooltip: "See",
+    tooltip: "Open",
     external: true,
   },
 ];
-const TAB_PILL_INSET = 4;
 
 function EmailCopiedPill() {
   return (
     <span
       role="status"
       aria-live="polite"
-      className="inline-flex shrink-0 items-center justify-center rounded-[20px] border-[0.7px] border-[#dadada] bg-[linear-gradient(179deg,#fff_4.27%,#e7e7e7_98%)] px-2 py-1.5 font-sans text-[14px] font-normal leading-[16px] text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)]"
+      className="inline-flex shrink-0 items-center justify-center rounded-[20px] border-[0.7px] border-[#dadada] bg-[linear-gradient(179deg,#fff_4.27%,#e7e7e7_98%)] px-2 py-1.5 font-sans text-[14px] font-medium leading-[16px] text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)]"
     >
       Copied
     </span>
@@ -54,9 +52,7 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
   const activeHref = pathname === "/about" ? "/about" : "/";
-  const tabsContainerRef = useRef<HTMLDivElement | null>(null);
   const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
-  const [pill, setPill] = useState({ x: 0, width: 0, height: 0, ready: false });
   const [menuOpen, setMenuOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
 
@@ -91,113 +87,31 @@ export default function Header() {
     }
   }, []);
 
-  const updatePill = useCallback((href: string) => {
-    const container = tabsContainerRef.current;
-    const target = tabRefs.current[href];
-    if (!container || !target) return;
-    const containerRect = container.getBoundingClientRect();
-    const targetRect = target.getBoundingClientRect();
-    setPill({
-      x: targetRect.left - containerRect.left - TAB_PILL_INSET,
-      width: targetRect.width,
-      height: targetRect.height,
-      ready: true,
-    });
-  }, []);
-
-  useLayoutEffect(() => {
-    updatePill(activeHref);
-  }, [activeHref, updatePill]);
-
-  useEffect(() => {
-    updatePill(activeHref);
-  }, [activeHref, updatePill]);
-
-  useEffect(() => {
-    const container = tabsContainerRef.current;
-    if (!container) return;
-    const observer = new ResizeObserver(() => updatePill(activeHref));
-    observer.observe(container);
-    return () => observer.disconnect();
-  }, [activeHref, updatePill]);
-
   const onTabClick = (href: string) => {
     if (href === activeHref) return;
-    updatePill(href);
     router.push(href);
   };
 
   return (
-    <header
-      className="relative mx-auto flex w-full max-w-[1440px] items-center justify-between fluid-px-home py-6 min-[810px]:py-8"
-    >
-      <Link
-        href="/"
-        className="group flex items-center gap-4 overflow-visible text-[var(--text-primary)] no-underline"
-      >
-        <p className="flex items-baseline overflow-visible py-[2px] leading-[32px] text-[var(--text-primary)]">
-          <span
-            className="inline-block pb-[1px] pl-[3px] -ml-[3px] italic tracking-[0.24px] transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
-            style={{ fontFamily: "var(--font-crimson), serif", fontSize: 24, lineHeight: "32px" }}
-          >
-            Julia Bulyndina{" "}
-          </span>
-          <span
-            className="inline-block pb-[1px] font-bold italic transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
-            style={{ fontFamily: "var(--font-crimson), serif", fontSize: 20, lineHeight: "32px" }}
-          >
-            ⋆˙⟡
-          </span>
-        </p>
-      </Link>
-
-      <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 min-[810px]:flex">
-        <div
-          ref={tabsContainerRef}
-          className="relative flex w-[228px] items-center rounded-[40px] bg-white p-1 shadow-[0px_0.5px_4px_0px_rgba(0,0,0,0.2),0px_1px_4px_0px_rgba(0,0,0,0.1)]"
-        >
-          <div
-            className="absolute left-1 top-1 z-0 rounded-[60px] border-[0.7px] border-[#cecece] bg-gradient-to-t from-[#e6e6e6] from-[8.552%] to-white shadow-[0px_2px_3px_0px_rgba(184,184,184,0.35)] transition-[transform,width] duration-300 ease-out"
-            style={{
-              transform: `translateX(${pill.x}px)`,
-              width: 110,
-              height: pill.height,
-              opacity: pill.ready ? 1 : 0,
+    <header className="relative mx-auto flex w-full max-w-[1440px] items-center justify-end fluid-px-home py-10">
+      <div className="hidden items-center gap-6 min-[810px]:flex">
+        {navLinks.map(({ href, label }) => (
+          <button
+            key={href}
+            ref={(node) => {
+              tabRefs.current[href] = node;
             }}
-          />
-          {navLinks.map(({ href, label }) => (
-            <button
-              key={href}
-              ref={(node) => {
-                tabRefs.current[href] = node;
-              }}
-              type="button"
-              onClick={() => onTabClick(href)}
-              className={`type-nav relative z-10 flex h-10 w-[110px] items-center justify-center rounded-[60px] py-2 transition-colors duration-200 ease-out ${
-                activeHref === href
-                  ? "cursor-default text-[var(--text-primary)]"
-                  : "cursor-pointer text-[var(--text-secondary)]"
-              }`}
-              aria-pressed={activeHref === href}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="hidden w-[216px] shrink-0 items-center justify-end gap-5 min-[810px]:flex">
-        {externalLinks.map(({ href, label, tooltip, external }) => (
-          <a
-            key={label}
-            href={href}
-            target={external ? "_blank" : undefined}
-            rel={external ? "noopener noreferrer" : undefined}
-            data-tooltip={tooltip}
-            className="inline-flex items-center py-2 text-[16px] font-normal leading-[18px] text-[var(--text-secondary)] no-underline"
+            type="button"
+            onClick={() => onTabClick(href)}
+            className={`inline-flex items-center py-2 text-[18px] font-medium leading-[26px] transition-colors duration-200 ease-out ${
+              activeHref === href
+                ? "cursor-default text-[var(--text-primary)]"
+                : "cursor-pointer text-[var(--text-secondary)]"
+            }`}
+            aria-pressed={activeHref === href}
           >
             {label}
-          </a>
+          </button>
         ))}
       </div>
 
@@ -259,7 +173,7 @@ export default function Header() {
             >
               <p className="flex items-baseline overflow-visible py-[2px] leading-[32px] text-[var(--text-primary)]">
                 <span
-                  className="inline-block pb-[1px] pl-[3px] -ml-[3px] italic tracking-[0.24px] transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
+                  className="inline-block -ml-[3px] pb-[1px] pl-[3px] italic tracking-[0.24px] transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
                   style={{ fontFamily: "var(--font-crimson), serif", fontSize: 24, lineHeight: "32px" }}
                 >
                   Julia Bulyndina{" "}
@@ -304,7 +218,7 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   aria-current={activeHref === href ? "page" : undefined}
                   className={`inline-flex max-w-full justify-center self-start py-2 text-[18px] leading-[26px] no-underline text-[var(--text-primary)] ${
-                    activeHref === href ? "font-medium" : "font-normal"
+                    activeHref === href ? "font-medium" : "font-medium"
                   }`}
                 >
                   {label}
@@ -323,7 +237,7 @@ export default function Header() {
                         e.preventDefault();
                         void copyEmail();
                       }}
-                      className="text-[18px] font-normal leading-[26px] text-[var(--text-primary)] no-underline"
+                      className="text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                     >
                       {label}
                     </a>
@@ -337,7 +251,7 @@ export default function Header() {
                     rel={external ? "noopener noreferrer" : undefined}
                     data-tooltip={tooltip}
                     onClick={() => setMenuOpen(false)}
-                    className="inline-flex justify-center self-start py-2 text-[18px] font-normal leading-[26px] text-[var(--text-primary)] no-underline"
+                    className="inline-flex justify-center self-start py-2 text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                   >
                     {label}
                   </a>

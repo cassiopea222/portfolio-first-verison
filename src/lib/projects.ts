@@ -3,8 +3,7 @@ export type ProjectStatus = "ready" | "planned";
 export type ProjectRecord = {
   slug: string;
   title: string;
-  client: string;
-  date: string;
+  tags: string[];
   description: string;
   cover: "ajax" | "fitness" | "role";
   status: ProjectStatus;
@@ -13,9 +12,8 @@ export type ProjectRecord = {
 export const projects: ProjectRecord[] = [
   {
     slug: "beta-testing-platform-ajax",
-    title: "Beta testing platform",
-    client: "Ajax Systems",
-    date: "Summer 2025",
+    title: "Ajax Systems beta testing platform",
+    tags: ["Product Design", "b2b", "Web"],
     description:
       "Centralized beta testing hub to collect structured feedback faster and make the process transparent for testers.",
     cover: "ajax",
@@ -23,9 +21,8 @@ export const projects: ProjectRecord[] = [
   },
   {
     slug: "role-management-system",
-    title: "Role management system",
-    client: "Gov Services platform",
-    date: "August 2025",
+    title: "Role management system for government platform",
+    tags: ["Product Design", "b2g", "Web", "Mobile"],
     description:
       "Designed the permission architecture and interaction model for a multi-environment government dashboard.",
     cover: "role",
@@ -33,9 +30,8 @@ export const projects: ProjectRecord[] = [
   },
   {
     slug: "fitness-app-redesign",
-    title: "Fitness App Redesign",
-    client: "Sadie Active",
-    date: "December 2023",
+    title: "Sadie Active fitness app redesign",
+    tags: ["UX/UI Design", "b2c", "Mobile"],
     description:
       "Mobile fitness app of a fitness influencer, designed solution for Progress dashboard and Workout programs.",
     cover: "fitness",

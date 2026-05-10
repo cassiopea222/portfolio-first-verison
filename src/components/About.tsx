@@ -31,7 +31,7 @@ function Photo({ src, label, objectPosition = "center" }: PhotoProps) {
           style={{ objectPosition }}
         />
       </div>
-      <p className="whitespace-nowrap text-[14px] font-normal leading-[18px] text-[var(--text-tertiary)] min-[810px]:hidden">
+      <p className="whitespace-nowrap text-[14px] font-medium leading-[18px] text-[var(--text-tertiary)] min-[810px]:hidden">
         {label}
       </p>
     </div>
@@ -43,13 +43,16 @@ export default function About() {
     <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center">
       <div className="flex w-full flex-col gap-[100px]">
         <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center fluid-px-home">
-          <div className="flex w-full max-w-[840px] flex-col gap-[60px] pt-[100px]">
+          <div className="flex w-full max-w-[840px] flex-col gap-[60px] pt-[40px]">
             <div className="flex flex-col gap-12">
               <div className="flex flex-col gap-[20px]">
-                <h1 className="text-[28px] font-medium leading-[120%] text-[var(--text-primary)]">
-                  Hi there! I&apos;m Julia.
+                <h1
+                  className="font-medium text-[var(--text-primary)]"
+                  style={{ fontFamily: "var(--font-crimson)", fontSize: 32, lineHeight: "40px" }}
+                >
+                  Hi there! I&apos;m Julia
                 </h1>
-                <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+                <div className="flex flex-col gap-4 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
                   <p>
                     Originally from Ukraine, I was curious about design and
                     technologies from my childhood - my first website came at 10,
@@ -77,7 +80,10 @@ export default function About() {
             </div>
 
             <div className="flex flex-col gap-[20px]">
-              <h2 className="text-[24px] font-medium leading-9 text-[var(--text-primary)]">
+              <h2
+                className="font-medium text-[var(--text-primary)]"
+                style={{ fontFamily: "var(--font-crimson)", fontSize: 32, lineHeight: "40px" }}
+              >
                 Experience
               </h2>
 
@@ -86,12 +92,12 @@ export default function About() {
                   <p className="text-[20px] font-medium leading-7 text-[var(--text-primary)]">
                     Product designer at Fireart
                   </p>
-                  <p className="whitespace-nowrap text-[18px] font-normal leading-6 text-[var(--text-tertiary)]">
+                  <p className="whitespace-nowrap text-[18px] font-medium leading-6 text-[var(--text-tertiary)]">
                     July 2022 - Present
                   </p>
                 </div>
 
-                <ul className="flex list-disc flex-col gap-[10px] pl-6 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+                <ul className="flex list-disc flex-col gap-[10px] pl-6 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
                   <li>
                     Worked on a government digital platform (under NDA) consisting
                     of a CMS and an admin dashboard; owned and led the design of
@@ -146,7 +152,7 @@ export default function About() {
                   <p className="text-[16px] font-medium leading-6 text-[var(--text-primary)]">
                     Tbilisi, Georgia
                   </p>
-                  <p className="text-[20px] font-normal leading-7 tracking-[0.4px] text-[var(--text-primary)]">
+                  <p className="text-[20px] font-medium leading-7 tracking-[0.4px] text-[var(--text-primary)]">
                     5°C
                   </p>
                 </div>
@@ -158,7 +164,7 @@ export default function About() {
                 <p className="text-[16px] font-medium leading-6 text-[var(--text-primary)]">
                   12:30 AM
                 </p>
-                <p className="text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
+                <p className="text-[14px] font-medium leading-5 text-[var(--text-tertiary)]">
                   -4 hrs CET
                 </p>
               </div>
@@ -167,7 +173,7 @@ export default function About() {
         </div>
       </div>
 
-      <FooterNote variant="about" />
+      <FooterNote />
     </section>
   );
 }

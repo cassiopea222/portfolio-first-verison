@@ -18,7 +18,12 @@ export default function ProjectCaseSkeleton({ project }: ProjectCaseSkeletonProp
         </Link>
 
         <header className="flex flex-col gap-4">
-          <h1 className="type-h2 text-[var(--text-primary)]">{project.title}</h1>
+          <h1
+            className="text-[32px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
+            style={{ fontFamily: "var(--font-crimson), serif" }}
+          >
+            {project.title}
+          </h1>
           <p className="type-body text-[var(--text-secondary)]">
             This case study is not published yet. The page structure is ready so
             content can be dropped in section by section.

@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <Hero />
       <ProjectsGrid />
-      <FooterNote variant="home" />
+      <FooterNote />
     </>
   );
 }

@@ -60,7 +60,7 @@ function Showcase({
       </ScaledCover>
       {caption ? (
         <p
-          className={`text-[16px] font-normal leading-6 text-[var(--text-tertiary)] ${
+          className={`text-[16px] font-medium leading-6 text-[var(--text-tertiary)] ${
             captionCenter ? "text-center" : ""
           }`}
         >
@@ -89,7 +89,7 @@ function DiagramShowcase({
       >
         {children}
       </ScaledCover>
-      <p className="text-[16px] font-normal leading-6 text-center text-[var(--text-tertiary)]">
+      <p className="text-[16px] font-medium leading-6 text-center text-[var(--text-tertiary)]">
         {caption}
       </p>
     </div>
@@ -108,14 +108,20 @@ export default function RoleManagementCaseStudy() {
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[24px]">
             <div className="flex items-center gap-3 max-[809px]:flex-col-reverse max-[809px]:items-start max-[809px]:gap-1">
-              <h1 className="text-[26px] font-medium leading-9 text-[var(--text-primary)]">
+              <h1
+                className="text-[32px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
+                style={{ fontFamily: "var(--font-crimson), serif" }}
+              >
                 Role Management System
               </h1>
-              <p className="text-[26px] font-medium leading-9 text-[var(--text-tertiary)]">
+              <p
+                className="text-[32px] font-normal leading-[1.25] tracking-[-0.01em] text-[var(--text-tertiary)] max-[809px]:text-[26px] max-[809px]:font-medium max-[809px]:leading-9"
+                style={{ fontFamily: "var(--font-crimson), serif" }}
+              >
                 Governmental platform
               </p>
             </div>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               A role management system for a multi-environment government
               dashboard. Designed the full permission architecture and interaction
               model - from how roles are structured to how individual user access
@@ -146,7 +152,7 @@ export default function RoleManagementCaseStudy() {
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Role
               </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
                 Product Designer
               </p>
             </div>
@@ -154,7 +160,7 @@ export default function RoleManagementCaseStudy() {
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Team
               </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
                 2 designers
               </p>
             </div>
@@ -162,7 +168,7 @@ export default function RoleManagementCaseStudy() {
               <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
                 Timeline
               </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+              <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
                 August 2025
               </p>
             </div>
@@ -172,7 +178,7 @@ export default function RoleManagementCaseStudy() {
         {/* Context */}
         <div className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Context" title="What the platform needed" />
-          <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <div className="flex flex-col gap-4 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             <p>
               A government dashboard serving multiple user types - executive
               leadership, project managers, and internal teams - needed a
@@ -202,7 +208,7 @@ export default function RoleManagementCaseStudy() {
         {/* My role */}
         <div className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="My role" title="What I owned" />
-          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             I led the design end-to-end - mapped the permission architecture,
             designed the interaction model across both flows, and worked through
             structural decisions with the product owner and engineering team. I
@@ -215,7 +221,7 @@ export default function RoleManagementCaseStudy() {
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
             <SectionHeader subtitle="The problem" title="No structure, no process" />
-            <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <div className="flex flex-col gap-4 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               <p>
                 There was no structured access control model. Admins had no clear
                 process for creating roles or assigning access, and the
@@ -248,7 +254,7 @@ export default function RoleManagementCaseStudy() {
         {/* Challenge */}
         <div className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Challenge" title="Six levels deep" />
-          <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <div className="flex flex-col gap-4 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             <p>
               The permission model had up to six levels of nesting - Environment
               → Module → Domain → Sub-domain → Permission → Action. Designing
@@ -272,7 +278,7 @@ export default function RoleManagementCaseStudy() {
               subtitle="Initial approach"
               title="How I first framed the problem"
             />
-            <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <div className="flex flex-col gap-4 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               <p>
                 My first instinct was to put the user&apos;s job at the center of role
                 creation - a role should reflect what a person does, not just
@@ -328,7 +334,7 @@ export default function RoleManagementCaseStudy() {
             </DiagramShowcase>
           </div>
 
-          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             The result was a role like &quot;National Indicators Administrator&quot; -
             defined by what the person manages. The logic held internally, but it
             raised more questions than it answered once we brought it to the
@@ -345,7 +351,7 @@ export default function RoleManagementCaseStudy() {
               subtitle="What we landed on"
               title="Simpler, and more practical"
             />
-            <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            <div className="flex flex-col gap-4 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
               <p>
                 The final model wasn&apos;t the result of one conversation - it evolved
                 through several rounds of feedback, each one surfacing a
@@ -379,7 +385,7 @@ export default function RoleManagementCaseStudy() {
             </div>
           </Showcase>
 
-          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             <span className="font-semibold text-[var(--text-primary)]">
               User-level permissions handle the rest.
             </span>{" "}
@@ -412,7 +418,7 @@ export default function RoleManagementCaseStudy() {
             </div>
           </Showcase>
 
-          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             Most users need access to specific domains only. Keeping roles clean
             at the environment level and configuring detail per person gave admins
             a faster process — even if it introduced the scalability tradeoffs
@@ -423,7 +429,7 @@ export default function RoleManagementCaseStudy() {
         {/* Key design decisions */}
         <div className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Key design decisions" title="Why it works" />
-          <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <div className="flex flex-col gap-4 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             <p>
               Separating broad access (role) from granular access (user profile)
               reduced cognitive load on admins significantly. Roles don&apos;t need to
@@ -442,7 +448,7 @@ export default function RoleManagementCaseStudy() {
         {/* Tradeoffs */}
         <div className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Tradeoffs & reflection" title="Two models, two assumptions" />
-          <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <div className="flex flex-col gap-4 text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             <p>
               The gap between the original proposal and the final solution comes
               down to one fundamental question: where does the permission logic
@@ -491,7 +497,7 @@ export default function RoleManagementCaseStudy() {
         {/* Outcome */}
         <div className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Outcome" title="What this enabled" />
-          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+          <p className="text-[18px] font-medium leading-7 text-[var(--text-secondary)]">
             The delivered model gave admins a consistent, repeatable process for
             managing access across a complex multi-environment product. Roles
             became reusable building blocks rather than one-off configurations,

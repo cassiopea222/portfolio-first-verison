@@ -17,13 +17,12 @@ export default function ProjectsGrid({ projects = defaultProjects }: ProjectsGri
       <div className="flex flex-col gap-10">
         {/* First row: 2 cards side by side */}
         {topRow.length > 0 && (
-          <div className="flex flex-col gap-12 min-[810px]:flex-row min-[810px]:gap-12">
+          <div className="flex flex-col gap-6 min-[810px]:flex-row min-[810px]:gap-6">
             {topRow.map((project, index) => (
               <div key={`${project.title}-${index}`} className="flex-1 min-w-0">
                 <ProjectCard
                   title={project.title}
-                  client={project.client}
-                  date={project.date}
+                  tags={project.tags}
                   description={project.description}
                   cover={project.cover}
                   href={project.status === "ready" ? `/projects/${project.slug}` : undefined}
@@ -39,8 +38,7 @@ export default function ProjectsGrid({ projects = defaultProjects }: ProjectsGri
               <div key={`${project.title}-${index}`} className="min-[810px]:w-[calc(50%-16px)]">
                 <ProjectCard
                   title={project.title}
-                  client={project.client}
-                  date={project.date}
+                  tags={project.tags}
                   description={project.description}
                   cover={project.cover}
                   href={project.status === "ready" ? `/projects/${project.slug}` : undefined}

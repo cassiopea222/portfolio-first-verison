@@ -165,7 +165,7 @@ export default function SpotifyWidget({ className = "" }: { className?: string }
         className,
       ].join(" ")}
     >
-      <div className="type-mono flex items-start justify-between text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
+      <div className="type-mono flex items-start justify-between text-[14px] font-medium leading-5 text-[var(--text-tertiary)]">
         <span className="flex items-baseline gap-2">
           <EqualizerIcon />
           <span>{data.isPlaying ? "Now playing" : "Last played"}</span>

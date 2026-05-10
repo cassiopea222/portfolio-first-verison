@@ -83,7 +83,7 @@ export default function TooltipProvider({
     const handleClick = (e: MouseEvent) => {
       const target = (e.target as Element).closest("[data-tooltip]");
       if (!target) return;
-      if (target.getAttribute("data-tooltip") !== "Copy email") return;
+      if (target.getAttribute("data-tooltip") !== "Copy") return;
 
       e.preventDefault();
       const email =
@@ -131,15 +131,15 @@ export default function TooltipProvider({
           transition: "opacity 150ms ease-out, transform 150ms ease-out",
           pointerEvents: "none",
           zIndex: 9999,
-          background: "linear-gradient(179.32deg, #ffffff 4.27%, #e7e7e7 98.14%)",
-          border: "0.7px solid #dadada",
-          borderRadius: "20px",
-          padding: "6px 8px",
+          background: "#2a2a2a",
+          borderRadius: "6px",
+          padding: "4px 6px",
           boxShadow: "0px 2px 3px 0px rgba(0,0,0,0.06)",
           fontSize: "14px",
+          fontWeight: 500,
           lineHeight: "16px",
-          color: "var(--text-secondary)",
-          fontFamily: "var(--font-inter, Inter), sans-serif",
+          color: "#ffffff",
+          fontFamily: "var(--font-inconsolata, Inconsolata), sans-serif",
           whiteSpace: "nowrap",
           userSelect: "none",
         }}
