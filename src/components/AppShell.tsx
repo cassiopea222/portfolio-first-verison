@@ -1,24 +1,27 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import LoadingScreen from "./LoadingScreen";
+import { LOADING_FADE_MS } from "./loading-constants";
 
 const MIN_DISPLAY_MS = 1500;
-const FADE_MS = 400;
 
-export default function AppShell({ children }: { children: React.ReactNode }) {
+export default function AppShell({ children }: { children: ReactNode }) {
   const [visible, setVisible] = useState(true);
   const [mounted, setMounted] = useState(true);
   const startRef = useRef(Date.now());
 
   useEffect(() => {
+    let t1: ReturnType<typeof setTimeout>;
+    let t2: ReturnType<typeof setTimeout>;
+
     function hide() {
       const elapsed = Date.now() - startRef.current;
       const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
-
-      setTimeout(() => {
+      t1 = setTimeout(() => {
         setVisible(false);
-        setTimeout(() => setMounted(false), FADE_MS);
+        t2 = setTimeout(() => setMounted(false), LOADING_FADE_MS);
       }, remaining);
     }
 
@@ -26,8 +29,13 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       hide();
     } else {
       window.addEventListener("load", hide, { once: true });
-      return () => window.removeEventListener("load", hide);
     }
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.removeEventListener("load", hide);
+    };
   }, []);
 
   return (

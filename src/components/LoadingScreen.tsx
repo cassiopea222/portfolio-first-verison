@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { LOADING_FADE_MS } from "./loading-constants";
 
 const FRAMES = [
   "/orchid/1.webp",
@@ -56,7 +57,7 @@ export default function LoadingScreen({ visible = true }: Props) {
         backgroundColor: "var(--background)",
         opacity: visible ? 1 : 0,
         pointerEvents: visible ? "auto" : "none",
-        transition: "opacity 400ms ease",
+        transition: `opacity ${LOADING_FADE_MS}ms ease`,
       }}
     >
       <span
