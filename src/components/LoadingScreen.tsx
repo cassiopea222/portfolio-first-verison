@@ -34,15 +34,18 @@ export default function LoadingScreen({ visible = true }: Props) {
       });
     }
 
+    if (!visible) return;
+
     const timer = setInterval(() => {
       setFrameIdx((i) => (i + 1) % FRAMES.length);
     }, FRAME_MS);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [visible]);
 
   return (
     <div
+      role="status"
       aria-hidden={!visible}
       style={{
         position: "fixed",
@@ -56,6 +59,21 @@ export default function LoadingScreen({ visible = true }: Props) {
         transition: "opacity 400ms ease",
       }}
     >
+      <span
+        style={{
+          position: "absolute",
+          width: 1,
+          height: 1,
+          padding: 0,
+          margin: -1,
+          overflow: "hidden",
+          clip: "rect(0,0,0,0)",
+          whiteSpace: "nowrap",
+          border: 0,
+        }}
+      >
+        Loading…
+      </span>
       <div style={{ position: "relative", width: SIZE, height: SIZE }}>
         {FRAMES.map((src, i) => (
           <img
@@ -64,6 +82,7 @@ export default function LoadingScreen({ visible = true }: Props) {
             alt=""
             width={SIZE}
             height={SIZE}
+            draggable={false}
             style={{
               position: "absolute",
               inset: 0,
