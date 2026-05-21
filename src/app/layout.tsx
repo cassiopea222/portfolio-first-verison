@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Crimson_Pro, Geist, Geist_Mono, Inconsolata } from "next/font/google";
+import AppShell from "@/components/AppShell";
 import AppShellHeader from "@/components/AppShellHeader";
 import TooltipProvider from "@/components/TooltipProvider";
 import "./globals.css";
@@ -53,12 +54,14 @@ export default function RootLayout({
       <body
         className={`${geist.className} ${geist.variable} ${inconsolata.variable} ${geistMono.variable} ${crimsonPro.variable} ${cormorantGaramond.variable} min-h-screen antialiased`}
       >
-        <TooltipProvider>
-          <div className="flex min-h-screen flex-col bg-[var(--background)]">
-            <AppShellHeader />
-            <main className="flex-1">{children}</main>
-          </div>
-        </TooltipProvider>
+        <AppShell>
+          <TooltipProvider>
+            <div className="flex min-h-screen flex-col bg-[var(--background)]">
+              <AppShellHeader />
+              <main className="flex-1">{children}</main>
+            </div>
+          </TooltipProvider>
+        </AppShell>
       </body>
     </html>
   );
