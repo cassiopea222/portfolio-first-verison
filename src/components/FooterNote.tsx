@@ -47,22 +47,24 @@ export default function FooterNote() {
   const lastUpdate = getLastUpdateDate();
 
   return (
-    <footer className="mx-auto flex w-full max-w-[1440px] fluid-px-home pb-10 pt-[60px] min-[810px]:pt-20">
+    <footer className="mx-auto flex w-full max-w-[1440px] fluid-px pb-[24px] pt-[40px]">
       <div className="flex w-full flex-col items-start justify-between gap-10 min-[810px]:flex-row min-[810px]:items-end">
         {/* Left — Say hi */}
-        <div className="flex flex-col gap-4">
-          <p
-            className="italic tracking-[0.36px] text-[var(--text-primary)]"
-            style={{ fontFamily: "var(--font-crimson), serif", fontSize: 36, lineHeight: "40px" }}
-          >
-            Say hi{" "}
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-1.5">
+            <p
+              className="italic tracking-[0.32px] text-[var(--text-primary)]"
+              style={{ fontFamily: "var(--font-crimson), serif", fontSize: 32, lineHeight: "40px" }}
+            >
+              Say hi
+            </p>
             <span
               className="not-italic"
-              style={{ fontFamily: "inherit", fontSize: 24, lineHeight: "36px" }}
+              style={{ fontFamily: "var(--font-crimson), serif", fontSize: 20, lineHeight: "36px", fontWeight: 500 }}
             >
               𓍢ִ໋❀˚⋆
             </span>
-          </p>
+          </div>
           <div className="flex items-center gap-5">
             {footerLinks.map(({ href, label, tooltip, external }) => (
               <a
@@ -71,7 +73,7 @@ export default function FooterNote() {
                 target={external ? "_blank" : undefined}
                 rel={external ? "noopener noreferrer" : undefined}
                 data-tooltip={tooltip}
-                className="font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-muted,#818790)] no-underline"
+                className="py-2 font-inconsolata text-[18px] font-semibold leading-[20px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
               >
                 {label}
               </a>
@@ -82,20 +84,8 @@ export default function FooterNote() {
         {/* Right — Built with */}
         <div className="flex flex-col items-start gap-2 min-[810px]:items-end">
           <div className="flex items-center gap-1.5">
-            <span className="text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
-              Built with love by me
-            </span>
-            <div className="relative h-[26px] w-[26px] overflow-hidden rounded-[4px]" style={{ transform: "rotate(5.86deg)" }}>
-              <Image
-                src="/footer/photo.jpg"
-                alt="Julia"
-                fill
-                sizes="26px"
-                className="object-cover"
-              />
-            </div>
-            <span className="text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
-              with
+            <span className="font-sans text-[14px] font-normal leading-[18px] text-[var(--text-tertiary)]">
+              Built with love by me, using
             </span>
             <div className="relative h-6 w-6 overflow-hidden rounded-[4px]">
               <Image
@@ -116,7 +106,7 @@ export default function FooterNote() {
               />
             </div>
           </div>
-          <p className="text-[14px] font-normal leading-5 text-[var(--text-tertiary)]">
+          <p className="font-sans text-[14px] font-normal leading-[18px] text-[var(--text-tertiary)]">
             Changelog: {lastUpdate}
           </p>
         </div>

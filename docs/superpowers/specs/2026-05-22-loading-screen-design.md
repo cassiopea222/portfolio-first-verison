@@ -31,7 +31,7 @@ Wraps the layout's existing `<div>` to manage the initial-load splash.
 - Renders `LoadingScreen` visible on mount
 - Hides it after **both** conditions are true:
   1. `window.onload` has fired (or already fired — check `document.readyState`)
-  2. At least **1000ms** has elapsed since component mount
+  2. At least **1500ms** has elapsed since component mount
 - After hide animation completes (~400ms), removes `LoadingScreen` from DOM entirely
 
 ### `/src/app/loading.tsx`

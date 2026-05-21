@@ -636,7 +636,7 @@ export default function HeroFlowAround() {
   const isStacked = layout?.mode === "stacked";
 
   return (
-    <section className="w-full fluid-px-home py-[60px] min-[810px]:pt-[140px] min-[810px]:pb-[160px]">
+    <section className="w-full fluid-px py-[60px] min-[810px]:pt-[140px] min-[810px]:pb-[160px]">
       <p className="sr-only">{LEFT_TEXT} {RIGHT_TEXT}</p>
 
       <div

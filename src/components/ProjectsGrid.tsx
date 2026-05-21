@@ -8,45 +8,20 @@ type ProjectsGridProps = {
 };
 
 export default function ProjectsGrid({ projects = defaultProjects }: ProjectsGridProps) {
-  const topRow = projects.slice(0, 2);
-  const remaining = projects.slice(2);
-
   return (
-    <section id="work" className="mx-auto w-full max-w-[1440px] fluid-px-home">
+    <section id="work" className="mx-auto w-full max-w-[1440px] fluid-px">
       <h2 className="sr-only">Work</h2>
-      <div className="flex flex-col gap-10">
-        {/* First row: 2 cards side by side */}
-        {topRow.length > 0 && (
-          <div className="flex flex-col gap-6 min-[810px]:flex-row min-[810px]:gap-6">
-            {topRow.map((project, index) => (
-              <div key={`${project.title}-${index}`} className="flex-1 min-w-0">
-                <ProjectCard
-                  title={project.title}
-                  tags={project.tags}
-                  description={project.description}
-                  cover={project.cover}
-                  href={project.status === "ready" ? `/projects/${project.slug}` : undefined}
-                />
-              </div>
-            ))}
-          </div>
-        )}
-        {/* Remaining rows: each card at half width */}
-        {remaining.length > 0 && (
-          <div className="flex flex-col gap-6 min-[810px]:flex-row min-[810px]:gap-6">
-            {remaining.map((project, index) => (
-              <div key={`${project.title}-${index}`} className="min-[810px]:w-[calc(50%-16px)]">
-                <ProjectCard
-                  title={project.title}
-                  tags={project.tags}
-                  description={project.description}
-                  cover={project.cover}
-                  href={project.status === "ready" ? `/projects/${project.slug}` : undefined}
-                />
-              </div>
-            ))}
-          </div>
-        )}
+      <div className="flex flex-col gap-9">
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={`${project.title}-${index}`}
+            title={project.title}
+            tags={project.tags}
+            description={project.description}
+            cover={project.cover}
+            href={project.status === "ready" ? `/projects/${project.slug}` : undefined}
+          />
+        ))}
       </div>
     </section>
   );

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import type { ReactNode } from "react";
 
 const navLinks = [
   { href: "/", label: "Work" },
@@ -48,7 +49,7 @@ function EmailCopiedPill() {
   );
 }
 
-export default function Header() {
+export default function Header({ leftContent }: { leftContent?: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const activeHref = pathname === "/about" ? "/about" : "/";
@@ -93,7 +94,8 @@ export default function Header() {
   };
 
   return (
-    <header className="relative mx-auto flex w-full max-w-[1440px] items-center justify-end fluid-px-home py-10">
+    <header className="relative mx-auto flex w-full max-w-[1440px] items-start justify-between fluid-px pt-10 pb-3">
+      {leftContent ?? <div />}
       <div className="hidden items-center gap-6 min-[810px]:flex">
         {navLinks.map(({ href, label }) => (
           <button
@@ -103,7 +105,7 @@ export default function Header() {
             }}
             type="button"
             onClick={() => onTabClick(href)}
-            className={`inline-flex items-center py-2 font-inconsolata text-[18px] font-medium leading-[26px] transition-colors duration-200 ease-out ${
+            className={`inline-flex items-center py-2 font-inconsolata text-[18px] font-semibold leading-[24px] transition-colors duration-200 ease-out ${
               activeHref === href
                 ? "cursor-default text-[var(--text-primary)]"
                 : "cursor-pointer text-[var(--text-secondary)]"
@@ -165,7 +167,7 @@ export default function Header() {
           aria-modal="true"
           aria-label="Site navigation"
         >
-          <div className="flex items-center justify-between fluid-px-home pt-6">
+          <div className="flex items-center justify-between fluid-px pt-6">
             <Link
               href="/"
               onClick={() => setMenuOpen(false)}
@@ -209,7 +211,7 @@ export default function Header() {
             </button>
           </div>
 
-          <div className="mt-6 flex flex-1 flex-col gap-3 fluid-px-home pb-8">
+          <div className="mt-6 flex flex-1 flex-col gap-3 fluid-px pb-8">
             <nav className="flex flex-col gap-0.5" aria-label="Primary">
               {navLinks.map(({ href, label }) => (
                 <Link
@@ -217,7 +219,7 @@ export default function Header() {
                   href={href}
                   onClick={() => setMenuOpen(false)}
                   aria-current={activeHref === href ? "page" : undefined}
-                  className={`inline-flex max-w-full justify-center self-start py-2 font-inconsolata text-[18px] leading-[26px] no-underline text-[var(--text-primary)] ${
+                  className={`inline-flex max-w-full justify-center self-start py-2 font-sans text-[14px] leading-[18px] no-underline text-[var(--text-primary)] ${
                     activeHref === href ? "font-medium" : "font-medium"
                   }`}
                 >
@@ -237,7 +239,7 @@ export default function Header() {
                         e.preventDefault();
                         void copyEmail();
                       }}
-                      className="font-inconsolata text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+                      className="font-sans text-[14px] font-medium leading-[18px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                     >
                       {label}
                     </a>
@@ -251,7 +253,7 @@ export default function Header() {
                     rel={external ? "noopener noreferrer" : undefined}
                     data-tooltip={tooltip}
                     onClick={() => setMenuOpen(false)}
-                    className="inline-flex justify-center self-start py-2 font-inconsolata text-[18px] font-medium leading-[26px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+                    className="inline-flex justify-center self-start py-2 font-sans text-[14px] font-medium leading-[18px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
                   >
                     {label}
                   </a>

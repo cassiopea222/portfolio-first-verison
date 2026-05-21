@@ -48,24 +48,26 @@ const typographyTokens = [
 
 export default function TypographyPage() {
   return (
-    <section className="mx-auto w-full max-w-[960px] px-6 py-20 md:px-14">
-      <div className="mb-12 space-y-4">
-        <h1 className="type-h1 text-[var(--text-primary)]">Typography Preview</h1>
-        <p className="type-body text-[var(--text-secondary)]">
-          Inter-based typography tokens following a shadcn-style semantic naming
-          convention.
-        </p>
-      </div>
+    <section className="mx-auto w-full max-w-[1440px] py-20 fluid-px">
+      <div className="mx-auto max-w-[960px]">
+        <div className="mb-12 space-y-4">
+          <h1 className="type-h1 text-[var(--text-primary)]">Typography Preview</h1>
+          <p className="type-body text-[var(--text-secondary)]">
+            Inter-based typography tokens following a shadcn-style semantic naming
+            convention.
+          </p>
+        </div>
 
-      <div className="space-y-8">
-        {typographyTokens.map((token) => (
-          <article key={token.name} className="rounded-2xl border border-black/10 p-6">
-            <p className="type-caption mb-4 text-[var(--text-tertiary)]">{token.name}</p>
-            <p className={`${token.className} type-measure text-[var(--text-primary)]`}>
-              {token.sample}
-            </p>
-          </article>
-        ))}
+        <div className="space-y-8">
+          {typographyTokens.map((token) => (
+            <article key={token.name} className="rounded-2xl border border-black/10 p-6">
+              <p className="type-caption mb-4 text-[var(--text-tertiary)]">{token.name}</p>
+              <p className={`${token.className} type-measure text-[var(--text-primary)]`}>
+                {token.sample}
+              </p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

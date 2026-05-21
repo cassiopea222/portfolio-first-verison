@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowBackNavIcon } from "@/components/icons/ArrowBackNavIcon";
 import ScaledCover from "@/components/ScaledCover";
 
 // Cover images
@@ -34,7 +35,7 @@ function NavButton({
       href={href}
       className="type-body inline-flex w-fit items-center gap-2 rounded-xl border border-[#dadada] bg-[linear-gradient(179.23deg,#fff_4.27%,rgba(231,231,231,0.7)_98.14%)] px-3 py-2 text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)] transition-[background-color,border-color,color] duration-200 ease-out hover:border-[#d5d5d5] hover:bg-[#efefef] hover:text-[var(--text-primary)]"
     >
-      {!rightIcon && <span aria-hidden>←</span>}
+      {!rightIcon && <ArrowBackNavIcon />}
       <span>{text}</span>
       {rightIcon && <span aria-hidden>→</span>}
     </Link>
@@ -56,7 +57,7 @@ function Showcase({ children, caption }: { children: React.ReactNode; caption: s
       <ScaledCover nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
         {children}
       </ScaledCover>
-      <p className="text-center text-[16px] font-medium leading-6 text-[var(--text-tertiary)]">{caption}</p>
+      <p className="type-caption text-center text-[var(--text-tertiary)]">{caption}</p>
     </div>
   );
 }
@@ -226,10 +227,10 @@ export default function FitnessCaseStudy() {
               sizes="200px"
               className="absolute left-[420px] top-[30px] h-[433px] w-[200px] object-cover"
             />
-            <p className="absolute left-[258px] top-[475px] text-sm leading-[18px] text-[#242e58]">
+            <p className="absolute left-[258px] top-[475px] text-sm leading-[18px] text-[var(--text-tertiary)]">
               before
             </p>
-            <p className="absolute left-[504px] top-[475px] text-sm leading-[18px] text-[#242e58]">
+            <p className="absolute left-[504px] top-[475px] text-sm leading-[18px] text-[var(--text-tertiary)]">
               after
             </p>
           </Showcase>
@@ -257,10 +258,10 @@ export default function FitnessCaseStudy() {
               sizes="200px"
               className="absolute left-[420px] top-[51px] h-[412px] w-[200px] object-cover"
             />
-            <p className="absolute left-[258px] top-[475px] text-sm leading-[18px] text-[#242e58]">
+            <p className="absolute left-[258px] top-[475px] text-sm leading-[18px] text-[var(--text-tertiary)]">
               before
             </p>
-            <p className="absolute left-[504px] top-[475px] text-sm leading-[18px] text-[#242e58]">
+            <p className="absolute left-[504px] top-[475px] text-sm leading-[18px] text-[var(--text-tertiary)]">
               after
             </p>
           </Showcase>

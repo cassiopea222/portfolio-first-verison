@@ -248,7 +248,7 @@ body {
     max-width: 65ch;
   }
 
-  /* Fluid horizontal page padding — Case Studies & About Me
+  /* Fluid horizontal page padding — site-wide (home, about, case studies, footer)
      <  810px   →  20px (mobile, matches header + home)
      810-1080  →  80px (floor, held flat through 1080)
      1080-1200 →  scales 80px → 160px
@@ -282,45 +282,6 @@ body {
         calc(160px + 140 * ((100vw - 1200px) / 240)),
         300px
       );
-    }
-  }
-
-  /* Fluid horizontal page padding — Home (same horizontal scale as site header)
-     <  610px   →  20px (small mobile)
-     610-810   →  32px (mobile)
-     810-1080  →  80px
-     1080-1200 →  scales 80px → 140px
-     ≥ 1200px  →  140px                                                 */
-  .fluid-px-home {
-    padding-inline: 20px;
-  }
-
-  @media (min-width: 610px) {
-    .fluid-px-home {
-      padding-inline: 32px;
-    }
-  }
-
-  @media (min-width: 810px) {
-    .fluid-px-home {
-      padding-inline: 80px;
-    }
-  }
-
-  @media (min-width: 1081px) {
-    .fluid-px-home {
-      /* 80px at 1080px → 140px at 1200px */
-      padding-inline: clamp(
-        80px,
-        calc(80px + 60 * ((100vw - 1080px) / 120)),
-        140px
-      );
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .fluid-px-home {
-      padding-inline: 140px;
     }
   }
 

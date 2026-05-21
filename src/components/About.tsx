@@ -42,7 +42,7 @@ export default function About() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center">
       <div className="flex w-full flex-col gap-[100px]">
-        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center fluid-px-home">
+        <div className="mx-auto flex w-full max-w-[1440px] flex-col items-center fluid-px">
           <div className="flex w-full max-w-[840px] flex-col gap-[60px] pt-[40px]">
             <div className="flex flex-col gap-12">
               <div className="flex flex-col gap-[20px]">
@@ -52,7 +52,7 @@ export default function About() {
                 >
                   Hi there! I&apos;m Julia
                 </h1>
-                <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+                <div className="flex flex-col gap-4 font-sans text-[16px] font-normal leading-[22px] tracking-[0.2px] text-[var(--text-secondary)]">
                   <p>
                     Originally from Ukraine, I was curious about design and
                     technologies from my childhood - my first website came at 10,
@@ -97,7 +97,7 @@ export default function About() {
                   </p>
                 </div>
 
-                <ul className="flex list-disc flex-col gap-[10px] pl-6 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+                <ul className="flex list-disc flex-col gap-[10px] pl-6 font-sans text-[16px] font-normal leading-[22px] tracking-[0.2px] text-[var(--text-secondary)]">
                   <li>
                     Worked on a government digital platform (under NDA) consisting
                     of a CMS and an admin dashboard; owned and led the design of

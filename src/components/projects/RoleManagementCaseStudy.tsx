@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowBackNavIcon } from "@/components/icons/ArrowBackNavIcon";
 import ScaledCover from "@/components/ScaledCover";
 
 const imgCreateNewRoleNew3 = "/home/role_management/Create new role NEW 3.png";
@@ -24,7 +25,7 @@ function NavButton({
       href={href}
       className="type-body inline-flex w-fit items-center gap-2 rounded-xl border border-[#dadada] bg-[linear-gradient(179.23deg,#fff_4.27%,rgba(231,231,231,0.7)_98.14%)] px-3 py-2 text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)] transition-[background-color,border-color,color] duration-200 ease-out hover:border-[#d5d5d5] hover:bg-[#efefef] hover:text-[var(--text-primary)]"
     >
-      {!rightIcon && <span aria-hidden>←</span>}
+      {!rightIcon && <ArrowBackNavIcon />}
       <span>{text}</span>
       {rightIcon && <span aria-hidden>→</span>}
     </Link>
@@ -47,11 +48,9 @@ function SectionHeader({ subtitle, title }: { subtitle: string; title: string })
 function Showcase({
   children,
   caption,
-  captionCenter = false,
 }: {
   children: React.ReactNode;
   caption?: string;
-  captionCenter?: boolean;
 }) {
   return (
     <div className="flex flex-col gap-2">
@@ -59,13 +58,7 @@ function Showcase({
         {children}
       </ScaledCover>
       {caption ? (
-        <p
-          className={`text-[16px] font-medium leading-6 text-[var(--text-tertiary)] ${
-            captionCenter ? "text-center" : ""
-          }`}
-        >
-          {caption}
-        </p>
+        <p className="type-caption text-center text-[var(--text-tertiary)]">{caption}</p>
       ) : null}
     </div>
   );
@@ -89,9 +82,7 @@ function DiagramShowcase({
       >
         {children}
       </ScaledCover>
-      <p className="text-[16px] font-medium leading-6 text-center text-[var(--text-tertiary)]">
-        {caption}
-      </p>
+      <p className="type-caption text-center text-[var(--text-tertiary)]">{caption}</p>
     </div>
   );
 }
@@ -394,7 +385,7 @@ export default function RoleManagementCaseStudy() {
             where the granularity lives.
           </p>
 
-          <Showcase caption="Action-level access through user profile" captionCenter>
+          <Showcase caption="Action-level access through user profile">
             <div className="absolute left-1/2 top-1/2 h-[468px] w-[646px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[8px]">
               <Image
                 src={imgProfileRole1}

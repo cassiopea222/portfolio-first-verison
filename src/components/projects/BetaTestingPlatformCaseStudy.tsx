@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowBackNavIcon } from "@/components/icons/ArrowBackNavIcon";
 import ScaledCover from "@/components/ScaledCover";
 
 // Hero images
@@ -83,7 +84,7 @@ function NavButton({ href, text }: { href: string; text: string }) {
       href={href}
       className="type-body inline-flex w-fit items-center gap-2 rounded-xl border border-[#dadada] bg-[linear-gradient(179.23deg,#fff_4.27%,rgba(231,231,231,0.7)_98.14%)] px-3 py-2 text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)] transition-[background-color,border-color,color] duration-200 ease-out hover:border-[#d5d5d5] hover:bg-[#efefef] hover:text-[var(--text-primary)]"
     >
-      <span aria-hidden>←</span>
+      <ArrowBackNavIcon />
       <span>{text}</span>
     </Link>
   );
@@ -135,7 +136,7 @@ function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }
 
 function SectionHeader({ subtitle, title }: { subtitle?: string; title: string }) {
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-1">
       {subtitle && (
         <p className="text-[16px] font-medium leading-6 text-[var(--text-tertiary)]">
           {subtitle}
