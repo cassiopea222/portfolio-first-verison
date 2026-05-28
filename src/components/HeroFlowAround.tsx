@@ -357,6 +357,7 @@ export default function HeroFlowAround() {
   const playingRef = useRef(false);
   const rafRef = useRef<number | null>(null);
   const lastTimeRef = useRef(0);
+  const tickRef = useRef<(ts: number) => void>(() => {});
   const tapPlayingRef = useRef(false);
 
   const [activeFlowerId, setActiveFlowerId] = useState<string>(FLOWERS[0]!.id);
@@ -374,7 +375,6 @@ export default function HeroFlowAround() {
             hullsRef.current.set(flower.id, hull);
           })
           .catch((err) => {
-            // eslint-disable-next-line no-console
             console.warn(`HeroFlowAround: hull failed for ${flower.id}`, err);
           }),
       ),
@@ -399,8 +399,12 @@ export default function HeroFlowAround() {
       setActiveFlowerId(FLOWERS[next]!.id);
     }
 
-    rafRef.current = requestAnimationFrame(tick);
+    rafRef.current = requestAnimationFrame(tickRef.current);
   }, []);
+
+  useEffect(() => {
+    tickRef.current = tick;
+  }, [tick]);
 
   const play = useCallback(() => {
     if (!hullsReady) return;
