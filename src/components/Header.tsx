@@ -31,7 +31,7 @@ const externalLinks: {
   },
   {
     href: "/cv/julia-bulyndina-cv.pdf",
-    label: "CV",
+    label: "Resume",
     tooltip: "Open",
     external: true,
   },
@@ -168,26 +168,22 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
           aria-label="Site navigation"
         >
           <div className="flex items-center justify-between fluid-px pt-6">
-            <Link
-              href="/"
-              onClick={() => setMenuOpen(false)}
-              className="group flex max-w-[216px] items-center gap-4 overflow-visible text-[var(--text-primary)] no-underline"
-            >
+            <div className="flex max-w-[216px] items-center gap-4 overflow-visible text-[var(--text-primary)]">
               <p className="flex items-baseline overflow-visible py-[2px] leading-[32px] text-[var(--text-primary)]">
                 <span
-                  className="inline-block -ml-[3px] pb-[1px] pl-[3px] italic tracking-[0.24px] transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
+                  className="inline-block -ml-[3px] pb-[1px] pl-[3px] italic tracking-[0.24px]"
                   style={{ fontFamily: "var(--font-crimson), serif", fontSize: 24, lineHeight: "32px" }}
                 >
                   Julia Bulyndina{" "}
                 </span>
                 <span
-                  className="inline-block pb-[1px] font-bold italic transition-colors duration-200 ease-out group-hover:bg-[linear-gradient(90deg,_rgb(231,114,163)_0%,_rgb(193,105,197)_34.971%,_rgb(172,185,51)_70.77%,_rgb(221,150,28)_100%)] group-hover:bg-clip-text group-hover:text-transparent"
+                  className="inline-block pb-[1px] font-bold italic"
                   style={{ fontFamily: "var(--font-crimson), serif", fontSize: 20, lineHeight: "32px" }}
                 >
                   ⋆˙⟡
                 </span>
               </p>
-            </Link>
+            </div>
             <button
               type="button"
               onClick={() => setMenuOpen(false)}

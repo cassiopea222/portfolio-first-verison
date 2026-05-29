@@ -40,7 +40,7 @@ export default function ProjectCaseSkeleton({ project }: ProjectCaseSkeletonProp
         <div className="grid gap-6">
           {["Context", "Tasks", "Solution", "Results"].map((section) => (
             <article key={section} className="flex flex-col gap-3">
-              <h2 className="type-h3 text-[var(--text-primary)]">{section}</h2>
+              <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">{section}</h2>
               <div className="grid gap-2">
                 <div className="h-4 w-full rounded bg-[#ececec]" />
                 <div className="h-4 w-[92%] rounded bg-[#ececec]" />

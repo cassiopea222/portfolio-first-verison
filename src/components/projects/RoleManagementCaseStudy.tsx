@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowBackNavIcon } from "@/components/icons/ArrowBackNavIcon";
 import ScaledCover from "@/components/ScaledCover";
+import CaseStudyToC, { type ToCSection } from "@/components/projects/CaseStudyToC";
+import CaseStudyMeta from "@/components/projects/CaseStudyMeta";
 
 const imgCreateNewRoleNew3 = "/home/role_management/Create new role NEW 3.png";
 const imgScreenshot20260319At2244461 =
@@ -11,31 +11,22 @@ const imgCreateNewRole23 = "/home/role_management/Create new role 2 3.png";
 const imgProfileRole1 = "/home/role_management/profile - role 1.png";
 const imgProfilePermissions1 = "/home/role_management/profile - permissions 1.png";
 
-function NavButton({
-  href,
-  text,
-  rightIcon = false,
-}: {
-  href: string;
-  text: string;
-  rightIcon?: boolean;
-}) {
-  return (
-    <Link
-      href={href}
-      className="type-body inline-flex w-fit items-center gap-2 rounded-xl border border-[#dadada] bg-[linear-gradient(179.23deg,#fff_4.27%,rgba(231,231,231,0.7)_98.14%)] px-3 py-2 text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)] transition-[background-color,border-color,color] duration-200 ease-out hover:border-[#d5d5d5] hover:bg-[#efefef] hover:text-[var(--text-primary)]"
-    >
-      {!rightIcon && <ArrowBackNavIcon />}
-      <span>{text}</span>
-      {rightIcon && <span aria-hidden>→</span>}
-    </Link>
-  );
-}
+const TOC_SECTIONS: ToCSection[] = [
+  { id: "context", label: "Context" },
+  { id: "my-role", label: "My role" },
+  { id: "the-problem", label: "The problem" },
+  { id: "challenge", label: "Challenge" },
+  { id: "initial-approach", label: "Initial approach" },
+  { id: "what-we-landed-on", label: "What we landed on" },
+  { id: "key-design-decisions", label: "Key design decisions" },
+  { id: "tradeoffs", label: "Tradeoffs & reflection" },
+  { id: "outcome", label: "Outcome" },
+];
 
 function SectionHeader({ subtitle, title }: { subtitle: string; title: string }) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <p className="text-[16px] font-medium leading-6 text-[var(--text-tertiary)]">
+    <div className="flex flex-col gap-0">
+      <p className="font-inconsolata text-[18px] font-semibold leading-6 text-[var(--text-tertiary)]">
         {subtitle}
       </p>
       <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
@@ -89,38 +80,18 @@ function DiagramShowcase({
 
 export default function RoleManagementCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px max-[809px]:gap-[40px] max-[809px]:py-[48px]">
-      <div className="w-full max-w-[840px]">
-        <NavButton href="/" text="Go back" />
-      </div>
+    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] py-[120px] px-[60px] text-[var(--foreground)] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px] max-[809px]:px-[20px]">
+      <CaseStudyToC sections={TOC_SECTIONS} backHref="/" />
 
-      <div className="flex w-full max-w-[840px] flex-col gap-[48px]">
-        {/* Title block */}
+      <div className="flex min-w-0 max-w-[840px] flex-1 flex-col gap-[48px]">
+        {/* Opening block */}
         <div className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[24px]">
-            <div className="flex items-center gap-3 max-[809px]:flex-col-reverse max-[809px]:items-start max-[809px]:gap-1">
-              <h1
-                className="text-[32px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
-                style={{ fontFamily: "var(--font-crimson), serif" }}
-              >
-                Role Management System
-              </h1>
-              <p
-                className="text-[32px] font-normal leading-[1.25] tracking-[-0.01em] text-[var(--text-tertiary)] max-[809px]:text-[26px] max-[809px]:font-medium max-[809px]:leading-9"
-                style={{ fontFamily: "var(--font-crimson), serif" }}
-              >
-                Governmental platform
-              </p>
-            </div>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              A role management system for a multi-environment government
-              dashboard. Designed the full permission architecture and interaction
-              model - from how roles are structured to how individual user access
-              is configured. The work involved navigating a deeply nested data
-              model, competing mental models between design and client, and a
-              scope shift that ultimately led to a cleaner, more practical
-              solution.
-            </p>
+          {/* Title */}
+          <div className="flex flex-col gap-[8px]">
+            <p className="font-inconsolata font-medium text-[22px] leading-6 text-[var(--text-tertiary)]">Governmental platform</p>
+            <h1 className="text-[24px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9">
+              Role Management System
+            </h1>
           </div>
 
           {/* Hero showcase */}
@@ -132,42 +103,32 @@ export default function RoleManagementCaseStudy() {
                 fill
                 sizes="622px"
                 priority
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </Showcase>
 
           {/* Info */}
-          <div className="flex items-start justify-between gap-6 max-[402px]:flex-col max-[402px]:gap-[20px]">
-            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
-                Role
-              </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                Product Designer
-              </p>
-            </div>
-            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
-                Team
-              </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                2 designers
-              </p>
-            </div>
-            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
-                Timeline
-              </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                August 2025
-              </p>
-            </div>
-          </div>
+          <CaseStudyMeta items={[
+            { label: "Role", value: "Product Designer" },
+            { label: "Team", value: "2 designers" },
+            { label: "Timeline", value: "August 2025" },
+          ]} />
+
+          {/* Description */}
+          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            A role management system for a multi-environment government
+            dashboard. Designed the full permission architecture and interaction
+            model - from how roles are structured to how individual user access
+            is configured. The work involved navigating a deeply nested data
+            model, competing mental models between design and client, and a
+            scope shift that ultimately led to a cleaner, more practical
+            solution.
+          </p>
         </div>
 
         {/* Context */}
-        <div className="flex flex-col gap-[16px]">
+        <div id="context" className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Context" title="What the platform needed" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
@@ -197,7 +158,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* My role */}
-        <div className="flex flex-col gap-[16px]">
+        <div id="my-role" className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="My role" title="What I owned" />
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             I led the design end-to-end - mapped the permission architecture,
@@ -209,7 +170,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* The problem */}
-        <div className="flex flex-col gap-[32px]">
+        <div id="the-problem" className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
             <SectionHeader subtitle="The problem" title="No structure, no process" />
             <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -236,14 +197,14 @@ export default function RoleManagementCaseStudy() {
                 alt=""
                 fill
                 sizes="818px"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </DiagramShowcase>
         </div>
 
         {/* Challenge */}
-        <div className="flex flex-col gap-[16px]">
+        <div id="challenge" className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Challenge" title="Six levels deep" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
@@ -263,7 +224,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Initial approach */}
-        <div className="flex flex-col gap-[32px]">
+        <div id="initial-approach" className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
             <SectionHeader
               subtitle="Initial approach"
@@ -304,7 +265,7 @@ export default function RoleManagementCaseStudy() {
                   alt=""
                   fill
                   sizes="642px"
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </DiagramShowcase>
@@ -319,7 +280,7 @@ export default function RoleManagementCaseStudy() {
                   alt=""
                   fill
                   sizes="642px"
-                  className="object-cover"
+                  className="object-contain"
                 />
               </div>
             </DiagramShowcase>
@@ -336,7 +297,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* What we landed on */}
-        <div className="flex flex-col gap-[32px]">
+        <div id="what-we-landed-on" className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
             <SectionHeader
               subtitle="What we landed on"
@@ -371,7 +332,7 @@ export default function RoleManagementCaseStudy() {
                 alt=""
                 fill
                 sizes="622px"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </Showcase>
@@ -392,7 +353,7 @@ export default function RoleManagementCaseStudy() {
                 alt=""
                 fill
                 sizes="646px"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </Showcase>
@@ -404,7 +365,7 @@ export default function RoleManagementCaseStudy() {
                 alt=""
                 fill
                 sizes="644px"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </Showcase>
@@ -418,7 +379,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Key design decisions */}
-        <div className="flex flex-col gap-[16px]">
+        <div id="key-design-decisions" className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Key design decisions" title="Why it works" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
@@ -437,7 +398,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Tradeoffs */}
-        <div className="flex flex-col gap-[16px]">
+        <div id="tradeoffs" className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Tradeoffs & reflection" title="Two models, two assumptions" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
@@ -486,7 +447,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Outcome */}
-        <div className="flex flex-col gap-[16px]">
+        <div id="outcome" className="flex flex-col gap-[16px]">
           <SectionHeader subtitle="Outcome" title="What this enabled" />
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             The delivered model gave admins a consistent, repeatable process for
@@ -496,12 +457,6 @@ export default function RoleManagementCaseStudy() {
             technical knowledge from whoever is doing the admin work.
           </p>
         </div>
-      </div>
-
-      {/* Navigation */}
-      <div className="flex w-full max-w-[840px] items-center justify-between">
-        <NavButton href="/projects/beta-testing-platform-ajax" text="Previous" />
-        <NavButton href="/projects/fitness-app-redesign" text="Next" rightIcon />
       </div>
     </section>
   );

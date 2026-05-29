@@ -11,7 +11,7 @@ export default function ProjectsGrid({ projects = defaultProjects }: ProjectsGri
   return (
     <section id="work" className="mx-auto w-full max-w-[1440px] fluid-px">
       <h2 className="sr-only">Work</h2>
-      <div className="flex flex-col gap-9">
+      <div className="flex flex-col gap-8">
         {projects.map((project, index) => (
           <ProjectCard
             key={`${project.title}-${index}`}

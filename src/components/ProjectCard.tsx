@@ -29,72 +29,70 @@ export default function ProjectCard({
   href,
 }: ProjectCardProps) {
   const coverNode = (
-    <div className="w-full shrink-0 min-[810px]:w-[534px]">
-      <ScaledCover nativeWidth={534} nativeHeight={500}>
-        {cover === "ajax" && (
-          <>
-            <div className="absolute inset-0 blur-[6px]">
-              <Image
-                src={imgAjaxBg}
-                alt=""
-                fill
-                sizes="534px"
-                className="object-cover pointer-events-none"
-              />
-            </div>
-            <div className="absolute left-1/2 top-1/2 h-[320px] w-[450px] -translate-x-1/2 -translate-y-1/2 rounded-[8px] overflow-hidden shadow-[var(--card-shadow)]">
-              <Image
-                src={imgAjaxDashboard}
-                alt=""
-                fill
-                unoptimized
-                sizes="450px"
-                className="object-cover rounded-[8px]"
-              />
-            </div>
-          </>
-        )}
-        {cover === "fitness" && (
-          <>
-            <div className="absolute left-[71px] top-[40px] h-[420px] w-[199px]">
-              <Image
-                src={imgFitnessLeft}
-                alt=""
-                fill
-                sizes="199px"
-                className="object-cover pointer-events-none"
-              />
-            </div>
-            <div className="absolute left-[294px] top-[40px] h-[420px] w-[199px]">
-              <Image
-                src={imgFitnessRight}
-                alt=""
-                fill
-                sizes="199px"
-                className="object-cover pointer-events-none"
-              />
-            </div>
-          </>
-        )}
-        {cover === "role" && (
-          <div className="absolute left-1/2 top-1/2 h-[340px] w-[420px] -translate-x-1/2 -translate-y-1/2">
+    <ScaledCover nativeWidth={800} nativeHeight={540}>
+      {cover === "ajax" && (
+        <>
+          <div className="absolute inset-0 blur-[6px]">
             <Image
-              src={imgRoleManagement}
+              src={imgAjaxBg}
               alt=""
               fill
-              sizes="420px"
+              sizes="100vw"
               className="object-cover pointer-events-none"
             />
           </div>
-        )}
-        <div className="pointer-events-none absolute inset-0 bg-[rgba(255,255,255,0.24)] opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100" />
-      </ScaledCover>
-    </div>
+          <div className="absolute left-1/2 top-1/2 h-[424px] w-[596px] -translate-x-1/2 -translate-y-1/2 rounded-[8px] overflow-hidden shadow-[var(--card-shadow)]">
+            <Image
+              src={imgAjaxDashboard}
+              alt=""
+              fill
+              unoptimized
+              sizes="596px"
+              className="object-cover rounded-[8px]"
+            />
+          </div>
+        </>
+      )}
+      {cover === "fitness" && (
+        <>
+          <div className="absolute left-[189px] top-[60px] h-[420px] w-[199px]">
+            <Image
+              src={imgFitnessLeft}
+              alt=""
+              fill
+              sizes="199px"
+              className="object-cover pointer-events-none"
+            />
+          </div>
+          <div className="absolute left-[412px] top-[60px] h-[420px] w-[199px]">
+            <Image
+              src={imgFitnessRight}
+              alt=""
+              fill
+              sizes="199px"
+              className="object-cover pointer-events-none"
+            />
+          </div>
+        </>
+      )}
+      {cover === "role" && (
+        <div className="absolute left-1/2 top-1/2 h-[391px] w-[483px] -translate-x-1/2 -translate-y-1/2">
+          <Image
+            src={imgRoleManagement}
+            alt=""
+            fill
+            sizes="483px"
+            className="object-cover pointer-events-none"
+          />
+        </div>
+      )}
+      <div className="pointer-events-none absolute inset-0 bg-[rgba(255,255,255,0.24)] opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100" />
+    </ScaledCover>
   );
 
   const textNode = (
-    <div className="flex min-w-0 flex-1 flex-col gap-2">
-      <div className="flex flex-col gap-2">
+    <div className="flex w-full flex-col gap-[12px]">
+      <div className="flex flex-col gap-[8px]">
         <div className="flex flex-wrap items-start gap-2">
           {tags.map((tag) => (
             <span
@@ -105,18 +103,17 @@ export default function ProjectCard({
             </span>
           ))}
         </div>
-        <h3 className="font-sans text-[20px] font-medium leading-[26px] text-[var(--text-primary)]">
+        <h3 className="font-inconsolata text-[22px] font-semibold leading-[30px] text-[var(--text-primary)]">
           {title}
         </h3>
       </div>
-      <p className="font-sans text-[16px] font-normal leading-[22px] tracking-[0.2px] text-[var(--text-secondary)]">
+      <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0.2px] text-[var(--text-secondary)]">
         {description}
       </p>
     </div>
   );
 
-  const className =
-    "group flex flex-col gap-6 overflow-hidden bg-white text-left min-[810px]:flex-row min-[810px]:items-start";
+  const className = "group flex flex-col gap-5 overflow-hidden bg-white text-left";
 
   if (href) {
     return (

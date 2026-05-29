@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowBackNavIcon } from "@/components/icons/ArrowBackNavIcon";
 import ScaledCover from "@/components/ScaledCover";
+import CaseStudyToC, { type ToCSection } from "@/components/projects/CaseStudyToC";
+import CaseStudyMeta from "@/components/projects/CaseStudyMeta";
 
 // Cover images
 const imgIPhone17Pro1 = "/home/sadie_active/iPhone 17 Pro 1.png";
@@ -21,31 +21,16 @@ const img040409MacroCalculatorActivityLevel = "/home/sadie_active/04.04.09 - Mac
 const img040417NutritionOverviewResults = "/home/sadie_active/04.04.17 - nutrition_overview_results.png";
 const img070311WebCreate1WorkoutInputed = "/home/sadie_active/07.03.11 - Web_create_1_workout_inputed.png";
 
-function NavButton({
-  href,
-  text,
-  rightIcon = false,
-}: {
-  href: string;
-  text: string;
-  rightIcon?: boolean;
-}) {
-  return (
-    <Link
-      href={href}
-      className="type-body inline-flex w-fit items-center gap-2 rounded-xl border border-[#dadada] bg-[linear-gradient(179.23deg,#fff_4.27%,rgba(231,231,231,0.7)_98.14%)] px-3 py-2 text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)] transition-[background-color,border-color,color] duration-200 ease-out hover:border-[#d5d5d5] hover:bg-[#efefef] hover:text-[var(--text-primary)]"
-    >
-      {!rightIcon && <ArrowBackNavIcon />}
-      <span>{text}</span>
-      {rightIcon && <span aria-hidden>→</span>}
-    </Link>
-  );
-}
+const TOC_SECTIONS: ToCSection[] = [
+  { id: "problem", label: "Problem" },
+  { id: "my-role", label: "My role" },
+  { id: "core-flows", label: "Core flows" },
+];
 
 function SectionHeader({ subtitle, title }: { subtitle: string; title: string }) {
   return (
-    <div className="flex flex-col gap-3">
-      <p className="text-[16px] font-medium leading-6 text-[var(--text-tertiary)]">{subtitle}</p>
+    <div className="flex flex-col gap-1">
+      <p className="font-inconsolata text-[18px] font-semibold leading-6 text-[var(--text-tertiary)]">{subtitle}</p>
       <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">{title}</h2>
     </div>
   );
@@ -64,35 +49,18 @@ function Showcase({ children, caption }: { children: React.ReactNode; caption: s
 
 export default function FitnessCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px max-[809px]:gap-[40px] max-[809px]:py-[48px]">
-      <div className="w-full max-w-[800px]">
-        <NavButton href="/" text="Go back" />
-      </div>
+    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] py-[120px] px-[60px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px] max-[809px]:px-[20px]">
+      <CaseStudyToC sections={TOC_SECTIONS} backHref="/" />
 
-      <div className="flex w-full max-w-[800px] flex-col gap-12">
-        {/* Title block */}
+      <div className="flex min-w-0 max-w-[800px] flex-1 flex-col gap-12">
+        {/* Opening block */}
         <div className="flex flex-col gap-8">
-          <div className="flex flex-col gap-6">
-            <div className="flex items-center gap-3 max-[809px]:flex-col-reverse max-[809px]:items-start max-[809px]:gap-1">
-              <h1
-                className="text-[32px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
-                style={{ fontFamily: "var(--font-crimson), serif" }}
-              >
-                Fitness app redesign
-              </h1>
-              <p
-                className="text-[32px] font-normal leading-[1.25] tracking-[-0.01em] text-[var(--text-tertiary)] max-[809px]:text-[26px] max-[809px]:font-medium max-[809px]:leading-9"
-                style={{ fontFamily: "var(--font-crimson), serif" }}
-              >
-                SadieActive
-              </p>
-            </div>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              Redesigned a mobile fitness app for an Instagram fitness influencer
-              (200K+ followers). Led the UX/UI for the progress dashboard and
-              workout programs, designed an admin platform for managing in-app
-              content, and built a scalable design system to support future growth.
-            </p>
+          {/* Title */}
+          <div className="flex flex-col gap-[8px]">
+            <p className="font-inconsolata font-medium text-[22px] leading-6 text-[var(--text-tertiary)]">SadieActive</p>
+            <h1 className="text-[24px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9">
+              Fitness app redesign
+            </h1>
           </div>
 
           {/* Cover: 3 phones */}
@@ -104,7 +72,7 @@ export default function FitnessCaseStudy() {
               height={440}
               priority
               sizes="208px"
-              className="absolute left-[49px] top-1/2 h-[440px] w-[208px] -translate-y-1/2 object-cover"
+              className="absolute left-[49px] top-1/2 h-[440px] w-[208px] -translate-y-1/2 object-contain"
             />
             <Image
               src={imgCenterPhone}
@@ -113,7 +81,7 @@ export default function FitnessCaseStudy() {
               height={440}
               priority
               sizes="208px"
-              className="absolute left-1/2 top-[68px] h-[440px] w-[208px] -translate-x-1/2 object-cover"
+              className="absolute left-1/2 top-[68px] h-[440px] w-[208px] -translate-x-1/2 object-contain"
             />
             <Image
               src={imgRightPhone}
@@ -122,44 +90,28 @@ export default function FitnessCaseStudy() {
               height={440}
               priority
               sizes="208px"
-              className="absolute left-[545px] top-1/2 h-[440px] w-[208px] -translate-y-1/2 object-cover"
+              className="absolute left-[545px] top-1/2 h-[440px] w-[208px] -translate-y-1/2 object-contain"
             />
           </ScaledCover>
 
           {/* Info: Role / Team / Timeline */}
-          <div className="flex items-start justify-between gap-6 max-[402px]:flex-col max-[402px]:gap-[20px]">
-            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
-                Role
-              </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                Product Designer
-              </p>
-            </div>
-            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
-                Team
-              </p>
-              <div className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                <p>2 designers</p>
-                <p>5 developers</p>
-                <p>1 project manager</p>
-                <p>1 QA</p>
-              </div>
-            </div>
-            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="text-[18px] font-medium uppercase leading-6 text-[var(--text-tertiary)]">
-                Timeline
-              </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                Nov 2023 - Jan 2024
-              </p>
-            </div>
-          </div>
+          <CaseStudyMeta items={[
+            { label: "Role", value: "Product Designer" },
+            { label: "Team", value: <><p>2 designers</p><p>5 developers</p><p>1 project manager</p><p>1 QA</p></> },
+            { label: "Timeline", value: "Nov 2023 - Jan 2024" },
+          ]} />
+
+          {/* Description */}
+          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            Redesigned a mobile fitness app for an Instagram fitness influencer
+            (200K+ followers). Led the UX/UI for the progress dashboard and
+            workout programs, designed an admin platform for managing in-app
+            content, and built a scalable design system to support future growth.
+          </p>
         </div>
 
         {/* Problem */}
-        <div className="flex flex-col gap-8">
+        <div id="problem" className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
             <SectionHeader
               subtitle="Problem"
@@ -179,7 +131,7 @@ export default function FitnessCaseStudy() {
         </div>
 
         {/* My role */}
-        <div className="flex flex-col gap-4">
+        <div id="my-role" className="flex flex-col gap-4">
           <SectionHeader
             subtitle="My role"
             title="From analysis to handoff across mobile + admin."
@@ -197,7 +149,7 @@ export default function FitnessCaseStudy() {
         </div>
 
         {/* Core flows: Workouts and statistics */}
-        <div className="flex flex-col gap-8">
+        <div id="core-flows" className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
             <SectionHeader
               subtitle="Core flows"
@@ -217,7 +169,7 @@ export default function FitnessCaseStudy() {
               width={200}
               height={433}
               sizes="200px"
-              className="absolute left-[180px] top-[30px] h-[433px] w-[200px] object-cover"
+              className="absolute left-[180px] top-[30px] h-[433px] w-[200px] object-contain"
             />
             <Image
               src={img030101Workouts}
@@ -225,7 +177,7 @@ export default function FitnessCaseStudy() {
               width={200}
               height={433}
               sizes="200px"
-              className="absolute left-[420px] top-[30px] h-[433px] w-[200px] object-cover"
+              className="absolute left-[420px] top-[30px] h-[433px] w-[200px] object-contain"
             />
             <p className="absolute left-[258px] top-[475px] text-sm leading-[18px] text-[var(--text-tertiary)]">
               before
@@ -248,7 +200,7 @@ export default function FitnessCaseStudy() {
               width={200}
               height={412}
               sizes="200px"
-              className="absolute left-[180px] top-[51px] h-[412px] w-[200px] rounded-[12px] object-cover"
+              className="absolute left-[180px] top-[51px] h-[412px] w-[200px] rounded-[12px] object-contain"
             />
             <Image
               src={img040101Dashboard1}
@@ -256,7 +208,7 @@ export default function FitnessCaseStudy() {
               width={200}
               height={412}
               sizes="200px"
-              className="absolute left-[420px] top-[51px] h-[412px] w-[200px] object-cover"
+              className="absolute left-[420px] top-[51px] h-[412px] w-[200px] object-contain"
             />
             <p className="absolute left-[258px] top-[475px] text-sm leading-[18px] text-[var(--text-tertiary)]">
               before
@@ -270,7 +222,7 @@ export default function FitnessCaseStudy() {
         {/* Programs */}
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <h2 className="text-[24px] font-semibold leading-8 text-[var(--text-primary)]">
+            <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Programs
             </h2>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -288,7 +240,7 @@ export default function FitnessCaseStudy() {
               width={210}
               height={449}
               sizes="210px"
-              className="absolute left-1/2 top-1/2 h-[449px] w-[210px] -translate-x-1/2 -translate-y-1/2 object-cover"
+              className="absolute left-1/2 top-1/2 h-[449px] w-[210px] -translate-x-1/2 -translate-y-1/2 object-contain"
             />
           </Showcase>
 
@@ -306,7 +258,7 @@ export default function FitnessCaseStudy() {
                 width={210}
                 height={448}
                 sizes="210px"
-                className="h-[448px] w-[210px] object-cover"
+                className="h-[448px] w-[210px] object-contain"
               />
               <Image
                 src={img020303WeekDefault}
@@ -314,7 +266,7 @@ export default function FitnessCaseStudy() {
                 width={222}
                 height={448}
                 sizes="222px"
-                className="h-[448px] w-[222px] object-cover"
+                className="h-[448px] w-[222px] object-contain"
               />
             </div>
           </Showcase>
@@ -323,7 +275,7 @@ export default function FitnessCaseStudy() {
         {/* Macronutrients calculator */}
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <h2 className="text-[24px] font-semibold leading-8 text-[var(--text-primary)]">
+            <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Macronutrients calculator
             </h2>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -339,7 +291,7 @@ export default function FitnessCaseStudy() {
               width={210}
               height={381}
               sizes="210px"
-              className="absolute left-[45px] top-[139px] h-[381px] w-[210px] object-cover"
+              className="absolute left-[45px] top-[139px] h-[381px] w-[210px] object-contain"
             />
             <Image
               src={img040409MacroCalculatorActivityLevel}
@@ -347,7 +299,7 @@ export default function FitnessCaseStudy() {
               width={210}
               height={455}
               sizes="210px"
-              className="absolute left-[295px] top-1/2 h-[455px] w-[210px] -translate-y-1/2 object-cover"
+              className="absolute left-[295px] top-1/2 h-[455px] w-[210px] -translate-y-1/2 object-contain"
             />
             <Image
               src={img040417NutritionOverviewResults}
@@ -355,7 +307,7 @@ export default function FitnessCaseStudy() {
               width={210}
               height={403}
               sizes="210px"
-              className="absolute left-[545px] top-[117px] h-[403px] w-[210px] object-cover"
+              className="absolute left-[545px] top-[117px] h-[403px] w-[210px] object-contain"
             />
           </Showcase>
         </div>
@@ -363,7 +315,7 @@ export default function FitnessCaseStudy() {
         {/* Web platform for admin */}
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <h2 className="text-[24px] font-semibold leading-8 text-[var(--text-primary)]">
+            <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Web platform for admin
             </h2>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -379,16 +331,10 @@ export default function FitnessCaseStudy() {
               width={600}
               height={427}
               sizes="(max-width: 1024px) 90vw, 600px"
-              className="absolute left-1/2 top-1/2 h-[427px] w-[600px] -translate-x-1/2 -translate-y-1/2 object-cover"
+              className="absolute left-1/2 top-1/2 h-[427px] w-[600px] -translate-x-1/2 -translate-y-1/2 object-contain"
             />
           </Showcase>
         </div>
-      </div>
-
-      {/* Navigation */}
-      <div className="flex w-full max-w-[800px] items-center justify-between">
-        <NavButton href="/projects/role-management-system" text="Previous" />
-        <NavButton href="/projects/beta-testing-platform-ajax" text="Next" rightIcon />
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
-import { ArrowBackNavIcon } from "@/components/icons/ArrowBackNavIcon";
 import ScaledCover from "@/components/ScaledCover";
+import CaseStudyToC, { type ToCSection } from "@/components/projects/CaseStudyToC";
+import CaseStudyMeta from "@/components/projects/CaseStudyMeta";
 
 // Hero images
 const imgUnsplashVhKRwVyQ = "/home/ajax/unsplash_-Vh-kRw_vyQ.png";
@@ -78,18 +78,6 @@ const staticFallbacks: Partial<Record<VideoSlotId, string>> = {
   "in-platform-messenger-page": imgSideMessenger1,
 };
 
-function NavButton({ href, text }: { href: string; text: string }) {
-  return (
-    <Link
-      href={href}
-      className="type-body inline-flex w-fit items-center gap-2 rounded-xl border border-[#dadada] bg-[linear-gradient(179.23deg,#fff_4.27%,rgba(231,231,231,0.7)_98.14%)] px-3 py-2 text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)] transition-[background-color,border-color,color] duration-200 ease-out hover:border-[#d5d5d5] hover:bg-[#efefef] hover:text-[var(--text-primary)]"
-    >
-      <ArrowBackNavIcon />
-      <span>{text}</span>
-    </Link>
-  );
-}
-
 function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }) {
   const gif = gifSources[slot];
   const fallback = staticFallbacks[slot];
@@ -113,7 +101,7 @@ function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }
             width={658}
             height={468}
             sizes="658px"
-            className="rounded-[12px] object-cover"
+            className="rounded-[12px] object-contain"
           />
         ) : (
           <div
@@ -138,7 +126,7 @@ function SectionHeader({ subtitle, title }: { subtitle?: string; title: string }
   return (
     <div className="flex flex-col gap-1">
       {subtitle && (
-        <p className="text-[16px] font-medium leading-6 text-[var(--text-tertiary)]">
+        <p className="font-inconsolata text-[18px] font-semibold leading-6 text-[var(--text-tertiary)]">
           {subtitle}
         </p>
       )}
@@ -149,44 +137,31 @@ function SectionHeader({ subtitle, title }: { subtitle?: string; title: string }
   );
 }
 
+const TOC_SECTIONS: ToCSection[] = [
+  { id: "context", label: "Context & problem" },
+  { id: "challenges", label: "Challenges" },
+  { id: "objective", label: "Objective" },
+  { id: "success-metrics", label: "Success metrics" },
+  { id: "research", label: "Research" },
+  { id: "synthesis", label: "Synthesis" },
+  { id: "solution", label: "Solution" },
+  { id: "usability", label: "Usability testing" },
+];
+
 export default function BetaTestingPlatformCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col items-center gap-[60px] py-[120px] fluid-px max-[809px]:gap-[40px] max-[809px]:py-[48px]">
-      <div className="w-full max-w-[840px]">
-        <NavButton href="/" text="Go back" />
-      </div>
+    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] py-[120px] px-[60px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px] max-[809px]:px-[20px]">
+      <CaseStudyToC sections={TOC_SECTIONS} />
 
-      <div className="flex w-full max-w-[840px] flex-col gap-[48px]">
+      <div className="flex min-w-0 max-w-[840px] flex-1 flex-col gap-[48px]">
         <div className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[24px]">
-            <div className="flex items-center gap-3 max-[809px]:flex-col-reverse max-[809px]:items-start max-[809px]:gap-1">
-              <h1
-                className="text-[32px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
-                style={{ fontFamily: "var(--font-crimson), serif" }}
-              >
-                Beta testing platform
-              </h1>
-              <p
-                className="text-[32px] font-normal leading-[1.25] tracking-[-0.01em] text-[var(--text-tertiary)] max-[809px]:text-[26px] max-[809px]:font-medium max-[809px]:leading-9"
-                style={{ fontFamily: "var(--font-crimson), serif" }}
-              >
-                Ajax
-              </p>
-            </div>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              Ajax Systems runs a beta testing program where external testers
-              validate security devices before release. Managers coordinate the
-              process, collect feedback, and ensure testers stay on track. To
-              address the challenges in this process, we designed a dedicated beta
-              testing platform - built around the needs of both testers and
-              managers.
-              <br />
-              <br />
-              This was a collaborative project with a team of four designers.
-              Alongside active involvement in the overall process, I led the work
-              on defining success metrics, designing the main user flows, and
-              usability testing.
+          <div className="flex flex-col gap-[8px]">
+            <p className="font-inconsolata font-medium text-[22px] leading-6 text-[var(--text-tertiary)]">
+              Ajax Systems
             </p>
+            <h1 className="text-[24px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:leading-7">
+              Beta testing platform
+            </h1>
           </div>
 
           <ScaledCover nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#e6e6e6]">
@@ -203,43 +178,39 @@ export default function BetaTestingPlatformCaseStudy() {
               width={736}
               height={488}
               sizes="736px"
-              className="absolute left-1/2 top-[calc(50%+33.5px)] h-[488px] w-[736px] -translate-x-1/2 -translate-y-1/2 rounded-[12px] object-cover"
+              className="absolute left-1/2 top-[calc(50%+33.5px)] h-[488px] w-[736px] -translate-x-1/2 -translate-y-1/2 rounded-[12px] object-contain"
             />
           </ScaledCover>
 
-          <div className="flex items-start justify-between gap-6 max-[402px]:flex-col max-[402px]:gap-[20px]">
-            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="type-nav uppercase text-[var(--text-tertiary)]">
-                Role
-              </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                Product Designer
-              </p>
-            </div>
-            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="type-nav uppercase text-[var(--text-tertiary)]">
-                Team
-              </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                4 designers
-              </p>
-            </div>
-            <div className="flex w-[200px] flex-col gap-3 max-[402px]:w-full">
-              <p className="type-nav uppercase text-[var(--text-tertiary)]">
-                Timeline
-              </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                May 2025 - Jul 2025
-              </p>
-            </div>
-          </div>
+          <CaseStudyMeta
+            items={[
+              { label: "Role", value: "Product Designer" },
+              { label: "Team", value: "4 designers" },
+              { label: "Timeline", value: "May 2025 - Jul 2025" },
+            ]}
+          />
+
+          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+            Ajax Systems runs a beta testing program where external testers
+            validate security devices before release. Managers coordinate the
+            process, collect feedback, and ensure testers stay on track. To
+            address the challenges in this process, we designed a dedicated beta
+            testing platform - built around the needs of both testers and
+            managers.
+            <br />
+            <br />
+            This was a collaborative project with a team of four designers.
+            Alongside active involvement in the overall process, I led the work
+            on defining success metrics, designing the main user flows, and
+            usability testing.
+          </p>
         </div>
 
         <div className="flex flex-col gap-[48px]">
           <div className="flex flex-col gap-[24px]">
-            <div className="flex flex-col gap-[16px]">
+            <div id="context" className="flex flex-col gap-[16px]">
               <SectionHeader
-                subtitle="Context & problem"
+                subtitle="Context"
                 title="Beta testing was fragmented across tools and hard to manage"
               />
               <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -273,20 +244,15 @@ export default function BetaTestingPlatformCaseStudy() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <ScaledCover nativeWidth={840} nativeHeight={452} className="rounded-[12px] border border-[#ececec] bg-[#fafafa]">
+              <ScaledCover nativeWidth={840} nativeHeight={446} className="rounded-[12px] border border-[#ececec] bg-[#fafafa]">
                 <Image
                   src={imgGroup388521}
                   alt=""
                   width={736}
-                  height={320}
+                  height={384}
                   sizes="736px"
-                  className="absolute left-1/2 top-[31px] h-[320px] w-[736px] -translate-x-1/2 object-cover"
+                  className="absolute left-1/2 top-[31px] h-[384px] w-[736px] -translate-x-1/2 object-contain"
                 />
-                <div className="absolute left-1/2 top-[383px] -translate-x-1/2 rounded-[20px] border border-[#f1d6be] bg-[#fff8ef] px-3 py-1.5">
-                  <p className="text-[14px] font-medium leading-5 text-[#d06e18]">
-                    No single channel
-                  </p>
-                </div>
               </ScaledCover>
               <p className="type-caption text-center text-[var(--text-tertiary)]">
                 Communication scattered across 4 channels - critical information
@@ -295,7 +261,7 @@ export default function BetaTestingPlatformCaseStudy() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-[16px]">
+          <div id="challenges" className="flex flex-col gap-[16px]">
             <SectionHeader
               subtitle="Challenges"
               title="The workflow had to work for testers, managers, and the product team at once"
@@ -336,7 +302,7 @@ export default function BetaTestingPlatformCaseStudy() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-[16px]">
+          <div id="objective" className="flex flex-col gap-[16px]">
             <SectionHeader
               subtitle="Objective"
               title="Create one central platform for running tests and collecting structured feedback"
@@ -349,7 +315,7 @@ export default function BetaTestingPlatformCaseStudy() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-[16px]">
+          <div id="success-metrics" className="flex flex-col gap-[16px]">
             <SectionHeader
               subtitle="Success metrics"
               title="Define how MVP success would be measured across adoption, engagement, and quality"
@@ -436,7 +402,7 @@ export default function BetaTestingPlatformCaseStudy() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-[32px]">
+          <div id="research" className="flex flex-col gap-[32px]">
             <div className="flex flex-col gap-[16px]">
               <SectionHeader subtitle="Research" title="Research Goals" />
               <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -474,7 +440,7 @@ export default function BetaTestingPlatformCaseStudy() {
                   width={772}
                   height={256}
                   sizes="772px"
-                  className="absolute left-1/2 top-1/2 h-[256px] w-[772px] -translate-x-1/2 -translate-y-1/2 object-cover"
+                  className="absolute left-1/2 top-1/2 h-[256px] w-[772px] -translate-x-1/2 -translate-y-1/2 object-contain"
                 />
               </ScaledCover>
               <p className="type-caption text-center text-[var(--text-tertiary)]">
@@ -483,7 +449,7 @@ export default function BetaTestingPlatformCaseStudy() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-[32px]">
+          <div id="synthesis" className="flex flex-col gap-[32px]">
             <div className="flex flex-col gap-[16px]">
               <SectionHeader
                 subtitle="Synthesis"
@@ -531,7 +497,7 @@ export default function BetaTestingPlatformCaseStudy() {
                   width={685}
                   height={472}
                   sizes="685px"
-                  className="h-[472px] w-[685px] object-cover"
+                  className="h-[472px] w-[685px] object-contain"
                 />
               </div>
               <p className="type-caption text-center text-[var(--text-tertiary)]">
@@ -547,10 +513,10 @@ export default function BetaTestingPlatformCaseStudy() {
           </div>
         </div>
 
-        {/* Core flows */}
-        <div className="flex flex-col gap-[32px]">
+        {/* Solution */}
+        <div id="solution" className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
-            <SectionHeader subtitle="Core flows" title="Testing hub" />
+            <SectionHeader subtitle="Solution" title="Testing hub" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               The Testing hub helps testers instantly understand what to do next
               by grouping tests into three statuses: Not started, In progress, and
@@ -567,7 +533,7 @@ export default function BetaTestingPlatformCaseStudy() {
 
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
-            <h3 className="type-h3 text-[var(--text-primary)]">
+            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Detailed view of one test
             </h3>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -585,7 +551,7 @@ export default function BetaTestingPlatformCaseStudy() {
 
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
-            <h3 className="type-h3 text-[var(--text-primary)]">
+            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Notifications
             </h3>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -600,9 +566,9 @@ export default function BetaTestingPlatformCaseStudy() {
           />
         </div>
 
-        <div className="flex flex-col gap-[16px]">
+        <div id="usability" className="flex flex-col gap-[16px]">
           <SectionHeader
-            subtitle="Usability testing & iterations - what went wrong"
+            subtitle="Usability testing"
             title="What the testing round revealed: testers needed everything in one place"
           />
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -625,7 +591,7 @@ export default function BetaTestingPlatformCaseStudy() {
 
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[16px]">
-            <h3 className="type-h3 text-[var(--text-primary)]">Dashboard</h3>
+            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">Dashboard</h3>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Working within a tight timeframe, I designed the Dashboard as the
               first screen testers see after login - a single overview of
@@ -659,7 +625,7 @@ export default function BetaTestingPlatformCaseStudy() {
 
         <div className="flex flex-col gap-[48px]">
           <div className="flex flex-col gap-[16px]">
-            <h3 className="type-h3 text-[var(--text-primary)]">
+            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Future direction: In-platform messenger
             </h3>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -690,19 +656,7 @@ export default function BetaTestingPlatformCaseStudy() {
             caption="In-built messenger: page view"
           />
         </div>
-      </div>
-
-      {/* Navigation */}
-      <div className="flex w-full max-w-[840px] items-center justify-between">
-        <NavButton href="/" text="Previous" />
-        <Link
-          href="/projects/role-management-system"
-          className="type-body inline-flex w-fit items-center gap-2 rounded-xl border border-[#dadada] bg-[linear-gradient(179.23deg,#fff_4.27%,rgba(231,231,231,0.7)_98.14%)] px-3 py-2 text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)] transition-[background-color,border-color,color] duration-200 ease-out hover:border-[#d5d5d5] hover:bg-[#efefef] hover:text-[var(--text-primary)]"
-        >
-          <span>Next</span>
-          <span aria-hidden>→</span>
-        </Link>
-      </div>
+    </div>
     </section>
   );
 }
