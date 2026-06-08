@@ -10,14 +10,17 @@ const MIN_DISPLAY_MS = 1500;
 export default function AppShell({ children }: { children: ReactNode }) {
   const [visible, setVisible] = useState(true);
   const [mounted, setMounted] = useState(true);
-  const startRef = useRef(Date.now());
+  const startRef = useRef<number | null>(null);
 
   useEffect(() => {
+    startRef.current = Date.now();
+
     let t1: ReturnType<typeof setTimeout>;
     let t2: ReturnType<typeof setTimeout>;
 
     function hide() {
-      const elapsed = Date.now() - startRef.current;
+      const startedAt = startRef.current ?? Date.now();
+      const elapsed = Date.now() - startedAt;
       const remaining = Math.max(0, MIN_DISPLAY_MS - elapsed);
       t1 = setTimeout(() => {
         setVisible(false);
