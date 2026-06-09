@@ -65,8 +65,8 @@ type Flower = {
  * Each frame's silhouette reflows the surrounding text.
  */
 const FLOWERS: readonly Flower[] = [
-  { id: "f0", src: "/orchid/1.webp",        naturalWidth: 240, naturalHeight: 240 },
-  { id: "f1", src: "/orchid/2.webp",        naturalWidth: 240, naturalHeight: 240 },
+  { id: "f0", src: "/orchid/1.webp",        naturalWidth: 480, naturalHeight: 480 },
+  { id: "f1", src: "/orchid/2.webp",        naturalWidth: 480, naturalHeight: 480 },
   { id: "f2", src: "/orchid/frame-01.webp", naturalWidth: 480, naturalHeight: 480 },
   { id: "f3", src: "/orchid/frame-02.webp", naturalWidth: 480, naturalHeight: 466 },
   { id: "f4", src: "/orchid/frame-03.webp", naturalWidth: 480, naturalHeight: 441 },

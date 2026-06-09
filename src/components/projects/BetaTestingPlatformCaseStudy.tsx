@@ -6,25 +6,12 @@ import CaseStudyMeta from "@/components/projects/CaseStudyMeta";
 // Hero images
 const imgUnsplashVhKRwVyQ = "/home/ajax/unsplash_-Vh-kRw_vyQ.png";
 const imgDashboard5 = "/home/ajax/dashboard 5.png";
-// Context images
+// Context & research images
 const imgGroup388521 = "/home/ajax/Frame 2147238398.png";
 const imgScreenshot20260129At2352561 =
   "/home/ajax/Screenshot 2026-01-29 at 23.52.56 1.png";
-const imgScreenshot20260130At0031041 =
-  "/home/ajax/Screenshot 2026-01-30 at 00.31.04 1.png";
-// Static screen showcases
-const imgGridView1 =
-  "https://www.figma.com/api/mcp/asset/190273bb-72d6-4c0a-947a-628b2d57fdbc";
-const imgSide1 =
-  "https://www.figma.com/api/mcp/asset/772ac134-c162-4795-b7b4-4473a2d545b2";
-const imgDialogRead2 =
-  "https://www.figma.com/api/mcp/asset/55326552-5451-4367-8276-93628df7cbf8";
-const imgDashboard4 =
-  "https://www.figma.com/api/mcp/asset/76793b48-2a32-40d1-92cd-30d572bb233b";
-const imgSideMessenger1 =
-  "https://www.figma.com/api/mcp/asset/684e96b0-09f0-44b9-b714-3e43095389b3";
 
-// GIF sources (local, served from /public/gifs/)
+// Video sources (local, served from /public/gifs/)
 type VideoSlotId =
   | "testing-hub-overview"
   | "test-details-drawer"
@@ -33,76 +20,66 @@ type VideoSlotId =
   | "in-platform-messenger"
   | "in-platform-messenger-page";
 
-const gifSources: Partial<
-  Record<VideoSlotId, { src: string; width: number; height: number }>
+const videoSources: Partial<
+  Record<VideoSlotId, { webm: string; mp4: string; width: number; height: number }>
 > = {
   "testing-hub-overview": {
-    src: "/gifs/testing-hub-overview.gif",
+    webm: "/gifs/testing-hub-overview.webm",
+    mp4: "/gifs/testing-hub-overview.mp4",
     width: 658,
     height: 468,
   },
   "test-details-drawer": {
-    src: "/gifs/test-details-drawer.gif",
+    webm: "/gifs/test-details-drawer.webm",
+    mp4: "/gifs/test-details-drawer.mp4",
     width: 658,
     height: 468,
   },
   "notifications-center": {
-    src: "/gifs/notifications-center (1).gif",
+    webm: "/gifs/notifications-center.webm",
+    mp4: "/gifs/notifications-center.mp4",
     width: 260,
     height: 334,
   },
   "dashboard-overview": {
-    src: "/gifs/dashboard-overview.gif",
+    webm: "/gifs/dashboard-overview.webm",
+    mp4: "/gifs/dashboard-overview.mp4",
     width: 658,
     height: 468,
   },
   "in-platform-messenger": {
-    src: "/gifs/in-platform-messenger.gif",
+    webm: "/gifs/in-platform-messenger.webm",
+    mp4: "/gifs/in-platform-messenger.mp4",
     width: 658,
     height: 468,
   },
   "in-platform-messenger-page": {
-    src: "/gifs/in-platform-messenger-page.gif",
+    webm: "/gifs/in-platform-messenger-page.webm",
+    mp4: "/gifs/in-platform-messenger-page.mp4",
     width: 658,
     height: 468,
   },
 };
 
-// Static fallback images for when GIFs are unavailable
-const staticFallbacks: Partial<Record<VideoSlotId, string>> = {
-  "testing-hub-overview": imgGridView1,
-  "test-details-drawer": imgSide1,
-  "notifications-center": imgDialogRead2,
-  "dashboard-overview": imgDashboard4,
-  "in-platform-messenger": imgSideMessenger1,
-  "in-platform-messenger-page": imgSideMessenger1,
-};
-
 function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }) {
-  const gif = gifSources[slot];
-  const fallback = staticFallbacks[slot];
+  const video = videoSources[slot];
 
   return (
     <div className="flex flex-col gap-2">
       <div className="flex w-full items-center justify-center overflow-hidden rounded-[16px] border border-[#ececec] bg-[#e6e6e6] p-6">
-        {gif ? (
-          <Image
-            src={gif.src}
-            alt={caption}
-            width={gif.width}
-            height={gif.height}
-            unoptimized
+        {video ? (
+          <video
+            width={video.width}
+            height={video.height}
+            autoPlay
+            muted
+            loop
+            playsInline
             className="rounded-[12px]"
-          />
-        ) : fallback ? (
-          <Image
-            src={fallback}
-            alt={caption}
-            width={658}
-            height={468}
-            sizes="658px"
-            className="rounded-[12px] object-contain"
-          />
+          >
+            <source src={video.webm} type="video/webm" />
+            <source src={video.mp4} type="video/mp4" />
+          </video>
         ) : (
           <div
             data-video-slot={slot}
@@ -146,14 +123,17 @@ const TOC_SECTIONS: ToCSection[] = [
   { id: "synthesis", label: "Synthesis" },
   { id: "solution", label: "Solution" },
   { id: "usability", label: "Usability testing" },
+  { id: "dashboard", label: "Dashboard" },
+  { id: "whats-next", label: "What's Next" },
 ];
 
 export default function BetaTestingPlatformCaseStudy() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] py-[120px] px-[60px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px] max-[809px]:px-[20px]">
-      <CaseStudyToC sections={TOC_SECTIONS} />
+      <CaseStudyToC sections={TOC_SECTIONS} title="Beta testing platform" />
 
       <div className="flex min-w-0 max-w-[840px] flex-1 flex-col gap-[48px]">
+        {/* ── Hero ─────────────────────────────────────────────────────── */}
         <div className="flex flex-col gap-[32px]">
           <div className="flex flex-col gap-[8px]">
             <p className="font-inconsolata font-medium text-[22px] leading-6 text-[var(--text-tertiary)]">
@@ -169,7 +149,7 @@ export default function BetaTestingPlatformCaseStudy() {
               src={imgUnsplashVhKRwVyQ}
               alt=""
               fill
-              sizes="840px"
+              sizes="(max-width: 809px) calc(100vw - 40px), 840px"
               className="object-cover blur-[6px]"
             />
             <Image
@@ -177,7 +157,7 @@ export default function BetaTestingPlatformCaseStudy() {
               alt=""
               width={736}
               height={488}
-              sizes="736px"
+              sizes="(max-width: 809px) calc(88vw - 35px), 736px"
               className="absolute left-1/2 top-[calc(50%+33.5px)] h-[488px] w-[736px] -translate-x-1/2 -translate-y-1/2 rounded-[12px] object-contain"
             />
           </ScaledCover>
@@ -186,60 +166,39 @@ export default function BetaTestingPlatformCaseStudy() {
             items={[
               { label: "Role", value: "Product Designer" },
               { label: "Team", value: "4 designers" },
-              { label: "Timeline", value: "May 2025 - Jul 2025" },
+              { label: "Timeline", value: "May 2025 - July 2025" },
             ]}
           />
 
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-            Ajax Systems runs a beta testing program where external testers
-            validate security devices before release. Managers coordinate the
-            process, collect feedback, and ensure testers stay on track. To
-            address the challenges in this process, we designed a dedicated beta
-            testing platform - built around the needs of both testers and
-            managers.
+            Ajax Systems runs an external beta testing program to validate security
+            devices before release. The process was broken: feedback came through
+            Telegram, email, Facebook, and WhatsApp - no structure, no single home.
             <br />
             <br />
-            This was a collaborative project with a team of four designers.
-            Alongside active involvement in the overall process, I led the work
-            on defining success metrics, designing the main user flows, and
-            usability testing.
+            I led success metrics, core user flows, and usability testing.
           </p>
         </div>
 
         <div className="flex flex-col gap-[48px]">
+          {/* ── Context & problem ──────────────────────────────────────── */}
           <div className="flex flex-col gap-[24px]">
-            <div id="context" className="flex flex-col gap-[16px]">
+            <div id="context" className="flex flex-col gap-[20px]">
               <SectionHeader
-                subtitle="Context"
+                subtitle="Context & problem"
                 title="Beta testing was fragmented across tools and hard to manage"
               />
               <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                Ajax Systems runs a beta testing program where external testers
-                validate security devices before release. Managers coordinate the
-                process, collect feedback, and ensure testers stay on track - but
-                everything was happening across scattered channels: Telegram,
-                email, Facebook, WhatsApp.
+                Managers spent up to 30% of their time chasing testers across 4
+                messengers. Bug reports arrived in inconsistent formats, missing
+                technical details. Testers had no visibility into deadlines, report
+                status, or whether their input mattered. Mass Telegram messages were
+                getting accounts blocked. International partners refused to use it
+                altogether.
                 <br />
                 <br />
-                The lack of a dedicated platform created compounding problems.
-                Communication was fragmented and important information got lost.
-                Testers responded slowly to requests, partly because there was no
-                structured reminder system - many requests simply went unanswered.
-                Managers were spending up to 30% of their time on manual outreach
-                and feedback processing instead of analysis. And testers themselves
-                had no visibility into the process: no way to track the status of
-                their reports, no feedback on whether their input was even
-                considered.
-                <br />
-                <br />
-                On top of this, mass messaging in Telegram was getting manager
-                accounts blocked, international partners were refusing to use it
-                altogether, and bug reports came in without any standard format -
-                missing technical details, inconsistent, hard to act on.
-                <br />
-                <br />
-                The core issue was structural: there was no single place where the
-                beta testing process could live.
+                The result: slow feedback, high coordination overhead, low tester
+                motivation.
               </p>
             </div>
 
@@ -247,75 +206,98 @@ export default function BetaTestingPlatformCaseStudy() {
               <ScaledCover nativeWidth={840} nativeHeight={446} className="rounded-[12px] border border-[#ececec] bg-[#fafafa]">
                 <Image
                   src={imgGroup388521}
-                  alt=""
+                  alt="Communication scattered across 4 channels - critical information lost in every direction"
                   width={736}
                   height={384}
-                  sizes="736px"
+                  sizes="(max-width: 809px) calc(88vw - 35px), 736px"
                   className="absolute left-1/2 top-[31px] h-[384px] w-[736px] -translate-x-1/2 object-contain"
                 />
               </ScaledCover>
               <p className="type-caption text-center text-[var(--text-tertiary)]">
-                Communication scattered across 4 channels - critical information
-                lost in every direction
+                Communication scattered across 4 channels - critical information lost
+                in every direction
               </p>
             </div>
           </div>
 
-          <div id="challenges" className="flex flex-col gap-[16px]">
+          {/* ── Challenges ─────────────────────────────────────────────── */}
+          <div id="challenges" className="flex flex-col gap-[20px]">
             <SectionHeader
               subtitle="Challenges"
-              title="The workflow had to work for testers, managers, and the product team at once"
+              title="The workflow had to work for everyone at once"
             />
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              <span className="font-medium text-[var(--text-primary)]">
-                Tester challenge:
-              </span>{" "}
-              Quickly understand what to test, submit feedback without extra
-              effort, and feel that their contribution matters (clear status,
-              deadlines, and impact).
-            </p>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              <span className="font-medium text-[var(--text-primary)]">
-                Manager challenge:
-              </span>{" "}
-              Run beta programs at scale without chasing testers across
-              messengers, reduce manual coordination, and receive structured,
-              actionable bug reports faster.
-            </p>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              <span className="font-medium text-[var(--text-primary)]">
-                Product challenge:
-              </span>{" "}
-              Design a centralized workflow that moves testers through the core
-              journey - join → participate in tests → submit reports → follow up
-              when needed → return for new tests - while keeping cognitive load
-              low.
-            </p>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              <span className="font-medium text-[var(--text-primary)]">
-                Business challenge:
-              </span>{" "}
-              Accelerate feedback loops to improve product quality and speed of
-              release, while maintaining secure handling of tester data and
-              supporting global partners who don&apos;t use the same communication
-              tools.
-            </p>
+            <div className="overflow-hidden rounded-[12px] border border-[#ececec]">
+              <div className="flex bg-[#fafafa] px-5 py-3 text-[13px] font-semibold text-[var(--text-tertiary)]">
+                <span className="w-[200px] shrink-0">Stakeholder</span>
+                <span className="flex-1">Core Challenge</span>
+              </div>
+              <div className="h-px bg-[#ededed]" />
+              <div className="flex items-center bg-white px-5 py-[14px]">
+                <div className="w-[200px] shrink-0">
+                  <span className="inline-flex items-center gap-1.5 rounded-[6px] bg-[rgba(43,153,219,0.1)] px-2 py-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#2b99db]" />
+                    <span className="text-[12px] font-semibold text-[#2b99db]">Testers</span>
+                  </span>
+                </div>
+                <p className="flex-1 text-[14px] leading-[22px] text-[var(--text-secondary)]">
+                  Know what to test, submit with low effort, see their impact.
+                </p>
+              </div>
+              <div className="h-px bg-[#ededed]" />
+              <div className="flex items-center bg-[#fafafa] px-5 py-[14px]">
+                <div className="w-[200px] shrink-0">
+                  <span className="inline-flex items-center gap-1.5 rounded-[6px] bg-[rgba(140,89,229,0.1)] px-2 py-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#8c59e5]" />
+                    <span className="text-[12px] font-semibold text-[#8c59e5]">Managers</span>
+                  </span>
+                </div>
+                <p className="flex-1 text-[14px] leading-[22px] text-[var(--text-secondary)]">
+                  Run programs at scale without manual chasing; get structured reports.
+                </p>
+              </div>
+              <div className="h-px bg-[#ededed]" />
+              <div className="flex items-center bg-white px-5 py-[14px]">
+                <div className="w-[200px] shrink-0">
+                  <span className="inline-flex items-center gap-1.5 rounded-[6px] bg-[rgba(38,173,97,0.1)] px-2 py-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#26ad61]" />
+                    <span className="text-[12px] font-semibold text-[#26ad61]">Product Team</span>
+                  </span>
+                </div>
+                <p className="flex-1 text-[14px] leading-[22px] text-[var(--text-secondary)]">
+                  Move testers through a clear journey at low cognitive load.
+                </p>
+              </div>
+              <div className="h-px bg-[#ededed]" />
+              <div className="flex items-center bg-[#fafafa] px-5 py-[14px]">
+                <div className="w-[200px] shrink-0">
+                  <span className="inline-flex items-center gap-1.5 rounded-[6px] bg-[rgba(217,133,46,0.1)] px-2 py-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#d9852e]" />
+                    <span className="text-[12px] font-semibold text-[#d9852e]">Business</span>
+                  </span>
+                </div>
+                <p className="flex-1 text-[14px] leading-[22px] text-[var(--text-secondary)]">
+                  Faster feedback loops; secure data; support global partners who
+                  don&apos;t use the same tools.
+                </p>
+              </div>
+            </div>
           </div>
 
-          <div id="objective" className="flex flex-col gap-[16px]">
+          {/* ── Objective ──────────────────────────────────────────────── */}
+          <div id="objective" className="flex flex-col gap-[20px]">
             <SectionHeader
               subtitle="Objective"
               title="Create one central platform for running tests and collecting structured feedback"
             />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              Create a single platform where beta managers can run tests and
-              receive structured, timely feedback, while testers can clearly
-              understand what to do, how to report issues, and what impact they
-              made.
+              One platform where managers run tests and receive structured, timely
+              feedback - and testers always know what to do, how to report, and what
+              impact they made.
             </p>
           </div>
 
-          <div id="success-metrics" className="flex flex-col gap-[16px]">
+          {/* ── Success metrics ────────────────────────────────────────── */}
+          <div id="success-metrics" className="flex flex-col gap-[20px]">
             <SectionHeader
               subtitle="Success metrics"
               title="Define how MVP success would be measured across adoption, engagement, and quality"
@@ -326,203 +308,284 @@ export default function BetaTestingPlatformCaseStudy() {
             </p>
             <div className="flex flex-col gap-4">
               <div className="flex gap-4 max-[809px]:flex-col">
-                <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
-                  <div className="flex items-center">
-                    <span className="type-nav rounded-[20px] bg-[#d6ecdc] px-3 py-1 uppercase text-[#5f9d72]">
-                      Adoption
-                    </span>
+                <article className="flex min-h-[160px] flex-1 flex-col justify-between rounded-[12px] bg-[#edf5ff] p-5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-4 w-[3px] rounded-[2px] bg-[#2b99db]" />
+                    <p className="text-[14px] font-semibold uppercase leading-5 text-[#2b99db]">Adoption</p>
                   </div>
-                  <div className="flex flex-col gap-[10px]">
-                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
-                      -Number of testers who joined the platform
-                    </p>
-                    <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
-                      -% of testers who submitted their first bug report
-                    </p>
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex gap-2 items-start">
+                      <span className="shrink-0 text-[13px] leading-5 text-[rgba(43,153,219,0.6)]">–</span>
+                      <p className="text-[14px] font-normal leading-5 text-[var(--text-secondary)]">Testers who joined the platform</p>
+                    </div>
+                    <div className="flex gap-2 items-start">
+                      <span className="shrink-0 text-[13px] leading-5 text-[rgba(43,153,219,0.6)]">–</span>
+                      <p className="text-[14px] font-normal leading-5 text-[var(--text-secondary)]">% submitted their first bug report</p>
+                    </div>
                   </div>
                 </article>
-                <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
-                  <div className="flex items-center">
-                    <span className="type-nav rounded-[20px] bg-[#e0e7ff] px-3 py-1 uppercase text-[#667bc2]">
-                      Engagement
-                    </span>
+                <article className="flex min-h-[160px] flex-1 flex-col justify-between rounded-[12px] bg-[#f5f2ff] p-5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-4 w-[3px] rounded-[2px] bg-[#8c59e5]" />
+                    <p className="text-[14px] font-semibold uppercase leading-5 text-[#8c59e5]">Engagement</p>
                   </div>
-                  <div className="flex flex-col gap-[10px]">
-                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
-                      -Median time from test start to first bug report
-                    </p>
-                    <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
-                      -% completing the full journey
-                    </p>
-                    <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
-                      -% submitting 3+ bug reports within a defined time window
-                    </p>
-                    <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
-                      Weekly volume of submitted bug reports
-                    </p>
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex gap-2 items-start">
+                      <span className="shrink-0 text-[13px] leading-5 text-[rgba(140,89,229,0.6)]">–</span>
+                      <p className="text-[14px] font-normal leading-5 text-[var(--text-secondary)]">Median time: test start → first report</p>
+                    </div>
+                    <div className="flex gap-2 items-start">
+                      <span className="shrink-0 text-[13px] leading-5 text-[rgba(140,89,229,0.6)]">–</span>
+                      <p className="text-[14px] font-normal leading-5 text-[var(--text-secondary)]">% completing the full journey</p>
+                    </div>
+                    <div className="flex gap-2 items-start">
+                      <span className="shrink-0 text-[13px] leading-5 text-[rgba(140,89,229,0.6)]">–</span>
+                      <p className="text-[14px] font-normal leading-5 text-[var(--text-secondary)]">Weekly bug report volume</p>
+                    </div>
                   </div>
                 </article>
               </div>
               <div className="flex gap-4 max-[809px]:flex-col">
-                <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
-                  <div className="flex items-center">
-                    <span className="type-nav rounded-[20px] bg-[#ffe6d2] px-3 py-1 uppercase text-[#a6744a]">
-                      Manager Productivity
-                    </span>
+                <article className="flex min-h-[160px] flex-1 flex-col justify-between rounded-[12px] bg-[#edfaf2] p-5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-4 w-[3px] rounded-[2px] bg-[#26a661]" />
+                    <p className="text-[14px] font-semibold uppercase leading-5 text-[#26a661]">Manager Productivity</p>
                   </div>
-                  <div className="flex flex-col gap-[10px]">
-                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
-                      -Time spent on outreach and follow-ups
-                    </p>
-                    <div className="h-px w-full bg-[#e8e8e8]" />
-                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
-                      -Time spent clarifying reports (proxy for operational
-                      overhead)
-                    </p>
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex gap-2 items-start">
+                      <span className="shrink-0 text-[13px] leading-5 text-[rgba(38,166,97,0.6)]">–</span>
+                      <p className="text-[14px] font-normal leading-5 text-[var(--text-secondary)]">Time on outreach &amp; follow-ups</p>
+                    </div>
+                    <div className="flex gap-2 items-start">
+                      <span className="shrink-0 text-[13px] leading-5 text-[rgba(38,166,97,0.6)]">–</span>
+                      <p className="text-[14px] font-normal leading-5 text-[var(--text-secondary)]">Time clarifying incomplete reports</p>
+                    </div>
                   </div>
                 </article>
-                <article className="flex flex-1 flex-col gap-4 rounded-[12px] border border-[#ececec] bg-[#fafafa] p-5">
-                  <div className="flex items-center">
-                    <span className="type-nav rounded-[20px] bg-[#ffdefc] px-3 py-1 uppercase text-[#cc60c1]">
-                      Quality
-                    </span>
+                <article className="flex min-h-[160px] flex-1 flex-col justify-between rounded-[12px] bg-[#fff7f0] p-5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="h-4 w-[3px] rounded-[2px] bg-[#d9852e]" />
+                    <p className="text-[14px] font-semibold uppercase leading-5 text-[#d9852e]">Quality</p>
                   </div>
-                  <div className="flex flex-col gap-[10px]">
-                    <p className="text-[16px] font-normal leading-6 text-[var(--text-primary)]">
-                      -% of reports actionable without additional clarification
-                      from the team
-                    </p>
+                  <div className="flex flex-col gap-1.5">
+                    <div className="flex gap-2 items-start">
+                      <span className="shrink-0 text-[13px] leading-5 text-[rgba(217,133,46,0.6)]">–</span>
+                      <p className="text-[14px] font-normal leading-5 text-[var(--text-secondary)]">% of reports actionable without follow-up clarification</p>
+                    </div>
                   </div>
                 </article>
               </div>
             </div>
           </div>
 
+          {/* ── Research ───────────────────────────────────────────────── */}
           <div id="research" className="flex flex-col gap-[32px]">
-            <div className="flex flex-col gap-[16px]">
-              <SectionHeader subtitle="Research" title="Research Goals" />
+            <div className="flex flex-col gap-[20px]">
+              <SectionHeader
+                subtitle="Research"
+                title="Ground the MVP in real tester behavior"
+              />
               <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                To ground the MVP in real tester behavior, we ran a research
-                workshop and aligned on what we needed to learn. We defined
-                research goals, key questions, and respondent profiles before
-                moving into interviews:
+                We ran a research workshop to align on goals before moving into
+                interviews. Key questions: How do testers currently report issues?
+                Where does context get lost? What drives engagement?
               </p>
-              <ul className="text-[16px] font-normal leading-6 my-0 flex flex-col items-start gap-1 list-disc pl-5 text-[var(--text-secondary)]">
-                <li>
-                  Improve the quality of communication between testers and the
-                  team
-                </li>
-                <li>
-                  Improve the quality of bug reports (more actionable, less
-                  back-and-forth)
-                </li>
-                <li>Understand the current beta testing flow end-to-end</li>
-                <li>Understand what motivates testers to participate</li>
-                <li>Clarify manager responsibilities and pain points</li>
-              </ul>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                Based on the PRD and workshop outputs, we prepared an interview
-                guide and interviewed beta testers across different profiles. We
-                focused on how they currently report issues, where context gets
-                lost, what slows them down, and what makes them stay engaged.
-              </p>
+              <div className="overflow-hidden rounded-[12px] border border-[#ececec]">
+                <div className="flex bg-[#fafafa] px-5 py-3 text-[13px] font-semibold text-[var(--text-tertiary)]">
+                  <span className="w-[200px] shrink-0">Goal</span>
+                  <span className="flex-1">Key Question</span>
+                  <span className="w-[180px] shrink-0">Respondent Profile</span>
+                </div>
+                <div className="h-px bg-[#ededed]" />
+                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Communication quality</span>
+                  <span className="flex-1 text-[var(--text-secondary)]">How do testers communicate issues today?</span>
+                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Active beta testers</span>
+                </div>
+                <div className="h-px bg-[#ededed]" />
+                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Report quality</span>
+                  <span className="flex-1 text-[var(--text-secondary)]">Where does context get lost in reports?</span>
+                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Multi-device testers</span>
+                </div>
+                <div className="h-px bg-[#ededed]" />
+                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">End-to-end flow</span>
+                  <span className="flex-1 text-[var(--text-secondary)]">What&apos;s the full testing journey step-by-step?</span>
+                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">New testers (&lt;3 tests)</span>
+                </div>
+                <div className="h-px bg-[#ededed]" />
+                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Motivation &amp; retention</span>
+                  <span className="flex-1 text-[var(--text-secondary)]">What makes testers stay engaged and return?</span>
+                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Long-term testers</span>
+                </div>
+                <div className="h-px bg-[#ededed]" />
+                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Manager pain points</span>
+                  <span className="flex-1 text-[var(--text-secondary)]">What coordination tasks consume most time?</span>
+                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Beta program managers</span>
+                </div>
+              </div>
             </div>
 
             <div className="flex flex-col gap-2">
               <ScaledCover nativeWidth={840} nativeHeight={355} className="rounded-[16px] bg-[#f9f9f9]">
                 <Image
                   src={imgScreenshot20260129At2352561}
-                  alt=""
+                  alt="Research Plan - problems, goals, questions and respondent profiles"
                   width={772}
                   height={256}
-                  sizes="772px"
+                  sizes="(max-width: 809px) calc(92vw - 37px), 772px"
                   className="absolute left-1/2 top-1/2 h-[256px] w-[772px] -translate-x-1/2 -translate-y-1/2 object-contain"
                 />
               </ScaledCover>
               <p className="type-caption text-center text-[var(--text-tertiary)]">
-                Research plan - problems, goals, questions and respondent profiles
+                Research Plan - problems, goals, questions and respondent profiles
               </p>
             </div>
           </div>
 
+          {/* ── Synthesis ──────────────────────────────────────────────── */}
           <div id="synthesis" className="flex flex-col gap-[32px]">
-            <div className="flex flex-col gap-[16px]">
+            <div className="flex flex-col gap-[20px]">
               <SectionHeader
                 subtitle="Synthesis"
                 title="Hypotheses & Prioritization"
               />
               <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                We translated interview insights into product hypotheses and
-                prioritized them using the RICE framework. This helped us choose
-                the most impactful MVP features and connect them directly to
-                measurable outcomes (speed, quality, transparency, and reduced
-                manager overhead).
+                Interview insights became product hypotheses, prioritized with the
+                RICE framework. This helped us choose the most impactful MVP features
+                and connect them to measurable outcomes.
               </p>
-              <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-                Top hypotheses (from interviews):
-              </p>
-              <ol className="text-[16px] font-normal leading-6 list-decimal pl-5 text-[var(--text-secondary)]">
-                <li>
-                  Bug report automation / structured reporting. If we reduce
-                  manual input and guide testers with a structured form, reports
-                  will be more complete and require fewer clarifications.
-                </li>
-                <li>
-                  Direct coordinator - tester communication inside the platform.
-                  If clarification happens in-context (per test/report), lost
-                  context decreases and resolution becomes faster.
-                </li>
-                <li>
-                  Centralized notification system. If reminders and updates are
-                  centralized, response speed improves and missed deadlines
-                  decrease.
-                </li>
-                <li>
-                  Tester profile (for testers). If testers can track their
-                  activity, report statuses, and progress, motivation and return
-                  rate will increase.
-                </li>
-              </ol>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <div className="relative flex h-[520px] items-center justify-center overflow-hidden rounded-[16px] bg-[#f5f5f5] p-6">
-                <Image
-                  src={imgScreenshot20260130At0031041}
-                  alt=""
-                  width={685}
-                  height={472}
-                  sizes="685px"
-                  className="h-[472px] w-[685px] object-contain"
-                />
+              <div className="flex flex-col gap-4">
+                <div className="flex gap-4 max-[809px]:flex-col">
+                  <article className="flex flex-1 flex-col gap-[10px] rounded-[12px] border border-[rgba(43,153,219,0.15)] bg-[rgba(43,153,219,0.05)] p-5">
+                    <div className="flex items-center justify-between">
+                      <span className="rounded-[6px] bg-[rgba(43,153,219,0.15)] px-2 py-0.5 text-[12px] font-semibold text-[#2b99db]">H1</span>
+                      <span className="text-[11px] font-medium text-[var(--text-tertiary)]">1st</span>
+                    </div>
+                    <p className="text-[14px] font-semibold leading-5 text-[var(--text-primary)]">
+                      Structured bug report form
+                    </p>
+                    <p className="text-[13px] font-normal leading-5 text-[var(--text-secondary)]">
+                      If we guide testers with a structured form, reports will be more
+                      complete and require fewer clarifications.
+                    </p>
+                    <div className="flex gap-1.5 pt-1">
+                      <span className="rounded-[6px] border border-[#ececec] bg-white px-2 py-0.5 text-[11px] text-[var(--text-secondary)]">Impact: High</span>
+                      <span className="rounded-[6px] border border-[#ececec] bg-white px-2 py-0.5 text-[11px] text-[var(--text-secondary)]">Effort: Med</span>
+                    </div>
+                  </article>
+                  <article className="flex flex-1 flex-col gap-[10px] rounded-[12px] border border-[rgba(140,89,229,0.15)] bg-[rgba(140,89,229,0.05)] p-5">
+                    <div className="flex items-center justify-between">
+                      <span className="rounded-[6px] bg-[rgba(140,89,229,0.15)] px-2 py-0.5 text-[12px] font-semibold text-[#8c59e5]">H2</span>
+                      <span className="text-[11px] font-medium text-[var(--text-tertiary)]">2nd</span>
+                    </div>
+                    <p className="text-[14px] font-semibold leading-5 text-[var(--text-primary)]">
+                      In-context communication
+                    </p>
+                    <p className="text-[13px] font-normal leading-5 text-[var(--text-secondary)]">
+                      If clarification happens per test/report, lost context decreases
+                      and resolution becomes faster.
+                    </p>
+                    <div className="flex gap-1.5 pt-1">
+                      <span className="rounded-[6px] border border-[#ececec] bg-white px-2 py-0.5 text-[11px] text-[var(--text-secondary)]">Impact: High</span>
+                      <span className="rounded-[6px] border border-[#ececec] bg-white px-2 py-0.5 text-[11px] text-[var(--text-secondary)]">Effort: High</span>
+                    </div>
+                  </article>
+                </div>
+                <div className="flex gap-4 max-[809px]:flex-col">
+                  <article className="flex flex-1 flex-col gap-[10px] rounded-[12px] border border-[rgba(38,166,97,0.15)] bg-[rgba(38,166,97,0.05)] p-5">
+                    <div className="flex items-center justify-between">
+                      <span className="rounded-[6px] bg-[rgba(38,166,97,0.15)] px-2 py-0.5 text-[12px] font-semibold text-[#26a661]">H3</span>
+                      <span className="text-[11px] font-medium text-[var(--text-tertiary)]">3rd</span>
+                    </div>
+                    <p className="text-[14px] font-semibold leading-5 text-[var(--text-primary)]">
+                      Centralized notifications
+                    </p>
+                    <p className="text-[13px] font-normal leading-5 text-[var(--text-secondary)]">
+                      If reminders and updates are centralized, response speed improves
+                      and missed deadlines decrease.
+                    </p>
+                    <div className="flex gap-1.5 pt-1">
+                      <span className="rounded-[6px] border border-[#ececec] bg-white px-2 py-0.5 text-[11px] text-[var(--text-secondary)]">Impact: Med</span>
+                      <span className="rounded-[6px] border border-[#ececec] bg-white px-2 py-0.5 text-[11px] text-[var(--text-secondary)]">Effort: Low</span>
+                    </div>
+                  </article>
+                  <article className="flex flex-1 flex-col gap-[10px] rounded-[12px] border border-[rgba(217,133,46,0.15)] bg-[rgba(217,133,46,0.05)] p-5">
+                    <div className="flex items-center justify-between">
+                      <span className="rounded-[6px] bg-[rgba(217,133,46,0.15)] px-2 py-0.5 text-[12px] font-semibold text-[#d9852e]">H4</span>
+                      <span className="text-[11px] font-medium text-[var(--text-tertiary)]">4th</span>
+                    </div>
+                    <p className="text-[14px] font-semibold leading-5 text-[var(--text-primary)]">
+                      Tester profile + activity tracking
+                    </p>
+                    <p className="text-[13px] font-normal leading-5 text-[var(--text-secondary)]">
+                      If testers can track their activity and report statuses,
+                      motivation and return rate will increase.
+                    </p>
+                    <div className="flex gap-1.5 pt-1">
+                      <span className="rounded-[6px] border border-[#ececec] bg-white px-2 py-0.5 text-[11px] text-[var(--text-secondary)]">Impact: Med</span>
+                      <span className="rounded-[6px] border border-[#ececec] bg-white px-2 py-0.5 text-[11px] text-[var(--text-secondary)]">Effort: Low</span>
+                    </div>
+                  </article>
+                </div>
               </div>
-              <p className="type-caption text-center text-[var(--text-tertiary)]">
-                Process of defining and prioritizing hypotheses
-              </p>
             </div>
 
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              These prioritized hypotheses shaped our core user flows (Join →
-              Pick a test → Test device → Submit a report → Track status) and
-              became the backbone for the MVP UI and feature set.
-            </p>
+            <div className="flex flex-col gap-[20px]">
+              <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
+                Core MVP User Flow
+              </h3>
+              <div className="flex w-full items-start justify-center gap-2">
+                <div className="flex w-20 flex-col items-center gap-2">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(43,153,219,0.12)]">
+                    <span className="text-[14px] font-semibold text-[#2b99db]">1</span>
+                  </div>
+                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Join</p>
+                </div>
+                <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
+                <div className="flex w-20 flex-col items-center gap-2">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(140,89,229,0.12)]">
+                    <span className="text-[14px] font-semibold text-[#8c59e5]">2</span>
+                  </div>
+                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Pick a test</p>
+                </div>
+                <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
+                <div className="flex w-20 flex-col items-center gap-2">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(38,166,97,0.12)]">
+                    <span className="text-[14px] font-semibold text-[#26a661]">3</span>
+                  </div>
+                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Test device</p>
+                </div>
+                <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
+                <div className="flex w-20 flex-col items-center gap-2">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(217,133,46,0.12)]">
+                    <span className="text-[14px] font-semibold text-[#d9852e]">4</span>
+                  </div>
+                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Submit report</p>
+                </div>
+                <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
+                <div className="flex w-20 flex-col items-center gap-2">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(204,96,193,0.12)]">
+                    <span className="text-[14px] font-semibold text-[#cc60c1]">5</span>
+                  </div>
+                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Track status</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Solution */}
+        {/* ── Solution ───────────────────────────────────────────────── */}
         <div id="solution" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[16px]">
+          <div className="flex flex-col gap-[20px]">
             <SectionHeader subtitle="Solution" title="Testing hub" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              The Testing hub helps testers instantly understand what to do next
-              by grouping tests into three statuses: Not started, In progress, and
-              Submitted. For quick scanning, tests can be viewed in two formats: a
-              Kanban board for an at-a-glance overview and a list view for
-              detailed browsing.
+              Tests grouped by status: Not started / In progress / Submitted. Two
+              views: Kanban for at-a-glance overview, List for detail. Nothing
+              hidden, nothing to guess.
             </p>
           </div>
           <VideoShowcase
@@ -532,15 +595,14 @@ export default function BetaTestingPlatformCaseStudy() {
         </div>
 
         <div className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[16px]">
+          <div className="flex flex-col gap-[20px]">
             <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
-              Detailed view of one test
+              Test Detail
             </h3>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              The test details page provides full context in one place: test name,
-              description, deadline, and conditions. Test cases are separated into
-              a clear checklist with descriptions, so testers always know what to
-              verify and can track progress (what&apos;s done vs what&apos;s left).
+              Test name, description, deadline, and conditions - all on one page.
+              Test cases as a checklist so testers always know what&apos;s done vs.
+              what&apos;s left.
             </p>
           </div>
           <VideoShowcase
@@ -550,101 +612,146 @@ export default function BetaTestingPlatformCaseStudy() {
         </div>
 
         <div className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[16px]">
+          <div className="flex flex-col gap-[20px]">
             <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Notifications
             </h3>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              To reduce missed deadlines and slow feedback, we introduced a
-              centralized notifications center. Testers get clear updates about
-              status changes, new tasks/deadlines, and rewards.
+              Centralized notification center: status changes, new tasks, deadlines,
+              rewards. Reduces missed actions without relying on external messengers.
             </p>
           </div>
           <VideoShowcase
             slot="notifications-center"
-            caption="Centralized notifications center with status updates and reminders"
+            caption="Centralized notification center with status updates and reminders"
           />
         </div>
 
-        <div id="usability" className="flex flex-col gap-[16px]">
-          <SectionHeader
-            subtitle="Usability testing"
-            title="What the testing round revealed: testers needed everything in one place"
-          />
-          <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-            After the first UI round, we ran usability tests with beta testers to
-            validate clarity and speed of the main tasks.
-            <br />
-            <br />
-            Initially, we organized the experience by function - tests in one
-            place, news and device updates in another. It made sense structurally,
-            but it didn&apos;t match how testers actually think. During usability
-            testing, the gaps became obvious: testers had no way to track upcoming
-            tests or device updates at a glance, had no visibility into strict
-            deadlines, and no sense of their own score. People kept asking
-            &quot;where do I go next?&quot; - and sometimes the answer simply wasn&apos;t
-            there. That told us the architecture was wrong. We scrapped the
-            sectioned layout and built a dashboard that answered everything on one
-            screen.
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[16px]">
-            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">Dashboard</h3>
+        {/* ── Usability testing ──────────────────────────────────────── */}
+        <div id="usability" className="flex flex-col gap-[32px]">
+          <div className="flex flex-col gap-[20px]">
+            <SectionHeader
+              subtitle="Usability testing"
+              title="What the testing round revealed: testers needed everything in one place"
+            />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              Working within a tight timeframe, I designed the Dashboard as the
-              first screen testers see after login - a single overview of
-              everything critical, without requiring any navigation. I owned this
-              page end-to-end, from structure to final details.
-            </p>
-            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              The layout is organized into four sections:{" "}
-              <strong className="text-[var(--text-primary)]">My tests</strong>{" "}
-              surfaces active tests with progress, timelines, manager contact,
-              device status, and a feedback reminder banner so nothing slips
-              through;{" "}
-              <strong className="text-[var(--text-primary)]">Calendar</strong>{" "}
-              shows strict deadlines and the full testing timeline at a glance;{" "}
-              <strong className="text-[var(--text-primary)]">
-                Upcoming tests
-              </strong>{" "}
-              lets testers discover and join new tests before they start; and{" "}
-              <strong className="text-[var(--text-primary)]">Updates</strong>{" "}
-              consolidates the latest hub, app, and device updates alongside the
-              tester&apos;s current{" "}
-              <strong className="text-[var(--text-primary)]">score</strong> -
-              the visibility that was missing
-              entirely in the first version. Every section answers a question
-              testers were previously asking out loud. The goal was a screen you
-              could land on, read in seconds, and know exactly what to do next.
+              The first version organized content by function - tests here, updates
+              there. It made sense structurally, but it didn&apos;t match how testers
+              actually think. During usability testing, the gaps became obvious: no
+              view of upcoming tests, no deadline visibility, no personal score.
+              Testers kept asking &quot;where do I go next?&quot; The architecture had no
+              answer.
+              <br />
+              <br />
+              We scrapped the sectioned layout and built a dashboard.
             </p>
           </div>
-          <VideoShowcase slot="dashboard-overview" caption="Dashboard view" />
+
+          <div className="flex flex-col gap-2">
+            <div className="flex gap-4 rounded-[12px] bg-[#fafafa] px-6 py-7 max-[809px]:flex-col">
+              {/* Before — V1 */}
+              <div className="flex flex-1 flex-col gap-[10px] rounded-[10px] bg-white px-[18px] py-5">
+                <span className="inline-flex self-start rounded-[6px] bg-[rgba(204,64,38,0.1)] px-[10px] py-1 text-[11px] font-semibold text-[#cc4026]">
+                  Before - V1
+                </span>
+                <p className="text-[12px] font-normal leading-[18px] text-[var(--text-tertiary)]">
+                  Sectioned layout only. No overview screen.
+                </p>
+                <div className="flex items-center gap-2 rounded-[8px] border border-[rgba(128,128,148,0.2)] bg-[rgba(128,128,148,0.07)] px-3 py-[10px]">
+                  <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-[#808094]" />
+                  <p className="text-[12px] font-semibold text-[#808094]">Tests</p>
+                </div>
+                <div className="flex items-center gap-2 rounded-[8px] border border-[rgba(128,128,148,0.2)] bg-[rgba(128,128,148,0.07)] px-3 py-[10px]">
+                  <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-[#808094]" />
+                  <p className="text-[12px] font-semibold text-[#808094]">News &amp; Updates</p>
+                </div>
+                <div className="flex items-center gap-2 rounded-[8px] border border-[rgba(128,128,148,0.2)] bg-[rgba(128,128,148,0.07)] px-3 py-[10px]">
+                  <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-[#808094]" />
+                  <p className="text-[12px] font-semibold text-[#808094]">Profile</p>
+                </div>
+                <div className="flex items-center gap-2 rounded-[8px] bg-[rgba(204,64,38,0.06)] px-3 py-[10px] text-[#cc4026]">
+                  <span className="shrink-0 text-[13px] font-semibold">✗</span>
+                  <p className="flex-1 text-[12px] font-normal">&quot;Where do I go next?&quot; - no answer</p>
+                </div>
+              </div>
+              {/* After - V2 */}
+              <div className="flex flex-1 flex-col gap-[10px] rounded-[10px] bg-white px-[18px] py-5">
+                <span className="inline-flex self-start rounded-[6px] bg-[rgba(38,166,97,0.1)] px-[10px] py-1 text-[11px] font-semibold text-[#26a661]">
+                  After - V2
+                </span>
+                <p className="text-[12px] font-normal leading-[18px] text-[var(--text-tertiary)]">
+                  Dashboard added as overview. Sections kept for deep work.
+                </p>
+                <div className="flex flex-col gap-1.5 rounded-[8px] border-[1.5px] border-[rgba(43,153,219,0.35)] bg-[rgba(43,153,219,0.08)] p-3">
+                  <div className="flex items-center gap-2">
+                    <span className="rounded-[4px] bg-[rgba(43,153,219,0.15)] px-1.5 py-0.5 text-[9px] font-semibold text-[#2b99db]">NEW</span>
+                    <p className="text-[12px] font-semibold text-[#2b99db]">Dashboard - overview screen</p>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className="rounded-[5px] bg-[rgba(43,153,219,0.1)] px-[7px] py-[3px] text-[10px] text-[#2b99db]">My Tests</span>
+                    <span className="rounded-[5px] bg-[rgba(140,89,229,0.1)] px-[7px] py-[3px] text-[10px] text-[#8c59e5]">Calendar</span>
+                    <span className="rounded-[5px] bg-[rgba(38,166,97,0.1)] px-[7px] py-[3px] text-[10px] text-[#26a661]">Upcoming</span>
+                    <span className="rounded-[5px] bg-[rgba(217,133,46,0.1)] px-[7px] py-[3px] text-[10px] text-[#d9852e]">Score</span>
+                  </div>
+                </div>
+                <p className="text-[11px] font-medium text-[var(--text-tertiary)]">
+                  Individual pages - still exist for deep work
+                </p>
+                <div className="flex items-center gap-2 rounded-[8px] border border-[rgba(128,128,148,0.12)] bg-[rgba(128,128,148,0.04)] px-3 py-2">
+                  <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-[rgba(128,128,148,0.6)]" />
+                  <p className="text-[12px] font-normal text-[rgba(128,128,148,0.6)]">Tests</p>
+                </div>
+                <div className="flex items-center gap-2 rounded-[8px] border border-[rgba(128,128,148,0.12)] bg-[rgba(128,128,148,0.04)] px-3 py-2">
+                  <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-[rgba(128,128,148,0.6)]" />
+                  <p className="text-[12px] font-normal text-[rgba(128,128,148,0.6)]">News &amp; Updates</p>
+                </div>
+                <div className="flex items-center gap-2 rounded-[8px] border border-[rgba(128,128,148,0.12)] bg-[rgba(128,128,148,0.04)] px-3 py-2">
+                  <span className="h-[7px] w-[7px] shrink-0 rounded-full bg-[rgba(128,128,148,0.6)]" />
+                  <p className="text-[12px] font-normal text-[rgba(128,128,148,0.6)]">Profile</p>
+                </div>
+                <div className="flex items-center gap-2 rounded-[8px] bg-[rgba(38,166,97,0.06)] px-3 py-[10px] text-[#26a661]">
+                  <span className="shrink-0 text-[13px] font-semibold">✓</span>
+                  <p className="flex-1 text-[12px] font-normal">Overview at a glance + depth when needed</p>
+                </div>
+              </div>
+            </div>
+            <p className="text-center text-[16px] font-normal leading-6 text-[var(--text-tertiary)]">
+              Architecture comparison - V1 sectioned layout vs. V2 unified dashboard
+            </p>
+          </div>
         </div>
 
-        <div className="flex flex-col gap-[48px]">
-          <div className="flex flex-col gap-[16px]">
-            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
-              Future direction: In-platform messenger
-            </h3>
+        <div id="dashboard" className="flex flex-col gap-[32px]">
+          <div className="flex flex-col gap-[20px]">
+            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">Dashboard</h3>
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              After validating the MVP, we outlined several ideas for the next
-              stage. The first one is an integrated messenger.
+              I owned the Dashboard end-to-end - from structure to final details. It
+              replaced the sectioned V1 layout with a single screen that answers
+              every question before the tester has to ask it.
+            </p>
+          </div>
+          <VideoShowcase
+            slot="dashboard-overview"
+            caption="Dashboard - 4 annotated zones, each answering a question testers were previously asking out loud"
+          />
+        </div>
+
+        {/* ── What's Next ────────────────────────────────────────────── */}
+        <div id="whats-next" className="flex flex-col gap-[48px]">
+          <div className="flex flex-col gap-[20px]">
+            <SectionHeader
+              subtitle="What's Next"
+              title="Future direction: in-platform messenger."
+            />
+            <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
+              MVP kept communication lightweight by linking out to Telegram directly
+              from the platform. Pragmatic for early rollout where local testers
+              already use it.
               <br />
               <br />
-              In the MVP, we kept communication lightweight by linking out to
-              Telegram chats directly from the platform (manager contact and test
-              group). This was a pragmatic decision: the team and many local
-              testers already use Telegram daily, and introducing a brand-new
-              communication tool would slow down adoption during early rollout.
-              <br />
-              <br />
-              However, for international beta programs, direct communication is
-              often harder because testers may not use Telegram or prefer
-              different tools. To address that, we propose an in-platform
-              messenger that allows testers to message the manager or the test
-              group without leaving the platform.
+              For international programs, Telegram isn&apos;t viable. Next step: an
+              integrated messenger so testers can reach the manager or test group
+              without leaving the platform.
             </p>
           </div>
           <VideoShowcase
@@ -656,7 +763,7 @@ export default function BetaTestingPlatformCaseStudy() {
             caption="In-built messenger: page view"
           />
         </div>
-    </div>
+      </div>
     </section>
   );
 }

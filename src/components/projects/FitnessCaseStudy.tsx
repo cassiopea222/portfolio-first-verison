@@ -50,7 +50,7 @@ function Showcase({ children, caption }: { children: React.ReactNode; caption: s
 export default function FitnessCaseStudy() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] py-[120px] px-[60px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px] max-[809px]:px-[20px]">
-      <CaseStudyToC sections={TOC_SECTIONS} backHref="/" />
+      <CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Fitness app redesign" />
 
       <div className="flex min-w-0 max-w-[800px] flex-1 flex-col gap-12">
         {/* Opening block */}
@@ -71,7 +71,7 @@ export default function FitnessCaseStudy() {
               width={208}
               height={440}
               priority
-              sizes="208px"
+              sizes="(max-width: 809px) calc(26vw - 10px), 208px"
               className="absolute left-[49px] top-1/2 h-[440px] w-[208px] -translate-y-1/2 object-contain"
             />
             <Image
@@ -80,7 +80,7 @@ export default function FitnessCaseStudy() {
               width={208}
               height={440}
               priority
-              sizes="208px"
+              sizes="(max-width: 809px) calc(26vw - 10px), 208px"
               className="absolute left-1/2 top-[68px] h-[440px] w-[208px] -translate-x-1/2 object-contain"
             />
             <Image
@@ -89,7 +89,7 @@ export default function FitnessCaseStudy() {
               width={208}
               height={440}
               priority
-              sizes="208px"
+              sizes="(max-width: 809px) calc(26vw - 10px), 208px"
               className="absolute left-[545px] top-1/2 h-[440px] w-[208px] -translate-y-1/2 object-contain"
             />
           </ScaledCover>
@@ -98,7 +98,7 @@ export default function FitnessCaseStudy() {
           <CaseStudyMeta items={[
             { label: "Role", value: "Product Designer" },
             { label: "Team", value: <><p>2 designers</p><p>5 developers</p><p>1 project manager</p><p>1 QA</p></> },
-            { label: "Timeline", value: "Nov 2023 - Jan 2024" },
+            { label: "Timeline", value: "Oct 2023 - Feb 2024" },
           ]} />
 
           {/* Description */}
@@ -168,7 +168,7 @@ export default function FitnessCaseStudy() {
               alt=""
               width={200}
               height={433}
-              sizes="200px"
+              sizes="(max-width: 809px) calc(25vw - 10px), 200px"
               className="absolute left-[180px] top-[30px] h-[433px] w-[200px] object-contain"
             />
             <Image
@@ -176,7 +176,7 @@ export default function FitnessCaseStudy() {
               alt=""
               width={200}
               height={433}
-              sizes="200px"
+              sizes="(max-width: 809px) calc(25vw - 10px), 200px"
               className="absolute left-[420px] top-[30px] h-[433px] w-[200px] object-contain"
             />
             <p className="absolute left-[258px] top-[475px] text-sm leading-[18px] text-[var(--text-tertiary)]">
@@ -199,7 +199,7 @@ export default function FitnessCaseStudy() {
               alt=""
               width={200}
               height={412}
-              sizes="200px"
+              sizes="(max-width: 809px) calc(25vw - 10px), 200px"
               className="absolute left-[180px] top-[51px] h-[412px] w-[200px] rounded-[12px] object-contain"
             />
             <Image
@@ -207,7 +207,7 @@ export default function FitnessCaseStudy() {
               alt=""
               width={200}
               height={412}
-              sizes="200px"
+              sizes="(max-width: 809px) calc(25vw - 10px), 200px"
               className="absolute left-[420px] top-[51px] h-[412px] w-[200px] object-contain"
             />
             <p className="absolute left-[258px] top-[475px] text-sm leading-[18px] text-[var(--text-tertiary)]">
@@ -239,7 +239,7 @@ export default function FitnessCaseStudy() {
               alt=""
               width={210}
               height={449}
-              sizes="210px"
+              sizes="(max-width: 809px) calc(26vw - 11px), 210px"
               className="absolute left-1/2 top-1/2 h-[449px] w-[210px] -translate-x-1/2 -translate-y-1/2 object-contain"
             />
           </Showcase>
@@ -257,7 +257,7 @@ export default function FitnessCaseStudy() {
                 alt=""
                 width={210}
                 height={448}
-                sizes="210px"
+                sizes="(max-width: 809px) calc(26vw - 11px), 210px"
                 className="h-[448px] w-[210px] object-contain"
               />
               <Image
@@ -265,7 +265,7 @@ export default function FitnessCaseStudy() {
                 alt=""
                 width={222}
                 height={448}
-                sizes="222px"
+                sizes="(max-width: 809px) calc(28vw - 11px), 222px"
                 className="h-[448px] w-[222px] object-contain"
               />
             </div>
@@ -290,7 +290,7 @@ export default function FitnessCaseStudy() {
               alt=""
               width={210}
               height={381}
-              sizes="210px"
+              sizes="(max-width: 809px) calc(26vw - 11px), 210px"
               className="absolute left-[45px] top-[139px] h-[381px] w-[210px] object-contain"
             />
             <Image
@@ -298,7 +298,7 @@ export default function FitnessCaseStudy() {
               alt=""
               width={210}
               height={455}
-              sizes="210px"
+              sizes="(max-width: 809px) calc(26vw - 11px), 210px"
               className="absolute left-[295px] top-1/2 h-[455px] w-[210px] -translate-y-1/2 object-contain"
             />
             <Image
@@ -306,7 +306,7 @@ export default function FitnessCaseStudy() {
               alt=""
               width={210}
               height={403}
-              sizes="210px"
+              sizes="(max-width: 809px) calc(26vw - 11px), 210px"
               className="absolute left-[545px] top-[117px] h-[403px] w-[210px] object-contain"
             />
           </Showcase>
@@ -330,7 +330,7 @@ export default function FitnessCaseStudy() {
               alt=""
               width={600}
               height={427}
-              sizes="(max-width: 1024px) 90vw, 600px"
+              sizes="(max-width: 809px) calc(75vw - 30px), 600px"
               className="absolute left-1/2 top-1/2 h-[427px] w-[600px] -translate-x-1/2 -translate-y-1/2 object-contain"
             />
           </Showcase>

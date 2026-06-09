@@ -4,6 +4,7 @@ import ScaledCover from "@/components/ScaledCover";
 
 export type ProjectCardProps = {
   title: string;
+  dateRange: string;
   tags: string[];
   description: string;
   cover: "ajax" | "fitness" | "role";
@@ -12,7 +13,6 @@ export type ProjectCardProps = {
 
 // Ajax cover assets
 const imgAjaxBg = "/home/unsplash_-Vh-kRw_vyQ.png";
-const imgAjaxDashboard = "/gifs/ajax-cover.gif";
 
 // Fitness cover assets
 const imgFitnessLeft = "/home/sadie_active/sadieactivecover1 1.png";
@@ -23,6 +23,7 @@ const imgRoleManagement = "/home/role management image.png";
 
 export default function ProjectCard({
   title,
+  dateRange,
   tags,
   description,
   cover,
@@ -42,14 +43,16 @@ export default function ProjectCard({
             />
           </div>
           <div className="absolute left-1/2 top-1/2 h-[424px] w-[596px] -translate-x-1/2 -translate-y-1/2 rounded-[8px] overflow-hidden shadow-[var(--card-shadow)]">
-            <Image
-              src={imgAjaxDashboard}
-              alt=""
-              fill
-              unoptimized
-              sizes="596px"
-              className="object-cover rounded-[8px]"
-            />
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/gifs/ajax-cover.webm" type="video/webm" />
+              <source src="/gifs/ajax-cover.mp4" type="video/mp4" />
+            </video>
           </div>
         </>
       )}
@@ -91,7 +94,7 @@ export default function ProjectCard({
   );
 
   const textNode = (
-    <div className="flex w-full flex-col gap-[12px]">
+    <div className="flex w-full flex-col gap-[4px]">
       <div className="flex flex-col gap-[8px]">
         <div className="flex flex-wrap items-start gap-2">
           {tags.map((tag) => (
@@ -103,8 +106,9 @@ export default function ProjectCard({
             </span>
           ))}
         </div>
-        <h3 className="font-inconsolata text-[22px] font-semibold leading-[30px] text-[var(--text-primary)]">
-          {title}
+        <h3 className="flex items-start gap-4 font-inconsolata text-[22px] font-semibold leading-[30px] whitespace-nowrap">
+          <span className="text-[var(--text-primary)]">{title}</span>
+          <span className="text-[var(--text-tertiary)]">{dateRange}</span>
         </h3>
       </div>
       <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0.2px] text-[var(--text-secondary)]">

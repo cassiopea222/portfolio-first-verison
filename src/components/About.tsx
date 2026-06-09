@@ -17,17 +17,17 @@ type PhotoProps = {
 
 function Photo({ src, label, objectPosition = "center" }: PhotoProps) {
   return (
-    <div className="flex shrink-0 flex-col items-center justify-center gap-3">
+    <div className="flex min-w-0 flex-1 flex-col items-center justify-center gap-3">
       <div
         data-tooltip={label}
-        className="relative h-[340px] w-[237px] shrink-0 overflow-hidden rounded-[12px] min-[402px]:h-[300px] min-[402px]:w-[209px] min-[810px]:h-[260px] min-[810px]:w-[201px]"
+        className="relative aspect-[237/340] w-full overflow-hidden rounded-[12px]"
       >
         <Image
           src={src}
           alt={label}
           fill
-          sizes="(max-width: 401px) 237px, (max-width: 809px) 209px, 201px"
-          className="object-cover"
+          sizes="(max-width: 809px) 25vw, 201px"
+          className="h-full w-full object-cover"
           style={{ objectPosition }}
         />
       </div>
@@ -71,7 +71,7 @@ export default function About() {
               </div>
 
               {/* Photos row */}
-              <div className="flex w-full gap-4 overflow-x-auto min-[810px]:gap-3">
+              <div className="flex w-full gap-4 min-[810px]:gap-3">
                 <Photo src={imgPhoto1} label="It's me!" objectPosition="center bottom" />
                 <Photo src={imgPhoto2} label="Looking at art" objectPosition="center" />
                 <Photo src={imgPhoto3} label="Smelling perfumes" objectPosition="right center" />

@@ -81,7 +81,7 @@ function DiagramShowcase({
 export default function RoleManagementCaseStudy() {
   return (
     <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] py-[120px] px-[60px] text-[var(--foreground)] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px] max-[809px]:px-[20px]">
-      <CaseStudyToC sections={TOC_SECTIONS} backHref="/" />
+      <CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Role Management System" />
 
       <div className="flex min-w-0 max-w-[840px] flex-1 flex-col gap-[48px]">
         {/* Opening block */}
@@ -101,7 +101,7 @@ export default function RoleManagementCaseStudy() {
                 src={imgCreateNewRoleNew3}
                 alt=""
                 fill
-                sizes="622px"
+                sizes="(max-width: 809px) calc(74vw - 30px), 622px"
                 priority
                 className="object-contain"
               />
@@ -112,7 +112,7 @@ export default function RoleManagementCaseStudy() {
           <CaseStudyMeta items={[
             { label: "Role", value: "Product Designer" },
             { label: "Team", value: "2 designers" },
-            { label: "Timeline", value: "August 2025" },
+            { label: "Timeline", value: "Aug 2025" },
           ]} />
 
           {/* Description */}
@@ -128,7 +128,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Context */}
-        <div id="context" className="flex flex-col gap-[16px]">
+        <div id="context" className="flex flex-col gap-[20px]">
           <SectionHeader subtitle="Context" title="What the platform needed" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
@@ -158,7 +158,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* My role */}
-        <div id="my-role" className="flex flex-col gap-[16px]">
+        <div id="my-role" className="flex flex-col gap-[20px]">
           <SectionHeader subtitle="My role" title="What I owned" />
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             I led the design end-to-end - mapped the permission architecture,
@@ -171,7 +171,7 @@ export default function RoleManagementCaseStudy() {
 
         {/* The problem */}
         <div id="the-problem" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[16px]">
+          <div className="flex flex-col gap-[20px]">
             <SectionHeader subtitle="The problem" title="No structure, no process" />
             <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               <p>
@@ -196,7 +196,7 @@ export default function RoleManagementCaseStudy() {
                 src={imgScreenshot20260319At2244461}
                 alt=""
                 fill
-                sizes="818px"
+                sizes="(max-width: 809px) calc(97vw - 39px), 818px"
                 className="object-contain"
               />
             </div>
@@ -204,7 +204,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Challenge */}
-        <div id="challenge" className="flex flex-col gap-[16px]">
+        <div id="challenge" className="flex flex-col gap-[20px]">
           <SectionHeader subtitle="Challenge" title="Six levels deep" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
@@ -225,7 +225,7 @@ export default function RoleManagementCaseStudy() {
 
         {/* Initial approach */}
         <div id="initial-approach" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[16px]">
+          <div className="flex flex-col gap-[20px]">
             <SectionHeader
               subtitle="Initial approach"
               title="How I first framed the problem"
@@ -264,7 +264,7 @@ export default function RoleManagementCaseStudy() {
                   src={imgCreateNewRole13}
                   alt=""
                   fill
-                  sizes="642px"
+                  sizes="(max-width: 809px) calc(76vw - 31px), 642px"
                   className="object-contain"
                 />
               </div>
@@ -279,7 +279,7 @@ export default function RoleManagementCaseStudy() {
                   src={imgCreateNewRole23}
                   alt=""
                   fill
-                  sizes="642px"
+                  sizes="(max-width: 809px) calc(76vw - 31px), 642px"
                   className="object-contain"
                 />
               </div>
@@ -298,7 +298,7 @@ export default function RoleManagementCaseStudy() {
 
         {/* What we landed on */}
         <div id="what-we-landed-on" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[16px]">
+          <div className="flex flex-col gap-[20px]">
             <SectionHeader
               subtitle="What we landed on"
               title="Simpler, and more practical"
@@ -331,7 +331,7 @@ export default function RoleManagementCaseStudy() {
                 src={imgCreateNewRoleNew3}
                 alt=""
                 fill
-                sizes="622px"
+                sizes="(max-width: 809px) calc(74vw - 30px), 622px"
                 className="object-contain"
               />
             </div>
@@ -352,7 +352,7 @@ export default function RoleManagementCaseStudy() {
                 src={imgProfileRole1}
                 alt=""
                 fill
-                sizes="646px"
+                sizes="(max-width: 809px) calc(77vw - 31px), 646px"
                 className="object-contain"
               />
             </div>
@@ -364,7 +364,7 @@ export default function RoleManagementCaseStudy() {
                 src={imgProfilePermissions1}
                 alt=""
                 fill
-                sizes="644px"
+                sizes="(max-width: 809px) calc(77vw - 31px), 644px"
                 className="object-contain"
               />
             </div>
@@ -379,7 +379,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Key design decisions */}
-        <div id="key-design-decisions" className="flex flex-col gap-[16px]">
+        <div id="key-design-decisions" className="flex flex-col gap-[20px]">
           <SectionHeader subtitle="Key design decisions" title="Why it works" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
@@ -398,7 +398,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Tradeoffs */}
-        <div id="tradeoffs" className="flex flex-col gap-[16px]">
+        <div id="tradeoffs" className="flex flex-col gap-[20px]">
           <SectionHeader subtitle="Tradeoffs & reflection" title="Two models, two assumptions" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
@@ -447,7 +447,7 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Outcome */}
-        <div id="outcome" className="flex flex-col gap-[16px]">
+        <div id="outcome" className="flex flex-col gap-[20px]">
           <SectionHeader subtitle="Outcome" title="What this enabled" />
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             The delivered model gave admins a consistent, repeatable process for

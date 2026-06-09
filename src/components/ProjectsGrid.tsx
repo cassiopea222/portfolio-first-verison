@@ -16,6 +16,7 @@ export default function ProjectsGrid({ projects = defaultProjects }: ProjectsGri
           <ProjectCard
             key={`${project.title}-${index}`}
             title={project.title}
+            dateRange={project.dateRange}
             tags={project.tags}
             description={project.description}
             cover={project.cover}

@@ -87,7 +87,7 @@ export default function FooterNote() {
             <span className="font-sans text-[14px] font-normal leading-[18px] text-[var(--text-tertiary)]">
               Built with love by me, using
             </span>
-            <div className="relative h-6 w-6 overflow-hidden rounded-[4px]">
+            <a href="https://cursor.com" target="_blank" rel="noopener noreferrer" className="relative h-6 w-6 overflow-hidden rounded-[4px]">
               <Image
                 src="/footer/cursor-icon.png"
                 alt="Cursor"
@@ -95,16 +95,16 @@ export default function FooterNote() {
                 sizes="24px"
                 className="object-cover"
               />
-            </div>
-            <div className="relative h-6 w-6 overflow-hidden rounded-[4px]">
+            </a>
+            <a href="https://claude.com/product/claude-code" target="_blank" rel="noopener noreferrer" className="relative h-6 w-6 overflow-hidden rounded-[4px]">
               <Image
                 src="/footer/claude-icon.png"
-                alt="Claude"
+                alt="Claude Code"
                 fill
                 sizes="24px"
                 className="object-cover"
               />
-            </div>
+            </a>
           </div>
           <p className="font-sans text-[14px] font-normal leading-[18px] text-[var(--text-tertiary)]">
             Changelog: {lastUpdate}

@@ -51,7 +51,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-[18px] fluid-px pb-[80px] pt-0">
+    <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-[18px] fluid-px pb-[60px] pt-0">
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-4 max-w-[731px]">
           <p

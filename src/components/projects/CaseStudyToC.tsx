@@ -6,14 +6,18 @@ import { ArrowBackNavIcon } from "@/components/icons/ArrowBackNavIcon";
 
 export type ToCSection = { id: string; label: string };
 
+const TOP_ID = "__top";
+
 export default function CaseStudyToC({
   sections,
   backHref = "/",
+  title,
 }: {
   sections: ToCSection[];
   backHref?: string;
+  title?: string;
 }) {
-  const [activeId, setActiveId] = useState(sections[0]?.id ?? "");
+  const [activeId, setActiveId] = useState(title ? TOP_ID : sections[0]?.id ?? "");
   const intersectingRef = useRef(new Set<string>());
 
   useEffect(() => {
@@ -67,6 +71,23 @@ export default function CaseStudyToC({
           <span>Go back</span>
         </Link>
         <div className="flex flex-col gap-[12px] tracking-[-0.2px]">
+          {title && (
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveId(TOP_ID);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className={`font-inconsolata text-[16px] leading-[18px] transition-colors ${
+                activeId === TOP_ID
+                  ? "font-semibold text-[var(--text-primary)]"
+                  : "font-medium text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
+              }`}
+            >
+              {title}
+            </a>
+          )}
           {sections.map(({ id, label }) => (
             <a
               key={id}
