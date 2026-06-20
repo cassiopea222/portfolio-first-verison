@@ -28,7 +28,7 @@ function Photo({ src, label, objectPosition = "center" }: PhotoProps) {
           src={src}
           alt={label}
           fill
-          sizes="(max-width: 809px) 25vw, 201px"
+          sizes="(max-width: 809px) 25vw, 25vw"
           className="h-full w-full object-cover"
           style={{ objectPosition }}
         />
@@ -43,13 +43,13 @@ function Photo({ src, label, objectPosition = "center" }: PhotoProps) {
 export default function About() {
   return (
     <>
-      <section className="mx-auto flex w-full max-w-[1440px] flex-col fluid-px pb-[60px] max-[809px]:px-[80px]">
-        <div className="mx-auto flex w-full max-w-[840px] flex-col gap-[60px] pt-[48px]">
+      <section className="mx-auto flex w-full max-w-[1440px] flex-col fluid-px pt-[48px] pb-[60px]">
+        <div className="flex w-full flex-col gap-[60px]">
             <div className="flex flex-col gap-12">
               <div className="flex flex-col gap-[20px]">
                 <h1
                   className="font-medium text-[var(--text-primary)]"
-                  style={{ fontFamily: "var(--font-crimson)", fontSize: 32, lineHeight: "40px" }}
+                  style={{ fontFamily: "var(--font-crimson)", fontSize: 36, lineHeight: "40px" }}
                 >
                   Hi there! I&apos;m Julia
                 </h1>
@@ -76,7 +76,7 @@ export default function About() {
                 <div className="min-[810px]:hidden w-full">
                   <AboutPhotoCarousel photos={[...photos]} />
                 </div>
-                <div className="hidden min-[810px]:flex w-full items-center justify-center gap-3">
+                <div className="hidden min-[810px]:flex w-full gap-3">
                   {photos.map((photo) => (
                     <Photo
                       key={photo.label}
@@ -179,7 +179,7 @@ export default function About() {
         </div>
 
         {/* Widgets */}
-        <div className="mx-auto mt-[60px] grid w-full max-w-[780px] grid-cols-1 gap-4 min-[810px]:grid-cols-2">
+        <div className="mt-[60px] grid w-full grid-cols-1 gap-4 min-[810px]:grid-cols-2">
             <SpotifyWidget className="min-w-0" />
 
             <article
