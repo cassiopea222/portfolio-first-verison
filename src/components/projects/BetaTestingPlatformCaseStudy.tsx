@@ -129,7 +129,7 @@ const TOC_SECTIONS: ToCSection[] = [
 
 export default function BetaTestingPlatformCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] py-[120px] px-[60px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px] max-[809px]:px-[20px]">
+    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] cs-px py-[120px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px]">
       <CaseStudyToC sections={TOC_SECTIONS} title="Beta testing platform" />
 
       <div className="flex min-w-0 max-w-[840px] flex-1 flex-col gap-[48px]">

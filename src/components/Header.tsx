@@ -10,6 +10,11 @@ const navLinks = [
   { href: "/about", label: "About" },
 ];
 
+// Tab widths match Figma: Work=100px, About=104px
+const TAB_WIDTHS: Record<string, number> = { "/": 100, "/about": 104 };
+// Offset of the pill = sum of widths of all tabs before the active one
+const TAB_OFFSETS: Record<string, number> = { "/": 0, "/about": 100 };
+
 const EMAIL_ADDRESS = "ubulyndina@gmail.com";
 
 const externalLinks: {
@@ -18,23 +23,14 @@ const externalLinks: {
   tooltip: string;
   external?: boolean;
 }[] = [
-  {
-    href: `mailto:${EMAIL_ADDRESS}`,
-    label: "Email",
-    tooltip: "Copy",
-  },
+  { href: `mailto:${EMAIL_ADDRESS}`, label: "Email", tooltip: "Copy" },
   {
     href: "https://www.linkedin.com/in/julia-bulyndina-872617241/",
     label: "LinkedIn",
     tooltip: "Go",
     external: true,
   },
-  {
-    href: "/cv/julia-bulyndina-cv.pdf",
-    label: "Resume",
-    tooltip: "Open",
-    external: true,
-  },
+  { href: "/cv/julia-bulyndina-cv.pdf", label: "Resume", tooltip: "Open", external: true },
 ];
 
 function EmailCopiedPill() {
@@ -53,7 +49,6 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const activeHref = pathname === "/about" ? "/about" : "/";
-  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const [menuOpen, setMenuOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
 
@@ -93,72 +88,113 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
     router.push(href);
   };
 
+  const pillWidth = TAB_WIDTHS[activeHref] ?? 100;
+  const pillOffset = TAB_OFFSETS[activeHref] ?? 0;
+
   return (
-    <header className="relative mx-auto flex w-full max-w-[1440px] items-start justify-between fluid-px pt-10 pb-3">
-      {leftContent ?? <div />}
-      <div className="hidden items-center gap-6 min-[810px]:flex">
-        {navLinks.map(({ href, label }) => (
-          <button
-            key={href}
-            ref={(node) => {
-              tabRefs.current[href] = node;
+    <header className="relative mx-auto w-full max-w-[1440px] fluid-px pt-6 pb-3">
+      {/* ── Desktop layout: 3-column grid ── */}
+      <div className="hidden min-[810px]:grid min-[810px]:grid-cols-[1fr_auto_1fr] min-[810px]:items-center">
+        {/* Left: orchid */}
+        <div>{leftContent ?? <div />}</div>
+
+        {/* Center: sliding pill tabs */}
+        <div
+          className="relative flex items-center rounded-[40px] bg-white p-1 shadow-[0px_0.5px_2px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.1)]"
+          role="tablist"
+          aria-label="Site navigation"
+        >
+          {/* Sliding active pill */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-1 left-1 rounded-[32px] border-[0.7px] border-[#dfdfdf] bg-gradient-to-t from-[#e7e7e7] to-white shadow-[0px_1px_2px_0px_rgba(184,184,184,0.35)]"
+            style={{
+              width: pillWidth,
+              transform: `translateX(${pillOffset}px)`,
+              transition: "transform 220ms cubic-bezier(0.22,1,0.36,1), width 220ms cubic-bezier(0.22,1,0.36,1)",
             }}
-            type="button"
-            onClick={() => onTabClick(href)}
-            className={`inline-flex items-center py-2 font-inconsolata text-[18px] font-semibold leading-[24px] transition-colors duration-200 ease-out ${
-              activeHref === href
-                ? "cursor-default text-[var(--text-primary)]"
-                : "cursor-pointer text-[var(--text-secondary)]"
-            }`}
-            aria-pressed={activeHref === href}
-          >
-            {label}
-          </button>
-        ))}
+          />
+          {navLinks.map(({ href, label }) => (
+            <button
+              key={href}
+              role="tab"
+              type="button"
+              aria-selected={activeHref === href}
+              onClick={() => onTabClick(href)}
+              className={`relative z-10 py-[6px] text-center font-sans text-[16px] leading-[26px] transition-colors duration-150 ${
+                href === "/" ? "w-[100px]" : "w-[104px]"
+              } ${
+                activeHref === href
+                  ? "cursor-default font-medium text-[var(--text-secondary)]"
+                  : "cursor-pointer font-normal text-[var(--text-tertiary)]"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {/* Right: external links */}
+        <div className="flex items-center justify-end gap-6">
+          {externalLinks.map(({ href, label, tooltip, external }) =>
+            label === "Email" ? (
+              <div key={label} className="flex items-center gap-3">
+                <a
+                  href={href}
+                  data-tooltip={tooltip}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    void copyEmail();
+                  }}
+                  className="py-2 font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+                >
+                  {label}
+                </a>
+                {emailCopied ? <EmailCopiedPill /> : null}
+              </div>
+            ) : (
+              <a
+                key={label}
+                href={href}
+                target={external ? "_blank" : undefined}
+                rel={external ? "noopener noreferrer" : undefined}
+                data-tooltip={tooltip}
+                className="py-2 font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+              >
+                {label}
+              </a>
+            ),
+          )}
+        </div>
       </div>
 
-      <button
-        type="button"
-        onClick={() => setMenuOpen((open) => !open)}
-        aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-        aria-expanded={menuOpen}
-        aria-controls="mobile-nav-menu"
-        className="inline-flex h-6 w-6 items-center justify-center text-[var(--text-primary)] min-[810px]:hidden"
-      >
-        {menuOpen ? (
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        ) : (
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <line x1="4" y1="6" x2="20" y2="6" />
-            <line x1="4" y1="12" x2="20" y2="12" />
-            <line x1="4" y1="18" x2="20" y2="18" />
-          </svg>
-        )}
-      </button>
+      {/* ── Mobile layout: orchid + hamburger ── */}
+      <div className="flex items-center justify-between min-[810px]:hidden">
+        <div>{leftContent ?? <div />}</div>
+        <button
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav-menu"
+          className="inline-flex h-6 w-6 items-center justify-center text-[var(--text-primary)]"
+        >
+          {menuOpen ? (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          ) : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+            </svg>
+          )}
+        </button>
+      </div>
 
+      {/* ── Mobile overlay ── */}
       {menuOpen && (
         <div
           id="mobile-nav-menu"
@@ -190,17 +226,7 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
               aria-label="Close navigation menu"
               className="inline-flex h-6 w-6 shrink-0 items-center justify-center text-[var(--text-primary)]"
             >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
@@ -215,9 +241,7 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
                   href={href}
                   onClick={() => setMenuOpen(false)}
                   aria-current={activeHref === href ? "page" : undefined}
-                  className={`inline-flex max-w-full justify-center self-start py-2 font-sans text-[14px] leading-[18px] no-underline text-[var(--text-primary)] ${
-                    activeHref === href ? "font-medium" : "font-medium"
-                  }`}
+                  className="inline-flex max-w-full justify-center self-start py-2 font-sans text-[14px] font-medium leading-[18px] text-[var(--text-primary)] no-underline"
                 >
                   {label}
                 </Link>

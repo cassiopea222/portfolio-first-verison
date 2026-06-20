@@ -30,8 +30,14 @@ const FRAME_STYLES = [
 
 const FRAME_MS = 800; // 0.8 s per frame
 
-export default function OrchidAnimation() {
-  const [currentFrame, setCurrentFrame] = useState(0);
+interface OrchidAnimationProps {
+  size?: number;
+  initialFrame?: number;
+}
+
+export default function OrchidAnimation({ size = 150, initialFrame = 0 }: OrchidAnimationProps) {
+  const scale = size / 150;
+  const [currentFrame, setCurrentFrame] = useState(initialFrame);
 
   const frameIdxRef = useRef(0);
   const playingRef = useRef(false);
@@ -112,7 +118,8 @@ export default function OrchidAnimation() {
     <div
       role="img"
       aria-label="Orchid flower animation"
-      className="group relative h-[150px] w-[150px] cursor-pointer select-none overflow-hidden"
+      style={{ width: size, height: size }}
+      className="group relative cursor-pointer select-none overflow-hidden"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={handleClick}
@@ -126,10 +133,10 @@ export default function OrchidAnimation() {
               key={src}
               style={{
                 position: "absolute",
-                width: w,
-                height: h,
+                width: w * scale,
+                height: h * scale,
                 left: "50%",
-                top: `calc(50% + ${topOffset}px)`,
+                top: `calc(50% + ${topOffset * scale}px)`,
                 transform: "translate(-50%, -50%)",
                 overflow: "hidden",
                 opacity: i === currentFrame ? 1 : 0,
@@ -138,8 +145,8 @@ export default function OrchidAnimation() {
               <img
                 src={src}
                 alt=""
-                width={w}
-                height={h}
+                width={w * scale}
+                height={h * scale}
                 loading="eager"
                 fetchPriority={i === 0 ? "high" : "low"}
                 decoding="async"

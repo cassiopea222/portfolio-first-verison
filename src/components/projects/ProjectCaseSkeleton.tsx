@@ -8,7 +8,7 @@ type ProjectCaseSkeletonProps = {
 
 export default function ProjectCaseSkeleton({ project }: ProjectCaseSkeletonProps) {
   return (
-    <section className="mx-auto w-full max-w-[1440px] pb-[120px] pt-[120px] fluid-px max-[809px]:py-[48px]">
+    <section className="mx-auto w-full max-w-[1440px] pb-[120px] pt-[120px] cs-px max-[809px]:py-[48px]">
       <div className="flex max-w-[800px] flex-col gap-10">
         <Link
           href="/"

@@ -249,10 +249,9 @@ body {
   }
 
   /* Fluid horizontal page padding — site-wide (home, about, case studies, footer)
-     <  810px   →  20px (mobile, matches header + home)
-     810-1080  →  80px (floor, held flat through 1080)
-     1080-1200 →  scales 80px → 160px
-     1200-1440 →  scales 160px → 320px                                  */
+     <  810px   →  20px
+     810–1080   →  80px
+     1080–1440  →  scales 80px → 240px                                   */
   .fluid-px {
     padding-inline: 20px;
   }
@@ -263,47 +262,31 @@ body {
     }
   }
 
-  @media (min-width: 1081px) {
+  @media (min-width: 1080px) {
     .fluid-px {
-      /* 80px at 1080px → 160px at 1200px */
+      /* 80px at 1080px → 240px at 1440px */
       padding-inline: clamp(
         80px,
-        calc(80px + 80 * ((100vw - 1080px) / 120)),
-        160px
+        calc(80px + 160 * ((100vw - 1080px) / 360)),
+        240px
       );
     }
   }
 
-  @media (min-width: 1200px) {
-    .fluid-px {
-      /* 160px at 1200px → 320px at 1440px */
-      padding-inline: clamp(
-        160px,
-        calc(160px + 160 * ((100vw - 1200px) / 240)),
-        320px
-      );
-    }
-  }
-
-  /* Case-study horizontal padding — leaves left gutter for the fixed ToC.
-     <  810px   →  20px (mobile, same as site-wide)
-     ≥  810px   →  260px left / 80px right (ToC fits at left-60px + 180px)
-     ≥ 1440px   →  320px both sides (symmetric at max width)             */
+  /* Project page padding: 20px → 60px → 300px */
   .cs-px {
     padding-inline: 20px;
   }
 
   @media (min-width: 810px) {
     .cs-px {
-      padding-left: clamp(260px, calc(260px + 60 * ((100vw - 810px) / 630)), 320px);
-      padding-right: clamp(80px, calc(80px + 240 * ((100vw - 810px) / 630)), 320px);
+      padding-inline: 60px;
     }
   }
 
   @media (min-width: 1440px) {
     .cs-px {
-      padding-left: 320px;
-      padding-right: 320px;
+      padding-inline: 300px;
     }
   }
 

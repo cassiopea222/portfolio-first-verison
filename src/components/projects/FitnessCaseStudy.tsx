@@ -49,7 +49,7 @@ function Showcase({ children, caption }: { children: React.ReactNode; caption: s
 
 export default function FitnessCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] py-[120px] px-[60px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px] max-[809px]:px-[20px]">
+    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] cs-px py-[120px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px]">
       <CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Fitness app redesign" />
 
       <div className="flex min-w-0 max-w-[800px] flex-1 flex-col gap-12">
