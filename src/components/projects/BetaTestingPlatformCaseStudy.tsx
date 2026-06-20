@@ -75,7 +75,7 @@ function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }
             muted
             loop
             playsInline
-            className="rounded-[12px]"
+            className="max-w-full rounded-[12px] h-auto"
           >
             <source src={video.webm} type="video/webm" />
             <source src={video.mp4} type="video/mp4" />
@@ -134,7 +134,7 @@ export default function BetaTestingPlatformCaseStudy() {
 
       <div className="flex min-w-0 max-w-[840px] flex-1 flex-col gap-[48px]">
         {/* ── Hero ─────────────────────────────────────────────────────── */}
-        <div className="flex flex-col gap-[32px]">
+        <div className="flex w-full flex-col gap-[32px]">
           <div className="flex flex-col gap-[8px]">
             <p className="font-inconsolata font-medium text-[22px] leading-6 text-[var(--text-tertiary)]">
               Ajax Systems
@@ -390,38 +390,38 @@ export default function BetaTestingPlatformCaseStudy() {
                 interviews. Key questions: How do testers currently report issues?
                 Where does context get lost? What drives engagement?
               </p>
-              <div className="overflow-hidden rounded-[12px] border border-[#ececec]">
-                <div className="flex bg-[#fafafa] px-5 py-3 text-[13px] font-semibold text-[var(--text-tertiary)]">
+              <div className="overflow-x-auto rounded-[12px] border border-[#ececec]">
+                <div className="flex min-w-[560px] bg-[#fafafa] px-5 py-3 text-[13px] font-semibold text-[var(--text-tertiary)]">
                   <span className="w-[200px] shrink-0">Goal</span>
                   <span className="flex-1">Key Question</span>
                   <span className="w-[180px] shrink-0">Respondent Profile</span>
                 </div>
                 <div className="h-px bg-[#ededed]" />
-                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
                   <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Communication quality</span>
                   <span className="flex-1 text-[var(--text-secondary)]">How do testers communicate issues today?</span>
                   <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Active beta testers</span>
                 </div>
                 <div className="h-px bg-[#ededed]" />
-                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
                   <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Report quality</span>
                   <span className="flex-1 text-[var(--text-secondary)]">Where does context get lost in reports?</span>
                   <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Multi-device testers</span>
                 </div>
                 <div className="h-px bg-[#ededed]" />
-                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
                   <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">End-to-end flow</span>
                   <span className="flex-1 text-[var(--text-secondary)]">What&apos;s the full testing journey step-by-step?</span>
                   <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">New testers (&lt;3 tests)</span>
                 </div>
                 <div className="h-px bg-[#ededed]" />
-                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
                   <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Motivation &amp; retention</span>
                   <span className="flex-1 text-[var(--text-secondary)]">What makes testers stay engaged and return?</span>
                   <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Long-term testers</span>
                 </div>
                 <div className="h-px bg-[#ededed]" />
-                <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
                   <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Manager pain points</span>
                   <span className="flex-1 text-[var(--text-secondary)]">What coordination tasks consume most time?</span>
                   <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Beta program managers</span>
@@ -538,40 +538,42 @@ export default function BetaTestingPlatformCaseStudy() {
               <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
                 Core MVP User Flow
               </h3>
-              <div className="flex w-full items-start justify-center gap-2">
-                <div className="flex w-20 flex-col items-center gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(43,153,219,0.12)]">
-                    <span className="text-[14px] font-semibold text-[#2b99db]">1</span>
+              <div className="overflow-x-auto">
+                <div className="flex min-w-max items-start justify-center gap-2 py-1">
+                  <div className="flex w-20 flex-col items-center gap-2">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(43,153,219,0.12)]">
+                      <span className="text-[14px] font-semibold text-[#2b99db]">1</span>
+                    </div>
+                    <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Join</p>
                   </div>
-                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Join</p>
-                </div>
-                <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
-                <div className="flex w-20 flex-col items-center gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(140,89,229,0.12)]">
-                    <span className="text-[14px] font-semibold text-[#8c59e5]">2</span>
+                  <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
+                  <div className="flex w-20 flex-col items-center gap-2">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(140,89,229,0.12)]">
+                      <span className="text-[14px] font-semibold text-[#8c59e5]">2</span>
+                    </div>
+                    <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Pick a test</p>
                   </div>
-                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Pick a test</p>
-                </div>
-                <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
-                <div className="flex w-20 flex-col items-center gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(38,166,97,0.12)]">
-                    <span className="text-[14px] font-semibold text-[#26a661]">3</span>
+                  <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
+                  <div className="flex w-20 flex-col items-center gap-2">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(38,166,97,0.12)]">
+                      <span className="text-[14px] font-semibold text-[#26a661]">3</span>
+                    </div>
+                    <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Test device</p>
                   </div>
-                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Test device</p>
-                </div>
-                <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
-                <div className="flex w-20 flex-col items-center gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(217,133,46,0.12)]">
-                    <span className="text-[14px] font-semibold text-[#d9852e]">4</span>
+                  <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
+                  <div className="flex w-20 flex-col items-center gap-2">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(217,133,46,0.12)]">
+                      <span className="text-[14px] font-semibold text-[#d9852e]">4</span>
+                    </div>
+                    <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Submit report</p>
                   </div>
-                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Submit report</p>
-                </div>
-                <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
-                <div className="flex w-20 flex-col items-center gap-2">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(204,96,193,0.12)]">
-                    <span className="text-[14px] font-semibold text-[#cc60c1]">5</span>
+                  <span className="mt-[14px] shrink-0 text-[18px] text-[var(--text-tertiary)]">→</span>
+                  <div className="flex w-20 flex-col items-center gap-2">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[rgba(204,96,193,0.12)]">
+                      <span className="text-[14px] font-semibold text-[#cc60c1]">5</span>
+                    </div>
+                    <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Track status</p>
                   </div>
-                  <p className="text-center text-[12px] font-medium leading-4 text-[var(--text-secondary)]">Track status</p>
                 </div>
               </div>
             </div>

@@ -40,9 +40,17 @@ export default function CaseStudyToC({
         const firstVisible = sections.find(({ id }) => intersecting.has(id));
         if (firstVisible) {
           setActiveId(firstVisible.id);
+        } else if (intersecting.size === 0) {
+          // Nothing in the zone — if first section hasn't scrolled into view yet, reset to top
+          const firstEl = document.getElementById(sections[0].id);
+          if (firstEl && firstEl.getBoundingClientRect().top > window.innerHeight * 0.4) {
+            setActiveId(title ? TOP_ID : sections[0].id);
+          }
         }
       },
-      { rootMargin: "-10% 0px -60% 0px", threshold: 0.3 }
+      // threshold: 0 fires as soon as any pixel enters/exits the zone,
+      // preventing fast-scroll from skipping sections entirely
+      { rootMargin: "-10% 0px -60% 0px", threshold: 0 }
     );
 
     sections.forEach(({ id }) => {
@@ -54,7 +62,7 @@ export default function CaseStudyToC({
       observer.disconnect();
       intersecting.clear();
     };
-  }, [sections]);
+  }, [sections, title]);
 
   return (
     <>

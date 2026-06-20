@@ -6,12 +6,12 @@ import Header from "@/components/Header";
 
 function Orchid() {
   return (
-    <div className="relative h-[94px] w-[92px] shrink-0 overflow-hidden">
+    <div className="relative h-[61px] w-[60px] shrink-0 overflow-hidden">
       <Image
         src="/orchid/2.webp"
         alt=""
         fill
-        sizes="92px"
+        sizes="60px"
         className="object-cover object-center"
         priority
       />
@@ -26,5 +26,5 @@ export default function AppShellHeader() {
     return null;
   }
 
-  return <Header leftContent={pathname === "/" ? <Orchid /> : undefined} />;
+  return <Header leftContent={<Orchid />} />;
 }

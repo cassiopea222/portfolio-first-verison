@@ -12,16 +12,6 @@ export type ProjectRecord = {
 
 export const projects: ProjectRecord[] = [
   {
-    slug: "beta-testing-platform-ajax",
-    title: "Ajax Systems beta testing platform",
-    dateRange: "May 2025 - July 2025",
-    tags: ["Product Design", "b2b", "Web"],
-    description:
-      "Centralized beta testing hub to collect structured feedback faster and make the process transparent for testers.",
-    cover: "ajax",
-    status: "ready",
-  },
-  {
     slug: "role-management-system",
     title: "Role management system for government platform",
     dateRange: "Aug 2025",
@@ -29,6 +19,16 @@ export const projects: ProjectRecord[] = [
     description:
       "Designed the permission architecture and interaction model for a multi-environment government dashboard.",
     cover: "role",
+    status: "ready",
+  },
+  {
+    slug: "beta-testing-platform-ajax",
+    title: "Ajax Systems beta testing platform",
+    dateRange: "May 2025 - July 2025",
+    tags: ["Product Design", "b2b", "Web"],
+    description:
+      "Centralized beta testing hub to collect structured feedback faster and make the process transparent for testers.",
+    cover: "ajax",
     status: "ready",
   },
   {
