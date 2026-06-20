@@ -52,9 +52,9 @@ export default function FitnessCaseStudy() {
     <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] cs-px py-[120px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px]">
       <CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Fitness app redesign" />
 
-      <div className="flex min-w-0 max-w-[800px] flex-1 flex-col gap-12">
+      <div className="flex min-w-0 w-full max-w-[800px] flex-1 flex-col gap-12">
         {/* Opening block */}
-        <div className="flex flex-col gap-8">
+        <div className="flex w-full flex-col gap-8">
           {/* Title */}
           <div className="flex flex-col gap-[8px]">
             <p className="font-inconsolata font-medium text-[22px] leading-6 text-[var(--text-tertiary)]">SadieActive</p>
@@ -111,7 +111,7 @@ export default function FitnessCaseStudy() {
         </div>
 
         {/* Problem */}
-        <div id="problem" className="flex flex-col gap-8">
+        <div id="problem" className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
             <SectionHeader
               subtitle="Problem"
@@ -131,7 +131,7 @@ export default function FitnessCaseStudy() {
         </div>
 
         {/* My role */}
-        <div id="my-role" className="flex flex-col gap-4">
+        <div id="my-role" className="flex w-full flex-col gap-4">
           <SectionHeader
             subtitle="My role"
             title="From analysis to handoff across mobile + admin."
@@ -149,7 +149,7 @@ export default function FitnessCaseStudy() {
         </div>
 
         {/* Core flows: Workouts and statistics */}
-        <div id="core-flows" className="flex flex-col gap-8">
+        <div id="core-flows" className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
             <SectionHeader
               subtitle="Core flows"
@@ -220,7 +220,7 @@ export default function FitnessCaseStudy() {
         </div>
 
         {/* Programs */}
-        <div className="flex flex-col gap-8">
+        <div className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
             <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Programs
@@ -273,7 +273,7 @@ export default function FitnessCaseStudy() {
         </div>
 
         {/* Macronutrients calculator */}
-        <div className="flex flex-col gap-8">
+        <div className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
             <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Macronutrients calculator
@@ -313,7 +313,7 @@ export default function FitnessCaseStudy() {
         </div>
 
         {/* Web platform for admin */}
-        <div className="flex flex-col gap-8">
+        <div className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
             <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
               Web platform for admin

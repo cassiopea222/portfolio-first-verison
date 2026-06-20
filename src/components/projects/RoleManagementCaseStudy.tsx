@@ -25,7 +25,7 @@ function SectionHeader({ subtitle, title }: { subtitle: string; title: string })
       <p className="font-inconsolata text-[18px] font-semibold leading-6 text-[var(--text-tertiary)]">
         {subtitle}
       </p>
-      <h2 className="text-[24px] font-semibold leading-8 text-[var(--text-primary)]">
+      <h2 className="text-[24px] font-medium leading-8 text-[var(--text-primary)]">
         {title}
       </h2>
     </div>
@@ -187,32 +187,29 @@ const TRADEOFF_ROWS = [
 
 function TradeoffsTable() {
   return (
-    <div className="w-full overflow-clip rounded-[12px] border border-[#ededed] bg-white">
-      <div className="flex bg-[#fafafa] px-5 py-3">
-        <p className="w-[180px] shrink-0 text-[13px] font-semibold text-[#818790]">Criteria</p>
-        <p className="flex-1 text-[13px] font-semibold text-[#818790]">Role-complete model</p>
-        <p className="flex-1 text-[13px] font-semibold text-[#818790]">Split model (chosen)</p>
-      </div>
-      <div className="h-px bg-[#ededed]" />
-      {TRADEOFF_ROWS.flatMap((row, i) => {
-        const rowEl = (
-          <div key={row.criteria} className="flex items-start bg-white px-5 py-[14px] text-[13px] leading-[20px]">
+    <div className="overflow-x-auto rounded-[12px] border border-[#ededed]">
+      <div className="min-w-[560px] divide-y divide-[#ededed] bg-white">
+        <div className="flex bg-[#fafafa] px-5 py-3">
+          <p className="w-[180px] shrink-0 text-[13px] font-semibold text-[#818790]">Criteria</p>
+          <p className="flex-1 text-[13px] font-semibold text-[#818790]">Role-complete model</p>
+          <p className="flex-1 text-[13px] font-semibold text-[#818790]">Split model (chosen)</p>
+        </div>
+        {TRADEOFF_ROWS.map((row) => (
+          <div
+            key={row.criteria}
+            className="flex items-start bg-white px-5 py-[14px] text-[13px] leading-[20px]"
+          >
             <p className="w-[180px] shrink-0 font-semibold text-[var(--text-primary)]">{row.criteria}</p>
             <p className="flex-1 font-normal text-[var(--text-secondary)]">{row.original}</p>
             <p className="flex-1 font-medium text-[#26a661]">{row.chosen}</p>
           </div>
-        );
-        if (i < TRADEOFF_ROWS.length - 1) {
-          return [rowEl, <div key={`sep-${i}`} className="h-px bg-[#ededed]" />];
-        }
-        return [rowEl];
-      })}
-      <div className="h-px bg-[#ededed]" />
-      <div className="flex items-center gap-[10px] bg-[rgba(38,166,97,0.05)] px-5 py-[14px] text-[#26a661]">
-        <p className="shrink-0 text-[14px] font-semibold">✓</p>
-        <p className="min-w-0 flex-1 text-[13px] font-medium leading-[20px]">
-          We chose the split model — small org, access patterns varied too much to justify maintaining a library of granular roles.
-        </p>
+        ))}
+        <div className="flex items-center gap-[10px] bg-[rgba(38,166,97,0.05)] px-5 py-[14px] text-[#26a661]">
+          <p className="shrink-0 text-[14px] font-semibold">✓</p>
+          <p className="min-w-0 flex-1 text-[13px] font-medium leading-[20px]">
+            We chose the split model — small org, access patterns varied too much to justify maintaining a library of granular roles.
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -223,7 +220,7 @@ export default function RoleManagementCaseStudy() {
     <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] cs-px py-[120px] text-[var(--foreground)] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px]">
       <CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Role Management System" />
 
-      <div className="flex min-w-0 max-w-[840px] flex-1 flex-col gap-[48px]">
+      <div className="flex min-w-0 w-full max-w-[840px] flex-1 flex-col gap-[48px]">
         {/* Opening block */}
         <div className="flex w-full flex-col gap-[32px]">
           {/* Title */}
@@ -231,7 +228,7 @@ export default function RoleManagementCaseStudy() {
             <p className="font-inconsolata text-[26px] font-medium leading-9 text-[var(--text-tertiary)]">
               Governmental platform
             </p>
-            <h1 className="text-[26px] font-semibold leading-9 text-[var(--text-primary)]">
+            <h1 className="text-[26px] font-medium leading-9 text-[var(--text-primary)]">
               Role Management System
             </h1>
           </div>

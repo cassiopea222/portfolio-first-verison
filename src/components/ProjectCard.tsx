@@ -64,8 +64,8 @@ export default function ProjectCard({
         </>
       )}
       {cover === "fitness" && (
-        <>
-          <div className="absolute left-[189px] top-[60px] h-[420px] w-[199px]">
+        <div className="absolute inset-0 flex items-center justify-center gap-[24px]">
+          <div className="relative h-[420px] w-[199px] shrink-0">
             <Image
               src={imgFitnessLeft}
               alt=""
@@ -74,7 +74,7 @@ export default function ProjectCard({
               className="object-cover pointer-events-none"
             />
           </div>
-          <div className="absolute left-[412px] top-[60px] h-[420px] w-[199px]">
+          <div className="relative h-[420px] w-[199px] shrink-0">
             <Image
               src={imgFitnessRight}
               alt=""
@@ -83,7 +83,7 @@ export default function ProjectCard({
               className="object-cover pointer-events-none"
             />
           </div>
-        </>
+        </div>
       )}
       {cover === "role" && (
         <>
@@ -126,9 +126,13 @@ export default function ProjectCard({
             </span>
           ))}
         </div>
-        <h3 className="flex items-start gap-3 text-[22px] leading-[30px] whitespace-nowrap">
-          <span className="font-sans font-medium text-[var(--text-primary)]">{title}</span>
-          <span className="font-sans font-normal text-[var(--text-tertiary)]">{dateRange}</span>
+        <h3 className="flex w-full flex-col items-start gap-1 text-[22px] leading-[30px] min-[810px]:flex-row min-[810px]:gap-3 min-[810px]:whitespace-nowrap">
+          <span className="w-full font-sans font-medium text-[var(--text-primary)] min-[810px]:w-auto">
+            {title}
+          </span>
+          <span className="font-sans text-[18px] font-normal leading-[26px] text-[var(--text-tertiary)] min-[810px]:text-[22px] min-[810px]:leading-[30px]">
+            {dateRange}
+          </span>
         </h3>
       </div>
       <p className="font-sans text-[16px] font-normal leading-[24px] tracking-[0.2px] text-[var(--text-secondary)]">

@@ -132,7 +132,7 @@ export default function BetaTestingPlatformCaseStudy() {
     <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] cs-px py-[120px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px]">
       <CaseStudyToC sections={TOC_SECTIONS} title="Beta testing platform" />
 
-      <div className="flex min-w-0 max-w-[840px] flex-1 flex-col gap-[48px]">
+      <div className="flex min-w-0 w-full max-w-[840px] flex-1 flex-col gap-[48px]">
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <div className="flex w-full flex-col gap-[32px]">
           <div className="flex flex-col gap-[8px]">
@@ -391,40 +391,37 @@ export default function BetaTestingPlatformCaseStudy() {
                 Where does context get lost? What drives engagement?
               </p>
               <div className="overflow-x-auto rounded-[12px] border border-[#ececec]">
-                <div className="flex min-w-[560px] bg-[#fafafa] px-5 py-3 text-[13px] font-semibold text-[var(--text-tertiary)]">
-                  <span className="w-[200px] shrink-0">Goal</span>
-                  <span className="flex-1">Key Question</span>
-                  <span className="w-[180px] shrink-0">Respondent Profile</span>
-                </div>
-                <div className="h-px bg-[#ededed]" />
-                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
-                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Communication quality</span>
-                  <span className="flex-1 text-[var(--text-secondary)]">How do testers communicate issues today?</span>
-                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Active beta testers</span>
-                </div>
-                <div className="h-px bg-[#ededed]" />
-                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
-                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Report quality</span>
-                  <span className="flex-1 text-[var(--text-secondary)]">Where does context get lost in reports?</span>
-                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Multi-device testers</span>
-                </div>
-                <div className="h-px bg-[#ededed]" />
-                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
-                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">End-to-end flow</span>
-                  <span className="flex-1 text-[var(--text-secondary)]">What&apos;s the full testing journey step-by-step?</span>
-                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">New testers (&lt;3 tests)</span>
-                </div>
-                <div className="h-px bg-[#ededed]" />
-                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
-                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Motivation &amp; retention</span>
-                  <span className="flex-1 text-[var(--text-secondary)]">What makes testers stay engaged and return?</span>
-                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Long-term testers</span>
-                </div>
-                <div className="h-px bg-[#ededed]" />
-                <div className="flex min-w-[560px] items-center bg-white px-5 py-[14px] text-[13px] leading-5">
-                  <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Manager pain points</span>
-                  <span className="flex-1 text-[var(--text-secondary)]">What coordination tasks consume most time?</span>
-                  <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Beta program managers</span>
+                <div className="min-w-[560px] divide-y divide-[#ededed]">
+                  <div className="flex bg-[#fafafa] px-5 py-3 text-[13px] font-semibold text-[var(--text-tertiary)]">
+                    <span className="w-[200px] shrink-0">Goal</span>
+                    <span className="flex-1">Key Question</span>
+                    <span className="w-[180px] shrink-0">Respondent Profile</span>
+                  </div>
+                  <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                    <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Communication quality</span>
+                    <span className="flex-1 text-[var(--text-secondary)]">How do testers communicate issues today?</span>
+                    <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Active beta testers</span>
+                  </div>
+                  <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                    <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Report quality</span>
+                    <span className="flex-1 text-[var(--text-secondary)]">Where does context get lost in reports?</span>
+                    <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Multi-device testers</span>
+                  </div>
+                  <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                    <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">End-to-end flow</span>
+                    <span className="flex-1 text-[var(--text-secondary)]">What&apos;s the full testing journey step-by-step?</span>
+                    <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">New testers (&lt;3 tests)</span>
+                  </div>
+                  <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                    <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Motivation &amp; retention</span>
+                    <span className="flex-1 text-[var(--text-secondary)]">What makes testers stay engaged and return?</span>
+                    <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Long-term testers</span>
+                  </div>
+                  <div className="flex items-center bg-white px-5 py-[14px] text-[13px] leading-5">
+                    <span className="w-[200px] shrink-0 font-semibold text-[var(--text-primary)]">Manager pain points</span>
+                    <span className="flex-1 text-[var(--text-secondary)]">What coordination tasks consume most time?</span>
+                    <span className="w-[180px] shrink-0 text-[var(--text-tertiary)]">Beta program managers</span>
+                  </div>
                 </div>
               </div>
             </div>
