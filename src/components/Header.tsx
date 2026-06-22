@@ -33,17 +33,6 @@ const externalLinks: {
   { href: "/cv/julia-bulyndina-cv.pdf", label: "Resume", tooltip: "Open", external: true },
 ];
 
-function EmailCopiedPill() {
-  return (
-    <span
-      role="status"
-      aria-live="polite"
-      className="inline-flex shrink-0 items-center justify-center rounded-[20px] border-[0.7px] border-[#dadada] bg-[linear-gradient(179deg,#fff_4.27%,#e7e7e7_98%)] px-2 py-1.5 font-sans text-[14px] font-medium leading-[16px] text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)]"
-    >
-      Copied
-    </span>
-  );
-}
 
 export default function Header({ leftContent }: { leftContent?: ReactNode }) {
   const router = useRouter();
@@ -141,7 +130,7 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
               <div key={label} className="flex items-center gap-3">
                 <a
                   href={href}
-                  data-tooltip={tooltip}
+                  data-tooltip={emailCopied ? "Copied" : tooltip}
                   onClick={(e) => {
                     e.preventDefault();
                     void copyEmail();
@@ -150,7 +139,6 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
                 >
                   {label}
                 </a>
-                {emailCopied ? <EmailCopiedPill /> : null}
               </div>
             ) : (
               <a
@@ -254,7 +242,7 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
                   <div key={label} className="flex flex-wrap items-center gap-3 py-2">
                     <a
                       href={href}
-                      data-tooltip={tooltip}
+                      data-tooltip={emailCopied ? "Copied" : tooltip}
                       onClick={(e) => {
                         e.preventDefault();
                         void copyEmail();
@@ -263,7 +251,6 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
                     >
                       {label}
                     </a>
-                    {emailCopied ? <EmailCopiedPill /> : null}
                   </div>
                 ) : (
                   <a
