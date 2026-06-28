@@ -1,45 +1,30 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import type { ReactNode } from "react";
 
 const navLinks = [
   { href: "/", label: "Work" },
   { href: "/about", label: "About" },
+  { href: "/playground", label: "Playground" },
 ];
 
-// Tab widths match Figma: Work=100px, About=104px
-const TAB_WIDTHS: Record<string, number> = { "/": 100, "/about": 104 };
-// Offset of the pill = sum of widths of all tabs before the active one
-const TAB_OFFSETS: Record<string, number> = { "/": 0, "/about": 100 };
+// Tab widths match Figma: Work=100px, About=104px, Playground=measured in Step 4
+const TAB_WIDTHS: Record<string, number> = { "/": 100, "/about": 104, "/playground": 148 };
+// Offset = sum of widths of all tabs before this one
+const TAB_OFFSETS: Record<string, number> = { "/": 0, "/about": 100, "/playground": 204 };
 
-const EMAIL_ADDRESS = "ubulyndina@gmail.com";
-
-const externalLinks: {
-  href: string;
-  label: string;
-  tooltip: string;
-  external?: boolean;
-}[] = [
-  { href: `mailto:${EMAIL_ADDRESS}`, label: "Email", tooltip: "Copy" },
-  {
-    href: "https://www.linkedin.com/in/julia-bulyndina-872617241/",
-    label: "LinkedIn",
-    tooltip: "Go",
-    external: true,
-  },
-  { href: "/cv/julia-bulyndina-cv.pdf", label: "Resume", tooltip: "Open", external: true },
-];
-
-
-export default function Header({ leftContent }: { leftContent?: ReactNode }) {
+export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
-  const activeHref = pathname === "/about" ? "/about" : "/";
+  const activeHref =
+    pathname === "/about"
+      ? "/about"
+      : pathname === "/playground"
+      ? "/playground"
+      : "/";
   const [menuOpen, setMenuOpen] = useState(false);
-  const [emailCopied, setEmailCopied] = useState(false);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setMenuOpen(false));
@@ -57,21 +42,6 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
     }
   }, [menuOpen]);
 
-  useEffect(() => {
-    if (!emailCopied) return;
-    const t = window.setTimeout(() => setEmailCopied(false), 2800);
-    return () => window.clearTimeout(t);
-  }, [emailCopied]);
-
-  const copyEmail = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(EMAIL_ADDRESS);
-      setEmailCopied(true);
-    } catch {
-      setEmailCopied(true);
-    }
-  }, []);
-
   const onTabClick = (href: string) => {
     if (href === activeHref) return;
     router.push(href);
@@ -81,13 +51,9 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
   const pillOffset = TAB_OFFSETS[activeHref] ?? 0;
 
   return (
-    <header className="relative mx-auto w-full max-w-[1440px] fluid-px pt-6 pb-3">
-      {/* ── Desktop layout: 3-column grid ── */}
-      <div className="hidden min-[810px]:grid min-[810px]:grid-cols-[1fr_auto_1fr] min-[810px]:items-center">
-        {/* Left: orchid */}
-        <div>{leftContent ?? <div />}</div>
-
-        {/* Center: sliding pill tabs */}
+    <header className="relative mx-auto w-full max-w-[900px] fluid-px pt-6 pb-3">
+      {/* ── Desktop layout: centered tabs ── */}
+      <div className="hidden min-[810px]:flex min-[810px]:justify-center">
         <div
           className="relative flex items-center rounded-[40px] bg-white p-1 shadow-[0px_0.5px_2px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.1)]"
           role="tablist"
@@ -110,9 +76,8 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
               type="button"
               aria-selected={activeHref === href}
               onClick={() => onTabClick(href)}
+              style={{ width: TAB_WIDTHS[href] }}
               className={`relative z-10 py-[6px] text-center font-sans text-[16px] leading-[26px] transition-colors duration-150 ${
-                href === "/" ? "w-[100px]" : "w-[104px]"
-              } ${
                 activeHref === href
                   ? "cursor-default font-medium text-[var(--text-secondary)]"
                   : "cursor-pointer font-normal text-[var(--text-tertiary)]"
@@ -122,43 +87,10 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
             </button>
           ))}
         </div>
-
-        {/* Right: external links */}
-        <div className="flex items-center justify-end gap-6">
-          {externalLinks.map(({ href, label, tooltip, external }) =>
-            label === "Email" ? (
-              <div key={label} className="flex items-center gap-3">
-                <a
-                  href={href}
-                  data-tooltip={emailCopied ? "Copied" : tooltip}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    void copyEmail();
-                  }}
-                  className="py-2 font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
-                >
-                  {label}
-                </a>
-              </div>
-            ) : (
-              <a
-                key={label}
-                href={href}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noopener noreferrer" : undefined}
-                data-tooltip={tooltip}
-                className="py-2 font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
-              >
-                {label}
-              </a>
-            ),
-          )}
-        </div>
       </div>
 
-      {/* ── Mobile layout: orchid + hamburger ── */}
-      <div className="flex items-center justify-between min-[810px]:hidden">
-        <div>{leftContent ?? <div />}</div>
+      {/* ── Mobile layout: hamburger ── */}
+      <div className="flex items-center justify-end min-[810px]:hidden">
         <button
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
@@ -235,38 +167,6 @@ export default function Header({ leftContent }: { leftContent?: ReactNode }) {
                 </Link>
               ))}
             </nav>
-            <div className="h-px w-full shrink-0 bg-[#ededed]" aria-hidden="true" />
-            <div className="flex flex-col gap-0.5">
-              {externalLinks.map(({ href, label, tooltip, external }) =>
-                label === "Email" ? (
-                  <div key={label} className="flex flex-wrap items-center gap-3 py-2">
-                    <a
-                      href={href}
-                      data-tooltip={emailCopied ? "Copied" : tooltip}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        void copyEmail();
-                      }}
-                      className="font-sans text-[14px] font-medium leading-[18px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
-                    >
-                      {label}
-                    </a>
-                  </div>
-                ) : (
-                  <a
-                    key={label}
-                    href={href}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noopener noreferrer" : undefined}
-                    data-tooltip={tooltip}
-                    onClick={() => setMenuOpen(false)}
-                    className="inline-flex justify-center self-start py-2 font-sans text-[14px] font-medium leading-[18px] text-[var(--text-primary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
-                  >
-                    {label}
-                  </a>
-                ),
-              )}
-            </div>
           </div>
         </div>
       )}
