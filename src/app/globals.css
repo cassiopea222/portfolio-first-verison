@@ -49,8 +49,8 @@
   --type-nav-weight: 600;
   --type-nav-track: 0;
 
-  --type-body-lg-size: 1.125rem;
-  --type-body-lg-line: 1.3333;
+  --type-body-lg-size: 1rem;
+  --type-body-lg-line: 1.5;
   --type-body-lg-weight: 500;
   --type-body-lg-track: 0;
 
@@ -248,29 +248,10 @@ body {
     max-width: 65ch;
   }
 
-  /* Fluid horizontal page padding — site-wide (home, about, case studies, footer)
-     <  810px   →  20px
-     810–1080   →  80px
-     1080–1440  →  scales 80px → 240px                                   */
+  /* Horizontal page padding — site-wide (home, about, case studies, footer)
+     mobile: 24px · mid: ~7vw · wide: 80px max                           */
   .fluid-px {
-    padding-inline: 20px;
-  }
-
-  @media (min-width: 810px) {
-    .fluid-px {
-      padding-inline: 80px;
-    }
-  }
-
-  @media (min-width: 1080px) {
-    .fluid-px {
-      /* 80px at 1080px → 240px at 1440px */
-      padding-inline: clamp(
-        80px,
-        calc(80px + 160 * ((100vw - 1080px) / 360)),
-        240px
-      );
-    }
+    padding-inline: clamp(24px, 7vw, 80px);
   }
 
   /* Project page padding: 20px → 60px → 300px */
@@ -395,4 +376,14 @@ body {
   .ui-card:hover {
     transform: none;
   }
+}
+
+@keyframes pg-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pg-scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
 }
