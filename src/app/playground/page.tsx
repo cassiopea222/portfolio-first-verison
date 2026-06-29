@@ -20,46 +20,52 @@ export default function PlaygroundPage() {
     <>
       {/* Canvas container — fills viewport below the header */}
       <div
-        className="overflow-scroll cursor-grab active:cursor-grabbing"
+        className="overflow-auto cursor-grab active:cursor-grabbing"
         style={{ width: "100%", height: "calc(100dvh - 80px)" }}
       >
-        <div className="relative" style={{ width: 4000, height: 3000 }}>
-          {playgroundItems.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              onClick={() => setSelected(item)}
-              aria-label={item.alt ?? `Playground item ${item.id}`}
-              className="absolute p-0 border-0 bg-transparent cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--ui-focus-ring)] focus-visible:outline-offset-2"
-              style={{ top: item.top, left: item.left, width: item.width, height: item.height }}
-            >
-              {item.type === "image" && (
-                <img
-                  src={item.src}
-                  alt={item.alt ?? ""}
-                  className="block w-full h-full object-cover"
-                />
-              )}
-              {item.type === "video" && (
-                <video
-                  src={item.src}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="block w-full h-full object-cover"
-                />
-              )}
-              {item.type === "iframe" && (
-                <iframe
-                  src={item.src}
-                  title={item.alt ?? "Embedded prototype"}
-                  className="block w-full h-full border-0 pointer-events-none"
-                />
-              )}
-            </button>
-          ))}
-        </div>
+        {playgroundItems.length === 0 ? (
+          <div className="flex h-full w-full items-center justify-center">
+            <p className="font-sans text-[16px] text-[var(--text-tertiary)]">Coming soon</p>
+          </div>
+        ) : (
+          <div className="relative" style={{ width: 4000, height: 3000 }}>
+            {playgroundItems.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setSelected(item)}
+                aria-label={item.alt ?? `Playground item ${item.id}`}
+                className="absolute p-0 border-0 bg-transparent cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--ui-focus-ring)] focus-visible:outline-offset-2"
+                style={{ top: item.top, left: item.left, width: item.width, height: item.height }}
+              >
+                {item.type === "image" && (
+                  <img
+                    src={item.src}
+                    alt={item.alt ?? ""}
+                    className="block w-full h-full object-cover"
+                  />
+                )}
+                {item.type === "video" && (
+                  <video
+                    src={item.src}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="block w-full h-full object-cover"
+                  />
+                )}
+                {item.type === "iframe" && (
+                  <iframe
+                    src={item.src}
+                    title={item.alt ?? "Embedded prototype"}
+                    className="block w-full h-full border-0 pointer-events-none"
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Lightbox overlay */}
