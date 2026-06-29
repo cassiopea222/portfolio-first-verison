@@ -43,6 +43,10 @@ function isPublicAssetPath(value) {
   }
 
   const { pathname } = new URL(value, "https://example.test");
+  if (pathname.includes("*")) {
+    return false;
+  }
+
   return assetExtensions.has(path.extname(pathname).toLowerCase());
 }
 
