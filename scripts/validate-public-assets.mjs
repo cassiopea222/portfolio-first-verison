@@ -47,7 +47,7 @@ function isPublicAssetPath(value) {
 }
 
 const referencedAssets = new Map();
-const stringLiteralPattern = /(?<quote>["'`])(?<value>\/(?!\/)[^"'`\s?#]+\.(?:avif|gif|jpe?g|mov|mp4|pdf|png|svg|webm|webp)(?:[?#][^"'`]*)?)\k<quote>/gi;
+const stringLiteralPattern = /(?<quote>["'`])(?<value>\/(?!\/)[^"'`?#]+\.(?:avif|gif|jpe?g|mov|mp4|pdf|png|svg|webm|webp)(?:[?#][^"'`]*)?)\k<quote>/gi;
 
 for (const sourceDir of sourceDirs) {
   const files = walkFiles(path.join(rootDir, sourceDir), (filePath) =>
