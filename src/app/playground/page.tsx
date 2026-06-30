@@ -18,6 +18,9 @@ export default function PlaygroundPage() {
 
   return (
     <>
+      {/* Full-page gray background — sits behind the header too */}
+      <div className="fixed inset-0 -z-10 bg-zinc-100" />
+
       {/* Canvas container — fills viewport below the header */}
       <div
         className="overflow-auto cursor-grab active:cursor-grabbing"
@@ -35,7 +38,7 @@ export default function PlaygroundPage() {
                 type="button"
                 onClick={() => setSelected(item)}
                 aria-label={item.alt ?? `Playground item ${item.id}`}
-                className="absolute p-0 border-0 bg-transparent cursor-pointer focus-visible:outline-2 focus-visible:outline-[var(--ui-focus-ring)] focus-visible:outline-offset-2"
+                className="absolute p-0 border-0 bg-transparent focus-visible:outline-2 focus-visible:outline-[var(--ui-focus-ring)] focus-visible:outline-offset-2"
                 style={{ top: item.top, left: item.left, width: item.width, height: item.height }}
               >
                 {item.type === "image" && (
@@ -48,11 +51,12 @@ export default function PlaygroundPage() {
                 {item.type === "video" && (
                   <video
                     src={item.src}
-                    autoPlay
-                    loop
                     muted
                     playsInline
+                    loop
                     className="block w-full h-full object-cover"
+                    onMouseEnter={(e) => e.currentTarget.play()}
+                    onMouseLeave={(e) => { e.currentTarget.pause(); e.currentTarget.currentTime = 0; }}
                   />
                 )}
                 {item.type === "iframe" && (
