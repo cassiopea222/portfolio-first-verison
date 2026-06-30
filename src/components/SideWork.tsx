@@ -1,7 +1,7 @@
 // src/components/SideWork.tsx
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { sideWorkItems, type SideWorkItem } from "@/data/sideWork";
 
 const TRACK_ITEMS = [...sideWorkItems, ...sideWorkItems];
@@ -74,7 +74,71 @@ function SideWorkCardMedia({ item }: { item: SideWorkItem }) {
   return <SideWorkImage item={item} />;
 }
 
+function SideWorkLightbox({
+  item,
+  onClose,
+}: {
+  item: SideWorkItem;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.alt}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+      style={{ animation: "pg-fade-in 150ms ease forwards" }}
+      onClick={onClose}
+    >
+      <div
+        style={{ animation: "pg-scale-in 150ms ease forwards" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {item.kind === "video" && (
+          <video
+            src={item.src}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls
+            className="block"
+            style={{ maxWidth: "90vw", maxHeight: "90vh" }}
+          />
+        )}
+        {item.kind === "image" && (
+          <img
+            src={item.src}
+            alt={item.alt}
+            className="block"
+            style={{ maxWidth: "90vw", maxHeight: "90vh", objectFit: "contain" }}
+          />
+        )}
+        {item.kind === "ipodComposition" && (
+          <IpodComposition
+            item={item}
+            className=""
+            style={{ width: "min(90vw, 480px)", height: "min(90vh, 411px)" }}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function SideWork() {
+  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const [selected, setSelected] = useState<SideWorkItem | null>(null);
+
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelected(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selected]);
+
   return (
     <section className="w-full pb-[60px]">
       <h2 className="mx-auto mb-6 w-full max-w-[900px] fluid-px font-sans text-[24px] font-medium leading-[32px] text-[var(--text-secondary)]">
@@ -85,21 +149,38 @@ export default function SideWork() {
         className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden"
         style={{ WebkitMaskImage: EDGE_MASK, maskImage: EDGE_MASK }}
       >
-        <div className="side-work-track flex w-max gap-6">
+        <div
+          className="side-work-track flex w-max gap-6"
+          style={{ animationPlayState: hoveredKey ? "paused" : "running" }}
+        >
           {TRACK_ITEMS.map((item, index) => {
             const key = `${item.id}-${index}`;
+            const isHovered = hoveredKey === key;
             return (
-              <div
+              <button
                 key={key}
-                className="relative shrink-0 overflow-hidden rounded-[20px] bg-[#ededed]"
+                type="button"
+                onClick={() => setSelected(item)}
+                onMouseEnter={() => setHoveredKey(key)}
+                onMouseLeave={() =>
+                  setHoveredKey((current) => (current === key ? null : current))
+                }
+                aria-label={item.alt}
+                className={`relative shrink-0 overflow-hidden rounded-[20px] border-0 bg-[#ededed] p-0 transition-transform duration-200 ease-out ${
+                  isHovered ? "scale-[1.06]" : "scale-100"
+                }`}
                 style={{ width: item.width, height: item.height }}
               >
                 <SideWorkCardMedia item={item} />
-              </div>
+              </button>
             );
           })}
         </div>
       </div>
+
+      {selected && (
+        <SideWorkLightbox item={selected} onClose={() => setSelected(null)} />
+      )}
     </section>
   );
 }
