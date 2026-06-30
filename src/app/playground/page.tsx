@@ -1,10 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { playgroundItems, PlaygroundItem } from "@/data/playground";
 
 export default function PlaygroundPage() {
   const [selected, setSelected] = useState<PlaygroundItem | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const hasDragged = useRef(false);
+  const startPos = useRef({ x: 0, y: 0 });
+  const startScroll = useRef({ left: 0, top: 0 });
+
+  // Drag-to-pan — document listeners so fast mouse moves don't escape
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      if (!isDragging.current || !containerRef.current) return;
+      const dx = e.clientX - startPos.current.x;
+      const dy = e.clientY - startPos.current.y;
+      if (Math.abs(dx) > 4 || Math.abs(dy) > 4) hasDragged.current = true;
+      if (hasDragged.current) {
+        containerRef.current.scrollLeft = startScroll.current.left - dx;
+        containerRef.current.scrollTop = startScroll.current.top - dy;
+      }
+    };
+    const onUp = () => {
+      isDragging.current = false;
+      document.body.style.cursor = "";
+    };
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp);
+    return () => {
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
+    };
+  }, []);
 
   // Close lightbox on Escape
   useEffect(() => {
@@ -16,15 +45,29 @@ export default function PlaygroundPage() {
     return () => window.removeEventListener("keydown", onKey);
   }, [selected]);
 
+  const onCanvasMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return;
+    isDragging.current = true;
+    hasDragged.current = false;
+    document.body.style.cursor = "grabbing";
+    startPos.current = { x: e.clientX, y: e.clientY };
+    startScroll.current = {
+      left: containerRef.current?.scrollLeft ?? 0,
+      top: containerRef.current?.scrollTop ?? 0,
+    };
+  };
+
   return (
     <>
-      {/* Full-page gray background — sits behind the header too */}
+      {/* Full-page gray background — sits behind the transparent layout div, covers header area too */}
       <div className="fixed inset-0 -z-10 bg-zinc-100" />
 
-      {/* Canvas container — fills viewport below the header */}
+      {/* Canvas container */}
       <div
-        className="overflow-auto cursor-grab active:cursor-grabbing"
-        style={{ width: "100%", height: "calc(100dvh - 80px)" }}
+        ref={containerRef}
+        className="overflow-auto select-none"
+        style={{ width: "100%", height: "calc(100dvh - 80px)", cursor: "grab" }}
+        onMouseDown={onCanvasMouseDown}
       >
         {playgroundItems.length === 0 ? (
           <div className="flex h-full w-full items-center justify-center">
@@ -36,7 +79,7 @@ export default function PlaygroundPage() {
               <button
                 key={item.id}
                 type="button"
-                onClick={() => setSelected(item)}
+                onClick={() => { if (!hasDragged.current) setSelected(item); }}
                 aria-label={item.alt ?? `Playground item ${item.id}`}
                 className="absolute p-0 border-0 bg-transparent focus-visible:outline-2 focus-visible:outline-[var(--ui-focus-ring)] focus-visible:outline-offset-2"
                 style={{ top: item.top, left: item.left, width: item.width, height: item.height }}
@@ -45,6 +88,7 @@ export default function PlaygroundPage() {
                   <img
                     src={item.src}
                     alt={item.alt ?? ""}
+                    draggable={false}
                     className="block w-full h-full object-cover"
                   />
                 )}
@@ -82,7 +126,6 @@ export default function PlaygroundPage() {
           style={{ animation: "pg-fade-in 150ms ease forwards" }}
           onClick={() => setSelected(null)}
         >
-          {/* Inner content — stop click from closing when clicking the item itself */}
           <div
             style={{ animation: "pg-scale-in 150ms ease forwards" }}
             onClick={(e) => e.stopPropagation()}
