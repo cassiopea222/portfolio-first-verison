@@ -56,7 +56,7 @@ export default function RootLayout({
       >
         <AppShell>
           <TooltipProvider>
-            <div className="flex min-h-screen flex-col">
+            <div className="flex min-h-screen flex-col bg-[var(--background)]">
               <AppShellHeader />
               <main className="flex-1">{children}</main>
             </div>
