@@ -67,7 +67,7 @@ export default function CaseStudyToC({
   return (
     <nav
       aria-label="Table of contents"
-      className="sticky top-[120px] hidden h-fit w-[180px] shrink-0 flex-col gap-[32px] min-[1200px]:flex"
+      className="sticky top-[120px] hidden h-fit w-[180px] shrink-0 flex-col gap-[32px] min-[1240px]:flex"
     >
       <Link
         href={backHref}
