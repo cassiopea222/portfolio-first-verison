@@ -2,6 +2,7 @@ import Image from "next/image";
 import ScaledCover from "@/components/ScaledCover";
 import CaseStudyToC, { type ToCSection } from "@/components/projects/CaseStudyToC";
 import CaseStudyMeta from "@/components/projects/CaseStudyMeta";
+import CaseStudyLayout from "@/components/projects/CaseStudyLayout";
 
 // Cover images
 const imgIPhone17Pro1 = "/home/sadie_active/iPhone 17 Pro 1.png";
@@ -49,10 +50,11 @@ function Showcase({ children, caption }: { children: React.ReactNode; caption: s
 
 export default function FitnessCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] cs-px py-[120px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px]">
-      <CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Fitness app redesign" />
-
-      <div className="flex min-w-0 w-full max-w-[800px] flex-1 flex-col gap-12">
+    <CaseStudyLayout
+      backHref="/"
+      sidebar={<CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Fitness app redesign" />}
+    >
+      <div className="flex min-w-0 w-full flex-col gap-12">
         {/* Opening block */}
         <div className="flex w-full flex-col gap-8">
           {/* Title */}
@@ -336,6 +338,6 @@ export default function FitnessCaseStudy() {
           </Showcase>
         </div>
       </div>
-    </section>
+    </CaseStudyLayout>
   );
 }
