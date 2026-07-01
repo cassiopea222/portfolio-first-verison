@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowBackNavIcon } from "@/components/icons/ArrowBackNavIcon";
+import CaseStudyLayout from "@/components/projects/CaseStudyLayout";
+import CaseStudyToC from "@/components/projects/CaseStudyToC";
 import type { ProjectRecord } from "@/lib/projects";
 
 type ProjectCaseSkeletonProps = {
@@ -8,15 +8,11 @@ type ProjectCaseSkeletonProps = {
 
 export default function ProjectCaseSkeleton({ project }: ProjectCaseSkeletonProps) {
   return (
-    <section className="mx-auto w-full max-w-[1440px] pb-[120px] pt-[120px] cs-px max-[809px]:py-[48px]">
-      <div className="flex w-full max-w-[800px] flex-col gap-10">
-        <Link
-          href="/"
-          className="type-body inline-flex w-fit items-center gap-2 rounded-xl border border-[#dadada] bg-[linear-gradient(179.23deg,#fff_4.27%,rgba(231,231,231,0.7)_98.14%)] px-3 py-2 text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)] transition-[background-color,border-color,color] duration-200 ease-out hover:border-[#d5d5d5] hover:bg-[#efefef] hover:text-[var(--text-primary)]"
-        >
-          <ArrowBackNavIcon />
-          Go back
-        </Link>
+    <CaseStudyLayout
+      backHref="/"
+      sidebar={<CaseStudyToC sections={[]} backHref="/" />}
+    >
+      <div className="flex w-full flex-col gap-10">
 
         <header className="flex flex-col gap-4">
           <h1
@@ -51,6 +47,6 @@ export default function ProjectCaseSkeleton({ project }: ProjectCaseSkeletonProp
           ))}
         </div>
       </div>
-    </section>
+    </CaseStudyLayout>
   );
 }

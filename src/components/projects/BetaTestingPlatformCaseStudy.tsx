@@ -2,6 +2,7 @@ import Image from "next/image";
 import ScaledCover from "@/components/ScaledCover";
 import CaseStudyToC, { type ToCSection } from "@/components/projects/CaseStudyToC";
 import CaseStudyMeta from "@/components/projects/CaseStudyMeta";
+import CaseStudyLayout from "@/components/projects/CaseStudyLayout";
 
 // Hero images
 const imgUnsplashVhKRwVyQ = "/home/ajax/unsplash_-Vh-kRw_vyQ.png";
@@ -129,10 +130,11 @@ const TOC_SECTIONS: ToCSection[] = [
 
 export default function BetaTestingPlatformCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] cs-px py-[120px] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px]">
-      <CaseStudyToC sections={TOC_SECTIONS} title="Beta testing platform" />
-
-      <div className="flex min-w-0 w-full max-w-[840px] flex-1 flex-col gap-[48px]">
+    <CaseStudyLayout
+      backHref="/"
+      sidebar={<CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Beta testing platform" />}
+    >
+      <div className="flex min-w-0 w-full flex-col gap-[48px]">
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <div className="flex w-full flex-col gap-[32px]">
           <div className="flex flex-col gap-[8px]">
@@ -763,6 +765,6 @@ export default function BetaTestingPlatformCaseStudy() {
           />
         </div>
       </div>
-    </section>
+    </CaseStudyLayout>
   );
 }

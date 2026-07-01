@@ -2,6 +2,7 @@ import Image from "next/image";
 import ScaledCover from "@/components/ScaledCover";
 import CaseStudyToC, { type ToCSection } from "@/components/projects/CaseStudyToC";
 import CaseStudyMeta from "@/components/projects/CaseStudyMeta";
+import CaseStudyLayout from "@/components/projects/CaseStudyLayout";
 
 const imgShutterstock = "/home/role_management/shutterstock-bg.png";
 const imgCreateNewRoleNew3 = "/home/role_management/Create new role NEW 3.png";
@@ -217,10 +218,11 @@ function TradeoffsTable() {
 
 export default function RoleManagementCaseStudy() {
   return (
-    <section className="mx-auto flex w-full max-w-[1440px] items-start gap-[40px] cs-px py-[120px] text-[var(--foreground)] max-[809px]:flex-col max-[809px]:gap-[40px] max-[809px]:py-[48px]">
-      <CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Role Management System" />
-
-      <div className="flex min-w-0 w-full max-w-[840px] flex-1 flex-col gap-[48px]">
+    <CaseStudyLayout
+      backHref="/"
+      sidebar={<CaseStudyToC sections={TOC_SECTIONS} backHref="/" title="Role Management System" />}
+    >
+      <div className="flex min-w-0 w-full flex-col gap-[48px] text-[var(--foreground)]">
         {/* Opening block */}
         <div className="flex w-full flex-col gap-[32px]">
           {/* Title */}
@@ -480,6 +482,6 @@ export default function RoleManagementCaseStudy() {
           </div>
         </div>
       </div>
-    </section>
+    </CaseStudyLayout>
   );
 }
