@@ -30,63 +30,17 @@ function getLastUpdateDate(): string {
   }
 }
 
-const EMAIL_ADDRESS = "ubulyndina@gmail.com";
-
-const footerLinks = [
-  { href: `mailto:${EMAIL_ADDRESS}`, label: "Email", tooltip: "Copy", external: false },
-  {
-    href: "https://www.linkedin.com/in/julia-bulyndina-872617241/",
-    label: "LinkedIn",
-    tooltip: "Go",
-    external: true,
-  },
-  { href: "/cv/julia-bulyndina-cv.pdf", label: "Resume", tooltip: "Open", external: true },
-];
-
 export default function FooterNote() {
   const lastUpdate = getLastUpdateDate();
 
   return (
-    <footer className="mx-auto flex w-full max-w-[1440px] fluid-px pb-[24px] pt-[40px]">
-      <div className="flex w-full flex-col items-start justify-between gap-10 min-[810px]:flex-row min-[810px]:items-end">
-        {/* Left — Say hi */}
-        <div className="flex flex-col gap-3">
-          <div className="flex items-center gap-1.5">
-            <p
-              className="italic tracking-[0.32px] text-[var(--text-primary)]"
-              style={{ fontFamily: "var(--font-crimson), serif", fontSize: 32, lineHeight: "40px" }}
-            >
-              Say hi
-            </p>
-            <span
-              className="not-italic"
-              style={{ fontFamily: "var(--font-crimson), serif", fontSize: 20, lineHeight: "36px", fontWeight: 500 }}
-            >
-              𓍢ִ໋❀˚⋆
-            </span>
-          </div>
-          <div className="flex items-center gap-5">
-            {footerLinks.map(({ href, label, tooltip, external }) => (
-              <a
-                key={label}
-                href={href}
-                target={external ? "_blank" : undefined}
-                rel={external ? "noopener noreferrer" : undefined}
-                data-tooltip={tooltip}
-                className="py-2 font-inconsolata text-[18px] font-semibold leading-[20px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Right — Built with */}
-        <div className="flex flex-col items-start gap-2 min-[810px]:items-end">
-          <div className="flex items-center gap-1.5">
-            <span className="font-sans text-[14px] font-normal leading-[18px] text-[var(--text-tertiary)]">
-              Built with love by me, using
-            </span>
+    <footer className="mx-auto flex w-full max-w-[900px] fluid-px py-[40px]">
+      <div className="flex w-full items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="font-inconsolata text-[16px] font-medium leading-[24px] text-[var(--text-tertiary)]">
+            Built with love by me using
+          </span>
+          <div className="flex items-center gap-2">
             <a href="https://cursor.com" target="_blank" rel="noopener noreferrer" className="relative h-6 w-6 overflow-hidden rounded-[4px]">
               <Image
                 src="/footer/cursor-icon.png"
@@ -106,10 +60,10 @@ export default function FooterNote() {
               />
             </a>
           </div>
-          <p className="font-sans text-[14px] font-normal leading-[18px] text-[var(--text-tertiary)]">
-            Changelog: {lastUpdate}
-          </p>
         </div>
+        <p className="font-inconsolata text-[16px] font-medium leading-[24px] text-[var(--text-tertiary)]">
+          Changelog: {lastUpdate}
+        </p>
       </div>
     </footer>
   );

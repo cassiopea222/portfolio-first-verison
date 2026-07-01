@@ -395,6 +395,11 @@ body {
 
 .side-work-track {
   animation: side-work-scroll 50s linear infinite;
+  will-change: transform;
+}
+
+.side-work-paused {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

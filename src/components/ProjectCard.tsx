@@ -130,7 +130,7 @@ export default function ProjectCard({
           <span className="w-full font-sans font-medium text-[var(--text-primary)] min-[810px]:w-auto">
             {title}
           </span>
-          <span className="font-sans text-[18px] font-normal leading-[26px] text-[var(--text-tertiary)] min-[810px]:text-[22px] min-[810px]:leading-[30px]">
+          <span className="font-sans text-[16px] font-normal leading-[24px] text-[var(--text-tertiary)] min-[810px]:text-[22px] min-[810px]:leading-[30px]">
             {dateRange}
           </span>
         </h3>

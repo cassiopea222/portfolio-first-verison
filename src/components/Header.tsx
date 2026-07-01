@@ -11,7 +11,7 @@ const navLinks = [
 ];
 
 // Tab widths match Figma: Work=100px, About=104px, Playground=measured in Step 4
-const TAB_WIDTHS: Record<string, number> = { "/": 100, "/about": 104, "/playground": 148 };
+const TAB_WIDTHS: Record<string, number> = { "/": 100, "/about": 104, "/playground": 118 };
 // Offset = sum of widths of all tabs before this one
 const TAB_OFFSETS: Record<string, number> = { "/": 0, "/about": 100, "/playground": 204 };
 
