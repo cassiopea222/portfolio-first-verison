@@ -137,11 +137,11 @@ export default function BetaTestingPlatformCaseStudy() {
       <div className="flex min-w-0 w-full flex-col gap-[48px]">
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <div className="flex w-full flex-col gap-[32px]">
-          <div className="flex flex-col gap-[8px]">
-            <p className="font-inconsolata font-medium text-[22px] leading-6 text-[var(--text-tertiary)]">
+          <div className="flex flex-col gap-[6px]">
+            <p className="font-inconsolata font-semibold text-[24px] leading-8 text-[var(--text-tertiary)]">
               Ajax Systems
             </p>
-            <h1 className="text-[24px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:leading-7">
+            <h1 className="text-[28px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:leading-7">
               Beta testing platform
             </h1>
           </div>

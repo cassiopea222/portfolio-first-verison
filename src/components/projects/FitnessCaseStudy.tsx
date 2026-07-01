@@ -58,9 +58,9 @@ export default function FitnessCaseStudy() {
         {/* Opening block */}
         <div className="flex w-full flex-col gap-8">
           {/* Title */}
-          <div className="flex flex-col gap-[8px]">
-            <p className="font-inconsolata font-medium text-[22px] leading-6 text-[var(--text-tertiary)]">SadieActive</p>
-            <h1 className="text-[24px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9">
+          <div className="flex flex-col gap-[6px]">
+            <p className="font-inconsolata font-semibold text-[24px] leading-8 text-[var(--text-tertiary)]">SadieActive</p>
+            <h1 className="text-[28px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9">
               Fitness app redesign
             </h1>
           </div>

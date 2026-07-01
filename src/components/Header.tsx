@@ -51,11 +51,11 @@ export default function Header() {
   const pillOffset = TAB_OFFSETS[activeHref] ?? 0;
 
   return (
-    <header className="relative mx-auto w-full max-w-[900px] fluid-px pt-6 pb-3">
+    <header className="sticky top-0 z-50 mx-auto w-full max-w-[900px] fluid-px pt-6 pb-3">
       {/* ── Desktop layout: centered tabs ── */}
       <div className="hidden min-[810px]:flex min-[810px]:justify-center">
         <div
-          className="relative flex items-center rounded-[40px] bg-white p-1 shadow-[0px_0.5px_2px_rgba(0,0,0,0.12),0px_1px_2px_rgba(0,0,0,0.1)]"
+          className="relative flex items-center rounded-[40px] bg-white p-1 shadow-[0px_1px_3px_rgba(0,0,0,0.14),0px_1px_4px_rgba(0,0,0,0.10)]"
           role="tablist"
           aria-label="Site navigation"
         >
@@ -80,7 +80,7 @@ export default function Header() {
               className={`relative z-10 py-[6px] text-center font-sans text-[16px] leading-[26px] transition-colors duration-150 ${
                 activeHref === href
                   ? "cursor-default font-medium text-[var(--text-secondary)]"
-                  : "cursor-pointer font-normal text-[var(--text-tertiary)]"
+                  : "cursor-pointer font-medium text-[var(--text-tertiary)]"
               }`}
             >
               {label}

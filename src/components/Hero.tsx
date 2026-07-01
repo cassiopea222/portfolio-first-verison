@@ -50,7 +50,7 @@ export default function Hero() {
                 e.preventDefault();
                 void copyEmail();
               }}
-              className="py-2 font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+              className="py-2 font-inconsolata text-[20px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
             >
               Email
             </a>
@@ -59,7 +59,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               data-tooltip="Go"
-              className="py-2 font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+              className="py-2 font-inconsolata text-[20px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
             >
               LinkedIn
             </a>
@@ -68,7 +68,7 @@ export default function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               data-tooltip="Open"
-              className="py-2 font-inconsolata text-[18px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
+              className="py-2 font-inconsolata text-[20px] font-semibold leading-[26px] text-[var(--text-tertiary)] no-underline transition-colors hover:text-[var(--text-secondary)]"
             >
               Resume
             </a>

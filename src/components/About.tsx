@@ -49,7 +49,7 @@ export default function About() {
               <div className="flex flex-col gap-[20px]">
                 <h1
                   className="font-medium text-[var(--text-primary)]"
-                  style={{ fontFamily: "var(--font-crimson)", fontSize: 36, lineHeight: "40px" }}
+                  style={{ fontFamily: "var(--font-crimson)", fontSize: 32, lineHeight: "38px" }}
                 >
                   Hi there! I&apos;m Julia
                 </h1>

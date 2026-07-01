@@ -227,10 +227,10 @@ export default function RoleManagementCaseStudy() {
         <div className="flex w-full flex-col gap-[32px]">
           {/* Title */}
           <div className="flex flex-col gap-[6px]">
-            <p className="font-inconsolata text-[26px] font-medium leading-9 text-[var(--text-tertiary)]">
+            <p className="font-inconsolata text-[24px] font-semibold leading-8 text-[var(--text-tertiary)]">
               Governmental platform
             </p>
-            <h1 className="text-[26px] font-medium leading-9 text-[var(--text-primary)]">
+            <h1 className="text-[28px] font-medium leading-9 text-[var(--text-primary)]">
               Role Management System
             </h1>
           </div>
@@ -294,13 +294,13 @@ export default function RoleManagementCaseStudy() {
           <NestingDiagram />
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             There was no access control model on top of this. Everything was all-or-nothing or configured manually, person by person. The core tension:{" "}
-            <span className="font-crimson italic font-normal text-[20px] leading-[26px]">
+            <span className="font-medium text-[16px] leading-6">
               Most users only needed access to specific parts of the system, but there was no way to express that cleanly.
             </span>
           </p>
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             Design decision:{" "}
-            <span className="font-crimson italic font-medium text-[20px] leading-[26px]">
+            <span className="font-medium text-[16px] leading-6">
               group by content domain, not by environment, so an admin navigates six nested levels without making mistakes.
             </span>
           </p>
@@ -315,7 +315,7 @@ export default function RoleManagementCaseStudy() {
             <SectionHeader subtitle="The first model" title="A role is what a person does" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               My starting premise:{" "}
-              <span className="font-crimson italic font-medium text-[20px] leading-[26px]">
+              <span className="font-medium text-[16px] leading-6">
                 a role should reflect what a person does, not where they sit
               </span>
               .<br /><br />
@@ -370,7 +370,7 @@ export default function RoleManagementCaseStudy() {
             </p>
             <p>
               That was the real hypothesis in the room:{" "}
-              <span className="font-crimson italic font-medium text-[20px] leading-[26px]">
+              <span className="font-medium text-[16px] leading-6">
                 most users with the same job function share the same access pattern, so the role can carry all the granularity.{" "}
               </span>
               Across three rounds of feedback, the answer got clear — most roles mapped to one or two real people, patterns barely repeated, nobody wanted to curate a role library. The hypothesis didn&apos;t hold.
@@ -474,7 +474,7 @@ export default function RoleManagementCaseStudy() {
             </p>
             <p>
               What I now carry into every system design:{" "}
-              <span className="font-crimson italic font-medium text-[20px] leading-[26px]">
+              <span className="font-medium text-[16px] leading-6">
                 the architecture isn&apos;t the hard part — the assumption underneath it is
               </span>
               . My job isn&apos;t to build the most logical model; it&apos;s to find out which logic the organization can actually live in, as early and as cheaply as possible. Sometimes that means killing a model you&apos;re proud of. This project taught me to do it without flinching.
