@@ -37,7 +37,7 @@ grid-template-columns: 1fr  min(800px, calc(100% - 40px))  1fr
 ```
 
 - Column 1 (`1fr`): TOC sidebar zone. TOC is right-aligned within it (`justify-end`), with a 40px gap (via `pr-10`) between TOC and content.
-- Column 2 (`min(800px, …)`): Content. Always at the viewport midpoint because both flanking columns are `1fr`. 20px horizontal padding when the viewport clips the column below 800px.
+- Column 2 (`min(800px, …)`): Content. Always at the viewport midpoint because both flanking columns are `1fr`. At narrow viewports the `1fr` columns shrink to ~20px each, acting as side margins — no extra padding is added to the content div itself.
 - Column 3 (`1fr`): Empty mirror column. Keeps column 2 centered.
 
 **Vertical padding:** `py-[120px]` desktop, `py-[48px]` below 810px (same as current).
@@ -81,7 +81,7 @@ The content `<div>` inside each (currently `flex min-w-0 w-full max-w-[800px] fl
 | `src/components/projects/FitnessCaseStudy.tsx` | Use `CaseStudyLayout`; remove outer section |
 | `src/components/projects/BetaTestingPlatformCaseStudy.tsx` | Use `CaseStudyLayout`; remove outer section |
 | `src/components/projects/RoleManagementCaseStudy.tsx` | Use `CaseStudyLayout`; remove outer section |
-| `src/components/projects/ProjectCaseSkeleton.tsx` | Use `CaseStudyLayout`; remove inline Go back button |
+| `src/components/projects/ProjectCaseSkeleton.tsx` | Use `CaseStudyLayout` with `sidebar={<CaseStudyToC sections={[]} backHref="/" />}`; remove inline Go back button |
 
 ## Verification
 
