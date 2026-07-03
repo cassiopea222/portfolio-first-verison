@@ -2,6 +2,10 @@
 
 /* Figma design tokens (from get_variable_defs) */
 :root {
+  /* Approximate sticky-header height; Header.tsx overwrites this with the
+     real measured value on mount so the homepage hero can fill exactly
+     "the rest of the viewport" below it. */
+  --header-height: 82px;
   --background: #ffffff;
   --foreground: #000000;
   --text-primary: #373636;
@@ -167,6 +171,18 @@ body {
   }
 }
 
+/* Hero entrance: blur-to-clear reveal for the nav bar + headline on load */
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
 @layer utilities {
   .type-display {
     font-family: var(--font-sans), sans-serif;
@@ -297,6 +313,16 @@ body {
     animation-delay: 210ms;
   }
 
+  .hero-enter-nav {
+    animation: hero-enter 300ms ease-out both;
+    will-change: opacity, filter;
+  }
+
+  .hero-enter-heading {
+    animation: hero-enter 300ms ease-out 70ms both;
+    will-change: opacity, filter;
+  }
+
   .ui-btn-primary {
     transition:
       background-color var(--ui-duration) var(--ui-ease-out),
@@ -358,10 +384,13 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .route-enter,
-  .route-enter-stagger > * {
+  .route-enter-stagger > *,
+  .hero-enter-nav,
+  .hero-enter-heading {
     animation: none;
     opacity: 1;
     transform: none;
+    filter: none;
   }
 
   .ui-btn-primary,
