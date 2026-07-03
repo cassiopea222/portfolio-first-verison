@@ -288,10 +288,13 @@ function PhoneVisual() {
 
 export default function IntroSection() {
   return (
-    <section className="mx-auto w-full max-w-[1240px] fluid-px pt-[160px] pb-[160px]">
+    <section
+      className="mx-auto flex w-full flex-col justify-center fluid-px pt-[80px] pb-[160px]"
+      style={{ minHeight: "calc(100dvh - var(--header-height, 0px))" }}
+    >
       <div style={{ containerType: "inline-size" }}>
         <h1
-          className="flex flex-col items-center font-semibold text-[var(--text-primary)]"
+          className="hero-enter-heading flex flex-col items-center font-semibold text-[var(--text-primary)]"
           style={{
             /* 7.2cqw: the widest line (cover + "interfaces people ♥ love,")
                measures ~13.82em in Inter Display, so the headline fills ~99%
@@ -301,7 +304,7 @@ export default function IntroSection() {
             fontSize: "min(64px, 7.2cqw)",
             lineHeight: 76 / 64,
             letterSpacing: "0.01em",
-            gap: em(8),
+            gap: em(4),
           }}
         >
           <span className="flex items-end whitespace-nowrap" style={{ gap: em(24) }}>
