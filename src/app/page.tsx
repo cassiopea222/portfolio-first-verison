@@ -1,12 +1,12 @@
 import FooterNote from "@/components/FooterNote";
-import Hero from "@/components/Hero";
+import IntroSection from "@/components/IntroSection";
 import ProjectsGrid from "@/components/ProjectsGrid";
 // import SideWork from "@/components/SideWork";
 
 export default function Home() {
   return (
     <>
-      <Hero />
+      <IntroSection />
       <ProjectsGrid />
       {/* <SideWork /> */}
       <FooterNote />

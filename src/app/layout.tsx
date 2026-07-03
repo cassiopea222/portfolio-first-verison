@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Crimson_Pro, Geist, Geist_Mono, Inconsolata } from "next/font/google";
+import localFont from "next/font/local";
 import AppShell from "@/components/AppShell";
 import AppShellHeader from "@/components/AppShellHeader";
 import TooltipProvider from "@/components/TooltipProvider";
@@ -38,6 +39,13 @@ const cormorantGaramond = Cormorant_Garamond({
   display: "swap",
 });
 
+const interDisplay = localFont({
+  src: "../fonts/inter-display/InterDisplay-SemiBold.woff2",
+  weight: "600",
+  variable: "--font-inter-display",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Julia Bulyndina Portfolio",
   description:
@@ -52,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geist.className} ${geist.variable} ${inconsolata.variable} ${geistMono.variable} ${crimsonPro.variable} ${cormorantGaramond.variable} min-h-screen antialiased`}
+        className={`${geist.className} ${geist.variable} ${inconsolata.variable} ${geistMono.variable} ${crimsonPro.variable} ${cormorantGaramond.variable} ${interDisplay.variable} min-h-screen antialiased`}
       >
         <AppShell>
           <TooltipProvider>
