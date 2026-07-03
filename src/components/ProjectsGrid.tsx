@@ -13,18 +13,20 @@ export default function ProjectsGrid({ projects = defaultProjects }: ProjectsGri
       <h2 className="mb-6 font-sans text-[24px] font-medium leading-[32px] text-[var(--text-secondary)]">
         Selected work
       </h2>
-      <div className="flex flex-col gap-8">
-        {projects.map((project, index) => (
-          <ProjectCard
-            key={`${project.title}-${index}`}
-            title={project.title}
-            dateRange={project.dateRange}
-            tags={project.tags}
-            description={project.description}
-            cover={project.cover}
-            href={project.status === "ready" ? `/projects/${project.slug}` : undefined}
-          />
-        ))}
+      <div className="flex flex-col gap-[70px]">
+        {projects
+          .filter((project) => !project.hidden)
+          .map((project) => (
+            <ProjectCard
+              key={project.slug}
+              name={project.name}
+              subtitle={project.subtitle}
+              dateRange={project.dateRange}
+              description={project.description}
+              cover={project.cover}
+              href={project.status === "ready" ? `/projects/${project.slug}` : undefined}
+            />
+          ))}
       </div>
     </section>
   );
