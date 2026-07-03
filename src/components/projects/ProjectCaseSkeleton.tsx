@@ -19,7 +19,7 @@ export default function ProjectCaseSkeleton({ project }: ProjectCaseSkeletonProp
             className="text-[32px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
             style={{ fontFamily: "var(--font-crimson), serif" }}
           >
-            {project.title}
+            {project.name} {project.subtitle}
           </h1>
           <p className="type-body text-[var(--text-secondary)]">
             This case study is not published yet. The page structure is ready so
