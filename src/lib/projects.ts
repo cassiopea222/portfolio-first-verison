@@ -21,7 +21,7 @@ export const projects: ProjectRecord[] = [
     description:
       "Three connected products built for a government organisation in the Arabic-speaking region - a monitoring dashboard, a back-office CMS, and a companion mobile app.",
     cover: "governmental",
-    status: "planned",
+    status: "ready",
   },
   {
     slug: "beta-testing-platform-ajax",

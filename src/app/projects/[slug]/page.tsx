@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import BetaTestingPlatformCaseStudy from "@/components/projects/BetaTestingPlatformCaseStudy";
 import FitnessCaseStudy from "@/components/projects/FitnessCaseStudy";
+import GovernmentalPlatformCaseStudy from "@/components/projects/GovernmentalPlatformCaseStudy";
 import RoleManagementCaseStudy from "@/components/projects/RoleManagementCaseStudy";
 import ProjectCaseSkeleton from "@/components/projects/ProjectCaseSkeleton";
 import { getProjectBySlug, projects } from "@/lib/projects";
@@ -31,6 +32,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   if (project.slug === "role-management-system") {
     return <RoleManagementCaseStudy />;
+  }
+
+  if (project.slug === "governmental-platform") {
+    return <GovernmentalPlatformCaseStudy />;
   }
 
   return <ProjectCaseSkeleton project={project} />;
