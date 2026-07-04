@@ -141,7 +141,10 @@ export default function BetaTestingPlatformCaseStudy() {
             <p className="font-inconsolata font-semibold text-[24px] leading-8 text-[var(--text-tertiary)]">
               Ajax Systems
             </p>
-            <h1 className="text-[28px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:leading-7">
+            <h1
+              className="font-semibold text-[28px] leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:leading-7"
+              style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+            >
               Beta testing platform
             </h1>
           </div>

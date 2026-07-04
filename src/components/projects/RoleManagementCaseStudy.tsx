@@ -230,7 +230,10 @@ export default function RoleManagementCaseStudy() {
             <p className="font-inconsolata text-[24px] font-semibold leading-8 text-[var(--text-tertiary)]">
               Governmental platform
             </p>
-            <h1 className="text-[28px] font-medium leading-9 text-[var(--text-primary)]">
+            <h1
+              className="font-semibold text-[28px] leading-9 text-[var(--text-primary)]"
+              style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+            >
               Role Management System
             </h1>
           </div>

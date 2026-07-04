@@ -2,14 +2,16 @@
 
 /* Figma design tokens (from get_variable_defs) */
 :root {
-  /* Approximate sticky-header height; Header.tsx overwrites this with the
-     real measured value on mount so the homepage hero can fill exactly
-     "the rest of the viewport" below it. */
-  --header-height: 82px;
+  /* Sticky-header height, computed to match Header.tsx's own rendered
+     size exactly: 36px vertical padding (pt-6 + pb-3) plus the content
+     row (24px hamburger on mobile, 46px nav pill on desktop). Kept as a
+     static value (not JS-measured) so the homepage hero never has to
+     reflow/correct after hydration — that caused a visible jump on load. */
+  --header-height: 60px;
   --background: #ffffff;
   --foreground: #000000;
   --text-primary: #373636;
-  --text-secondary: #4b4d53;
+  --text-secondary: #404246;
   --text-tertiary: #818790;
   --icon-secondary: #727680;
   --card-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.1);
@@ -69,6 +71,15 @@
   --type-caption-track: 0;
 }
 
+/* Header switches from the mobile hamburger row to the desktop nav pill at
+   810px (Header.tsx's `min-[810px]:` breakpoint) — match it here so
+   --header-height stays accurate without measuring the DOM. */
+@media (min-width: 810px) {
+  :root {
+    --header-height: 82px;
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -76,8 +87,8 @@
   --color-text-secondary: var(--text-secondary);
   --color-text-tertiary: var(--text-tertiary);
   --color-icon-secondary: var(--icon-secondary);
-  --font-sans: var(--font-geist);
-  --font-serif: var(--font-geist);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-inter);
   --font-inconsolata: var(--font-inconsolata-raw);
   --font-crimson: "Crimson Pro";
   --font-cormorant: "Cormorant Garamond";

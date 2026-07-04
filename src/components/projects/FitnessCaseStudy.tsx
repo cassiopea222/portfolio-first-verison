@@ -60,7 +60,10 @@ export default function FitnessCaseStudy() {
           {/* Title */}
           <div className="flex flex-col gap-[6px]">
             <p className="font-inconsolata font-semibold text-[24px] leading-8 text-[var(--text-tertiary)]">SadieActive</p>
-            <h1 className="text-[28px] font-medium leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9">
+            <h1
+              className="font-semibold text-[28px] leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
+              style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+            >
               Fitness app redesign
             </h1>
           </div>
