@@ -8,7 +8,7 @@ export default function CornerLinks() {
           href="https://www.linkedin.com/in/julia-bulyndina-872617241/"
           target="_blank"
           rel="noopener noreferrer"
-          className="py-1 font-sans text-[18px] font-medium leading-[26px] text-[#818790] no-underline transition-colors hover:text-[var(--text-primary)]"
+          className="py-1 font-sans text-[18px] font-medium leading-[26px] text-[#818790] no-underline transition-colors hover:text-[var(--text-secondary)]"
         >
           LinkedIn
         </a>
@@ -16,14 +16,14 @@ export default function CornerLinks() {
           href="/cv/julia-bulyndina-cv.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="py-1 font-sans text-[18px] font-medium leading-[26px] text-[#818790] no-underline transition-colors hover:text-[var(--text-primary)]"
+          className="py-1 font-sans text-[18px] font-medium leading-[26px] text-[#818790] no-underline transition-colors hover:text-[var(--text-secondary)]"
         >
           Resume
         </a>
       </div>
       <a
         href={`mailto:${EMAIL_ADDRESS}`}
-        className="py-1 font-sans text-[18px] font-medium leading-[26px] text-[#4b4d53] no-underline transition-colors hover:text-[var(--text-primary)]"
+        className="py-1 font-sans text-[18px] font-medium leading-[26px] text-[#4b4d53] no-underline transition-colors hover:text-[var(--text-secondary)]"
       >
         {EMAIL_ADDRESS}
       </a>
