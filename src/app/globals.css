@@ -428,22 +428,3 @@ body {
   to   { opacity: 1; transform: scale(1); }
 }
 
-@keyframes side-work-scroll {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0%); }
-}
-
-.side-work-track {
-  animation: side-work-scroll 50s linear infinite;
-  will-change: transform;
-}
-
-.side-work-paused {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .side-work-track {
-    animation: none;
-  }
-}
