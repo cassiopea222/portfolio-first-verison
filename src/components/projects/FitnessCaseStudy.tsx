@@ -28,12 +28,14 @@ const TOC_SECTIONS: ToCSection[] = [
   { id: "core-flows", label: "Core flows" },
 ];
 
-function SectionHeader({ subtitle, title }: { subtitle: string; title: string }) {
+function SectionHeader({ title }: { title: string }) {
   return (
-    <div className="flex flex-col gap-1">
-      <p className="font-inconsolata text-[18px] font-semibold leading-6 text-[var(--text-tertiary)]">{subtitle}</p>
-      <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">{title}</h2>
-    </div>
+    <h2
+      className="font-semibold text-[24px] leading-8 text-[var(--text-primary)]"
+      style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+    >
+      {title}
+    </h2>
   );
 }
 
@@ -58,15 +60,12 @@ export default function FitnessCaseStudy() {
         {/* Opening block */}
         <div className="flex w-full flex-col gap-8">
           {/* Title */}
-          <div className="flex flex-col gap-[6px]">
-            <p className="font-inconsolata font-semibold text-[24px] leading-8 text-[var(--text-tertiary)]">SadieActive</p>
-            <h1
-              className="font-semibold text-[28px] leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
-              style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
-            >
-              Fitness app redesign
-            </h1>
-          </div>
+          <h1
+            className="font-semibold text-[28px] leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
+            style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+          >
+            Sadie Active: Fitness app redesign
+          </h1>
 
           {/* Cover: 3 phones */}
           <ScaledCover hoverZoom nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
@@ -118,10 +117,7 @@ export default function FitnessCaseStudy() {
         {/* Problem */}
         <div id="problem" className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <SectionHeader
-              subtitle="Problem"
-              title="The app felt dated, cluttered, and hard to follow."
-            />
+            <SectionHeader title="Problem" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               The original app felt dated and unintuitive: cluttered workout
               screens, inconsistent navigation, and friction completing sessions.
@@ -137,10 +133,7 @@ export default function FitnessCaseStudy() {
 
         {/* My role */}
         <div id="my-role" className="flex w-full flex-col gap-4">
-          <SectionHeader
-            subtitle="My role"
-            title="From analysis to handoff across mobile + admin."
-          />
+          <SectionHeader title="My role" />
           <ul className="list-disc pl-6 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <li>Conducted competitor analysis</li>
             <li>Developed user flows</li>
@@ -156,10 +149,7 @@ export default function FitnessCaseStudy() {
         {/* Core flows: Workouts and statistics */}
         <div id="core-flows" className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <SectionHeader
-              subtitle="Core flows"
-              title="Workouts and statistics"
-            />
+            <SectionHeader title="Workouts and statistics" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Turned a cluttered home screen into a simple weekly hub - users can
               instantly see progress, jump into the next workout, and review what
@@ -231,9 +221,7 @@ export default function FitnessCaseStudy() {
         {/* Programs */}
         <div className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
-              Programs
-            </h2>
+            <SectionHeader title="Programs" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Long-term programs turn single workouts into clear 4-, 8-, or
               12-week roadmaps. Each plan auto-slots sessions onto the right days.
@@ -284,9 +272,7 @@ export default function FitnessCaseStudy() {
         {/* Macronutrients calculator */}
         <div className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
-              Macronutrients calculator
-            </h2>
+            <SectionHeader title="Macronutrients calculator" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               We aimed to make workout execution clearer and more focused, cut
               navigation friction so users reach programs and sessions faster,
@@ -324,9 +310,7 @@ export default function FitnessCaseStudy() {
         {/* Web platform for admin */}
         <div className="flex w-full flex-col gap-8">
           <div className="flex flex-col gap-4">
-            <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
-              Web platform for admin
-            </h2>
+            <SectionHeader title="Web platform for admin" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               We aimed to make workout execution clearer and more focused, cut
               navigation friction so users reach programs and sessions faster,

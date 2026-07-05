@@ -100,18 +100,25 @@ function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }
   );
 }
 
-function SectionHeader({ subtitle, title }: { subtitle?: string; title: string }) {
+function SectionHeader({ title }: { title: string }) {
   return (
-    <div className="flex flex-col gap-1">
-      {subtitle && (
-        <p className="font-inconsolata text-[18px] font-semibold leading-6 text-[var(--text-tertiary)]">
-          {subtitle}
-        </p>
-      )}
-      <h2 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
-        {title}
-      </h2>
-    </div>
+    <h2
+      className="font-semibold text-[24px] leading-8 text-[var(--text-primary)]"
+      style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+    >
+      {title}
+    </h2>
+  );
+}
+
+function SubHeading({ title }: { title: string }) {
+  return (
+    <h3
+      className="font-semibold text-[20px] leading-6 text-[var(--text-primary)]"
+      style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+    >
+      {title}
+    </h3>
   );
 }
 
@@ -137,17 +144,12 @@ export default function BetaTestingPlatformCaseStudy() {
       <div className="flex min-w-0 w-full flex-col gap-[48px]">
         {/* ── Hero ─────────────────────────────────────────────────────── */}
         <div className="flex w-full flex-col gap-[32px]">
-          <div className="flex flex-col gap-[6px]">
-            <p className="font-inconsolata font-semibold text-[24px] leading-8 text-[var(--text-tertiary)]">
-              Ajax Systems
-            </p>
-            <h1
-              className="font-semibold text-[28px] leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:leading-7"
-              style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
-            >
-              Beta testing platform
-            </h1>
-          </div>
+          <h1
+            className="font-semibold text-[28px] leading-[1.25] tracking-[-0.01em] text-[var(--text-primary)] max-[809px]:leading-7"
+            style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+          >
+            Ajax Systems: Beta testing platform
+          </h1>
 
           <ScaledCover hoverZoom nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#e6e6e6]">
             <Image
@@ -188,11 +190,8 @@ export default function BetaTestingPlatformCaseStudy() {
         <div className="flex flex-col gap-[48px]">
           {/* ── Context & problem ──────────────────────────────────────── */}
           <div className="flex flex-col gap-[24px]">
-            <div id="context" className="flex flex-col gap-[20px]">
-              <SectionHeader
-                subtitle="Context & problem"
-                title="Beta testing was fragmented across tools and hard to manage"
-              />
+            <div id="context" className="flex flex-col gap-4">
+              <SectionHeader title="Context & problem" />
               <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 Managers spent up to 30% of their time chasing testers across 4
                 messengers. Bug reports arrived in inconsistent formats, missing
@@ -226,11 +225,8 @@ export default function BetaTestingPlatformCaseStudy() {
           </div>
 
           {/* ── Challenges ─────────────────────────────────────────────── */}
-          <div id="challenges" className="flex flex-col gap-[20px]">
-            <SectionHeader
-              subtitle="Challenges"
-              title="The workflow had to work for everyone at once"
-            />
+          <div id="challenges" className="flex flex-col gap-4">
+            <SectionHeader title="Challenge: the workflow had to work for everyone at once" />
             <div className="overflow-hidden rounded-[12px] border border-[#ececec]">
               <div className="flex bg-[#fafafa] px-5 py-3 text-[13px] font-semibold text-[var(--text-tertiary)]">
                 <span className="w-[200px] shrink-0">Stakeholder</span>
@@ -289,24 +285,19 @@ export default function BetaTestingPlatformCaseStudy() {
           </div>
 
           {/* ── Objective ──────────────────────────────────────────────── */}
-          <div id="objective" className="flex flex-col gap-[20px]">
-            <SectionHeader
-              subtitle="Objective"
-              title="Create one central platform for running tests and collecting structured feedback"
-            />
+          <div id="objective" className="flex flex-col gap-4">
+            <SectionHeader title="Objective" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
-              One platform where managers run tests and receive structured, timely
-              feedback - and testers always know what to do, how to report, and what
-              impact they made.
+              Create one central platform for running tests and collecting structured
+              feedback. One platform where managers run tests and receive structured,
+              timely feedback - and testers always know what to do, how to report, and
+              what impact they made.
             </p>
           </div>
 
           {/* ── Success metrics ────────────────────────────────────────── */}
-          <div id="success-metrics" className="flex flex-col gap-[20px]">
-            <SectionHeader
-              subtitle="Success metrics"
-              title="Define how MVP success would be measured across adoption, engagement, and quality"
-            />
+          <div id="success-metrics" className="flex flex-col gap-4">
+            <SectionHeader title="Defining success metrics" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               To measure whether the MVP improves beta testing speed and report
               quality, I defined success metrics across four areas.
@@ -385,11 +376,8 @@ export default function BetaTestingPlatformCaseStudy() {
 
           {/* ── Research ───────────────────────────────────────────────── */}
           <div id="research" className="flex flex-col gap-[32px]">
-            <div className="flex flex-col gap-[20px]">
-              <SectionHeader
-                subtitle="Research"
-                title="Ground the MVP in real tester behavior"
-              />
+            <div className="flex flex-col gap-4">
+              <SectionHeader title="Research process" />
               <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 We ran a research workshop to align on goals before moving into
                 interviews. Key questions: How do testers currently report issues?
@@ -450,11 +438,8 @@ export default function BetaTestingPlatformCaseStudy() {
 
           {/* ── Synthesis ──────────────────────────────────────────────── */}
           <div id="synthesis" className="flex flex-col gap-[32px]">
-            <div className="flex flex-col gap-[20px]">
-              <SectionHeader
-                subtitle="Synthesis"
-                title="Hypotheses & Prioritization"
-              />
+            <div className="flex flex-col gap-4">
+              <SectionHeader title="Hypotheses & Prioritization" />
               <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
                 Interview insights became product hypotheses, prioritized with the
                 RICE framework. This helped us choose the most impactful MVP features
@@ -536,10 +521,8 @@ export default function BetaTestingPlatformCaseStudy() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-[20px]">
-              <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
-                Core MVP User Flow
-              </h3>
+            <div className="flex flex-col gap-4">
+              <SubHeading title="Core MVP User Flow" />
               <div className="overflow-x-auto">
                 <div className="flex min-w-max items-start justify-center gap-2 py-1">
                   <div className="flex w-20 flex-col items-center gap-2">
@@ -584,8 +567,8 @@ export default function BetaTestingPlatformCaseStudy() {
 
         {/* ── Solution ───────────────────────────────────────────────── */}
         <div id="solution" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[20px]">
-            <SectionHeader subtitle="Solution" title="Testing hub" />
+          <div className="flex flex-col gap-4">
+            <SectionHeader title="Testing hub" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Tests grouped by status: Not started / In progress / Submitted. Two
               views: Kanban for at-a-glance overview, List for detail. Nothing
@@ -599,10 +582,8 @@ export default function BetaTestingPlatformCaseStudy() {
         </div>
 
         <div className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[20px]">
-            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
-              Test Detail
-            </h3>
+          <div className="flex flex-col gap-4">
+            <SubHeading title="Test Detail" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Test name, description, deadline, and conditions - all on one page.
               Test cases as a checklist so testers always know what&apos;s done vs.
@@ -616,10 +597,8 @@ export default function BetaTestingPlatformCaseStudy() {
         </div>
 
         <div className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[20px]">
-            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">
-              Notifications
-            </h3>
+          <div className="flex flex-col gap-4">
+            <SubHeading title="Notifications" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Centralized notification center: status changes, new tasks, deadlines,
               rewards. Reduces missed actions without relying on external messengers.
@@ -633,11 +612,8 @@ export default function BetaTestingPlatformCaseStudy() {
 
         {/* ── Usability testing ──────────────────────────────────────── */}
         <div id="usability" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[20px]">
-            <SectionHeader
-              subtitle="Usability testing"
-              title="What the testing round revealed: testers needed everything in one place"
-            />
+          <div className="flex flex-col gap-4">
+            <SectionHeader title="What the testing round revealed: testers needed everything in one place" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               The first version organized content by function - tests here, updates
               there. It made sense structurally, but it didn&apos;t match how testers
@@ -726,8 +702,8 @@ export default function BetaTestingPlatformCaseStudy() {
         </div>
 
         <div id="dashboard" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[20px]">
-            <h3 className="text-[22px] font-medium leading-8 text-[var(--text-primary)]">Dashboard</h3>
+          <div className="flex flex-col gap-4">
+            <SectionHeader title="Dashboard" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               I owned the Dashboard end-to-end - from structure to final details. It
               replaced the sectioned V1 layout with a single screen that answers
@@ -742,11 +718,8 @@ export default function BetaTestingPlatformCaseStudy() {
 
         {/* ── What's Next ────────────────────────────────────────────── */}
         <div id="whats-next" className="flex flex-col gap-[48px]">
-          <div className="flex flex-col gap-[20px]">
-            <SectionHeader
-              subtitle="What's Next"
-              title="Future direction: in-platform messenger."
-            />
+          <div className="flex flex-col gap-4">
+            <SectionHeader title="Future direction: in-platform messenger." />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               MVP kept communication lightweight by linking out to Telegram directly
               from the platform. Pragmatic for early rollout where local testers

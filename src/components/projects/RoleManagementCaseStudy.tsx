@@ -20,16 +20,14 @@ const TOC_SECTIONS: ToCSection[] = [
   { id: "outcome", label: "Outcome" },
 ];
 
-function SectionHeader({ subtitle, title }: { subtitle: string; title: string }) {
+function SectionHeader({ title }: { title: string }) {
   return (
-    <div className="flex flex-col gap-[6px]">
-      <p className="font-inconsolata text-[18px] font-semibold leading-6 text-[var(--text-tertiary)]">
-        {subtitle}
-      </p>
-      <h2 className="text-[24px] font-medium leading-8 text-[var(--text-primary)]">
-        {title}
-      </h2>
-    </div>
+    <h2
+      className="font-semibold text-[24px] leading-8 text-[var(--text-primary)]"
+      style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+    >
+      {title}
+    </h2>
   );
 }
 
@@ -226,17 +224,12 @@ export default function RoleManagementCaseStudy() {
         {/* Opening block */}
         <div className="flex w-full flex-col gap-[32px]">
           {/* Title */}
-          <div className="flex flex-col gap-[6px]">
-            <p className="font-inconsolata text-[24px] font-semibold leading-8 text-[var(--text-tertiary)]">
-              Governmental platform
-            </p>
-            <h1
-              className="font-semibold text-[28px] leading-9 text-[var(--text-primary)]"
-              style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
-            >
-              Role Management System
-            </h1>
-          </div>
+          <h1
+            className="font-semibold text-[28px] leading-9 text-[var(--text-primary)]"
+            style={{ fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif" }}
+          >
+            Governmental Platform: Role Management System
+          </h1>
 
           {/* Tagline */}
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
@@ -286,8 +279,8 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* The setup */}
-        <div id="setup" className="flex flex-col gap-[20px]">
-          <SectionHeader subtitle="The setup" title="Six levels deep, zero structure" />
+        <div id="setup" className="flex flex-col gap-4">
+          <SectionHeader title="Six levels deep, zero structure" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
               The platform served executive leadership, project managers, and internal teams across three environments — Dashboard, Management Portal, Admin Portal — covering sensitive national data across economic sectors. Access control carried real governance stakes, not just UX ones.
@@ -314,8 +307,8 @@ export default function RoleManagementCaseStudy() {
 
         {/* The first model */}
         <div id="first-model" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[20px]">
-            <SectionHeader subtitle="The first model" title="A role is what a person does" />
+          <div className="flex flex-col gap-4">
+            <SectionHeader title="A role is what a person does" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               My starting premise:{" "}
               <span className="font-medium text-[16px] leading-6">
@@ -365,8 +358,8 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* The collision */}
-        <div id="collision" className="flex flex-col gap-[20px]">
-          <SectionHeader subtitle="The collision" title="The question I built the model to ask" />
+        <div id="collision" className="flex flex-col gap-4">
+          <SectionHeader title="The question I built the model to ask" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
               The client sessions didn&apos;t attack the logic — they attacked the premise: How many users will actually share this role? How much do access patterns repeat? Who maintains a library of detailed roles?
@@ -386,8 +379,8 @@ export default function RoleManagementCaseStudy() {
 
         {/* The crossroads */}
         <div id="crossroads" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[20px]">
-            <SectionHeader subtitle="The crossroads" title="Two models, one deciding variable" />
+          <div className="flex flex-col gap-4">
+            <SectionHeader title="Two models, one deciding variable" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Where does permission logic live — entirely in the role, or split between the role and the user?
             </p>
@@ -410,8 +403,8 @@ export default function RoleManagementCaseStudy() {
 
         {/* What shipped */}
         <div id="what-shipped" className="flex flex-col gap-[32px]">
-          <div className="flex flex-col gap-[20px]">
-            <SectionHeader subtitle="What shipped" title="Broad roles, granular people" />
+          <div className="flex flex-col gap-4">
+            <SectionHeader title="Broad roles, granular people" />
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               Role creation handles environment and module only — broad, reusable, no granular permissions.
             </p>
@@ -463,8 +456,8 @@ export default function RoleManagementCaseStudy() {
         </div>
 
         {/* Outcome */}
-        <div id="outcome" className="flex flex-col gap-[20px]">
-          <SectionHeader subtitle="Outcome" title="What I took from it" />
+        <div id="outcome" className="flex flex-col gap-4">
+          <SectionHeader title="What I took from it" />
           <div className="flex flex-col gap-4 text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             <p>
               The split model shipped as the platform&apos;s access architecture — a repeatable process where roles stay broad and reusable, and granular permissions live with the person who needs them. Provisioning went from an unstructured, manual process to a fixed path: pick a role, configure permissions on one screen. The structure held through engineering without rework, and every open question I&apos;d flagged early was resolved before build, not in production.
