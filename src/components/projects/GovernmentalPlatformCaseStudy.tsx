@@ -169,6 +169,7 @@ export default function GovernmentalPlatformCaseStudy() {
 
           <CaseStudyMeta
             accent
+            accentColor="#157ebe"
             items={[
               { label: "Role", value: "Product Designer" },
               { label: "Team", value: "4 designers" },

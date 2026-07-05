@@ -5,10 +5,13 @@ type MetaItem = { label: string; value: ReactNode };
 export default function CaseStudyMeta({
   items,
   accent = false,
+  accentColor = "#157ebe",
 }: {
   items: MetaItem[];
-  /** Blue Inter Semibold labels (matches Figma's Governmental Platform meta row) instead of the default grey mono labels. */
+  /** Inter Semibold colored labels (matches Figma's Governmental Platform meta row) instead of the default grey mono labels. */
   accent?: boolean;
+  /** Accent label color when `accent` is true. Defaults to blue; each case study can pass its own. */
+  accentColor?: string;
 }) {
   return (
     <div className="flex items-start justify-between gap-6 max-[402px]:flex-col max-[402px]:gap-[20px]">
@@ -17,9 +20,10 @@ export default function CaseStudyMeta({
           <p
             className={
               accent
-                ? "text-[16px] font-semibold uppercase leading-6 text-[#157ebe]"
+                ? "text-[16px] font-semibold uppercase leading-6"
                 : "font-inconsolata text-[18px] font-semibold uppercase leading-6 text-[var(--text-tertiary)]"
             }
+            style={accent ? { color: accentColor } : undefined}
           >
             {label}
           </p>

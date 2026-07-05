@@ -67,7 +67,10 @@ function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="group flex w-full items-center justify-center overflow-hidden rounded-[16px] border border-[#ececec] bg-[#e6e6e6] p-6">
+      <div
+        className="group flex w-full items-center justify-center overflow-hidden rounded-[16px] border border-[#ececec] bg-[#e6e6e6] p-6"
+        style={{ aspectRatio: "840 / 560" }}
+      >
         {video ? (
           <video
             width={video.width}
@@ -151,7 +154,7 @@ export default function BetaTestingPlatformCaseStudy() {
             Ajax Systems: Beta testing platform
           </h1>
 
-          <ScaledCover hoverZoom nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#e6e6e6]">
+          <ScaledCover hoverZoom nativeWidth={840} nativeHeight={560} className="rounded-[16px] bg-[#e6e6e6]">
             <Image
               src={imgUnsplashVhKRwVyQ}
               alt=""
@@ -170,6 +173,8 @@ export default function BetaTestingPlatformCaseStudy() {
           </ScaledCover>
 
           <CaseStudyMeta
+            accent
+            accentColor="#7b61ff"
             items={[
               { label: "Role", value: "Product Designer" },
               { label: "Team", value: "4 designers" },
@@ -420,7 +425,7 @@ export default function BetaTestingPlatformCaseStudy() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <ScaledCover hoverZoom nativeWidth={840} nativeHeight={355} className="rounded-[16px] bg-[#f9f9f9]">
+              <ScaledCover hoverZoom nativeWidth={840} nativeHeight={560} className="rounded-[16px] bg-[#f9f9f9]">
                 <Image
                   src={imgScreenshot20260129At2352561}
                   alt="Research Plan - problems, goals, questions and respondent profiles"

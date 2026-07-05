@@ -45,7 +45,7 @@ function Showcase({ children, caption }: { children: React.ReactNode; caption: s
       <ScaledCover hoverZoom nativeWidth={800} nativeHeight={560} className="rounded-[16px] bg-[#ededed]">
         {children}
       </ScaledCover>
-      <p className="type-caption text-center text-[var(--text-tertiary)]">{caption}</p>
+      <p className="text-[16px] leading-6 text-center text-[var(--text-tertiary)]">{caption}</p>
     </div>
   );
 }
@@ -99,7 +99,7 @@ export default function FitnessCaseStudy() {
           </ScaledCover>
 
           {/* Info: Role / Team / Timeline */}
-          <CaseStudyMeta items={[
+          <CaseStudyMeta accent accentColor="#ff4130" items={[
             { label: "Role", value: "Product Designer" },
             { label: "Team", value: <><p>2 designers</p><p>5 developers</p><p>1 project manager</p><p>1 QA</p></> },
             { label: "Timeline", value: "Oct 2023 - Feb 2024" },
