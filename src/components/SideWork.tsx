@@ -1,110 +1,78 @@
 "use client";
 
 import { useState } from "react";
-import { sideWorkItems, type SideWorkItem } from "@/data/sideWork";
+import ScaledCover from "@/components/ScaledCover";
+import { sideWorkCards, type SideWorkMedia } from "@/data/sideWork";
 
-const TRACK_ITEMS = [...sideWorkItems, ...sideWorkItems];
-const EDGE_MASK =
-  "linear-gradient(to right, transparent 0, black 80px, black calc(100% - 80px), transparent 100%)";
-
-function SideWorkImage({
-  item,
-}: {
-  item: Extract<SideWorkItem, { kind: "image" }>;
-}) {
+function MediaItem({ media }: { media: SideWorkMedia }) {
   const [failed, setFailed] = useState(false);
   if (failed) {
-    return <div className="h-full w-full bg-[#ededed]" aria-hidden="true" />;
+    // Missing file (e.g. content not uploaded yet) — fall back to the
+    // plain gray cover.
+    return null;
   }
-  return (
-    <img
-      src={item.src}
-      alt=""
-      onError={() => setFailed(true)}
-      className="block h-full w-full object-cover"
-    />
-  );
-}
 
-function IpodComposition({
-  item,
-}: {
-  item: Extract<SideWorkItem, { kind: "ipodComposition" }>;
-}) {
-  return (
-    <div className="relative h-full w-full">
-      <img
-        src={item.ipodSrc}
-        alt=""
-        className="absolute object-cover"
-        style={{ left: "11%", top: "14%", width: "40%", height: "72%" }}
-      />
-      <img
-        src={item.playerSrc}
-        alt=""
-        className="absolute object-cover"
-        style={{ left: "55%", top: "40%", width: "37%", height: "19%" }}
-      />
-    </div>
-  );
-}
+  const style: React.CSSProperties = {
+    position: "absolute",
+    left: media.x,
+    top: media.y,
+    width: media.width,
+    height: media.height,
+    borderRadius: media.rounded,
+  };
 
-function CardMedia({ item }: { item: SideWorkItem }) {
-  if (item.kind === "video") {
+  if (media.kind === "video") {
     return (
       <video
-        src={item.src}
+        src={media.src}
         autoPlay
         muted
         loop
         playsInline
-        className="block h-full w-full border border-[#d9d9d9] object-cover"
+        onError={() => setFailed(true)}
+        className="overflow-hidden object-cover"
+        style={style}
       />
     );
   }
-  if (item.kind === "ipodComposition") {
-    return <IpodComposition item={item} />;
-  }
-  return <SideWorkImage item={item} />;
+
+  return (
+    <img
+      src={media.src}
+      alt=""
+      onError={() => setFailed(true)}
+      className="pointer-events-none object-cover"
+      style={style}
+    />
+  );
 }
 
 export default function SideWork() {
-  const [hoveredKey, setHoveredKey] = useState<string | null>(null);
-
   return (
-    <section className="w-full pb-[60px]">
-      <h2 className="mx-auto mb-8 w-full max-w-[900px] fluid-px font-sans text-[24px] font-medium leading-[32px] text-[var(--text-secondary)]">
+    <section
+      id="side-work"
+      className="mx-auto w-full max-w-[900px] fluid-px pt-[40px] pb-[60px]"
+    >
+      <h2 className="mb-[40px] font-sans text-[32px] font-semibold leading-[40px] tracking-[0.32px] text-[var(--text-primary)]">
         Side work
       </h2>
-
-      <div
-        className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen [overflow-x:clip]"
-        style={{ WebkitMaskImage: EDGE_MASK, maskImage: EDGE_MASK }}
-      >
-        <div
-          className={`side-work-track flex w-max${hoveredKey ? " side-work-paused" : ""}`}
-        >
-          {TRACK_ITEMS.map((item, index) => {
-            const key = `${item.id}-${index}`;
-            const isHovered = hoveredKey === key;
-            return (
-              <div
-                key={key}
-                onMouseEnter={() => setHoveredKey(key)}
-                onMouseLeave={() =>
-                  setHoveredKey((current) => (current === key ? null : current))
-                }
-                aria-label={item.alt}
-                className={`relative mr-6 shrink-0 overflow-hidden rounded-[20px] bg-[#ededed] transition-transform duration-200 ease-out ${
-                  isHovered ? "scale-[1.06]" : "scale-100"
-                }`}
-                style={{ width: item.width, height: item.height }}
-              >
-                <CardMedia item={item} />
-              </div>
-            );
-          })}
-        </div>
+      <div className="flex flex-col gap-[70px]">
+        {sideWorkCards.map((card) => (
+          <article key={card.id} className="flex flex-col gap-[20px]">
+            <ScaledCover
+              nativeWidth={840}
+              nativeHeight={553}
+              className={`rounded-[32px] shrink-0 ${card.coverBgClass}`}
+            >
+              {card.media.map((media) => (
+                <MediaItem key={media.src} media={media} />
+              ))}
+            </ScaledCover>
+            <h3 className="font-sans text-[24px] font-semibold leading-[32px] text-[#383232]">
+              {card.title}
+            </h3>
+          </article>
+        ))}
       </div>
     </section>
   );

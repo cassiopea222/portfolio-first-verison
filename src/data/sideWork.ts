@@ -1,92 +1,67 @@
-export type SideWorkVideoItem = {
-  id: string;
-  kind: "video";
+export type SideWorkMedia = {
+  kind: "image" | "video";
   src: string;
+  /** Position & size in the cover's native 840×553 coordinate space. */
+  x: number;
+  y: number;
   width: number;
   height: number;
-  alt: string;
+  /** Corner radius in px, omitted = square corners. */
+  rounded?: number;
 };
 
-export type SideWorkImageItem = {
+export type SideWorkCard = {
   id: string;
-  kind: "image";
-  src: string;
-  width: number;
-  height: number;
-  alt: string;
+  title: string;
+  /** Complete Tailwind class literal so Tailwind v4 can see it at build time. */
+  coverBgClass: string;
+  media: SideWorkMedia[];
 };
 
-export type SideWorkIpodCompositionItem = {
-  id: string;
-  kind: "ipodComposition";
-  ipodSrc: string;
-  playerSrc: string;
-  width: number;
-  height: number;
-  alt: string;
-};
-
-export type SideWorkItem =
-  | SideWorkVideoItem
-  | SideWorkImageItem
-  | SideWorkIpodCompositionItem;
-
-export const sideWorkItems: SideWorkItem[] = [
+export const sideWorkCards: SideWorkCard[] = [
+  {
+    id: "finance-concept",
+    title: "Finance mobile app concept",
+    coverBgClass: "bg-[#f1f1f1]",
+    media: [
+      { kind: "image", src: "/home/side-work/finance-1.png", x: 34, y: 88, width: 185, height: 383 },
+      { kind: "image", src: "/home/side-work/finance-2.png", x: 230, y: 88, width: 185, height: 383 },
+      { kind: "image", src: "/home/side-work/finance-3.png", x: 425, y: 88, width: 185, height: 383 },
+      { kind: "image", src: "/home/side-work/finance-4.png", x: 620, y: 88, width: 185, height: 383 },
+    ],
+  },
   {
     id: "vinyl-animation",
-    kind: "video",
-    src: "/playground/vinyl_plate_animation.mp4",
-    width: 360,
-    height: 360,
-    alt: "Vinyl plate animation",
+    title: "Vinyl playing animation",
+    coverBgClass: "bg-[#ececec]",
+    media: [
+      {
+        kind: "video",
+        src: "/playground/vinyl_plate_animation.mp4",
+        x: 208.5,
+        y: 65,
+        width: 423,
+        height: 423,
+        rounded: 16,
+      },
+    ],
   },
   {
-    id: "concept-animation",
-    kind: "video",
-    src: "/playground/concept_animation.mp4",
-    width: 480,
-    height: 360,
-    alt: "Concept animation",
-  },
-  {
-    id: "device-1",
-    kind: "image",
-    src: "/side-work/device-1.png",
-    width: 150,
-    height: 360,
-    alt: "Device mockup 1",
-  },
-  {
-    id: "device-2",
-    kind: "image",
-    src: "/side-work/device-2.png",
-    width: 150,
-    height: 360,
-    alt: "Device mockup 2",
-  },
-  {
-    id: "device-3",
-    kind: "image",
-    src: "/side-work/device-3.png",
-    width: 150,
-    height: 360,
-    alt: "Device mockup 3",
-  },
-  {
-    id: "device-4",
-    kind: "image",
-    src: "/side-work/device-4.png",
-    width: 150,
-    height: 360,
-    alt: "Device mockup 4",
-  },
-  {
-    id: "lorde-ipod",
-    kind: "ipodComposition",
-    ipodSrc: "/playground/lorde%20ipod.png",
-    playerSrc: "/playground/player%20lorde.png",
-    width: 420,
-    height: 360,
-    alt: "Lorde iPod concept with player overlay",
+    id: "movie-diary",
+    title: "Movie diary web app",
+    coverBgClass: "bg-[#ececec]",
+    media: [
+      // Content pending upload — card renders as a plain gray cover until
+      // this file exists (see MediaItem onError fallback).
+      {
+        kind: "video",
+        src: "/home/side-work/movie-diary.mp4",
+        x: 39.5,
+        y: 65,
+        width: 761,
+        height: 423,
+        rounded: 16,
+      },
+    ],
   },
 ];
