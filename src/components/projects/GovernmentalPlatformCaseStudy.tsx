@@ -274,53 +274,67 @@ export default function GovernmentalPlatformCaseStudy() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 rounded-[24px] border border-[#ececec] bg-[#fafafa] p-6 max-[809px]:overflow-x-auto">
-            <div className="flex min-w-[560px] items-center justify-between gap-4 pr-[42px] text-[16px] leading-6 text-[var(--text-secondary)]">
-              <p>Sprint 1</p>
-              <p>Sprint 2</p>
-              <p>Sprint 3</p>
-              <p>Sprint 4</p>
-              <p>Sprint 5</p>
-            </div>
-
-            <div className="flex min-w-[560px] items-center">
-              <div className="flex h-[277px] w-[93px] shrink-0 flex-col justify-between py-[52px] text-[16px] leading-6 text-[var(--text-secondary)]">
-                <p>Design + BA</p>
-                <p>QDS</p>
-              </div>
-
-              <div className="relative flex-1 overflow-hidden rounded-[24px] border border-[#ececec] bg-white">
-                <div className="absolute inset-y-0 left-[37%] flex w-[47%] justify-between">
-                  <div className="h-full border-l border-dashed border-[#e0e0e0]" />
-                  <div className="h-full border-l border-dashed border-[#e0e0e0]" />
-                  <div className="h-full border-l border-dashed border-[#e0e0e0]" />
-                  <div className="h-full border-l border-dashed border-[#e0e0e0]" />
-                </div>
-                <p className="absolute left-[40%] top-1/2 -translate-y-1/2 text-[14px] leading-[18px] text-[var(--text-secondary)]">
-                  Spec handoff
+          <div className="max-[809px]:overflow-x-auto">
+            <div className="min-w-[840px]">
+              <ScaledCover nativeWidth={840} nativeHeight={369} className="rounded-[24px] border border-[#ececec] bg-[#fafafa]">
+                {/* Sprint labels */}
+                <p className="absolute left-[193px] top-[24px] whitespace-nowrap text-[16px] leading-6 text-[var(--text-secondary)]">
+                  Sprint 1
+                </p>
+                <p className="absolute left-[321px] top-[24px] whitespace-nowrap text-[16px] leading-6 text-[var(--text-secondary)]">
+                  Sprint 2
+                </p>
+                <p className="absolute left-[452px] top-[24px] whitespace-nowrap text-[16px] leading-6 text-[var(--text-secondary)]">
+                  Sprint 3
+                </p>
+                <p className="absolute left-[583px] top-[24px] whitespace-nowrap text-[16px] leading-6 text-[var(--text-secondary)]">
+                  Sprint 4
+                </p>
+                <p className="absolute left-[714px] top-[24px] whitespace-nowrap text-[16px] leading-6 text-[var(--text-secondary)]">
+                  Sprint 5
                 </p>
 
-                <div className="absolute left-[19px] top-[32px] flex w-[47%] flex-col items-center gap-[2px] rounded-[12px] border border-[#b9e4fc] bg-[#e7f6ff] px-6 py-3 text-center">
-                  <p className="font-semibold text-[16px] leading-6 text-[#004c78]">Feature A - design</p>
-                  <p className="text-[14px] leading-[18px] text-[#5c7481]">Brief, iterations, final spec</p>
-                </div>
+                {/* Swimlane labels */}
+                <p className="absolute left-[24px] top-[118px] w-[93px] text-[16px] leading-6 text-[var(--text-secondary)]">
+                  Design + BA
+                </p>
+                <p className="absolute left-[24px] top-[267px] w-[93px] text-[16px] leading-6 text-[var(--text-secondary)]">
+                  QDS
+                </p>
 
-                <div className="absolute right-[19px] top-[32px] flex w-[28%] flex-col items-center gap-[2px] rounded-[12px] border border-[#ffd2a4] bg-[#fff4e8] px-6 py-3 text-center">
-                  <p className="font-semibold text-[16px] leading-6 text-[#d16f0d]">Feature B - design</p>
-                  <p className="text-[14px] leading-[18px] text-[#78644f]">Brief, first iterations</p>
-                </div>
+                {/* Main timeline box */}
+                <div className="absolute left-[133px] top-[64px] h-[281px] w-[683px] overflow-hidden rounded-[24px] border border-[#ececec] bg-white">
+                  <div className="absolute left-[156px] top-[10.5px] h-[260px] w-px border-l border-dashed border-[#e0e0e0]" />
+                  <div className="absolute left-[287px] top-[10.5px] h-[260px] w-px border-l border-dashed border-[#e0e0e0]" />
+                  <div className="absolute left-[418px] top-[10.5px] h-[260px] w-px border-l border-dashed border-[#e0e0e0]" />
+                  <div className="absolute left-[549px] top-[10.5px] h-[260px] w-px border-l border-dashed border-[#e0e0e0]" />
 
-                <div className="absolute bottom-[32px] right-[19px] flex w-[29%] flex-col items-center gap-[2px] rounded-[12px] border border-[#b9e4fc] bg-[#e7f6ff] px-6 py-3 text-center">
-                  <p className="font-semibold text-[16px] leading-6 text-[#004c78]">Feature A - build</p>
-                  <p className="text-[14px] leading-[18px] text-[#5c7481]">Development + QA</p>
-                </div>
+                  <p className="absolute left-[323px] top-[135px] whitespace-nowrap text-[14px] leading-[18px] text-[var(--text-secondary)]">
+                    Spec handoff
+                  </p>
 
-                <img
-                  src={imgProcessArrow}
-                  alt=""
-                  className="absolute left-[50%] top-[45%] h-[70px] w-[13px]"
-                />
-              </div>
+                  <div className="absolute left-[20px] top-[33px] flex h-[68px] w-[392px] flex-col items-center justify-center gap-[2px] rounded-[12px] border border-[#b9e4fc] bg-[#e7f6ff] text-center">
+                    <p className="font-semibold text-[16px] leading-6 text-[#004c78]">Feature A - design</p>
+                    <p className="text-[14px] leading-[18px] text-[#5c7481]">Brief, iterations, final spec</p>
+                  </div>
+
+                  <div className="absolute left-[426px] top-[33px] flex h-[68px] w-[237px] flex-col items-center justify-center gap-[2px] rounded-[12px] border border-[#ffd2a4] bg-[#fff4e8] text-center">
+                    <p className="font-semibold text-[16px] leading-6 text-[#d16f0d]">Feature B - design</p>
+                    <p className="text-[14px] leading-[18px] text-[#78644f]">Brief, first iterations</p>
+                  </div>
+
+                  <div className="absolute left-[417px] top-[172px] flex h-[68px] w-[246px] flex-col items-center justify-center gap-[2px] rounded-[12px] border border-[#b9e4fc] bg-[#e7f6ff] text-center">
+                    <p className="font-semibold text-[16px] leading-6 text-[#004c78]">Feature A - build</p>
+                    <p className="text-[14px] leading-[18px] text-[#5c7481]">Development + QA</p>
+                  </div>
+
+                  <img
+                    src={imgProcessArrow}
+                    alt=""
+                    className="absolute left-[413px] top-[107px] h-[59px] w-[11px]"
+                  />
+                </div>
+              </ScaledCover>
             </div>
           </div>
         </div>
