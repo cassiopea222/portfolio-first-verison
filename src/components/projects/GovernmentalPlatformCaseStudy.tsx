@@ -70,7 +70,6 @@ function Showcase({
   return (
     <div className="flex w-full flex-col items-center gap-2">
       <ScaledCover
-        hoverZoom
         nativeWidth={840}
         nativeHeight={560}
         className="rounded-[24px] border border-[#ececec] bg-[#f0f0f0]"
@@ -144,7 +143,7 @@ export default function GovernmentalPlatformCaseStudy() {
             </p>
           </div>
 
-          <ScaledCover hoverZoom nativeWidth={840} nativeHeight={444} className="rounded-[24px] bg-[#ececec]">
+          <ScaledCover nativeWidth={840} nativeHeight={444} className="rounded-[24px] bg-[#ececec]">
             <div className="absolute left-1/2 top-0 h-[633px] w-[1583px] -translate-x-1/2">
               <Image
                 src={imgCoverBg}

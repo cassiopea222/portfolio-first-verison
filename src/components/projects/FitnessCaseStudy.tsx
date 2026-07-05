@@ -42,7 +42,7 @@ function SectionHeader({ title }: { title: string }) {
 function Showcase({ children, caption }: { children: React.ReactNode; caption: string }) {
   return (
     <div className="flex flex-col gap-2">
-      <ScaledCover hoverZoom nativeWidth={800} nativeHeight={560} className="rounded-[16px] bg-[#ededed]">
+      <ScaledCover nativeWidth={800} nativeHeight={560} className="rounded-[16px] bg-[#ededed]">
         {children}
       </ScaledCover>
       <p className="text-[16px] leading-6 text-center text-[var(--text-tertiary)]">{caption}</p>
@@ -68,7 +68,7 @@ export default function FitnessCaseStudy() {
           </h1>
 
           {/* Cover: 3 phones */}
-          <ScaledCover hoverZoom nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
+          <ScaledCover nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
             <Image
               src={imgIPhone17Pro1}
               alt=""
@@ -166,7 +166,7 @@ export default function FitnessCaseStudy() {
                   width={200}
                   height={433}
                   sizes="(max-width: 809px) calc(25vw - 10px), 200px"
-                  className="h-[433px] w-[200px] object-contain"
+                  className="h-[433px] w-[200px] rounded-2xl object-contain"
                 />
                 <p className="text-sm leading-[18px] text-[var(--text-tertiary)]">before</p>
               </div>
@@ -177,7 +177,7 @@ export default function FitnessCaseStudy() {
                   width={200}
                   height={433}
                   sizes="(max-width: 809px) calc(25vw - 10px), 200px"
-                  className="h-[433px] w-[200px] object-contain"
+                  className="h-[433px] w-[200px] rounded-2xl object-contain"
                 />
                 <p className="text-sm leading-[18px] text-[var(--text-tertiary)]">after</p>
               </div>
@@ -199,7 +199,7 @@ export default function FitnessCaseStudy() {
                   width={200}
                   height={412}
                   sizes="(max-width: 809px) calc(25vw - 10px), 200px"
-                  className="h-[412px] w-[200px] rounded-[12px] object-contain"
+                  className="h-[412px] w-[200px] rounded-2xl object-contain"
                 />
                 <p className="text-sm leading-[18px] text-[var(--text-tertiary)]">before</p>
               </div>
@@ -210,7 +210,7 @@ export default function FitnessCaseStudy() {
                   width={200}
                   height={412}
                   sizes="(max-width: 809px) calc(25vw - 10px), 200px"
-                  className="h-[412px] w-[200px] object-contain"
+                  className="h-[412px] w-[200px] rounded-2xl object-contain"
                 />
                 <p className="text-sm leading-[18px] text-[var(--text-tertiary)]">after</p>
               </div>
@@ -237,7 +237,7 @@ export default function FitnessCaseStudy() {
               width={210}
               height={449}
               sizes="(max-width: 809px) calc(26vw - 11px), 210px"
-              className="absolute left-1/2 top-1/2 h-[449px] w-[210px] -translate-x-1/2 -translate-y-1/2 object-contain"
+              className="absolute left-1/2 top-1/2 h-[449px] w-[210px] -translate-x-1/2 -translate-y-1/2 rounded-2xl object-contain"
             />
           </Showcase>
 
@@ -255,7 +255,7 @@ export default function FitnessCaseStudy() {
                 width={210}
                 height={448}
                 sizes="(max-width: 809px) calc(26vw - 11px), 210px"
-                className="h-[448px] w-[210px] object-contain"
+                className="h-[448px] w-[210px] rounded-2xl object-contain"
               />
               <Image
                 src={img020303WeekDefault}
@@ -263,7 +263,7 @@ export default function FitnessCaseStudy() {
                 width={222}
                 height={448}
                 sizes="(max-width: 809px) calc(28vw - 11px), 222px"
-                className="h-[448px] w-[222px] object-contain"
+                className="h-[448px] w-[222px] rounded-2xl object-contain"
               />
             </div>
           </Showcase>
@@ -286,7 +286,7 @@ export default function FitnessCaseStudy() {
               width={210}
               height={381}
               sizes="(max-width: 809px) calc(26vw - 11px), 210px"
-              className="absolute left-[45px] top-1/2 h-[381px] w-[210px] -translate-y-1/2 object-contain"
+              className="absolute left-[45px] top-1/2 h-[381px] w-[210px] -translate-y-1/2 rounded-2xl object-contain"
             />
             <Image
               src={img040409MacroCalculatorActivityLevel}
@@ -294,7 +294,7 @@ export default function FitnessCaseStudy() {
               width={210}
               height={455}
               sizes="(max-width: 809px) calc(26vw - 11px), 210px"
-              className="absolute left-[295px] top-1/2 h-[455px] w-[210px] -translate-y-1/2 object-contain"
+              className="absolute left-[295px] top-1/2 h-[455px] w-[210px] -translate-y-1/2 rounded-2xl object-contain"
             />
             <Image
               src={img040417NutritionOverviewResults}
@@ -302,7 +302,7 @@ export default function FitnessCaseStudy() {
               width={210}
               height={403}
               sizes="(max-width: 809px) calc(26vw - 11px), 210px"
-              className="absolute left-[545px] top-1/2 h-[403px] w-[210px] -translate-y-1/2 object-contain"
+              className="absolute left-[545px] top-1/2 h-[403px] w-[210px] -translate-y-1/2 rounded-2xl object-contain"
             />
           </Showcase>
         </div>

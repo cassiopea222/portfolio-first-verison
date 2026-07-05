@@ -5,11 +5,11 @@ import CaseStudyMeta from "@/components/projects/CaseStudyMeta";
 import CaseStudyLayout from "@/components/projects/CaseStudyLayout";
 
 const imgShutterstock = "/home/role_management/shutterstock-bg.png";
-const imgCreateNewRoleNew3 = "/home/role_management/Create new role NEW 3.png";
-const imgCreateNewRole13 = "/home/role_management/Create new role 1 3.png";
-const imgCreateNewRole23 = "/home/role_management/Create new role 2 3.png";
-const imgProfileRole1 = "/home/role_management/profile - role 1.png";
-const imgProfilePermissions1 = "/home/role_management/profile - permissions 1.png";
+const imgCreateNewRoleNew3 = "/home/role_management/create-new-role-new-3.png";
+const imgCreateNewRole13 = "/home/role_management/create-new-role-1-3.png";
+const imgCreateNewRole23 = "/home/role_management/create-new-role-2-3.png";
+const imgProfileRole1 = "/home/role_management/profile-role-1.png";
+const imgProfilePermissions1 = "/home/role_management/profile-permissions-1.png";
 
 const TOC_SECTIONS: ToCSection[] = [
   { id: "setup", label: "The setup" },
@@ -40,7 +40,7 @@ function Showcase({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <ScaledCover hoverZoom nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#f0f0f0]">
+      <ScaledCover nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#f0f0f0]">
         {children}
       </ScaledCover>
       {caption ? (
