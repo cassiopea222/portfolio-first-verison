@@ -72,7 +72,7 @@ function Showcase({
       <ScaledCover
         hoverZoom
         nativeWidth={840}
-        nativeHeight={500}
+        nativeHeight={560}
         className="rounded-[24px] border border-[#ececec] bg-[#f0f0f0]"
       >
         <div
