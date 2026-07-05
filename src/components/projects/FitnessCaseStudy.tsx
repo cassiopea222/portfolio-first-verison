@@ -40,7 +40,7 @@ function SectionHeader({ subtitle, title }: { subtitle: string; title: string })
 function Showcase({ children, caption }: { children: React.ReactNode; caption: string }) {
   return (
     <div className="flex flex-col gap-2">
-      <ScaledCover nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
+      <ScaledCover hoverZoom nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
         {children}
       </ScaledCover>
       <p className="type-caption text-center text-[var(--text-tertiary)]">{caption}</p>
@@ -69,7 +69,7 @@ export default function FitnessCaseStudy() {
           </div>
 
           {/* Cover: 3 phones */}
-          <ScaledCover nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
+          <ScaledCover hoverZoom nativeWidth={800} nativeHeight={520} className="rounded-[16px] bg-[#ededed]">
             <Image
               src={imgIPhone17Pro1}
               alt=""

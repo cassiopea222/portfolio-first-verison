@@ -14,6 +14,8 @@ type Props = {
    * Defaults to the project-card styling.
    */
   className?: string;
+  /** Subtly zooms the content on hover, clipped to this box's frame. */
+  hoverZoom?: boolean;
 };
 
 export default function ScaledCover({
@@ -22,6 +24,7 @@ export default function ScaledCover({
   nativeWidth = 564,
   nativeHeight = 500,
   className = "rounded-[20px] bg-[#ededed] shrink-0",
+  hoverZoom = false,
 }: Props) {
   const outerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -41,7 +44,7 @@ export default function ScaledCover({
     // Outer: tracks real width; aspect-ratio keeps height proportional
     <div
       ref={outerRef}
-      className={`relative w-full overflow-hidden ${className}`}
+      className={`relative w-full overflow-hidden ${hoverZoom ? "group" : ""} ${className}`}
       style={{ aspectRatio: `${nativeWidth} / ${nativeHeight}` }}
     >
       {/* Inner: rendered at native size, then uniformly scaled down */}
@@ -56,7 +59,15 @@ export default function ScaledCover({
           transform: `scale(${scale})`,
         }}
       >
-        {children}
+        {hoverZoom ? (
+          // Separate element from the responsive-scale transform above so the
+          // hover zoom (CSS, on :hover) doesn't fight the inline JS-driven scale.
+          <div className="h-full w-full transition-transform duration-300 ease-out group-hover:scale-[1.05]">
+            {children}
+          </div>
+        ) : (
+          children
+        )}
       </div>
     </div>
   );

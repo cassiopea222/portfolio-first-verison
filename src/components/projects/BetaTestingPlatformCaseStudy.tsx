@@ -67,7 +67,7 @@ function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex w-full items-center justify-center overflow-hidden rounded-[16px] border border-[#ececec] bg-[#e6e6e6] p-6">
+      <div className="group flex w-full items-center justify-center overflow-hidden rounded-[16px] border border-[#ececec] bg-[#e6e6e6] p-6">
         {video ? (
           <video
             width={video.width}
@@ -76,7 +76,7 @@ function VideoShowcase({ slot, caption }: { slot: VideoSlotId; caption: string }
             muted
             loop
             playsInline
-            className="max-w-full rounded-[12px] h-auto"
+            className="h-auto max-w-full rounded-[12px] transition-transform duration-300 ease-out group-hover:scale-[1.05]"
           >
             <source src={video.webm} type="video/webm" />
             <source src={video.mp4} type="video/mp4" />
@@ -149,7 +149,7 @@ export default function BetaTestingPlatformCaseStudy() {
             </h1>
           </div>
 
-          <ScaledCover nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#e6e6e6]">
+          <ScaledCover hoverZoom nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#e6e6e6]">
             <Image
               src={imgUnsplashVhKRwVyQ}
               alt=""
@@ -432,7 +432,7 @@ export default function BetaTestingPlatformCaseStudy() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <ScaledCover nativeWidth={840} nativeHeight={355} className="rounded-[16px] bg-[#f9f9f9]">
+              <ScaledCover hoverZoom nativeWidth={840} nativeHeight={355} className="rounded-[16px] bg-[#f9f9f9]">
                 <Image
                   src={imgScreenshot20260129At2352561}
                   alt="Research Plan - problems, goals, questions and respondent profiles"

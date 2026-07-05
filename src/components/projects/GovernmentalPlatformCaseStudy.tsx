@@ -69,7 +69,12 @@ function Showcase({
 }) {
   return (
     <div className="flex w-full flex-col items-center gap-2">
-      <ScaledCover nativeWidth={840} nativeHeight={500} className="rounded-[24px] border border-[#ececec] bg-[#f0f0f0]">
+      <ScaledCover
+        hoverZoom
+        nativeWidth={840}
+        nativeHeight={500}
+        className="rounded-[24px] border border-[#ececec] bg-[#f0f0f0]"
+      >
         <div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[16px]"
           style={{ width: imgWidth, height: imgHeight }}
@@ -139,7 +144,7 @@ export default function GovernmentalPlatformCaseStudy() {
             </p>
           </div>
 
-          <ScaledCover nativeWidth={840} nativeHeight={444} className="rounded-[24px] bg-[#ececec]">
+          <ScaledCover hoverZoom nativeWidth={840} nativeHeight={444} className="rounded-[24px] bg-[#ececec]">
             <div className="absolute left-1/2 top-0 h-[633px] w-[1583px] -translate-x-1/2">
               <Image
                 src={imgCoverBg}
@@ -193,7 +198,7 @@ export default function GovernmentalPlatformCaseStudy() {
             <img
               src={imgContextDiagram}
               alt=""
-              className="my-2 h-[76px] w-full max-w-[373px] object-contain"
+              className="h-[76px] w-full max-w-[373px] object-contain"
             />
             <div className="flex w-full max-w-[627px] items-start justify-between gap-4 max-[500px]:flex-col max-[500px]:items-center">
               <div className="w-full max-w-[255px] rounded-[12px] border border-[#e0e0e0] bg-[#f9f9f9] px-4 py-3 text-center text-[#252525]">

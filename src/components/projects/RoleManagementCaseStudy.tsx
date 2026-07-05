@@ -42,7 +42,7 @@ function Showcase({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <ScaledCover nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#f0f0f0]">
+      <ScaledCover hoverZoom nativeWidth={840} nativeHeight={520} className="rounded-[16px] bg-[#f0f0f0]">
         {children}
       </ScaledCover>
       {caption ? (
