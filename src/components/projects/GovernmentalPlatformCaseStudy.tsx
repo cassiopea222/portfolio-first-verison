@@ -68,7 +68,7 @@ function Showcase({
   imgHeight: number;
 }) {
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex w-full flex-col items-center gap-2">
       <ScaledCover nativeWidth={840} nativeHeight={500} className="rounded-[24px] border border-[#ececec] bg-[#f0f0f0]">
         <div
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[16px]"
@@ -458,7 +458,7 @@ export default function GovernmentalPlatformCaseStudy() {
             imgHeight={436}
           />
 
-          <div className="flex flex-col items-center gap-6">
+          <div className="flex w-full flex-col gap-6">
             <p className="w-full text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               When creating a role, admin can select platforms to which the role should have
               access
@@ -472,7 +472,7 @@ export default function GovernmentalPlatformCaseStudy() {
             />
           </div>
 
-          <div className="flex flex-col items-center gap-6">
+          <div className="flex w-full flex-col gap-6">
             <p className="w-full text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               When the role is created, admin assigns it to the user during profile creation
               or editing.
@@ -486,7 +486,7 @@ export default function GovernmentalPlatformCaseStudy() {
             />
           </div>
 
-          <div className="flex flex-col items-center gap-6">
+          <div className="flex w-full flex-col gap-6">
             <p className="w-full text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               After assigning a role, admin selects action permissions for each user
               separately for every platform.
