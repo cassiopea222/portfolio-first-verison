@@ -25,10 +25,10 @@ export default function CaseStudyLayout({ sidebar, backHref = "/", children }: P
         <div className="mb-10 min-[1240px]:hidden">
           <Link
             href={backHref}
-            className="type-body inline-flex w-fit items-center gap-2 rounded-xl border border-[#dadada] bg-[linear-gradient(179.23deg,#fff_4.27%,rgba(231,231,231,0.7)_98.14%)] px-3 py-2 text-[var(--text-secondary)] shadow-[0px_2px_3px_0px_rgba(0,0,0,0.06)] transition-[background-color,border-color,color] duration-200 ease-out hover:border-[#d5d5d5] hover:bg-[#efefef] hover:text-[var(--text-primary)]"
+            className="inline-flex w-fit items-center gap-[6px] font-sans text-[16px] font-medium leading-[20px] text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]"
           >
             <ArrowBackNavIcon />
-            Go back
+            <span>Go back</span>
           </Link>
         </div>
         {children}

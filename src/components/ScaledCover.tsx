@@ -44,7 +44,9 @@ export default function ScaledCover({
       className={`relative w-full overflow-hidden ${className}`}
       style={{ aspectRatio: `${nativeWidth} / ${nativeHeight}` }}
     >
-      {/* Inner: rendered at native size, then uniformly scaled down */}
+      {/* Inner: rendered at native size, then uniformly scaled down.
+          `zoom` reflows and repaints at the target size (sharper than
+          `transform: scale`, which bitmap-scales an already-rasterized layer). */}
       <div
         style={{
           position: "absolute",
@@ -52,8 +54,7 @@ export default function ScaledCover({
           left: 0,
           width: nativeWidth,
           height: nativeHeight,
-          transformOrigin: "top left",
-          transform: `scale(${scale})`,
+          zoom: scale,
         }}
       >
         {children}

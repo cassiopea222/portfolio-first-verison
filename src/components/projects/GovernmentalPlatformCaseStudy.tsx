@@ -127,7 +127,7 @@ export default function GovernmentalPlatformCaseStudy() {
         {/* Opening block */}
         <div className="flex w-full flex-col gap-8">
           <h1
-            className="font-semibold text-[32px] leading-[50px] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
+            className="font-semibold text-[32px] leading-[44px] text-[var(--text-primary)] max-[809px]:text-[26px] max-[809px]:leading-9"
             style={displayFont}
           >
             Government Monitoring Platform:
@@ -259,8 +259,8 @@ export default function GovernmentalPlatformCaseStudy() {
 
             <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
               I owned complex workflows across both dashboards and CMS, took main role in
-              creation of design systems used across the entire platform - see the [Design
-              System case study] for the full breakdown. I also worked directly with the
+              creation of design systems used across the entire platform - see the (Coming
+              soon) for the full breakdown. I also worked directly with the
               business analysts to help shape requirements, not just design against them.
             </p>
           </div>
@@ -512,8 +512,8 @@ export default function GovernmentalPlatformCaseStudy() {
           <p className="text-[16px] font-normal leading-6 text-[var(--text-secondary)]">
             The government organisation now runs on analytics dashboards and back-office CMS
             built specifically around their internal workflows and structure, supported by a
-            dedicated design systems built and maintained by three designers (see [Design
-            System case study]).
+            dedicated design systems built and maintained by three designers - see (Coming
+            soon).
           </p>
         </div>
 
@@ -521,8 +521,8 @@ export default function GovernmentalPlatformCaseStudy() {
         <div className="flex w-full flex-col gap-6">
           <SectionHeading title="Read connected case studies" />
           <div className="flex flex-wrap gap-6 text-[18px] font-medium leading-[26px] text-[var(--text-secondary)]">
-            <p>Design System case study</p>
-            <p>Mobile app case study</p>
+            <p>Design System case study (Coming soon)</p>
+            <p>Mobile app case study (Coming soon)</p>
           </div>
         </div>
       </div>

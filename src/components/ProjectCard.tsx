@@ -7,7 +7,7 @@ export type ProjectCardProps = {
   subtitle: string;
   dateRange: string;
   description: string;
-  cover: "ajax" | "fitness" | "role" | "governmental";
+  cover: "ajax" | "fitness" | "role" | "governmental" | "governmental-mobile";
   href?: string;
 };
 
@@ -21,6 +21,10 @@ const imgFitnessRight = "/home/sadie_active/asdieactivecover2 1.png";
 // Governmental platform cover assets
 const imgGovernmentalBg = "/home/governmental-platform/background.png";
 const imgGovernmentalScreenshot = "/home/governmental-platform/screenshot.png";
+
+// Governmental platform mobile cover assets
+const imgGovMobileHome = "/home/governmental-mobile/phone-home.png";
+const imgGovMobileIndicator = "/home/governmental-mobile/phone-indicator.png";
 
 // Role management cover assets (case study hidden from the grid, kept for the
 // direct-link route — see RoleManagementCaseStudy.tsx)
@@ -37,6 +41,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const coverClassName = {
     governmental: "rounded-[32px] bg-[#ececec] shrink-0",
+    "governmental-mobile": "rounded-[32px] bg-[#eaf1f5] shrink-0",
     ajax: "rounded-[32px] bg-[#ececec] shrink-0",
     fitness: "rounded-[32px] bg-[#f1f1f1] shrink-0",
     role: "rounded-[16px] bg-[#f1f5f9] border border-[#ededed] shadow-[0px_2px_4px_0px_rgba(219,219,219,0.5)] shrink-0",
@@ -65,6 +70,28 @@ export default function ProjectCard({
             />
           </div>
         </>
+      )}
+      {cover === "governmental-mobile" && (
+        <div className="absolute inset-0 flex items-center justify-center gap-[24px]">
+          <div className="relative h-[468px] w-[226px] shrink-0">
+            <Image
+              src={imgGovMobileHome}
+              alt=""
+              fill
+              sizes="226px"
+              className="object-cover pointer-events-none"
+            />
+          </div>
+          <div className="relative h-[467px] w-[226px] shrink-0">
+            <Image
+              src={imgGovMobileIndicator}
+              alt=""
+              fill
+              sizes="226px"
+              className="object-cover pointer-events-none"
+            />
+          </div>
+        </div>
       )}
       {cover === "ajax" && (
         <>
@@ -144,15 +171,18 @@ export default function ProjectCard({
   const textNode = (
     <div className="flex w-full flex-col gap-[12px]">
       <div className="flex flex-col gap-[8px]">
-        <p className="font-sans text-[18px] font-medium leading-[26px] text-[#787878]">
+        <p className="font-sans text-[18px] font-medium leading-[26px] text-[var(--text-tertiary)]">
           {dateRange}
         </p>
-        <h3 className="flex w-full flex-col items-start gap-1 text-[24px] leading-[32px] min-[810px]:flex-row min-[810px]:gap-2 min-[810px]:whitespace-nowrap">
-          <span className="w-full font-sans font-semibold text-[#383232] min-[810px]:w-auto">
-            {name}
-          </span>
-          <span className="font-sans font-medium text-[#383232]">{subtitle}</span>
-        </h3>
+        <span
+          className="font-sans font-medium text-[#383232] text-[24px] leading-[32px]"
+          style={{
+            fontFamily:
+              "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif",
+          }}
+        >
+          {subtitle}
+        </span>
       </div>
       <p className="font-sans text-[20px] font-normal leading-[28px] text-[var(--text-primary)]">
         {description}
@@ -171,8 +201,9 @@ export default function ProjectCard({
     );
   }
 
+  // No route yet (status "planned") — the cursor pill says so instead of linking.
   return (
-    <article className={className}>
+    <article className={className} data-tooltip="Coming soon">
       {coverNode}
       {textNode}
     </article>

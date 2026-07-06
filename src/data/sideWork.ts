@@ -15,6 +15,19 @@ export type SideWorkCard = {
   title: string;
   /** Complete Tailwind class literal so Tailwind v4 can see it at build time. */
   coverBgClass: string;
+  /** Optional border classes applied on the home page cover only. */
+  coverBorderClass?: string;
+  /**
+   * How the expanded modal frames the cover. "frameless" — the design has
+   * its own colored bg filling the frame, so the modal is the design itself.
+   * "framed" (default) — the design sits on a white modal panel (right when
+   * the content's own bg is white or absent). Image-only cards ignore this
+   * and always open as a zoomable gallery on the cover bg.
+   */
+  modalStyle?: "framed" | "frameless";
+  /** Cover frame size in px. Defaults to 840×553 when omitted. */
+  nativeWidth?: number;
+  nativeHeight?: number;
   media: SideWorkMedia[];
 };
 
@@ -33,7 +46,8 @@ export const sideWorkCards: SideWorkCard[] = [
   {
     id: "vinyl-animation",
     title: "Vinyl playing animation",
-    coverBgClass: "bg-[#ececec]",
+    coverBgClass: "bg-[var(--background)]",
+    coverBorderClass: "border border-[#ececec]",
     media: [
       {
         kind: "video",
@@ -48,19 +62,19 @@ export const sideWorkCards: SideWorkCard[] = [
   },
   {
     id: "movie-diary",
-    title: "Movie diary web app",
+    title: "Movie diary app",
     coverBgClass: "bg-[#ececec]",
+    modalStyle: "frameless",
+    nativeWidth: 2336,
+    nativeHeight: 1752,
     media: [
-      // Content pending upload — card renders as a plain gray cover until
-      // this file exists (see MediaItem onError fallback).
       {
         kind: "video",
-        src: "/home/side-work/movie-diary.mp4",
-        x: 39.5,
-        y: 65,
-        width: 761,
-        height: 423,
-        rounded: 16,
+        src: "/home/side-work/movie_diary_app.mp4",
+        x: 0,
+        y: 0,
+        width: 2336,
+        height: 1752,
       },
     ],
   },

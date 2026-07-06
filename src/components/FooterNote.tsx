@@ -37,7 +37,7 @@ export default function FooterNote() {
     <footer className="mx-auto flex w-full max-w-[900px] fluid-px py-[40px]">
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="font-inconsolata text-[16px] font-medium leading-[24px] text-[var(--text-tertiary)]">
+          <span className="font-['Inter',_-apple-system,_BlinkMacSystemFont,_sans-serif] text-[16px] font-normal leading-[24px] text-[var(--text-tertiary)]">
             Built with love by me using
           </span>
           <div className="flex items-center gap-2">
@@ -61,7 +61,7 @@ export default function FooterNote() {
             </a>
           </div>
         </div>
-        <p className="font-inconsolata text-[16px] font-medium leading-[24px] text-[var(--text-tertiary)]">
+        <p className="font-['Inter',_-apple-system,_BlinkMacSystemFont,_sans-serif] text-[16px] font-normal leading-[24px] text-[var(--text-tertiary)]">
           Changelog: {lastUpdate}
         </p>
       </div>

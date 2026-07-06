@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -25,26 +25,11 @@ export default function Header() {
       ? "/playground"
       : "/";
   const [menuOpen, setMenuOpen] = useState(false);
-  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const id = requestAnimationFrame(() => setMenuOpen(false));
     return () => cancelAnimationFrame(id);
   }, [pathname]);
-
-  // Publish the header's rendered height as a CSS var so sections below it
-  // (e.g. the homepage hero) can size themselves to "the rest of the viewport".
-  useLayoutEffect(() => {
-    const el = headerRef.current;
-    if (!el) return;
-    const setVar = () => {
-      document.documentElement.style.setProperty("--header-height", `${el.offsetHeight}px`);
-    };
-    setVar();
-    const observer = new ResizeObserver(setVar);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -66,10 +51,7 @@ export default function Header() {
   const pillOffset = TAB_OFFSETS[activeHref] ?? 0;
 
   return (
-    <header
-      ref={headerRef}
-      className="hero-enter-nav sticky top-0 z-50 mx-auto w-full max-w-[900px] fluid-px pt-6 pb-3"
-    >
+    <header className="hero-enter-nav sticky top-0 z-50 mx-auto w-full max-w-[900px] fluid-px pt-6 pb-3">
       {/* ── Desktop layout: centered tabs ── */}
       <div className="hidden min-[810px]:flex min-[810px]:justify-center">
         <div

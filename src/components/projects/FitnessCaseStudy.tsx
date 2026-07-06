@@ -39,10 +39,18 @@ function SectionHeader({ title }: { title: string }) {
   );
 }
 
-function Showcase({ children, caption }: { children: React.ReactNode; caption: string }) {
+function Showcase({
+  children,
+  caption,
+  coverClassName = "rounded-[16px] bg-[#ededed]",
+}: {
+  children: React.ReactNode;
+  caption: string;
+  coverClassName?: string;
+}) {
   return (
     <div className="flex flex-col gap-2">
-      <ScaledCover nativeWidth={800} nativeHeight={560} className="rounded-[16px] bg-[#ededed]">
+      <ScaledCover nativeWidth={800} nativeHeight={560} className={coverClassName}>
         {children}
       </ScaledCover>
       <p className="text-[16px] leading-6 text-center text-[var(--text-tertiary)]">{caption}</p>
@@ -279,14 +287,17 @@ export default function FitnessCaseStudy() {
               unify UI through a reusable cross-platform design system.
             </p>
           </div>
-          <Showcase caption="Step-by-step macro setup with a simple, visual breakdown of daily targets.">
+          <Showcase
+            caption="Step-by-step macro setup with a simple, visual breakdown of daily targets."
+            coverClassName="rounded-t-[16px] bg-[#ededed]"
+          >
             <Image
               src={img040405PersonalDetailsGender}
               alt=""
               width={210}
               height={381}
               sizes="(max-width: 809px) calc(26vw - 11px), 210px"
-              className="absolute left-[45px] top-1/2 h-[381px] w-[210px] -translate-y-1/2 rounded-2xl object-contain"
+              className="absolute left-[45px] bottom-0 h-[381px] w-[210px] rounded-t-2xl object-contain"
             />
             <Image
               src={img040409MacroCalculatorActivityLevel}
@@ -302,7 +313,7 @@ export default function FitnessCaseStudy() {
               width={210}
               height={403}
               sizes="(max-width: 809px) calc(26vw - 11px), 210px"
-              className="absolute left-[545px] top-1/2 h-[403px] w-[210px] -translate-y-1/2 rounded-2xl object-contain"
+              className="absolute left-[545px] bottom-0 h-[403px] w-[210px] rounded-t-2xl object-contain"
             />
           </Showcase>
         </div>

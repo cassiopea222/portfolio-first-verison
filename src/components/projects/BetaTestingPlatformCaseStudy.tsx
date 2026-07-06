@@ -154,22 +154,27 @@ export default function BetaTestingPlatformCaseStudy() {
             Ajax Systems: Beta testing platform
           </h1>
 
-          <ScaledCover nativeWidth={840} nativeHeight={560} className="rounded-[16px] bg-[#e6e6e6]">
-            <Image
-              src={imgUnsplashVhKRwVyQ}
-              alt=""
-              fill
-              sizes="(max-width: 809px) calc(100vw - 40px), 840px"
-              className="object-cover blur-[6px]"
-            />
-            <Image
-              src={imgDashboard5}
-              alt=""
-              width={736}
-              height={488}
-              sizes="(max-width: 809px) calc(88vw - 35px), 736px"
-              className="absolute left-1/2 top-[calc(50%+33.5px)] h-[488px] w-[736px] -translate-x-1/2 -translate-y-1/2 rounded-[12px] object-contain"
-            />
+          <ScaledCover nativeWidth={840} nativeHeight={540} className="rounded-[16px] bg-[#e6e6e6]">
+            <div className="absolute -top-[20px] left-0 h-[560px] w-[840px]">
+              <Image
+                src={imgUnsplashVhKRwVyQ}
+                alt=""
+                fill
+                sizes="(max-width: 809px) calc(100vw - 40px), 840px"
+                className="object-cover object-[50%_65%] blur-[6px]"
+              />
+              <div className="absolute left-1/2 bottom-[-20px] h-[498px] w-[750px] -translate-x-1/2 overflow-hidden rounded-[16px]">
+                <Image
+                  src={imgDashboard5}
+                  alt=""
+                  fill
+                  sizes="750px"
+                  quality={95}
+                  priority
+                  className="object-contain"
+                />
+              </div>
+            </div>
           </ScaledCover>
 
           <CaseStudyMeta
@@ -188,7 +193,7 @@ export default function BetaTestingPlatformCaseStudy() {
             Telegram, email, Facebook, and WhatsApp - no structure, no single home.
             <br />
             <br />
-            I led success metrics, core user flows, and usability testing.
+            I shaped what success would look like for the product - defining metrics and their logic - and led core user flows and usability testing.
           </p>
         </div>
 

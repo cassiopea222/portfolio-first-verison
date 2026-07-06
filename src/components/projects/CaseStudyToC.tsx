@@ -71,7 +71,7 @@ export default function CaseStudyToC({
     >
       <Link
         href={backHref}
-        className="flex items-center gap-[6px] font-inconsolata text-[16px] font-medium leading-[18px] text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]"
+        className="flex items-center gap-[6px] font-sans text-[14px] font-medium leading-[18px] text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]"
       >
         <ArrowBackNavIcon />
         <span>Go back</span>
@@ -85,7 +85,7 @@ export default function CaseStudyToC({
               setActiveId(TOP_ID);
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className={`font-inconsolata text-[16px] leading-[18px] transition-colors ${
+            className={`font-sans text-[14px] leading-[18px] transition-colors ${
               activeId === TOP_ID
                 ? "font-semibold text-[var(--text-primary)]"
                 : "font-medium text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
@@ -103,7 +103,7 @@ export default function CaseStudyToC({
               setActiveId(id);
               document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
             }}
-            className={`font-inconsolata text-[16px] leading-[18px] transition-colors ${
+            className={`font-sans text-[14px] leading-[18px] transition-colors ${
               activeId === id
                 ? "font-semibold text-[var(--text-primary)]"
                 : "font-medium text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"

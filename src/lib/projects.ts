@@ -6,7 +6,7 @@ export type ProjectRecord = {
   subtitle: string;
   dateRange: string;
   description: string;
-  cover: "ajax" | "fitness" | "role" | "governmental";
+  cover: "ajax" | "fitness" | "role" | "governmental" | "governmental-mobile";
   status: ProjectStatus;
   /** Excludes this project from the homepage grid without breaking its route. */
   hidden?: boolean;
@@ -14,19 +14,29 @@ export type ProjectRecord = {
 
 export const projects: ProjectRecord[] = [
   {
+    slug: "governmental-platform-mobile",
+    name: "Governmental Platform Mobile",
+    subtitle: "Government Monitoring Platform: Mobile app",
+    dateRange: "Jan 2026 - Jun 2026",
+    description:
+      "The mobile side of a three-part government platform - designed natively for daily use by leadership, with its own visual language, design system, and user-tested flows.",
+    cover: "governmental-mobile",
+    status: "planned",
+  },
+  {
     slug: "governmental-platform",
     name: "Governmental Platform",
-    subtitle: "Web, Mobile & CMS",
+    subtitle: "Government Monitoring Platform: Web (Dashboards & CMS)",
     dateRange: "Feb 2025 - Jun 2026",
     description:
-      "Three connected products built for a government organisation in the Arabic-speaking region - a monitoring dashboard, a back-office CMS, and a companion mobile app.",
+      "Part of a larger government platform - this case covers the web side: a monitoring dashboard, a mirrored dashboard for the Prime Minister's office, and a back-office CMS.",
     cover: "governmental",
     status: "ready",
   },
   {
     slug: "beta-testing-platform-ajax",
     name: "Ajax Systems",
-    subtitle: "Beta testing platform",
+    subtitle: "Ajax Systems Beta testing platform",
     dateRange: "May 2025 - July 2025",
     description:
       "Centralized beta testing hub to collect structured feedback faster and make the process transparent for testers.",
@@ -36,7 +46,7 @@ export const projects: ProjectRecord[] = [
   {
     slug: "fitness-app-redesign",
     name: "Sadie Active",
-    subtitle: "Fitness app redesign",
+    subtitle: "Sadie Active Fitness app redesign",
     dateRange: "Oct 2023 - Feb 2024",
     description:
       "Mobile fitness app of a fitness influencer, designed solution for Progress dashboard and Workout programs.",
