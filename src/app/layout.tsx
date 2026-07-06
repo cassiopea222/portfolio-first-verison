@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Crimson_Pro, Geist_Mono, Inconsolata, Inter } from "next/font/google";
 import localFont from "next/font/local";
 import AppShellHeader from "@/components/AppShellHeader";
+import MobileOverlay from "@/components/MobileOverlay";
 import TooltipProvider from "@/components/TooltipProvider";
 import "./globals.css";
 
@@ -65,6 +66,7 @@ export default function RootLayout({
           <div className="flex min-h-screen flex-col bg-[var(--background)]">
             <AppShellHeader />
             <main className="flex-1">{children}</main>
+            <MobileOverlay />
           </div>
         </TooltipProvider>
       </body>

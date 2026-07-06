@@ -3,11 +3,11 @@
 /* Figma design tokens (from get_variable_defs) */
 :root {
   /* Sticky-header height, computed to match Header.tsx's own rendered
-     size exactly: 36px vertical padding (pt-6 + pb-3) plus the content
-     row (24px hamburger on mobile, 46px nav pill on desktop). Kept as a
-     static value (not JS-measured) so the homepage hero never has to
-     reflow/correct after hydration — that caused a visible jump on load. */
-  --header-height: 60px;
+     size exactly: 36px vertical padding (pt-6 + pb-3) plus the nav pill
+     (~46px). Kept as a static value (not JS-measured) so the homepage hero
+     never has to reflow/correct after hydration — that caused a visible jump
+     on load. */
+  --header-height: 82px;
   --background: #ffffff;
   --foreground: #000000;
   --text-primary: #373636;
@@ -71,15 +71,6 @@
   --type-caption-track: 0;
 }
 
-/* Header switches from the mobile hamburger row to the desktop nav pill at
-   810px (Header.tsx's `min-[810px]:` breakpoint) — match it here so
-   --header-height stays accurate without measuring the DOM. */
-@media (min-width: 810px) {
-  :root {
-    --header-height: 82px;
-  }
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -102,6 +93,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
+}
+
+/* While MobileOverlay.tsx blocks the site at 620px and below, lock the page
+   behind it: without this, desktop-width content overflowing the phone
+   viewport makes mobile browsers zoom out to fit (shrinking the notice
+   text) and lets users pan sideways past the overlay's edge.
+   Remove together with MobileOverlay.tsx when the mobile layout ships. */
+@media (max-width: 620.98px) {
+  html,
+  body {
+    overflow: hidden;
+    height: 100dvh;
+  }
 }
 
 /* Hide system cursor on tooltip-bearing elements so the pill replaces it. */

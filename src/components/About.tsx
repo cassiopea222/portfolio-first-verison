@@ -87,8 +87,8 @@ export default function About() {
   return (
     <>
       <section className="mx-auto flex w-full max-w-[900px] flex-col items-start justify-center px-[90px] pt-[100px] pb-[60px]">
-        <div className="flex w-[740px] flex-col gap-[60px]">
-          <div className="hero-enter-heading flex flex-col gap-[60px]">
+        <div className="flex w-full flex-col gap-[60px]">
+          <div className="hero-enter-heading flex w-full flex-col gap-[60px]">
             <div
               data-tooltip="It's me!"
               className="relative h-[260px] w-[241px] self-start overflow-hidden rounded-[24px]"
@@ -104,7 +104,7 @@ export default function About() {
               />
             </div>
 
-            <div className="flex flex-col gap-[24px]">
+            <div className="flex w-full flex-col gap-[24px]">
               <h1
                 className="font-semibold text-[var(--text-primary)]"
                 style={{ ...headingFont, fontSize: 32, lineHeight: "40px" }}
@@ -112,7 +112,7 @@ export default function About() {
                 Hi there!
               </h1>
               <div className="flex flex-col gap-[32px]">
-                <div className="flex flex-col gap-4 font-sans text-[20px] font-normal leading-[28px] text-[var(--text-secondary)]">
+                <div className="flex w-full flex-col gap-4 font-sans text-[20px] font-normal leading-[28px] text-[var(--text-secondary)]">
                   <p>
                     Originally from Ukraine, I was curious about art and then the
                     design from my childhood - I built my first website at the age
