@@ -296,20 +296,15 @@ export default function IntroSection() {
         <h1
           className="hero-enter-heading flex flex-col items-center font-semibold text-[var(--text-primary)]"
           style={{
-            /* 7.2cqw: the widest line (cover + "interfaces people ♥ love,")
-               measures ~13.82em in Inter Display, so the headline fills ~99%
-               of the container at any width and caps at the Figma size (64px)
-               on wide screens. */
             fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif",
-            fontSize: "min(64px, 7.2cqw)",
+            fontSize: "70px",
             lineHeight: 76 / 64,
             letterSpacing: "0.01em",
             gap: em(4),
           }}
         >
           <span className="flex items-end whitespace-nowrap" style={{ gap: em(24) }}>
-            <span>Julia</span>
-            <span>designs</span>
+            <span>Julia designs</span>
             <FolderWithTags />
             <span>products,</span>
           </span>

@@ -116,7 +116,7 @@ export default function About() {
                   <p>
                     Originally from Ukraine, I was curious about art and then the
                     design from my childhood - I built my first website at the age
-                    of 10 using sites constructor
+                    of 10 using sites constructor.
                   </p>
                   <p>
                     What I love about this work is observing how people interact
@@ -124,7 +124,16 @@ export default function About() {
                     makes an interaction feel intuitive, and I love being the
                     person who gets to shape that. I care a lot about craft and
                     visuals - I think it shapes the experience long before a user
-                    even starts interacting with the product
+                    even starts interacting with the product.
+                  </p>
+                  <p>
+                    Over 4 years I&apos;ve worked across a broad range of product
+                    types - social platforms, fintech, fitness apps, government
+                    platforms - moving between real-time, engagement-driven
+                    experiences and more structured, high-stakes systems. I like
+                    that range: it means adapting my approach to what the product
+                    actually needs, rather than applying the same playbook
+                    everywhere.
                   </p>
                   <p>
                     Outside the work I draw, explore niche perfumery and do yoga.
