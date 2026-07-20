@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:assets": "node scripts/validate-public-assets.mjs"
   },
   "dependencies": {
     "@chenglou/pretext": "^0.0.5",
