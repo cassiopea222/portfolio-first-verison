@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "test:assets": "node scripts/validate-public-assets.mjs",
     "start": "next start",
     "lint": "eslint"
   },
