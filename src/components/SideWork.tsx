@@ -345,14 +345,7 @@ function SideWorkModal({
       }`}
       style={{ transitionTimingFunction: "var(--ui-ease-out)" }}
     >
-      {isGallery ? (
-        <GalleryPanel
-          card={card}
-          visible={visible}
-          panelRef={panelRef}
-          onRequestClose={requestClose}
-        />
-      ) : isFrameless ? (
+      {isFrameless ? (
         // The design has its own bg and fills the frame — the modal is the
         // design itself, no panel around it.
         <div
@@ -374,6 +367,13 @@ function SideWorkModal({
           <SideWorkCover card={card} borderless />
           <ModalCloseButton onClick={requestClose} />
         </div>
+      ) : isGallery ? (
+        <GalleryPanel
+          card={card}
+          visible={visible}
+          panelRef={panelRef}
+          onRequestClose={requestClose}
+        />
       ) : (
         <div
           ref={panelRef}

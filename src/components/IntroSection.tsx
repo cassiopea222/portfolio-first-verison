@@ -54,8 +54,8 @@ const TAGS: Tag[] = [
   },
   {
     label: "government",
-    rest: { left: -3.23, top: -13.76, w: 113.48, h: 107.7, rot: 42.54 },
-    out: { dx: -56.56, dy: -57.08, rot: -4.78 },
+    rest: { left: -3.23, top: -27.76, w: 113.48, h: 107.7, rot: 42.54 },
+    out: { dx: -56.56, dy: -43.08, rot: -4.78 },
     pill: "linear-gradient(-62.65deg, #d9f6c6 10.837%, #f6d7ff 88.057%)",
     text: "linear-gradient(97.72deg, #c67dd3 4.71%, #83c856 95.39%)",
   },
@@ -289,7 +289,7 @@ function PhoneVisual() {
 export default function IntroSection() {
   return (
     <section
-      className="mx-auto flex w-full flex-col justify-center fluid-px pt-[80px] pb-[160px]"
+      className="mx-auto flex w-full flex-col justify-center fluid-px pt-[100px] pb-[120px]"
       style={{ minHeight: "calc(100dvh - var(--header-height, 0px))" }}
     >
       <div style={{ containerType: "inline-size" }}>
@@ -298,10 +298,10 @@ export default function IntroSection() {
           style={{
             /* 7.2cqw: the widest line (cover + "interfaces people ♥ love,")
                measures ~13.82em in Inter Display, so the headline fills ~99%
-               of the container at any width and caps at 70px on wide screens. */
+               of the container at any width and caps at 60px on wide screens. */
             fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif",
-            fontSize: "min(70px, 7.2cqw)",
-            lineHeight: 76 / 64,
+            fontSize: "min(60px, 7.2cqw)",
+            lineHeight: 64 / 60,
             letterSpacing: "0.01em",
             gap: em(4),
           }}

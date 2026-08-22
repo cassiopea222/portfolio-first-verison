@@ -46,10 +46,25 @@ const interDisplay = localFont({
   display: "swap",
 });
 
+const siteDescription =
+  "Product designer and crafter of experiences. Creating digital tools that make life easier for real people.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL("https://julia-bulyndina.vercel.app"),
   title: "Julia Bulyndina Portfolio",
-  description:
-    "Product designer and crafter of experiences. Creating digital tools that make life easier for real people.",
+  description: siteDescription,
+  openGraph: {
+    title: "Julia Bulyndina — Product Designer",
+    description: siteDescription,
+    url: "/",
+    siteName: "Julia Bulyndina Portfolio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Julia Bulyndina — Product Designer",
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({

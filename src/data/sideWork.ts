@@ -21,8 +21,8 @@ export type SideWorkCard = {
    * How the expanded modal frames the cover. "frameless" — the design has
    * its own colored bg filling the frame, so the modal is the design itself.
    * "framed" (default) — the design sits on a white modal panel (right when
-   * the content's own bg is white or absent). Image-only cards ignore this
-   * and always open as a zoomable gallery on the cover bg.
+   * the content's own bg is white or absent). Image-only cards without
+   * "frameless" open as a zoomable gallery on the cover bg.
    */
   modalStyle?: "framed" | "frameless";
   /** Cover frame size in px. Defaults to 840×553 when omitted. */
@@ -31,10 +31,30 @@ export type SideWorkCard = {
   media: SideWorkMedia[];
 };
 
+// Newest concepts go first — add new cards at the top of this array.
+// Titles capitalize every word except the word "concept".
 export const sideWorkCards: SideWorkCard[] = [
   {
+    id: "social-music-concept",
+    title: "Social Music App concept",
+    coverBgClass: "bg-[#ececec]",
+    modalStyle: "frameless",
+    nativeWidth: 2400,
+    nativeHeight: 1800,
+    media: [
+      {
+        kind: "image",
+        src: "/home/side-work/social-music-app.jpg",
+        x: 0,
+        y: 0,
+        width: 2400,
+        height: 1800,
+      },
+    ],
+  },
+  {
     id: "finance-concept",
-    title: "Finance mobile app concept",
+    title: "Finance Mobile App concept",
     coverBgClass: "bg-[#f1f1f1]",
     media: [
       { kind: "image", src: "/home/side-work/finance-1.png", x: 34, y: 88, width: 185, height: 383 },
@@ -45,7 +65,7 @@ export const sideWorkCards: SideWorkCard[] = [
   },
   {
     id: "vinyl-animation",
-    title: "Vinyl playing animation",
+    title: "Vinyl Playing Animation",
     coverBgClass: "bg-[var(--background)]",
     coverBorderClass: "border border-[#ececec]",
     media: [
@@ -62,7 +82,7 @@ export const sideWorkCards: SideWorkCard[] = [
   },
   {
     id: "movie-diary",
-    title: "Movie diary app",
+    title: "Movie Diary App",
     coverBgClass: "bg-[#ececec]",
     modalStyle: "frameless",
     nativeWidth: 2336,

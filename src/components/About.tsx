@@ -127,7 +127,7 @@ export default function About() {
                     even starts interacting with the product.
                   </p>
                   <p>
-                    Over 4 years I&apos;ve worked across a broad range of product
+                    Over 4+ years I&apos;ve worked across a broad range of product
                     types - social platforms, fintech, fitness apps, government
                     platforms - moving between real-time, engagement-driven
                     experiences and more structured, high-stakes systems. I like

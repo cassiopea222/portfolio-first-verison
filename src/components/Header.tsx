@@ -33,7 +33,7 @@ export default function Header() {
   const pillOffset = TAB_OFFSETS[activeHref] ?? 0;
 
   return (
-    <header className="hero-enter-nav sticky top-0 z-50 mx-auto w-full max-w-[900px] fluid-px pt-6 pb-3">
+    <header className="hero-enter-nav sticky top-0 z-50 mx-auto w-full max-w-[900px] fluid-px pt-4 pb-3">
       {/* ── Desktop layout: centered tabs ── */}
       <div className="hidden md:flex md:justify-center">
         <div
@@ -82,10 +82,10 @@ export default function Header() {
               key={href}
               href={href}
               aria-current={activeHref === href ? "page" : undefined}
-              className={`rounded-[32px] px-3 py-[6px] font-sans text-[14px] leading-[22px] no-underline transition-colors duration-150 ${
+              className={`w-[100px] rounded-[32px] border-[0.7px] py-[6px] text-center font-sans text-[14px] leading-[22px] no-underline transition-colors duration-150 ${
                 activeHref === href
-                  ? "border-[0.7px] border-[#dfdfdf] bg-gradient-to-t from-[#e7e7e7] to-white font-medium text-[var(--text-secondary)] shadow-[0px_1px_2px_0px_rgba(184,184,184,0.35)]"
-                  : "font-medium text-[var(--text-tertiary)]"
+                  ? "border-[#dfdfdf] bg-gradient-to-t from-[#e7e7e7] to-white font-medium text-[var(--text-secondary)] shadow-[0px_1px_2px_0px_rgba(184,184,184,0.35)]"
+                  : "border-transparent font-medium text-[var(--text-tertiary)]"
               }`}
             >
               {label}
