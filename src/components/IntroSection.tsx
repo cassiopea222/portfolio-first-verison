@@ -27,6 +27,14 @@ const cem = (px: number) => em(px * 0.9247); // cover: 129.46 / 140
 const hem = (px: number) => em(px * 0.8852); // heart: 55.77 / 63
 const pem = (px: number) => em(px * 0.9175); // phone: 121.46 / 132.375
 
+/*
+ * Headline rows share a band tall enough for the cover/phone visuals, so the
+ * text-only line and the image lines sit on the same vertical rhythm. Gap is
+ * close to the 24px inline gaps between words and pictures.
+ */
+const LINE_MIN_H = cem(93);
+const LINE_GAP = em(12);
+
 type Tag = {
   label: string;
   /** Bounding box + rotation while tucked inside the folder (relative to the folder box). */
@@ -301,18 +309,29 @@ export default function IntroSection() {
                of the container at any width and caps at 60px on wide screens. */
             fontFamily: "var(--font-inter-display), -apple-system, BlinkMacSystemFont, sans-serif",
             fontSize: "min(60px, 7.2cqw)",
-            lineHeight: 64 / 60,
+            lineHeight: 1,
             letterSpacing: "0.01em",
-            gap: em(4),
+            gap: LINE_GAP,
           }}
         >
-          <span className="flex items-end whitespace-nowrap" style={{ gap: em(24) }}>
+          <span
+            className="flex items-center whitespace-nowrap"
+            style={{ gap: em(24), minHeight: LINE_MIN_H }}
+          >
             <span>Julia designs</span>
             <FolderWithTags />
             <span>products,</span>
           </span>
-          <span className="whitespace-nowrap">translates business logic into</span>
-          <span className="flex items-center whitespace-nowrap" style={{ gap: em(24) }}>
+          <span
+            className="flex items-center whitespace-nowrap"
+            style={{ minHeight: LINE_MIN_H }}
+          >
+            translates business logic into
+          </span>
+          <span
+            className="flex items-center whitespace-nowrap"
+            style={{ gap: em(24), minHeight: LINE_MIN_H }}
+          >
             <CoverVisual />
             <span className="flex items-center" style={{ gap: em(12) }}>
               <span>interfaces people</span>
@@ -320,7 +339,10 @@ export default function IntroSection() {
               <span>love,</span>
             </span>
           </span>
-          <span className="flex items-center whitespace-nowrap" style={{ gap: em(24) }}>
+          <span
+            className="flex items-center whitespace-nowrap"
+            style={{ gap: em(24), minHeight: LINE_MIN_H }}
+          >
             <span>and builds for fun.</span>
             <PhoneVisual />
           </span>
